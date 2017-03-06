@@ -22,7 +22,7 @@ import org.hibernate.validator.constraints.Length;
 /**
  * Produtos e Serviços da NF-e
  *
- * @author tiago
+ * @author tiago 12345
  */
 @Entity
 @Table(schema = "public", name = "produto")
