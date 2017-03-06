@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:panelGroup id="pgNFeObservacaoContribuinte">
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-6 ">
+                <p:inputTextarea value="#{digitacaoNFeFaces.informacoesAdicionaisContribuinte.xcampo}" counter="xcampoContr" maxlength="2000" 
+                                 counterTemplate="{0} caracteres restantes." rows="10"
+                                 validatorMessage="Mínimo de 15 caracteres" 
+                                 placeholder="* Nome do campo" 
+                                 title="* Nome do campo">
+                    <f:validateLength minimum="15" />
+                </p:inputTextarea>
+                <h:outputText id="xcampoContr" />
+            </div>
+            <div class="ui-g-12 ui-md-6 ">
+                <p:inputTextarea value="#{digitacaoNFeFaces.informacoesAdicionaisContribuinte.xtexto}" counter="xtextoContr" maxlength="2000" 
+                                 counterTemplate="{0} caracteres restantes." rows="10"
+                                 validatorMessage="Mínimo de 15 caracteres" 
+                                 placeholder="* Observação" 
+                                 title="* Observação">
+                    <f:validateLength minimum="15" />
+                </p:inputTextarea>
+                <h:outputText id="xtextoContr" />
+            </div>
+        </div>
+    </h:panelGroup>
+
+</ui:composition>

@@ -1,0 +1,214 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+        <h:form id="mainForm" acceptcharset="UTF-8" onkeypress="return event.keyCode != 13">
+            <div class="card card-w-title"><h1>Informações de Transporte</h1>
+                <p:accordionPanel multiple="false" widgetVar="accTransp">
+                    <p:tab title="Pesquisa de Transportadora">
+                        <h:panelGroup id="pgPesquisa" layout="block">
+                            <div class="card">
+                                <div class="ui-g">
+                                    <div class="ui-g-12 ui-md-4 ui-lg-4">
+                                        <h:panelGroup styleClass="md-inputfield">
+                                            <p:inputText  value="#{transportadoraFaces.transportadoraFilter.documento}" maxlength="20" />
+                                            <label>CPF/CNPJ/ID Estrangeiro</label>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-4 ui-lg-4">
+                                        <h:panelGroup styleClass="md-inputfield">
+                                            <p:inputText value="#{transportadoraFaces.transportadoraFilter.xnome}" maxlength="60" />
+                                            <label>Razão Social</label>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-4 ui-lg-4">
+                                        <h:panelGroup styleClass="md-inputfield">
+                                            <p:inputText value="#{transportadoraFaces.transportadoraFilter.ie}" maxlength="14" />
+                                            <label>Inscrição Estadual</label>
+                                        </h:panelGroup>
+                                    </div>
+                                </div>
+
+                                <div class="ui-g">
+                                    <div class="ui-g-6 ui-md-6 ui-lg-2">
+                                        <p:commandButton process="pgPesquisa @this" update=":mainForm:dtModel" 
+                                                         action="#{transportadoraFaces.pesquisar()}" 
+                                                         value="Pesquisar" icon="fa fa-search" />
+                                    </div>
+                                </div>
+                            </div>
+                        </h:panelGroup>
+                    </p:tab>
+
+                    <p:tab title="Cadastro de Transportadora">
+                        <h:panelGroup id="pgTransportadora">
+                            <div class="card card-w-title"><h1>Dados Principais</h1>
+                                <div class="ui-g">
+                                    <div class="ui-g-12 ui-md-4 ui-lg-4">
+                                        <h:panelGroup styleClass="md-inputfield">
+                                            <p:inputText id="documento" value="#{transportadoraFaces.transportadora.documento}" maxlength="20" />
+                                            <label>* CPF/CNPJ/ID Estrangeiro</label>
+                                            <p:message for="documento" escape="true"/>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-4 ui-lg-4">
+                                        <h:panelGroup styleClass="md-inputfield">
+                                            <p:inputText id="razao" value="#{transportadoraFaces.transportadora.xnome}" maxlength="60" />
+                                            <label>* Razão Social</label>
+                                            <p:message for="razao" escape="true"/>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-4 ui-lg-4">
+                                        <h:panelGroup styleClass="md-inputfield">
+                                            <p:inputText id="ie" value="#{transportadoraFaces.transportadora.ie}" maxlength="14" />
+                                            <label>* Inscrição Estadual</label>
+                                            <p:message for="ie" escape="true"/>
+                                        </h:panelGroup>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h:panelGroup id="pgEndereco" layout="block">
+                                <div class="card card-w-title"><h1>Endereço</h1>
+                                    <div class="ui-g">
+                                        <div class="ui-g-12 ui-md-6 ui-lg-3" style="padding: 0em">
+                                            <div class="ui-g-10">
+                                                <h:panelGroup styleClass="md-inputfield">
+                                                    <p:inputText id="cep" value="#{transportadoraFaces.transportadora.endereco.endCep}" maxlength="8" />
+                                                    <label>Código do CEP</label>
+                                                    <p:message for="cep" escape="true"/>
+                                                </h:panelGroup>
+                                            </div>
+                                            <div class="ui-g-2" style="text-align: center">
+                                                <p:commandButton process="cep, @this" update="pgEndereco"  
+                                                                 action="#{transportadoraFaces.buscaCep()}" partialSubmit="true" 
+                                                                 icon="fa fa-search"/>
+                                            </div>
+                                        </div>
+                                        <div class="ui-g-12 ui-md-6 ui-lg-5">
+                                            <h:panelGroup styleClass="md-inputfield">
+                                                <p:inputText id="xlgr" value="#{transportadoraFaces.transportadora.endereco.endXlgr}" maxlength="60" />
+                                                <label>* Logradouro</label>
+                                                <p:message for="xlgr" escape="true"/>
+                                            </h:panelGroup>
+                                        </div>
+                                        <div class="ui-g-12 ui-md-6 ui-lg-4">
+                                            <h:panelGroup styleClass="md-inputfield">
+                                                <p:inputText id="nro" value="#{transportadoraFaces.transportadora.endereco.endNro}" maxlength="60" />
+                                                <label>* Número</label>
+                                                <p:message for="nro" escape="true"/>
+                                            </h:panelGroup>
+                                        </div>
+                                        <div class="ui-g-12 ui-md-6 ui-lg-6">
+                                            <h:panelGroup styleClass="md-inputfield">
+                                                <p:inputText id="xbairro" value="#{transportadoraFaces.transportadora.endereco.endXbairro}" maxlength="60" />
+                                                <label>* Bairro</label>
+                                                <p:message for="xbairro" escape="true"/>
+                                            </h:panelGroup>
+                                        </div>
+                                        <div class="ui-g-12 ui-md-12 ui-lg-6">
+                                            <h:panelGroup styleClass="md-inputfield">
+                                                <p:inputText id="xcpl" value="#{transportadoraFaces.transportadora.endereco.endXcpl}" maxlength="60" />
+                                                <label>Complemento</label>
+                                                <p:message for="xcpl" escape="true"/>
+                                            </h:panelGroup>
+                                        </div>
+                                        <div class="ui-g-12 ui-md-4 ui-lg-4">
+                                            <h:panelGroup styleClass="md-inputfield">
+                                                <p:inputText id="cmun" value="#{transportadoraFaces.transportadora.endereco.endCmun}" maxlength="7" />
+                                                <label>* Código do Município</label>
+                                                <p:message for="cmun" escape="true"/>
+                                            </h:panelGroup>
+                                        </div>
+                                        <div class="ui-g-12 ui-md-4 ui-lg-4">
+                                            <h:panelGroup styleClass="md-inputfield">
+                                                <p:inputText id="xmun" value="#{transportadoraFaces.transportadora.endereco.endXmun}" maxlength="60" />
+                                                <label>* Nome do Município</label>
+                                                <p:message for="xmun" escape="true"/>
+                                            </h:panelGroup>
+                                        </div>
+                                        <div class="ui-g-12 ui-md-4 ui-lg-4">
+                                            <h:panelGroup styleClass="md-inputfield">
+                                                <p:inputText id="uf" value="#{transportadoraFaces.transportadora.endereco.endUf}" maxlength="2" />
+                                                <label>* Sigla da UF</label>
+                                                <p:message for="uf" escape="true"/>
+                                            </h:panelGroup>
+                                        </div>
+                                        <div class="ui-g-12 ui-md-4 ui-lg-4">
+                                            <h:panelGroup styleClass="md-inputfield">
+                                                <p:inputText id="cpais" value="#{transportadoraFaces.transportadora.endereco.endCpais}" maxlength="4" />
+                                                <label>Código do País</label>
+                                                <p:message for="cpais" escape="true"/>
+                                            </h:panelGroup>
+                                        </div>
+                                        <div class="ui-g-12 ui-md-4 ui-lg-4">
+                                            <h:panelGroup styleClass="md-inputfield">
+                                                <p:inputText id="xpais" value="#{transportadoraFaces.transportadora.endereco.endXpais}" maxlength="60" />
+                                                <label>Nome do País</label>
+                                                <p:message for="xpais" escape="true"/>
+                                            </h:panelGroup>
+                                        </div>
+                                        <div class="ui-g-12 ui-md-4 ui-lg-4">
+                                            <h:panelGroup styleClass="md-inputfield">
+                                                <p:inputText id="fone" value="#{transportadoraFaces.transportadora.endereco.endFone}" maxlength="14" />
+                                                <label>Telefone</label>
+                                                <p:message for="fone" escape="true"/>
+                                            </h:panelGroup>
+                                        </div>
+                                    </div>
+                                </div>
+                            </h:panelGroup>
+
+                            <div class="card" style="padding: 0em">
+                                <div class="ui-g">
+                                    <div class="ui-g-6 ui-md-3 ui-lg-2">
+                                        <p:commandButton process="pgTransportadora @this" update="pgTransportadora :mainForm:dtModel" 
+                                                         action="#{transportadoraFaces.salvar()}" 
+                                                         value="Salvar" styleClass="green-btn" icon="fa fa-save" />
+                                    </div>
+                                    <div class="ui-g-6 ui-md-3 ui-lg-2">
+                                        <p:commandButton value="Limpar" styleClass="red-btn" icon="fa fa-eraser" type="reset"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </h:panelGroup>
+                    </p:tab>
+                </p:accordionPanel>
+            </div>
+
+            <div class="EmptyBox5"></div>
+            <p:dataTable id="dtModel" value="#{transportadoraFaces.model}" var="item" lazy="true" paginator="true" paginatorPosition="top" rows="5" rowsPerPageTemplate="5" 
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         currentPageReportTemplate="Página: {currentPage}/{totalPages}"
+                         emptyMessage="Nenhuma Transportadora encontrada." reflow="true">
+
+                <p:column headerText="Documento" class="Wid30">
+                    <h:outputText value="#{item.documento}" />
+                </p:column>
+                <p:column headerText="Razão Social" class="Wid30">
+                    <h:outputText value="#{item.xnome}" />
+                </p:column>
+                <p:column headerText="Inscrição Estadual" class="Wid30">
+                    <h:outputText value="#{item.ie}" />
+                </p:column>
+                <p:column headerText="Opções" class="TexAlCenter Wid10">
+                    <p:commandButton process="@this" update="@this @(form)"
+                                     styleClass="green-btn" icon="fa fa-pencil" 
+                                     oncomplete="window.scrollTo(0,0); PF('accTransp').select(1);">
+                        <f:setPropertyActionListener value="#{item}" target="#{transportadoraFaces.transportadora}"/>
+                    </p:commandButton>
+                    <p:commandButton process="@this" update="dtModel"
+                                     action="#{transportadoraFaces.deleteById(item.id)}" 
+                                     styleClass="red-btn" icon="fa fa-trash">
+                        <p:confirm header="Confirmação" message="Realmente deseja excluir?" icon="ui-icon-alert" />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>

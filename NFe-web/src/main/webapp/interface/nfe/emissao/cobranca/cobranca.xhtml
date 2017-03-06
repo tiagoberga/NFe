@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:panelGroup id="pgNFeCobranca" layout="block">
+        <h:panelGroup id="pgNFeCobrancaFatura" layout="block">
+            <div class="Card">
+                <div class="CardBigTopic">Fatura</div>
+                <div class="Separator"></div>
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-6 ui-lg-3">
+                        <p:inputText id="nfat" value="#{digitacaoNFeFaces.cobrancaFatura.nfat}" placeholder="Número" title="Número">
+                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                        </p:inputText>
+                        <p:message for="nfat" escape="true"/>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-3">
+                        <p:inputText id="vorig" value="#{digitacaoNFeFaces.cobrancaFatura.vorig}" placeholder="Valor Original" title="Valor Original" class="TexAlRight" style="background-color: #EAEAEA">
+                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                        </p:inputText>
+                        <p:message for="vorig" escape="true"/>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-3">
+                        <p:inputText id="vdesc" value="#{digitacaoNFeFaces.cobrancaFatura.vdesc}" placeholder="Valor do Desconto" title="Valor do Desconto" class="TexAlRight" style="background-color: #EAEAEA">
+                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                        </p:inputText>
+                        <p:message for="vdesc" escape="true"/>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-3">
+                        <p:inputText id="vliq" value="#{digitacaoNFeFaces.cobrancaFatura.vliq}" placeholder="Valor Líquido" title="Valor Líquido" class="TexAlRight" style="background-color: #EAEAEA">
+                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                        </p:inputText>
+                        <p:message for="vliq" escape="true"/>
+                    </div>
+                </div>
+            </div>
+        </h:panelGroup>
+
+        <div class="EmptyBox5"></div>
+        <h:panelGroup id="pgDuplicata" layout="block">
+            <div class="Card">
+                <div class="CardBigTopic">Duplicata</div>
+                <div class="Separator"></div>
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-12 ui-lg-4">
+                        <p:inputText id="ndup" value="#{digitacaoNFeFaces.cobrancaDuplicata.ndup}" placeholder="Número" title="Número" maxlength="60">
+                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                        </p:inputText>
+                        <p:message for="ndup" escape="true"/>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                        <p:calendar id="dvenc" value="#{digitacaoNFeFaces.cobrancaDuplicata.dvenc}" pattern="dd/MM/yyyy" placeholder="Data Vencimento" title="Data Vencimento" maxlength="10">
+                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                        </p:calendar>
+                        <p:message for="dvenc" escape="true"/>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4 NoPadding">
+                        <div class="ui-g-10">
+                            <p:inputText id="vdup" value="#{digitacaoNFeFaces.cobrancaDuplicata.vdup}" placeholder="* Valor" title="* Valor" maxlength="15" class="TexAlRight" style="background-color: #EAEAEA">
+                                <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                            </p:inputText>
+                            <p:message for="vdup" escape="true"/>
+                        </div>
+                        <div class="ui-g-2 TexAlCenter">
+                            <p:commandButton process="pgDuplicata, @this" update="pgDuplicata, dtDuplicata" action="#{digitacaoNFeFaces.addCobrancaDuplicata()}" 
+                                             icon="fa fa-plus Fs16 White" styleClass="ShadowEffect"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="EmptyBox5"></div>
+            <p:dataTable id="dtDuplicata" value="#{digitacaoNFeFaces.dadosNFe.duplicatas}" var="vDuplicata" lazy="true" paginator="true" paginatorPosition="top" rows="5" rowsPerPageTemplate="5" 
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         currentPageReportTemplate="Página: {currentPage}/{totalPages}"
+                         emptyMessage="Nenhuma duplicata inserida." reflow="true">
+
+                <p:column headerText="Número">
+                    <h:outputText value="#{vDuplicata.ndup}" />
+                </p:column>
+                <p:column headerText="Data Vencimento">
+                    <h:outputText value="#{vDuplicata.dvenc}">
+                        <f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Valor">
+                    <h:outputText value="#{vDuplicata.vdup}">
+                        <f:convertNumber pattern="#0.00" type="currency" minFractionDigits="2" maxFractionDigits="2" />
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Opções" class="TexAlCenter Wid10">
+                    <p:commandButton process="@this" update="@(.ui-panel, pgDuplicata)"
+                                     styleClass="GreenButton ShadowEffect" icon="fa fa-pencil Fs16 White">
+                        <f:setPropertyActionListener value="#{vDuplicata}" target="#{digitacaoNFeFaces.cobrancaDuplicata}"/>
+                    </p:commandButton>
+                    <p:commandButton process="@this" update="dtDuplicata"
+                                     action="#{digitacaoNFeFaces.rmvCobrancaDuplicata()}"
+                                     styleClass="RedButton" icon="fa fa-trash Fs16 White">
+                        <f:setPropertyActionListener value="#{vDuplicata}" target="#{digitacaoNFeFaces.cobrancaDuplicata}"/>
+                        <p:confirm header="Confirmação" message="Realmente deseja excluir?" icon="ui-icon-alert" />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+        </h:panelGroup>
+    </h:panelGroup>
+</ui:composition>

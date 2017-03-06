@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+        <h:form id="mainForm" acceptcharset="UTF-8">
+
+            <div class="Card">
+                <div class="CardBigTopic">Pesquisa NF-es</div>
+                <div class="Separator"></div>
+
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                        <p:outputLabel value="* Série"/>
+                        <p:inputText value="#{nfeFaces.ide.serie}"/>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                        <p:outputLabel value="* Série"/>
+                        <p:inputText value="#{nfeFaces.ide.serie}"/>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                        <p:outputLabel value="* Série"/>
+                        <p:inputText value="#{nfeFaces.ide.serie}"/>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                        <p:outputLabel value="Data/Hora Saída/Entrada"/>
+                        <p:calendar value="#{nfeFaces.ide.dhSaiEnt}" pattern="MM/dd/yyyy HH:mm:ss" />
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                        <p:outputLabel value="Data/Hora Saída/Entrada"/>
+                        <p:calendar value="#{nfeFaces.ide.dhSaiEnt}" pattern="MM/dd/yyyy HH:mm:ss" />
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                        <p:outputLabel value="* Forma de Pagamento"/>
+                        <p:selectOneMenu value="#{nfeFaces.ide.indPag}">
+                            <f:selectItems itemLabel="Select One"/>
+                        </p:selectOneMenu>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                        <p:outputLabel value="* Forma de Pagamento"/>
+                        <p:selectOneMenu value="#{nfeFaces.ide.indPag}">
+                            <f:selectItems itemLabel="Select One"/>
+                        </p:selectOneMenu>
+                    </div>
+                </div>
+            </div>
+
+            <div class="EmptyBox5"></div>
+            <div class="Card NoPadding">
+                <div class="ui-g">
+                    <div class="ui-g-4 ui-md-3 ui-lg-2">
+                        <p:commandButton  value="Pesquisar" icon="fa fa-search Fs16 White" />
+                    </div>
+                    <div class="ui-g-4 ui-md-3 ui-lg-2">
+                        <p:commandButton  value="Exportar" icon="fa fa-cloud-download Fs16 White" />
+                    </div>
+                    <div class="ui-g-4 ui-md-3 ui-lg-2">
+                        <p:commandButton  value="Importar" icon="fa fa-cloud-upload Fs16 White" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="EmptyBox5"></div>
+            <p:dataTable id="dtNFes" var="item" lazy="true" paginator="true" paginatorPosition="top" rows="50" rowsPerPageTemplate="50,100,200,500,1000"
+                         currentPageReportTemplate="Página: {currentPage}/{totalPages}"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         emptyMessage="Nenhuma registro encontrado." reflow="true">
+
+                <p:column headerText="Série">
+                    <h:outputText value="#{car.id}" />
+                </p:column>
+                <p:column headerText="NF-e">
+                    <h:outputText value="#{car.id}" />
+                </p:column>
+                <p:column headerText="Versão">
+                    <h:outputText value="#{car.id}" />
+                </p:column>
+                <p:column headerText="Emitente">
+                    <h:outputText value="#{car.id}" />
+                </p:column>
+                <p:column headerText="Destinatário">
+                    <h:outputText value="#{car.id}" />
+                </p:column>
+                <p:column headerText="UF">
+                    <h:outputText value="#{car.id}" />
+                </p:column>
+                <p:column headerText="R$ Valor">
+                    <h:outputText value="#{car.id}" />
+                </p:column>
+                <p:column headerText="Situação">
+                    <h:outputText value="#{car.id}" />
+                </p:column>
+                <p:column headerText="Operações do Sefaz">
+                    <h:outputText value="#{car.id}" />
+                </p:column>
+                <p:column headerText="Operações do Usuário">
+                    <h:outputText value="#{car.id}" />
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>

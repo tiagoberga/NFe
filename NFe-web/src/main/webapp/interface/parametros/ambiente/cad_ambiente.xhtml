@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/templates/template.xhtml">
+
+    <ui:define name="content">
+        <h:form id="mainForm" acceptcharset="UTF-8">
+            <div class="Card">
+                <div class="CardBigTopic">Informações Gerais</div>
+                <div class="Separator"></div>
+
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-12 ui-lg-12">
+                        <p:outputLabel value="Arquivo Digital"/>
+                        <p:fileUpload  sizeLimit="1000" allowTypes=".pfx" auto="true"
+                                       mode="advanced" process="@this" update="@this" cancelLabel="Teste" 
+                                       invalidFileMessage="Arquivo inválido!"
+                                       label="Certificado" />
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-6">
+                        <p:outputLabel value="Senha Digital"/>
+                        <p:inputText />
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-6">
+                        <p:outputLabel value="Ambiente "/>
+                        <p:selectOneMenu value="#{nfeFaces.ide.indPag}">
+                            <f:selectItem itemValue="NAO" itemLabel="NÃO" />
+                            <f:selectItem itemValue="SIM" itemLabel="SIM" />
+                        </p:selectOneMenu>
+                    </div>
+                </div>
+            </div>
+
+            <div class="EmptyBox5"></div>
+            <div class="Card NoPadding">
+                <div class="ui-g-6 ui-md-3 ui-lg-2">
+                    <p:commandButton value="Salvar" action="#{emitenteFaces.salvar()}" process="@this" styleClass="GreenButton" icon="fa fa-save Fs16 White" />
+                </div>
+            </div>
+
+            <div class="EmptyBox5"></div>
+            <div class="Card NoPadding">
+                <p:dataTable id="dtWebservice" value="#{webServicesFaces.webServices}" var="item" lazy="true" paginator="true" paginatorPosition="top" rows="5" rowsPerPageTemplate="5" 
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             currentPageReportTemplate="Página: {currentPage}/{totalPages}"
+                             emptyMessage="Nenhum reboque inserido." reflow="true">
+
+                    <p:column headerText="Ambiente" style="text-align: center;">
+                        <h:outputText value="#{item.tipoServicoNfe.descricao}" />
+                    </p:column>
+                    <p:column headerText="Certificado" style="text-align: center;">
+                        <h:outputText value="#{item.tipoServicoNfe.descricao}" />
+                    </p:column>
+
+                    <p:column headerText="Ações" styleClass="columnAction" style="width: 10%">
+                        <p:commandButton rendered="#{webServiceFaces.permissao.exclusao}" title="#{bundle.btnExcluir} #{objeto}" 
+                                         icon="ui-icon-trash" action="#{webServiceFaces.excluir()}" update=":mainForm:mainGrid"
+                                         onclick="return confirmButtonFaces('Deseja excluir #{objeto}?')">
+                            <f:setPropertyActionListener target="#{webServiceFaces.webService}" value="#{item}" />
+                        </p:commandButton>
+                    </p:column>
+
+                </p:dataTable>
+            </div>
+
+        </h:form>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,284 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+        <h:form id="mainForm" acceptcharset="UTF-8" onkeypress="return event.keyCode != 13">
+            <div class="card card-w-title"><h1>Informações de Produtos</h1>
+                <p:accordionPanel multiple="false" widgetVar="accProd">
+                    <p:tab title="Pesquisa de Produto">
+                        <h:panelGroup id="pgPesquisa" layout="block">
+                            <div class="card">
+                                <div class="ui-g">
+                                    <div class="ui-g-12 ui-md-4 ui-lg-4">
+                                        <h:panelGroup styleClass="md-inputfield">
+                                            <p:inputText value="#{produtoFaces.produtoFilter.cprod}" />
+                                            <label>Código</label>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-4 ui-lg-4">
+                                        <h:panelGroup styleClass="md-inputfield">
+                                            <p:inputText value="#{produtoFaces.produtoFilter.xprod}" />
+                                            <label>Descrição</label>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-4 ui-lg-4">
+                                        <h:panelGroup styleClass="md-inputfield">
+                                            <p:inputText value="#{produtoFaces.produtoFilter.cean}" />
+                                            <label>EAN</label>
+                                        </h:panelGroup>
+                                    </div>
+                                </div>
+
+                                <div class="ui-g">
+                                    <div class="ui-g-6 ui-md-6 ui-lg-2">
+                                        <p:commandButton process="pgPesquisa @this" update=":mainForm:dtModel" 
+                                                         action="#{produtoFaces.pesquisar()}" 
+                                                         value="Pesquisar" icon="fa fa-search"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </h:panelGroup>
+                    </p:tab>
+
+                    <p:tab title="Cadastro de Produto">
+                        <h:panelGroup id="pgProduto" layout="block">
+                            <div class="card" >
+                                <div class="ui-g">
+                                    <div class="ui-g-12 ui-md-4 ui-lg-4">
+                                        <h:panelGroup styleClass="md-inputfield">
+                                            <p:inputText id="cprod" value="#{produtoFaces.produto.cprod}" maxlength="60" />
+                                            <label>* Código</label>
+                                            <p:message for="cprod" escape="true"/>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-8 ui-lg-8">
+                                        <h:panelGroup styleClass="md-inputfield">
+                                            <p:inputText id="xprod" value="#{produtoFaces.produto.xprod}" maxlength="60" />
+                                            <label>* Descrição</label>
+                                            <p:message for="xprod" escape="true"/>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-12 ui-lg-6" >
+                                        <h:panelGroup styleClass="md-inputfield">
+                                            <p:autoComplete id="cfop" value="#{produtoFaces.produto.cfop}" var="vCfop" itemValue="#{vCfop}" itemLabel="#{vCfop}" cache="true" cacheTimeout="360000"
+                                                            completeMethod="#{produtoFaces.completeCFOP}" dropdown="true" dropdownMode="current" />
+                                            <label>* CFOP</label>
+                                            <p:message for="cfop" escape="true"/>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-12 ui-lg-6" >
+                                        <h:panelGroup styleClass="md-inputfield">
+                                            <p:autoComplete id="ncm" value="#{produtoFaces.produto.ncm}" var="vNcm" itemValue="#{vNcm}" itemLabel="#{vNcm}" cache="true"
+                                                            completeMethod="#{produtoFaces.completeNCM}" dropdown="true" dropdownMode="current" />
+                                            <label>* NCM</label>
+                                            <p:message for="ncm" escape="true"/>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-12 ui-lg-6" >
+                                        <h:panelGroup styleClass="md-inputfield">
+                                            <p:autoComplete id="cest" value="#{produtoFaces.produto.cest}" var="vCest" itemValue="#{vCest}" itemLabel="#{vCest}" cache="true"
+                                                            completeMethod="#{produtoFaces.completeCEST}" dropdown="true" dropdownMode="current" />
+                                            <label>CEST</label>
+                                            <p:message for="cest" escape="true"/>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-12 ui-lg-6" >
+                                        <h:panelGroup styleClass="md-inputfield">
+                                            <p:autoComplete id="indTot" value="#{produtoFaces.produto.indTot}" var="vIndProd" itemValue="#{vIndProd}" itemLabel="#{vIndProd.descricao}" cache="true"
+                                                            completeMethod="#{produtoFaces.completeIndicadorVProd}" dropdown="true" />
+                                            <label>* Composição</label>
+                                            <p:message for="indTot" escape="true"/>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                        <h:panelGroup styleClass="md-inputfield">
+                                            <p:inputText id="ean" value="#{produtoFaces.produto.cean}" maxlength="14" />
+                                            <label>* EAN</label>
+                                            <p:message for="ean" escape="true"/>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                        <h:panelGroup styleClass="md-inputfield">
+                                            <p:inputText id="ceantrib" value="#{produtoFaces.produto.ceantrib}" maxlength="14" />
+                                            <label>* EAN Tributável</label>
+                                            <p:message for="ceantrib" escape="true"/>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                        <h:panelGroup styleClass="md-inputfield">
+                                            <p:inputText id="ucom" value="#{produtoFaces.produto.ucom}" maxlength="6" />
+                                            <label>* Unidade Comercial</label>
+                                            <p:message for="ucom" escape="true"/>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                        <h:panelGroup styleClass="md-inputfield">
+                                            <p:inputText id="utrib" value="#{produtoFaces.produto.utrib}" maxlength="6" />
+                                            <label>* Unidade Tributável</label>
+                                            <p:message for="utrib" escape="true"/>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                        <h:panelGroup styleClass="md-inputfield">
+                                            <p:inputText id="extipi" value="#{produtoFaces.produto.extipi}" maxlength="3" />
+                                            <label>EX TIPI</label>
+                                            <p:message for="extipi" escape="true"/>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                        <h:panelGroup styleClass="md-inputfield" >
+                                            <p:inputText id="qcom" value="#{produtoFaces.produto.qcom}" maxlength="15" style="background-color: #EAEAEA; text-align: right" >
+                                                <f:convertNumber type="number" maxFractionDigits="4" minFractionDigits="4" />
+                                            </p:inputText>
+                                            <label>* Quantidade Comercial</label>
+                                            <p:message for="qcom" escape="true"/>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                        <h:panelGroup styleClass="md-inputfield" >
+                                            <p:inputText id="vuncom" value="#{produtoFaces.produto.vuncom}" maxlength="15" style="background-color: #EAEAEA; text-align: right">
+                                                <f:convertNumber type="number" maxFractionDigits="4" minFractionDigits="4" />
+                                            </p:inputText>
+                                            <label>* Valor Unitário Comercial</label>
+                                            <p:message for="vuncom" escape="true"/>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                        <h:panelGroup styleClass="md-inputfield" >
+                                            <p:inputText id="qtrib" value="#{produtoFaces.produto.qtrib}" maxlength="15" style="background-color: #EAEAEA; text-align: right">
+                                                <f:convertNumber type="number" maxFractionDigits="4" minFractionDigits="4" />
+                                            </p:inputText>
+                                            <label>* Quantidade Tributada</label>
+                                            <p:message for="qtrib" escape="true"/>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                        <h:panelGroup styleClass="md-inputfield" >
+                                            <p:inputText id="vuntrib" value="#{produtoFaces.produto.vuntrib}" maxlength="15" style="background-color: #EAEAEA; text-align: right">
+                                                <f:convertNumber type="number" maxFractionDigits="4" minFractionDigits="4" />
+                                            </p:inputText>
+                                            <label>* Valor Unitário Tributado</label>
+                                            <p:message for="vuntrib" escape="true"/>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                        <h:panelGroup styleClass="md-inputfield" >
+                                            <p:inputText id="vfrete" value="#{produtoFaces.produto.vfrete}" maxlength="15" style="background-color: #EAEAEA; text-align: right">
+                                                <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                            </p:inputText>
+                                            <label>Valor do Frete</label>
+                                            <p:message for="vfrete" escape="true"/>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                        <h:panelGroup styleClass="md-inputfield" >
+                                            <p:inputText id="vseg" value="#{produtoFaces.produto.vseg}" maxlength="15" style="background-color: #EAEAEA; text-align: right">
+                                                <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                            </p:inputText>
+                                            <label>Valor do Seguro</label>
+                                            <p:message for="vseg" escape="true"/>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                        <h:panelGroup styleClass="md-inputfield" >
+                                            <p:inputText id="vdesc" value="#{produtoFaces.produto.vdesc}" maxlength="15" style="background-color: #EAEAEA; text-align: right">
+                                                <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                            </p:inputText>
+                                            <label>Valor do Desconto</label>
+                                            <p:message for="vdesc" escape="true"/>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                        <h:panelGroup styleClass="md-inputfield" >
+                                            <p:inputText id="voutro" value="#{produtoFaces.produto.voutro}" maxlength="15" style="background-color: #EAEAEA; text-align: right">
+                                                <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                            </p:inputText>
+                                            <label>Outras Despesas Acessórias</label>
+                                            <p:message for="voutro" escape="true"/>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-3" style="padding: 0em">
+                                        <div class="ui-g-10">
+                                            <h:panelGroup styleClass="md-inputfield" >
+                                                <p:inputText id="vprod" value="#{produtoFaces.produto.vprod}" maxlength="15" style="background-color: #EAEAEA; text-align: right">
+                                                    <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                                </p:inputText>
+                                                <label>* Valor Total Produto/Serviço</label>
+                                                <p:message for="vprod" escape="true"/>
+                                            </h:panelGroup>
+                                        </div>
+                                        <div class="ui-g-2" style="text-align: center">
+                                            <p:commandButton process="qcom, vuncom, vfrete, vseg, vdesc, voutro, @this" update="vprod" 
+                                                             action="#{produtoFaces.calculaVProd()}" partialSubmit="true" 
+                                                             icon="fa fa-refresh" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p:spacer width="10px"/>
+                                <div class="ui-g">
+                                    <div class="ui-g-6 ui-md-3 ui-lg-2">
+                                        <p:commandButton process="pgProduto @this" update="pgProduto :mainForm:dtModel" 
+                                                         action="#{produtoFaces.salvar()}" 
+                                                         value="Salvar" styleClass="green-btn" icon="fa fa-save" />
+                                    </div>
+                                    <div class="ui-g-6 ui-md-3 ui-lg-2">
+                                        <p:commandButton value="Limpar" styleClass="red-btn" icon="fa fa-eraser" type="reset"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </h:panelGroup>
+                    </p:tab>
+                </p:accordionPanel>
+            </div>
+
+            <p:dataTable id="dtModel" value="#{produtoFaces.model}" var="item" lazy="true" paginator="true" paginatorPosition="top" rows="5" rowsPerPageTemplate="5" 
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         currentPageReportTemplate="Página: {currentPage}/{totalPages}"
+                         emptyMessage="Nenhum Produto encontrado." reflow="true">
+
+                <p:column headerText="Código" class="Wid20">
+                    <h:outputText value="#{item.cprod}" />
+                </p:column>
+                <p:column headerText="Descrição" class="Wid30">
+                    <h:outputText value="#{item.xprod}" />
+                </p:column>
+                <p:column headerText="UN" class="Wid10 TexAlCenter">
+                    <h:outputText value="#{item.ucom}" />
+                </p:column>
+                <p:column headerText="Qtde. Comercial" class="Wid10">
+                    <h:outputText value="#{item.qcom}">
+                        <f:convertNumber pattern="#0.00" type="currency" minFractionDigits="4" maxFractionDigits="4" />
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Val. Unit. Comercial" class="Wid10">
+                    <h:outputText value="#{item.vuncom}">
+                        <f:convertNumber pattern="#0.0000" />
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Val. Total" class="Wid10">
+                    <h:outputText value="#{item.vprod}">
+                        <f:convertNumber pattern="#0.00" type="currency" minFractionDigits="2" maxFractionDigits="2" />
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Opções" class="TexAlCenter Wid10">
+                    <p:commandButton process="@this" update="@(form)"
+                                     styleClass="green-btn" icon="fa fa-pencil" 
+                                     oncomplete="window.scrollTo(0,0); PF('accProd').select(1);">
+                        <f:setPropertyActionListener value="#{item}" target="#{produtoFaces.produto}"/>
+                    </p:commandButton>
+                    <p:commandButton process="@this" update="dtModel"
+                                     action="#{produtoFaces.deleteById(item.id)}" 
+                                     styleClass="red-btn" icon="fa fa-trash">
+                        <p:confirm header="Confirmação" message="Realmente deseja excluir?" icon="ui-icon-alert" />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition> 

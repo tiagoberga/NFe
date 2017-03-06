@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:panelGroup id="pgNFeTransporteVolumes" layout="block">
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="qvol" value="#{digitacaoNFeFaces.volume.qvol}" placeholder="Quantidade" title="Quantidade" class="TexAlRight" style="background-color: #EAEAEA">
+                    <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="qvol" escape="true" />
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="espVolume" value="#{digitacaoNFeFaces.volume.esp}" placeholder="Espécie" title="Espécie">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="espVolume" escape="true" />
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="marcaVolume" value="#{digitacaoNFeFaces.volume.marca}" placeholder="Marca" title="Marca">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="marcaVolume" escape="true" />
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="nvol" value="#{digitacaoNFeFaces.volume.nvol}" placeholder="Numeração" title="Numeração">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="nvol" escape="true" />
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-6">
+                <p:inputText id="pesolVolume" value="#{digitacaoNFeFaces.volume.pesol}" placeholder="Peso Líquido (KG)" title="Peso Líquido (KG)" class="TexAlRight" style="background-color: #EAEAEA">
+                    <f:convertNumber type="number" maxFractionDigits="4" minFractionDigits="4" />
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="pesolVolume" escape="true" />
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-6 NoPadding">
+                <div class="ui-g-10">
+                    <p:inputText id="pesobVolume" value="#{digitacaoNFeFaces.volume.pesob}" placeholder="Peso Bruto (KG)" title="Peso Bruto (KG)" class="TexAlRight" style="background-color: #EAEAEA">
+                        <f:convertNumber type="number" maxFractionDigits="4" minFractionDigits="4" />
+                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                    </p:inputText>
+                    <p:message for="pesobVolume" escape="true" />
+                </div>
+                <div class="ui-g-2 TexAlCenter">
+                    <p:commandButton icon="fa fa-plus Fs16 White" styleClass="ShadowEffect"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="EmptyBox5"></div>
+        <p:dataTable id="dtVolume" var="item" lazy="true" paginator="true" paginatorPosition="top" rows="5" rowsPerPageTemplate="5" 
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     currentPageReportTemplate="Página: {currentPage}/{totalPages}"
+                     emptyMessage="Nenhum reboque inserido." reflow="true">
+
+            <p:column >
+                <p:rowToggler />
+            </p:column>
+
+            <p:column headerText="Item">
+                <h:outputText value="#{car.id}" />
+            </p:column>
+            <p:column headerText="Qtde. Vol">
+                <h:outputText value="#{car.id}" />
+            </p:column>
+            <p:column headerText="Espécie">
+                <h:outputText value="#{car.id}" />
+            </p:column>
+            <p:column headerText="Marca">
+                <h:outputText value="#{car.id}" />
+            </p:column>
+            <p:column headerText="Nº Volume">
+                <h:outputText value="#{car.id}" />
+            </p:column>
+            <p:column headerText="Peso Líq.">
+                <h:outputText value="#{car.id}" />
+            </p:column>
+            <p:column headerText="Peso Bruto">
+                <h:outputText value="#{car.id}" />
+            </p:column>
+            <p:column headerText="Opção">
+                <p:commandButton icon="fa fa-remove" styleClass="RedButton" />
+            </p:column>
+
+            <p:rowExpansion>
+                <p:dataTable id="dtLacre" var="item" lazy="true" paginator="true" paginatorPosition="top" rows="5" rowsPerPageTemplate="5" 
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             currentPageReportTemplate="Página: {currentPage}/{totalPages}"
+                             emptyMessage="Nenhum lacre inserido." reflow="true">
+
+                    <p:column headerText="Item" style="width: 10%">
+                        <h:outputText value="#{car.id}" />
+                    </p:column>
+                    <p:column headerText="Lacre" style="width: 85%">
+                        <h:outputText value="#{car.id}" />
+                    </p:column>
+                    <p:column headerText="Opção" style="width: 5%" styleClass="ui-fluid actions TexAlCenter">
+                        <p:commandButton icon="fa fa-remove" styleClass="RedButton" type="button" style="margin-bottom:2px;"/>
+                    </p:column>
+                </p:dataTable>
+            </p:rowExpansion>
+        </p:dataTable>
+    </h:panelGroup>
+</ui:composition>

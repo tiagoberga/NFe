@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+        <h:form id="mainForm" acceptcharset="UTF-8">
+            <div class="Card">
+                <div class="CardBigTopic">Informação de Inutilização</div>
+                <div class="Separator"></div>
+
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-4 ui-lg-4">
+                        <p:inputText maxlength="4" placeholder="Série de NF-e" title="Série de NF-e">
+                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                        </p:inputText>
+                    </div>
+                    <div class="ui-g-12 ui-md-4 ui-lg-4">
+                        <p:inputText maxlength="4" placeholder="Número inicial de NF-e" title="Número inicial de NF-e">
+                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                        </p:inputText>
+                    </div>
+                    <div class="ui-g-12 ui-md-4 ui-lg-4">
+                        <p:inputText maxlength="4" placeholder="Número final de NF-e" title="Número final de NF-e">
+                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                        </p:inputText>
+                    </div>
+                    <div class="ui-g-12">
+                        <p:inputTextarea counter="display" maxlength="255" 
+                                         counterTemplate="{0} caracteres restantes." rows="4"
+                                         validatorMessage="Mínimo de 15 caracteres" placeholder="Justificativa de Inutilização" title="Justificativa de Inutilização">
+                            <f:validateLength minimum="15" />
+                        </p:inputTextarea>
+                        <h:outputText id="display" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="EmptyBox5"></div>
+            <div class="Card NoPadding">
+                <div class="ui-g-6 ui-md-3 ui-lg-2">
+                    <p:commandButton value="Salvar" process="@this"
+                                     styleClass="GreenButton" icon="fa fa-save Fs16 White" />
+                </div>
+                <div class="ui-g-6 ui-md-3 ui-lg-2">
+                    <p:commandButton value="Limpar" styleClass="RedButton" icon="fa fa-trash Fs16 White" />
+                </div>
+            </div>
+
+            <div class="EmptyBox5"></div>
+            <p:dataTable id="dtEmitente" value="#{emitenteFaces.model}" var="item" lazy="true" paginator="true" paginatorPosition="top" rows="5" rowsPerPageTemplate="5" 
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         currentPageReportTemplate="Página: {currentPage}/{totalPages}"
+                         emptyMessage="Nenhum reboque inserido." reflow="true">
+
+                <p:column headerText="Ano">
+                    <h:outputText />
+                </p:column>
+                <p:column headerText="Modelo">
+                    <h:outputText />
+                </p:column>
+                <p:column headerText="Série">
+                    <h:outputText />
+                </p:column>
+                <p:column headerText="NF-e Inicial">
+                    <h:outputText />
+                </p:column>
+                <p:column headerText="NF-e Final">
+                    <h:outputText />
+                </p:column>
+                <p:column headerText="Protocolo">
+                    <h:outputText />
+                </p:column>
+                <p:column headerText="Data Recebimento">
+                    <h:outputText />
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>

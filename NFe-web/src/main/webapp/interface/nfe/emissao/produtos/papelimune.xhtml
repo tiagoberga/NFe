@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:panelGroup id="pgNFeProdutoServicoPapelImune" layout="block">
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <p:inputText id="nrecopi" value="#{digitacaoNFeFaces.papelImune.nrecopi}" placeholder="Número de RECOPI" title="Número de RECOPI">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="nrecopi" escape="true"/>
+            </div>
+        </div>
+    </h:panelGroup>
+
+</ui:composition>

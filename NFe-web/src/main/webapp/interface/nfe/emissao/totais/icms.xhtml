@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:panelGroup id="pgNFeTotalIcms">
+        <div class="ui-g Flex FlexWrap NoPadding">
+            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
+                <div class="Card NoPadding" style="background-color: #EAEAEA">
+                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft "><span class="FontLatoRegular DispBlock Fs15">Base de Cálculo</span></div>
+                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight "><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIcms.vbc}</span></div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
+                <div class="Card NoPadding" style="background-color: #EAEAEA">
+                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft "><span class="FontLatoRegular DispBlock Fs15">Total do ICMS</span></div>
+                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight "><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIcms.vicms}</span></div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
+                <div class="Card NoPadding" style="background-color: #EAEAEA">
+                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft "><span class="FontLatoRegular DispBlock Fs15">Base de Cálculo do ICMS ST</span></div>
+                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight "><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIcms.vbcst}</span></div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
+                <div class="Card NoPadding" style="background-color: #EAEAEA">
+                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft "><span class="FontLatoRegular DispBlock Fs15">Total do ICMS ST</span></div>
+                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight "><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIcms.vst}</span></div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
+                <div class="Card NoPadding" style="background-color: #EAEAEA">
+                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft "><span class="FontLatoRegular DispBlock Fs15">Total dos Produtos/Serviços</span></div>
+                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight "><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIcms.vprod}</span></div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
+                <div class="Card NoPadding" style="background-color: #EAEAEA">
+                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft "><span class="FontLatoRegular DispBlock Fs15">Total do Frete</span></div>
+                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight "><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIcms.vfrete}</span></div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
+                <div class="Card NoPadding" style="background-color: #EAEAEA">
+                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft "><span class="FontLatoRegular DispBlock Fs15">Total do ICMS Partilha Remetente</span></div>
+                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight "><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIcms.vicmsufremet}</span></div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
+                <div class="Card NoPadding" style="background-color: #EAEAEA">
+                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft "><span class="FontLatoRegular DispBlock Fs15">Total do ICMS Partilha Destinatário</span></div>
+                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight "><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIcms.vicmsufdest}</span></div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
+                <div class="Card NoPadding" style="background-color: #EAEAEA">
+                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft "><span class="FontLatoRegular DispBlock Fs15">Total do II</span></div>
+                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight "><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIcms.vii}</span></div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
+                <div class="Card NoPadding" style="background-color: #EAEAEA">
+                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft "><span class="FontLatoRegular DispBlock Fs15">Total do IPI</span></div>
+                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight "><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIcms.vipi}</span></div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
+                <div class="Card NoPadding" style="background-color: #EAEAEA">
+                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft "><span class="FontLatoRegular DispBlock Fs15">Total do PIS</span></div>
+                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight "><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIcms.vpis}</span></div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
+                <div class="Card NoPadding" style="background-color: #EAEAEA">
+                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft "><span class="FontLatoRegular DispBlock Fs15">Total do COFINS</span></div>
+                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight "><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIcms.vcofins}</span></div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
+                <div class="Card NoPadding" style="background-color: #EAEAEA">
+                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft "><span class="FontLatoRegular DispBlock Fs15">Total do Seguro</span></div>
+                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight "><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIcms.vseg}</span></div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
+                <div class="Card NoPadding" style="background-color: #EAEAEA">
+                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft "><span class="FontLatoRegular DispBlock Fs15">Total do Desconto</span></div>
+                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight "><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIcms.vdesc}</span></div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
+                <div class="Card NoPadding" style="background-color: #EAEAEA">
+                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft "><span class="FontLatoRegular DispBlock Fs15">Outras Despesas Acessórias</span></div>
+                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight "><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIcms.voutro}</span></div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
+                <div class="Card NoPadding" style="background-color: #EAEAEA">
+                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft "><span class="FontLatoRegular DispBlock Fs15">Total do ICMS Desonarado</span></div>
+                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight "><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIcms.vicmsdeson}</span></div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
+                <div class="Card NoPadding" style="background-color: #EAEAEA">
+                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft "><span class="FontLatoRegular DispBlock Fs15">Total do ICMS FCP UF destino</span></div>
+                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight "><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIcms.vfcpufdest}</span></div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
+                <div class="Card NoPadding" style="background-color: #EAEAEA">
+                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft "><span class="FontLatoRegular DispBlock Fs15">Total da NF-e</span></div>
+                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight "><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIcms.vnf}</span></div>
+                </div>
+            </div>
+        </div>
+    </h:panelGroup>
+
+</ui:composition>

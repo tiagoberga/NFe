@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:panelGroup id="pgNFeProdutoServicoExportacao" layout="block">
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-6 ui-lg-4 NoPadding">
+                <p:inputText id="ndrawexport" value="#{digitacaoNFeFaces.grupoExportacao.ndraw}" placeholder="Número do ato concessionário de Drawback" title="Número do ato concessionário de Drawback">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="ndrawexport" escape="true"/>
+            </div>
+        </div>
+
+        <div class="EmptyBox5"></div>
+        <div class="Card">
+            <div class="CardBigTopic">Exportação Indireta</div>
+            <div class="Separator"></div>
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-6 ui-lg-4">
+                    <p:inputText id="nre" value="#{digitacaoNFeFaces.grupoExportacao.nre}" placeholder="* Número Registro de Exportação" title="* Número Registro de Exportação">
+                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                    </p:inputText>
+                    <p:message for="nre" escape="true"/>
+                </div>
+                <div class="ui-g-12 ui-md-6 ui-lg-4">
+                    <p:inputText id="qexport" value="#{digitacaoNFeFaces.grupoExportacao.qexport}" placeholder="* Quantidade" title="* Quantidade">
+                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                    </p:inputText>
+                    <p:message for="qexport" escape="true"/>
+                </div>
+                <div class="ui-g-12 ui-md-12 ui-lg-4 NoPadding">
+                    <div class="ui-g-10">
+                        <p:inputText id="chnfe" value="#{digitacaoNFeFaces.grupoExportacao.chnfe}" placeholder="* Chave de Acesso" title="* Chave de Acesso">
+                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                        </p:inputText>
+                        <p:message for="chnfe" escape="true"/>
+                    </div>
+                    <div class="ui-g-2 TexAlCenter">
+                        <p:commandButton icon="fa fa-plus Fs16 White" styleClass="ShadowEffect"/>
+                    </div>
+                </div>
+            </div>
+
+            <p:dataTable id="dtExportacaoIndireta" var="item" lazy="true" paginator="true" paginatorPosition="top" rows="5" rowsPerPageTemplate="5" 
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         currentPageReportTemplate="Página: {currentPage}/{totalPages}"
+                         emptyMessage="Nenhum reboque inserido." reflow="true">
+
+                <p:column headerText="Item" style="width: 25%">
+                    <h:outputText value="#{car.id}" />
+                </p:column>
+                <p:column headerText="Item" style="width: 25%">
+                    <h:outputText value="#{car.id}" />
+                </p:column>
+                <p:column headerText="Item" style="width: 25%">
+                    <h:outputText value="#{car.id}" />
+                </p:column>
+                <p:column headerText="Item" style="width: 25%">
+                    <h:outputText value="#{car.id}" />
+                </p:column>
+            </p:dataTable>
+        </div>
+    </h:panelGroup>
+</ui:composition>

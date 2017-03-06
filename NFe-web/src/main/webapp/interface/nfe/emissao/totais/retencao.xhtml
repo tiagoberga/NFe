@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:panelGroup id="pgNFeTotalRetencao">
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="vretpis" value="#{digitacaoNFeFaces.total.totalNFeRetencao.vretpis}" placeholder="Valor retido do PIS" title="Valor retido do PIS">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="vretpis" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="vretcofins" value="#{digitacaoNFeFaces.total.totalNFeRetencao.vretcofins}" placeholder="Valor retido do COFINS" title="Valor retido do COFINS">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="vretcofins" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="vretcsll" value="#{digitacaoNFeFaces.total.totalNFeRetencao.vretcsll}" placeholder="Valor retido do CSLL" title="Valor retido do CSLL">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="vretcsll" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="vbcirrf" value="#{digitacaoNFeFaces.total.totalNFeRetencao.vbcirrf}" placeholder="BC do IRRF" title="BC do IRRF">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="vbcirrf" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="virrf" value="#{digitacaoNFeFaces.total.totalNFeRetencao.virrf}" placeholder="Valor retido do IRRF" title="Valor retido do IRRF">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="virrf" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="vbcretprev" value="#{digitacaoNFeFaces.total.totalNFeRetencao.vbcretprev}" placeholder="BC da retenção da Prevdc. Social" title="BC da retenção da Prevdc. Social">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="vbcretprev" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="vretprev" value="#{digitacaoNFeFaces.total.totalNFeRetencao.vretprev}" placeholder="Valor retido da Prevdc. Social" title="Valor retido da Prevdc. Social">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="vretprev" escape="true"/>
+            </div>
+        </div>
+    </h:panelGroup>
+
+</ui:composition>

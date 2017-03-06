@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:panelGroup id="pgNFeTransporteVeiculo" layout="block">
+        <div class="ui-g Flex FlexWrap">
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <p:selectOneButton value="#{digitacaoNFeFaces.tipoVeiculo}" class="Flex GrayButton">
+                    <f:selectItems value="#{digitacaoNFeFaces.tiposVeiculos}" var="vTipoVeiculo" itemLabel="#{vTipoVeiculo.descricao}" />
+                </p:selectOneButton>
+            </div>
+        </div>
+
+        <div class="EmptyBox5"></div>
+        <div class="Card">
+            <div class="CardBigTopic">Veículo</div>
+            <div class="Separator"></div>
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-4 ui-lg-4">
+                    <p:inputText id="placaVeiculo" value="#{digitacaoNFeFaces.veiculo.placa}" placeholder="* Placa" title="* Placa">
+                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                    </p:inputText>
+                    <p:message for="placaVeiculo" escape="true" />
+                </div>
+                <div class="ui-g-12 ui-md-4 ui-lg-4">
+                    <p:selectOneMenu id="ufVeiculo" value="#{digitacaoNFeFaces.veiculo.uf}" title="* UF" autoWidth="false">
+                        <f:selectItem itemLabel="* Selcione a UF" itemValue="" />
+                        <f:selectItems value="#{digitacaoNFeFaces.ufsEmi}" />
+                    </p:selectOneMenu>
+                    <p:message for="ufVeiculo" escape="true" />
+                </div>
+                <div class="ui-g-12 ui-md-4 ui-lg-4">
+                    <p:inputText id="rntcVeiculo" value="#{digitacaoNFeFaces.veiculo.rntc}" placeholder="* RNTC" title="* RNTC">
+                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                    </p:inputText>
+                    <p:message for="rntcVeiculo" escape="true" />
+                </div>
+            </div>
+
+            <div class="EmptyBox5"></div>
+            <div class="CardBigTopic">Reboque</div>
+            <div class="Separator"></div>
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-6 ui-lg-4">
+                    <p:inputText id="placaReboque" value="#{digitacaoNFeFaces.reboque.placa}" placeholder="* Placa" title="* Placa">
+                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                    </p:inputText>
+                    <p:message for="placaReboque" escape="true" />
+                </div>
+                <div class="ui-g-12 ui-md-6 ui-lg-4">
+                    <p:selectOneMenu id="ufReboque" value="#{digitacaoNFeFaces.reboque.uf}" title="* UF" autoWidth="false">
+                        <f:selectItem itemLabel="* Selecione a UF" itemValue="" />
+                        <f:selectItems value="#{digitacaoNFeFaces.ufsEmi}"/>
+                    </p:selectOneMenu>
+                    <p:message for="ufReboque" escape="true" />
+                </div>
+                <div class="ui-g-12 ui-md-12 ui-lg-4 NoPadding">
+                    <div class="ui-g-10">
+                        <p:inputText id="rntcReboque" value="#{digitacaoNFeFaces.reboque.rntc}" placeholder="* RNTC" title="* RNTC">
+                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                        </p:inputText>
+                        <p:message for="rntcReboque" escape="true" />
+                    </div>
+                    <div class="ui-g-2 TexAlCenter">
+                        <p:commandButton icon="fa fa-plus Fs16 White" styleClass="ShadowEffect" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="EmptyBox5"></div>
+            <p:dataTable id="dtReboque" var="item" lazy="true" paginator="true" paginatorPosition="top" rows="5" rowsPerPageTemplate="5" 
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         currentPageReportTemplate="Página: {currentPage}/{totalPages}"
+                         emptyMessage="Nenhum reboque inserido." reflow="true">
+
+                <p:column headerText="Item">
+                    <h:outputText value="#{car.id}" />
+                </p:column>
+                <p:column headerText="Placa">
+                    <h:outputText value="#{car.id}" />
+                </p:column>
+                <p:column headerText="UF">
+                    <h:outputText value="#{car.id}" />
+                </p:column>
+                <p:column headerText="RNTC">
+                    <h:outputText value="#{car.id}" />
+                </p:column>
+                <p:column headerText="Opção">
+                    <p:commandButton icon="fa fa-remove" styleClass="RedButton" />
+                </p:column>
+            </p:dataTable>
+        </div>
+
+        <div class="EmptyBox5"></div>
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <p:inputText value="#{digitacaoNFeFaces.transporteNFe.balsa}" placeholder="Identificação da Balsa" title="Identificação da Balsa">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+            </div>
+            <div class="ui-g-12">
+                <p:inputText value="#{digitacaoNFeFaces.transporteNFe.vagao}" placeholder="Identificação do Vagão" title="Identificação do Vagão">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+            </div>
+        </div>
+    </h:panelGroup>
+</ui:composition>

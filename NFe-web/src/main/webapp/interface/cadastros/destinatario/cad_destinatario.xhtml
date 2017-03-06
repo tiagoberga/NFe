@@ -1,0 +1,325 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+        <h:form id="mainForm" acceptcharset="UTF-8" onkeypress="return event.keyCode != 13">
+            <div class="card card-w-title"><h1>Informações de Clientes</h1>
+                <p:accordionPanel widgetVar="accDest">
+                    <p:tab title="Pesquisa de Clientes">
+                        <h:panelGroup id="pgPesquisa" layout="block">
+                            <div class="card">
+                                <div class="ui-g">
+                                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                                        <h:panelGroup styleClass="md-inputfield">
+                                            <p:inputText value="#{destinatarioFaces.destinatarioFilter.documento}" maxlength="20" />
+                                            <label>CPF/CNPJ/ID Estrangeiro</label>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                                        <h:panelGroup styleClass="md-inputfield">
+                                            <p:inputText value="#{destinatarioFaces.destinatarioFilter.xnome}" maxlength="60" />
+                                            <label>Razão Social</label>
+                                        </h:panelGroup>
+                                    </div>
+                                </div>
+
+                                <div class="ui-g">
+                                    <div class="ui-g-6 ui-md-6 ui-lg-2">
+                                        <p:commandButton process="pgPesquisa @this" update=":mainForm:dtModel" 
+                                                         action="#{destinatarioFaces.pesquisar()}" 
+                                                         value="Pesquisar" icon="fa fa-search" />
+                                    </div>
+                                </div>
+                            </div>
+                        </h:panelGroup>
+                    </p:tab>
+
+                    <p:tab title="Cadastro de Clientes">
+                        <h:panelGroup id="pgDestinatario" layout="block">
+                            <div class="card card-w-title"><h1>Identificação</h1>
+                                <div class="ui-g">
+                                    <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                        <h:panelGroup class="md-inputfield">
+                                            <p:inputText id="documento" value="#{destinatarioFaces.destinatario.documento}" maxlength="20" />
+                                            <label>* CPF/CNPJ/ID Estrangeiro</label>
+                                            <p:message for="documento" escape="true"/>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                        <h:panelGroup class="md-inputfield">
+                                            <p:inputText id="razao" value="#{destinatarioFaces.destinatario.xnome}" maxlength="60" />
+                                            <label>* Razão Social</label>
+                                            <p:message for="razao" escape="true"/>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-4 ui-lg-6">
+                                        <h:panelGroup styleClass="md-inputfield">
+                                            <p:autoComplete id="indie" value="#{destinatarioFaces.destinatario.indIeDest}" var="vIndie" itemValue="#{vIndie}" itemLabel="#{vIndie.descricao}" cache="true"
+                                                            completeMethod="#{destinatarioFaces.completeindIeDest}" dropdown="true" />
+                                            <label>* Selecione o Indicador de IE</label>
+                                            <p:message for="indie" escape="true"/>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-4 ui-lg-3">
+                                        <h:panelGroup class="md-inputfield">
+                                            <p:inputText id="ie" value="#{destinatarioFaces.destinatario.ie}" maxlength="14" />
+                                            <label>Inscrição Estadual</label>
+                                            <p:message for="ie" escape="true"/>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-4 ui-lg-3">
+                                        <h:panelGroup class="md-inputfield">
+                                            <p:inputText id="isuf" value="#{destinatarioFaces.destinatario.isUf}" maxlength="9" />
+                                            <label>Inscrição SUFRAMA</label>
+                                            <p:message for="isuf" escape="true"/>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                        <h:panelGroup class="md-inputfield">
+                                            <p:inputText id="im" value="#{destinatarioFaces.destinatario.im}" maxlength="60" />
+                                            <label>Inscrição Municipal</label>
+                                            <p:message for="im" escape="true"/>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                        <h:panelGroup class="md-inputfield">
+                                            <p:inputText id="email" value="#{destinatarioFaces.destinatario.email}" maxlength="60" />
+                                            <label>E-mail</label>
+                                            <p:message for="email" escape="true"/>
+                                        </h:panelGroup>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h:panelGroup id="pgEndereco" layout="block">
+                                <div class="card card-w-title"><h1>Endereço</h1>
+                                    <div class="ui-g">
+                                        <div class="ui-g-12 ui-md-6 ui-lg-3" style="padding: 0em">
+                                            <div class="ui-g-10">
+                                                <h:panelGroup class="md-inputfield">
+                                                    <p:inputText id="cep" value="#{destinatarioFaces.destinatario.endereco.endCep}" maxlength="8" />
+                                                    <label>Código do CEP</label>
+                                                    <p:message for="cep" escape="true"/>
+                                                </h:panelGroup>
+                                            </div>
+                                            <div class="ui-g-2" style="text-align: center">
+                                                <p:commandButton process="cep, @this" update="pgEndereco"  
+                                                                 action="#{destinatarioFaces.buscaCep()}" partialSubmit="true" 
+                                                                 icon="fa fa-search"/>
+                                            </div>
+                                        </div>
+                                        <div class="ui-g-12 ui-md-6 ui-lg-5">
+                                            <h:panelGroup class="md-inputfield">
+                                                <p:inputText id="xlgr" value="#{destinatarioFaces.destinatario.endereco.endXlgr}" maxlength="60" />
+                                                <label>* Logradouro</label>
+                                                <p:message for="xlgr" escape="true"/>
+                                            </h:panelGroup>
+                                        </div>
+                                        <div class="ui-g-12 ui-md-6 ui-lg-4">
+                                            <h:panelGroup class="md-inputfield">
+                                                <p:inputText id="nro" value="#{destinatarioFaces.destinatario.endereco.endNro}" maxlength="60" />
+                                                <label>* Número</label>
+                                                <p:message for="nro" escape="true"/>
+                                            </h:panelGroup>
+                                        </div>
+                                        <div class="ui-g-12 ui-md-6 ui-lg-6">
+                                            <h:panelGroup class="md-inputfield">
+                                                <p:inputText id="xbairro" value="#{destinatarioFaces.destinatario.endereco.endXbairro}" maxlength="60" />
+                                                <label>* Bairro</label>
+                                                <p:message for="xbairro" escape="true"/>
+                                            </h:panelGroup>
+                                        </div>
+                                        <div class="ui-g-12 ui-md-12 ui-lg-6">
+                                            <h:panelGroup class="md-inputfield">
+                                                <p:inputText id="xcpl" value="#{destinatarioFaces.destinatario.endereco.endXcpl}" maxlength="60" />
+                                                <label>Complemento</label>
+                                                <p:message for="xcpl" escape="true"/>
+                                            </h:panelGroup>
+                                        </div>
+                                        <div class="ui-g-12 ui-md-4 ui-lg-4">
+                                            <h:panelGroup class="md-inputfield">
+                                                <p:inputText id="cmun" value="#{destinatarioFaces.destinatario.endereco.endCmun}" maxlength="7" />
+                                                <label>* Código do Município</label>
+                                                <p:message for="cmun" escape="true"/>
+                                            </h:panelGroup>
+                                        </div>
+                                        <div class="ui-g-12 ui-md-4 ui-lg-4">
+                                            <h:panelGroup class="md-inputfield">
+                                                <p:inputText id="xmun" value="#{destinatarioFaces.destinatario.endereco.endXmun}" maxlength="60" />
+                                                <label>* Nome do Município</label>
+                                                <p:message for="xmun" escape="true"/>
+                                            </h:panelGroup>
+                                        </div>
+                                        <div class="ui-g-12 ui-md-4 ui-lg-4">
+                                            <h:panelGroup class="md-inputfield">
+                                                <p:inputText id="uf" value="#{destinatarioFaces.destinatario.endereco.endUf}" maxlength="2" />
+                                                <label> Sigla da UF</label>
+                                                <p:message for="uf" escape="true"/>
+                                            </h:panelGroup>
+                                        </div>
+                                        <div class="ui-g-12 ui-md-4 ui-lg-4">
+                                            <h:panelGroup class="md-inputfield">
+                                                <p:inputText id="cpais" value="#{destinatarioFaces.destinatario.endereco.endCpais}" maxlength="4" />
+                                                <label>Código do País</label>
+                                                <p:message for="cpais" escape="true"/>
+                                            </h:panelGroup>
+                                        </div>
+                                        <div class="ui-g-12 ui-md-4 ui-lg-4">
+                                            <h:panelGroup class="md-inputfield">
+                                                <p:inputText id="xpais" value="#{destinatarioFaces.destinatario.endereco.endXpais}" maxlength="60" />
+                                                <label>Nome do País</label>
+                                                <p:message for="xpais" escape="true"/>
+                                            </h:panelGroup>
+                                        </div>
+                                        <div class="ui-g-12 ui-md-4 ui-lg-4">
+                                            <h:panelGroup class="md-inputfield">
+                                                <p:inputText id="fone" value="#{destinatarioFaces.destinatario.endereco.endFone}" maxlength="14" />
+                                                <label>Telefone</label>
+                                                <p:message for="fone" escape="true"/>
+                                            </h:panelGroup>
+                                        </div>
+                                    </div>
+                                </div>
+                            </h:panelGroup>
+
+                            <h:panelGroup id="pgLocalEntrega" layout="block">
+                                <div class="card card-w-title"><h1>Local Entrega</h1>
+                                    <div class="ui-g">
+                                        <div class="ui-g-12 ui-md-6 ui-lg-4">
+                                            <p:selectBooleanButton value="#{destinatarioFaces.destinatario.localEntregaDiferenteDestinatario}" 
+                                                                   onLabel="Local de Entrega Diferente do Cliente: SIM" onIcon="fa fa-check" 
+                                                                   offLabel=" Local de Entrega Diferente do Cliente: NÃO" offIcon="fa fa-close" 
+                                                                   style="text-align: center" >
+                                                <p:ajax process="@this" update="pgLocalEntrega" listener="#{destinatarioFaces.iniciaLocalEntrega()}"/>
+                                            </p:selectBooleanButton>
+                                        </div>
+
+                                        <p:spacer width="10px"/>
+                                        <h:panelGroup id="pgLocalEntregaEndereco" layout="block" rendered="#{destinatarioFaces.destinatario.localEntregaDiferenteDestinatario}">
+                                            <div class="ui-g-12 ui-md-12 ui-lg-12">
+                                                <h:panelGroup class="md-inputfield">
+                                                    <p:inputText id="documentoDestLocal" value="#{destinatarioFaces.destinatario.localEntrega.locDocumento}" maxlength="14" />
+                                                    <label>CPF ou CNPJ</label>
+                                                    <p:message for="documentoDestLocal" escape="true"/>
+                                                </h:panelGroup>
+                                            </div>
+                                            <div class="ui-g-12 ui-md-6 ui-lg-3" style="padding: 0em">
+                                                <div class="ui-g-10">
+                                                    <h:panelGroup class="md-inputfield">
+                                                        <p:inputText id="cepDestLocal" value="#{destinatarioFaces.destinatario.localEntrega.locCep}" maxlength="8" />
+                                                        <label>Código do CEP</label>
+                                                        <p:message for="cepDestLocal" escape="true"/>
+                                                    </h:panelGroup>
+                                                </div>
+                                                <div class="ui-g-2" style="text-align: center">
+                                                    <p:commandButton process="cepDestLocal, documentoDestLocal, @this" update="pgLocalEntregaEndereco"
+                                                                     action="#{destinatarioFaces.buscaCepDestinatarioLocalEntrega()}" partialSubmit="true" 
+                                                                     icon="fa fa-search"/>
+                                                </div>
+                                            </div>
+                                            <div class="ui-g-12 ui-md-6 ui-lg-5">
+                                                <h:panelGroup class="md-inputfield">
+                                                    <p:inputText id="xlgrDestLocal" value="#{destinatarioFaces.destinatario.localEntrega.locXlgr}" maxlength="60" />
+                                                    <label>Logradouro</label>
+                                                    <p:message for="xlgrDestLocal" escape="true"/>
+                                                </h:panelGroup>
+                                            </div>
+                                            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                                                <h:panelGroup class="md-inputfield">
+                                                    <p:inputText id="nroDestLocal" value="#{destinatarioFaces.destinatario.localEntrega.locNro}" maxlength="60" />
+                                                    <label>Número</label>
+                                                    <p:message for="nroDestLocal" escape="true"/>
+                                                </h:panelGroup>
+                                            </div>
+                                            <div class="ui-g-12 ui-md-6 ui-lg-6">
+                                                <h:panelGroup class="md-inputfield">
+                                                    <p:inputText id="xbairroDestLocal" value="#{destinatarioFaces.destinatario.localEntrega.locXbairro}" maxlength="60" />
+                                                    <label>Bairro</label>
+                                                    <p:message for="xbairroDestLocal" escape="true"/>
+                                                </h:panelGroup>
+                                            </div>
+                                            <div class="ui-g-12 ui-md-12 ui-lg-6">
+                                                <h:panelGroup class="md-inputfield">
+                                                    <p:inputText id="xcplDestLocal" value="#{destinatarioFaces.destinatario.localEntrega.locXcpl}" maxlength="60" />
+                                                    <label>Complemento</label>
+                                                    <p:message for="xcplDestLocal" escape="true"/>
+                                                </h:panelGroup>
+                                            </div>
+                                            <div class="ui-g-12 ui-md-4 ui-lg-4">
+                                                <h:panelGroup class="md-inputfield">
+                                                    <p:inputText id="cmunDestLocal" value="#{destinatarioFaces.destinatario.localEntrega.locCmun}" maxlength="7" />
+                                                    <label>Código do Município</label>
+                                                    <p:message for="cmunDestLocal" escape="true"/>
+                                                </h:panelGroup>
+                                            </div>
+                                            <div class="ui-g-12 ui-md-4 ui-lg-4">
+                                                <h:panelGroup class="md-inputfield">
+                                                    <p:inputText id="xmunDestLocal" value="#{destinatarioFaces.destinatario.localEntrega.locXmun}" maxlength="60" />
+                                                    <label>Nome do Município</label>
+                                                    <p:message for="xmunDestLocal" escape="true"/>
+                                                </h:panelGroup>
+                                            </div>
+                                            <div class="ui-g-12 ui-md-4 ui-lg-4">
+                                                <h:panelGroup class="md-inputfield">
+                                                    <p:inputText id="ufDestLocal" value="#{destinatarioFaces.destinatario.localEntrega.locUf}" maxlength="2" />
+                                                    <label>Sigla da UF</label>
+                                                    <p:message for="ufDestLocal" escape="true"/>
+                                                </h:panelGroup>
+                                            </div>
+                                        </h:panelGroup>
+                                    </div>
+                                </div>
+                            </h:panelGroup>
+
+                            <div class="card" style="padding: 0em">
+                                <div class="ui-g">
+                                    <div class="ui-g-6 ui-md-3 ui-lg-2">
+                                        <p:commandButton process="pgDestinatario @this" update="pgDestinatario :mainForm:dtModel" 
+                                                         action="#{destinatarioFaces.salvar()}" 
+                                                         value="Salvar" styleClass="green-btn" icon="fa fa-save" />
+                                    </div>
+                                    <div class="ui-g-6 ui-md-3 ui-lg-2">
+                                        <p:commandButton value="Limpar" styleClass="red-btn" icon="fa fa-eraser" type="reset"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </h:panelGroup>
+                    </p:tab>
+                </p:accordionPanel>
+            </div>
+
+            <p:dataTable id="dtModel" value="#{destinatarioFaces.model}" var="item" lazy="true" paginator="true" paginatorPosition="top" rows="5" rowsPerPageTemplate="5" 
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         currentPageReportTemplate="Página: {currentPage}/{totalPages}"
+                         emptyMessage="Nenhum Cliente encontrado." reflow="true">
+
+                <p:column headerText="Documento" class="Wid30">
+                    <h:outputText value="#{item.documento}" />
+                </p:column>
+                <p:column headerText="Razão Social" class="Wid30">
+                    <h:outputText value="#{item.xnome}" />
+                </p:column>                
+                <p:column headerText="Email" class="Wid30">
+                    <h:outputText value="#{item.email}" />
+                </p:column>                
+                <p:column headerText="Opções" class="TexAlCenter Wid10">
+                    <p:commandButton process="@this" update="@this @(form)"
+                                     styleClass="green-btn" icon="fa fa-pencil" 
+                                     oncomplete="window.scrollTo(0,0); PF('accDest').select(1);">
+                        <f:setPropertyActionListener value="#{item}" target="#{destinatarioFaces.destinatario}"/>
+                    </p:commandButton>
+                    <p:commandButton process="@this" update="dtModel"
+                                     action="#{destinatarioFaces.deleteById(item.id)}" 
+                                     styleClass="red-btn" icon="fa fa-trash">
+                        <p:confirm header="Confirmação" message="Realmente deseja excluir?" icon="ui-icon-alert" />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:panelGroup id="pgNFeProdutoServicoTributosIcmsInter" layout="block">
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:selectOneMenu id="picmsinter" value="#{digitacaoNFeFaces.produtoServico.picmsinter}" title="Alíquota interestadual" autoWidth="false">
+                    <f:selectItem itemLabel="Selecione a Alíquota interestadual" itemValue="" />
+                    <f:selectItem itemLabel="Select One" itemValue="" />
+                </p:selectOneMenu>
+                <p:message for="picmsinter" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="pfcpufdest" value="#{digitacaoNFeFaces.produtoServico.pfcpufdest}" placeholder="% ICMS relativo ao FCP na UF de destino" title="% ICMS relativo ao FCP na UF de destino">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="pfcpufdest" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="vbcufdest" value="#{digitacaoNFeFaces.produtoServico.vbcufdest}" placeholder="Valor BC da UF do destinatário" title="Valor BC da UF do destinatário">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="vbcufdest" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="picmsufdest" value="#{digitacaoNFeFaces.produtoServico.picmsufdest}" placeholder="Alíquota interna da UF do destinatário" title="Alíquota interna da UF do destinatário">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="picmsufdest" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:selectOneMenu id="picmsinterpart" value="#{digitacaoNFeFaces.produtoServico.picmsinterpart}" title="% Provisório da partilha" autoWidth="false">
+                    <f:selectItem itemLabel="Selecione o % Provisório da partilha" itemValue="" />
+                    <f:selectItem itemLabel="Select One" itemValue="" />
+                </p:selectOneMenu>
+                <p:message for="picmsinterpart" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="vicmsufdest" value="#{digitacaoNFeFaces.produtoServico.vicmsufdest}" placeholder="Valor ICMS de partilha para UF do destinatário" title="Valor ICMS de partilha para UF do destinatário">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="vicmsufdest" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="vicmsufremet" value="#{digitacaoNFeFaces.produtoServico.vicmsufremet}" placeholder="Valor ICMS de partilha para UF do remetente" title="Valor ICMS de partilha para UF do remetente">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="vicmsufremet" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="vfcpufdest" value="#{digitacaoNFeFaces.produtoServico.vfcpufdest}" placeholder="Valor ICMS relativo ao FCP da UF de destino" title="Valor ICMS relativo ao FCP da UF de destino">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="vfcpufdest" escape="true"/>
+            </div>
+        </div>
+    </h:panelGroup>
+</ui:composition>

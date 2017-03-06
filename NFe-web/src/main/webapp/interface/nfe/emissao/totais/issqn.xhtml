@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:panelGroup id="pgNFeTotalIssqn">
+        <div class="ui-g Flex FlexWrap NoPadding">
+            <div class="ui-g-12 ui-md-6 ui-lg-6 Padding3">
+                <p:calendar value="#{digitacaoNFeFaces.total.totalNFeIssqn.dcompet}"  pattern="MM/dd/yyyy HH:mm:ss" placeholder="* Data de prestação do serviço" title="* Data de prestação do serviço">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:calendar>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-6 Padding3">
+                <p:selectOneMenu value="#{digitacaoNFeFaces.total.totalNFeIssqn.cregtrib}" title="Regime especial de tributação" autoWidth="false">
+                    <f:selectItem itemValue="" itemLabel="Selecione o Regime especial de tributação" />
+                    <f:selectItems  value="#{digitacaoNFeFaces.tiposDeRegimeEspecialTributacao}" var="vRegimeEspecial" itemLabel="#{vRegimeEspecial.codigo} - #{vRegimeEspecial.descricao}" itemValue="#{vRegimeEspecial}"/>
+                </p:selectOneMenu>
+            </div>
+
+            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
+                <div class="Card NoPadding" style="background-color: #EAEAEA">
+                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft"><span class="FontLatoRegular DispBlock Fs15">Base de cálculo do ISS</span></div>
+                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight"><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIssqn.vbc}</span></div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
+                <div class="Card NoPadding" style="background-color: #EAEAEA">
+                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft"><span class="FontLatoRegular DispBlock Fs15">Total do ISS</span></div>
+                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight"><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIssqn.viss}</span></div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
+                <div class="Card NoPadding" style="background-color: #EAEAEA">
+                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft"><span class="FontLatoRegular DispBlock Fs15">PIS sobre serviço</span></div>
+                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight"><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIssqn.vpis}</span></div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
+                <div class="Card NoPadding" style="background-color: #EAEAEA">
+                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft"><span class="FontLatoRegular DispBlock Fs15">COFINS sobre serviço</span></div>
+                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight"><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIssqn.vcofins}</span></div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
+                <div class="Card NoPadding" style="background-color: #EAEAEA">
+                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft"><span class="FontLatoRegular DispBlock Fs15">Total Serviços não tributados pelo ICMS</span></div>
+                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight"><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIssqn.vserv}</span></div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
+                <div class="Card NoPadding" style="background-color: #EAEAEA">
+                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft"><span class="FontLatoRegular DispBlock Fs15">Valor total das deduções</span></div>
+                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight"><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIssqn.vdeducao}</span></div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
+                <div class="Card NoPadding" style="background-color: #EAEAEA">
+                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft"><span class="FontLatoRegular DispBlock Fs15">Valor total outras retenções</span></div>
+                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight"><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIssqn.voutro}</span></div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
+                <div class="Card NoPadding" style="background-color: #EAEAEA">
+                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft"><span class="FontLatoRegular DispBlock Fs15">Valor total desconto incondicionado</span></div>
+                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight"><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIssqn.vdescincond}</span></div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
+                <div class="Card NoPadding" style="background-color: #EAEAEA">
+                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft"><span class="FontLatoRegular DispBlock Fs15">Valor total retenção ISS</span></div>
+                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight"><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIssqn.vissret}</span></div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-12 Flex Padding3">
+                <div class="Card NoPadding" style="background-color: #EAEAEA">
+                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft"><span class="FontLatoRegular DispBlock Fs15">Valor total desconto condicionado</span></div>
+                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight"><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIssqn.vdesccond}</span></div>
+                </div>
+            </div>
+        </div>
+    </h:panelGroup>
+
+</ui:composition>

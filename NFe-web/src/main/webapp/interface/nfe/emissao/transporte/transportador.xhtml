@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:panelGroup id="pgNFeTransporteTransportador" layout="block">
+        <div class="Card ">
+            <div class="CardBigTopic">Identificação</div>
+            <div class="Separator"></div>
+            <div class="ui-g">
+                <div class="ui-g-12 "><span class="Blue Fs17">Utilize o campo 'CPF/CNPJ' para buscar um transportador ja cadastrado digitando seu documento ou razão social.</span></div>
+                <div class="ui-g-12 ui-md-6 ui-lg-4">
+                    <p:autoComplete id="documentoTransp" completeMethod="#{digitacaoNFeFaces.completeTransportadora}" 
+                                    value="#{digitacaoNFeFaces.transportadora}" var="acTransportador" itemValue="#{acTransportador}" itemLabel="#{acTransportador.documento}" 
+                                    placeholder="* CPF/CNPJ" title="* CPF/CNPJ" maxlength="20" minQueryLength="4" emptyMessage="Nenhum transportador encontrado." 
+                                    converter="#{gpoConverter}">
+                        <p:column class="Wid30" headerText="Documento" style="height: 4em">#{acTransportador.documento}</p:column>
+                        <p:column class="Wid70" headerText="Razão Social" style="height: 4em">#{acTransportador.xnome}</p:column>
+                        <p:ajax event="itemSelect" listener="#{digitacaoNFeFaces.onTransportadoraSelect}" update="pgNFeTransporteTransportador"/>
+                        <p:tooltip showEvent="focus" hideEvent="blur" position="top" />
+                    </p:autoComplete>
+                    <p:message for="documentoTransp" escape="true" />
+                </div> 
+                <div class="ui-g-12 ui-md-6 ui-lg-4">
+                    <p:inputText id="xnome" value="#{digitacaoNFeFaces.transporteNFe.xnome}" placeholder="* Razão Social" title="* Razão Social">
+                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                    </p:inputText>
+                    <p:message for="xnome" escape="true"/>
+                </div>
+                <div class="ui-g-12 ui-md-6 ui-lg-4">
+                    <p:inputText id="ie" value="#{digitacaoNFeFaces.transporteNFe.ie}" placeholder="Inscrição Estadual" title="Inscrição Estadual">
+                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                    </p:inputText>
+                    <p:message for="ie" escape="true"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="EmptyBox5"></div>
+        <div class="Card ">
+            <div class="CardBigTopic">Endereço</div>
+            <div class="Separator"></div>
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-12 ui-lg-4">
+                    <p:inputText id="xender" value="#{digitacaoNFeFaces.transporteNFe.xender}" placeholder="Endereço Completo" title="Endereço Completo">
+                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                    </p:inputText>
+                    <p:message for="xender" escape="true"/>
+                </div>
+                <div class="ui-g-12 ui-md-6 ui-lg-4">
+                    <p:inputText id="uf" value="#{digitacaoNFeFaces.transporteNFe.uf}" placeholder="UF" title="UF" maxlength="2">
+                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                    </p:inputText>
+                    <p:message for="uf" escape="true"/>
+                </div>
+                <div class="ui-g-12 ui-md-6 ui-lg-4">
+                    <p:inputText id="xmun" value="#{digitacaoNFeFaces.transporteNFe.xmun}" placeholder="Nome do Município" title="Nome do Município">
+                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                    </p:inputText>
+                    <p:message for="xmun" escape="true"/>
+                </div>
+            </div>
+        </div>
+    </h:panelGroup>
+
+</ui:composition>

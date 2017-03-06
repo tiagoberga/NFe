@@ -1,0 +1,308 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+        <h:form id="mainForm" acceptcharset="UTF-8" onkeypress="return event.keyCode != 13">
+            <!--BOTOES DE OPCOES DE NFE-->
+            <ui:include src="botoes.xhtml" />
+
+            <p:tabView >
+                <!--NFE DADOS DE NFE-->
+                <p:tab title="Dados da NF-e" >
+                    <p:tabView >
+                        <p:tab title="Indentificação NF-e" >
+                            <ui:include src="dados/identificacao.xhtml" />
+                        </p:tab>
+                        <p:tab title="Notas e Conhecimentos Fiscais Referenciados" > 
+                            <ui:include src="dados/notas_conhecimentos_referenciados.xhtml" />
+                        </p:tab>
+                        <p:tab title="Notas Fiscais Referenciadas de Produtor" >
+                            <ui:include src="dados/notas_produtor_referenciados.xhtml" />
+                        </p:tab>
+                        <p:tab title="Cupons Fiscais Vinculados à NF-e" >
+                            <ui:include src="dados/notas_cupons_referenciados.xhtml" />
+                        </p:tab> 
+                    </p:tabView>
+                </p:tab>
+                <!--NFE EMITENTE-->
+                <p:tab title="Emitente" >
+                    <ui:include src="emitente/emitente.xhtml"/>
+                </p:tab>
+                <!--NFE DESTINATARIO-->
+                <p:tab title="Destinatário" >
+                    <ui:include src="destinatario/destinatario.xhtml"/>
+                </p:tab>
+                <!--NFE PRODUTOS/SERVICOS-->
+                <p:tab title="Produtos/Serviços" >
+                    <p:accordionPanel widgetVar="accProdutos">
+                        <p:tab title="Novo Produto/Serviço" >
+                            <h:panelGroup id="pgNFeProdutoServico" layout="block">
+                                <div class="ui-g">
+                                    <div class="ui-g-4 ui-md-3 ui-lg-2">
+                                        <p:commandButton process="pgNFeProdutoServico, @this" update="pgNFeProdutoServico, dtProdutoServicoList" action="#{digitacaoNFeFaces.addDetalhamentoProdutosServicos()}" 
+                                                         value="Incluir" icon="fa fa-plus" 
+                                                         onsuccess="PF('accProdutos').select(1);"/>
+                                    </div>
+                                </div>
+
+                                <p:tabView id="tvNFeProdutoServico" scrollable="true">
+                                    <!--PRODUTOS/SERVICOS DADOS DE IDENTIFICACAO-->
+                                    <p:tab title="Identificação" >
+                                        <ui:include src="produtos/identificacao.xhtml"/>
+                                    </p:tab>
+                                    <!--PRODUTOS/SERVICOS TODOS OS TRIBUTOS-->
+                                    <p:tab title="Tributos" >
+                                        <div class="ui-g">
+                                            <div class="ui-g-12 ui-md-6 ui-lg-4 " align="left">
+                                                <p:inputText value="#{digitacaoNFeFaces.produtoServico.vtottrib}" 
+                                                             placeholder="Valor aproximado total de tributos federais" title="Valor aproximado total de tributos federais"
+                                                             style="background-color: #EAEAEA">
+                                                    <f:convertNumber type="number" maxFractionDigits="4" minFractionDigits="4" />
+                                                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                                                </p:inputText>
+                                            </div>
+
+                                            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                                                <p:selectOneButton value="#{digitacaoNFeFaces.tributacao}" >
+                                                    <f:selectItems value="#{digitacaoNFeFaces.tiposDeTributacao}" />
+                                                    <p:ajax event="change" update="@this tbTributacao" listener="#{digitacaoNFeFaces.limpaTransacaoEntreIcmssIssqn()}"/>
+                                                </p:selectOneButton>
+                                            </div>
+                                        </div>
+
+                                        <p:tabView id="tbTributacao" scrollable="true">
+                                            <!--PRODUTOS/SERVICOS ICMS-->
+                                            <p:tab title="ICMS"  rendered="#{digitacaoNFeFaces.tributacaoIcmsSelected}">
+                                                <ui:include src="produtos/tributos/icms.xhtml"/>
+                                            </p:tab>
+                                            <!--PRODUTOS/SERVICOS IPI-->
+                                            <p:tab title="IPI" >
+                                                <ui:include src="produtos/tributos/ipi.xhtml"/>
+                                            </p:tab>
+                                            <!--PRODUTOS/SERVICOS PIS-->
+                                            <p:tab title="PIS" >
+                                                <ui:include src="produtos/tributos/pis.xhtml"/>
+                                            </p:tab>
+                                            <!--PRODUTOS/SERVICOS COFINS-->
+                                            <p:tab title="COFINS" >
+                                                <ui:include src="produtos/tributos/cofins.xhtml"/>
+                                            </p:tab>
+                                            <!--PRODUTOS/SERVICOS COFINS-->
+                                            <p:tab title="Impostos de Importação" >
+                                                <ui:include src="produtos/tributos/ii.xhtml"/>
+                                            </p:tab>
+                                            <!--PRODUTOS/SERVICOS ISSQN-->
+                                            <p:tab title="ISSQN"  rendered="#{!digitacaoNFeFaces.tributacaoIcmsSelected}">
+                                                <ui:include src="produtos/tributos/issqn.xhtml"/>
+                                            </p:tab>
+                                            <!--PRODUTOS/SERVICOS IPI DEVOLVIDO-->
+                                            <p:tab title="IPI Devolvido" >
+                                                <ui:include src="produtos/tributos/ipidev.xhtml"/>
+                                            </p:tab>
+                                            <!--PRODUTOS/SERVICOS ICMS INTER-->
+                                            <p:tab title="ICMS em Operações Interestaduais"  rendered="#{digitacaoNFeFaces.tributacaoIcmsSelected}">
+                                                <ui:include src="produtos/tributos/icmsinter.xhtml"/>
+                                            </p:tab>
+                                        </p:tabView>
+                                    </p:tab>
+                                    <!--PRODUTOS/SERVICOS DADOS DE INFORMACOES ADICIONAIS-->
+                                    <p:tab title="Informações Adicionais" >
+                                        <ui:include src="produtos/informacoesadicionais.xhtml"/>
+                                    </p:tab>
+                                    <!--PRODUTOS/SERVICOS DADOS DE DECLARACAO DE IMPORTACAO-->
+                                    <p:tab title="Declaração de Importação" >
+                                        <ui:include src="produtos/importacao.xhtml"/>
+                                    </p:tab>
+                                    <!--PRODUTOS/SERVICOS DADOS DE EXPORTACAO-->
+                                    <p:tab title="Exportação" >
+                                        <ui:include src="produtos/exportacao.xhtml"/>
+                                    </p:tab>
+                                    <!--PRODUTOS/SERVICOS NVES-->
+                                    <p:tab title="NVEs" >
+                                        <ui:include src="produtos/nve.xhtml"/>
+                                    </p:tab>
+                                    <!--PRODUTOS/SERVICOS DADOS DE VEICULO-->
+                                    <p:tab title="Veículo Novo"  rendered="#{digitacaoNFeFaces.tabVeiculoNovoAvailable}">
+                                        <ui:include src="produtos/veiculo.xhtml"/>
+                                    </p:tab>
+                                    <!--PRODUTOS/SERVICOS DADOS DE MEDICAMENTO-->
+                                    <p:tab title="Medicamentos"   rendered="#{digitacaoNFeFaces.tabMedicamentoAvailable}">
+                                        <ui:include src="produtos/medicamento.xhtml"/>
+                                    </p:tab>
+                                    <!--PRODUTOS/SERVICOS DADOS DE ARMA-->
+                                    <p:tab title="Armamento"  rendered="#{digitacaoNFeFaces.tabArmamentoAvailable}">
+                                        <ui:include src="produtos/arma.xhtml"/>
+                                    </p:tab>
+                                    <!--PRODUTOS/SERVICOS DADOS DE COMBUSTIVEL-->
+                                    <p:tab title="Combustível"  rendered="#{digitacaoNFeFaces.tabCombustivelAvailable}">
+                                        <ui:include src="produtos/combustivel.xhtml"/>
+                                    </p:tab>
+                                    <!--PRODUTOS/SERVICOS DADOS DE PAPEL IMUNE-->
+                                    <p:tab title="Papel Imune"  rendered="#{digitacaoNFeFaces.tabPapelImuneAvailable}">
+                                        <ui:include src="produtos/papelimune.xhtml"/>
+                                    </p:tab>
+                                </p:tabView>
+                            </h:panelGroup>
+                        </p:tab>
+
+                        <p:tab title="Listagem de Produtos" >
+                            <p:dataTable id="dtProdutoServicoList" value="#{digitacaoNFeFaces.dadosNFe.detalhamentoProdutosServicos}" var="vProduto" lazy="true" paginator="true" paginatorPosition="top" rows="5" rowsPerPageTemplate="5,10,50,100" 
+                                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         currentPageReportTemplate="Página: {currentPage}/{totalPages}"
+                                         emptyMessage="Nenhum Produto inserido." reflow="true">
+
+                                <p:column headerText="Código">
+                                    <h:outputText value="#{vProduto.cprod}" />
+                                </p:column>
+                                <p:column headerText="Descrição">
+                                    <h:outputText value="#{vProduto.xprod}" />
+                                </p:column>
+                                <p:column headerText="UN Comercial" >
+                                    <h:outputText value="#{vProduto.ucom}" />
+                                </p:column>
+                                <p:column headerText="EAN" >
+                                    <h:outputText value="#{vProduto.cean}" />
+                                </p:column>
+                                <p:column headerText="Quantidade Comercial" >
+                                    <h:outputText value="#{vProduto.qcom}">
+                                        <f:convertNumber pattern="#0.0000"/>
+                                    </h:outputText>
+                                </p:column>
+                                <p:column headerText="Valor Unitário Comercial" >
+                                    <h:outputText value="#{vProduto.vuncom}">
+                                        <f:convertNumber pattern="#0.00" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column headerText="Valor Total" >
+                                    <h:outputText value="#{vProduto.vprod}">
+                                        <f:convertNumber pattern="#0.00" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column headerText="Opções" >
+                                    <p:commandButton process="@this" update="@([id$=pgNFeProdutoServico])"
+                                                     styleClass="GreenButton" icon="fa fa-pencil" 
+                                                     onsuccess="PF('accProdutos').select(0);">
+                                        <f:setPropertyActionListener value="#{vProduto}" target="#{digitacaoNFeFaces.produtoServico}"/>
+                                    </p:commandButton>
+                                    <p:commandButton process="@this" update="dtProdutoServicoList"
+                                                     action="#{digitacaoNFeFaces.rmvDetalhamentoProdutosServicos()}"
+                                                     styleClass="RedButton" icon="fa fa-trash">
+                                        <f:setPropertyActionListener value="#{vProduto}" target="#{digitacaoNFeFaces.produtoServico}"/>
+                                        <p:confirm header="Confirmação" message="Realmente deseja excluir?" icon="ui-icon-alert" />
+                                    </p:commandButton>
+                                </p:column>
+                            </p:dataTable>
+                        </p:tab>
+                    </p:accordionPanel>
+                </p:tab>
+                <!--NFE TOTAIS-->
+                <p:tab title="Totais" >
+                    <div class="ui-g">
+                        <div class="ui-g-12" align="left">
+                            Atenção: o preenchimento das informações da Nota Fiscal é de responsabilidade do emitente. Confira atentamente estes valores e,
+                            caso <b>não</b> correspondam à realidade, altere-os na aba correspondente.
+                        </div>
+                    </div>
+
+                    <div class="ui-g">
+                        <div class="ui-g-12 ui-md-6 ui-lg-4">
+                            <p:inputText value="#{digitacaoNFeFaces.total.totalNFeIcms.vtottrib}" placeholder="Valor aproximado total de tributos federais" title="Valor aproximado total de tributos federais" 
+                                         maxlength="15" style="background-color: #EAEAEA">
+                                <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                            </p:inputText>
+                        </div>
+                    </div>
+
+                    <p:tabView scrollable="true">
+                        <!--TOTAIS ICMS-->
+                        <p:tab title="ICMS" >
+                            <ui:include src="totais/icms.xhtml"/>
+                        </p:tab>
+                        <!--TOTAIS ISSQN-->
+                        <p:tab title="ISSQN" >
+                            <ui:include src="totais/issqn.xhtml"/>
+                        </p:tab>
+                        <!--TOTAIS RETENCAO DE TRIBUTOS-->
+                        <p:tab title="Retenção de Tributos" >
+                            <ui:include src="totais/retencao.xhtml"/>
+                        </p:tab>                            
+                    </p:tabView>
+                </p:tab>
+                <!--NFE TRANSPORTE-->
+                <p:tab title="Transporte" >
+                    <div class="ui-g">
+                        <div class="ui-g-12 ui-md-6 ui-lg-4">
+                            <p:selectOneMenu id="modfrete" value="#{digitacaoNFeFaces.transporteNFe.modfrete}" title="* Modalidade do Frete" autoWidth="false">
+                                <f:selectItem itemLabel="* Selecione a Modalidade do Frete" itemValue="" />
+                                <f:selectItems value="#{digitacaoNFeFaces.tiposDeModalidadeDeFrete}" var="vModalidadeFrete" itemLabel="#{vModalidadeFrete.codigo} - #{vModalidadeFrete.descricao}" itemValue="#{vModalidadeFrete}"/>
+                            </p:selectOneMenu>
+                            <p:message for="modfrete" escape="true" />
+                        </div>
+                    </div>
+
+                    <p:tabView scrollable="true">
+                        <!--TRANSPORTE TRANSPORTADOR-->
+                        <p:tab title="Transportador" >
+                            <ui:include src="transporte/transportador.xhtml"/>
+                        </p:tab>
+                        <!--TRANSPORTE RETENCAO ICMS-->
+                        <p:tab title="Retenção ICMS" >
+                            <ui:include src="transporte/retencaoicms.xhtml"/>
+                        </p:tab>
+                        <!--TRANSPORTE VEICULO;REBOQUE;BALSA;VAGAO-->
+                        <p:tab title="Veículo/Reboque/Balsa/Vagão" >
+                            <ui:include src="transporte/veiculo.xhtml"/>
+                        </p:tab>
+                        <!--TRANSPORTE VOLUMES-->
+                        <p:tab title="Volumes" >
+                            <ui:include src="transporte/volumes.xhtml"/>
+                        </p:tab>
+                    </p:tabView>
+                </p:tab>
+                <!--NFE COBRANCA-->
+                <p:tab title="Cobrança" >
+                    <ui:include src="cobranca/cobranca.xhtml"/>
+                </p:tab>
+                <!--NFE INFORMACOES ADICIONAIS-->
+                <p:tab title="Informações Adicionais" >
+                    <p:tabView scrollable="true">
+                        <p:tab title="Informações Adicionais" >
+                            <ui:include src="informacoesadicionais/informacoesadicionais.xhtml"/>
+                        </p:tab>
+
+                        <p:tab title="Observações do Contribuinte" >
+                            <ui:include src="informacoesadicionais/observacaocontribuite.xhtml"/>
+                        </p:tab>
+
+                        <p:tab title="Observações do Fisco" >
+                            <ui:include src="informacoesadicionais/observacaofisco.xhtml"/>
+                        </p:tab>
+
+                        <p:tab title="Processos Referenciados" >
+                            <ui:include src="informacoesadicionais/processoreferenciado.xhtml"/>
+                        </p:tab>
+                    </p:tabView>
+                </p:tab>
+                <!--NFE EXPORTACAO E COMPRAS-->
+                <p:tab title="Exportação e Compras" >
+                    <ui:include src="exportacaocompra/exportacaocompra.xhtml"/>
+                </p:tab>
+                <!--NFE CANA-->
+                <p:tab title="Cana" >
+                    <ui:include src="cana/cana.xhtml"/>
+                </p:tab>
+                <!--NFE AUTORIZACAO PARA DOWNLOAD-->
+                <p:tab title="Autorização Download" >
+                    <ui:include src="autorizacao/autorizacao.xhtml"/>
+                </p:tab>
+            </p:tabView>
+            <!--</h:panelGroup>-->
+        </h:form>
+    </ui:define>
+</ui:composition>

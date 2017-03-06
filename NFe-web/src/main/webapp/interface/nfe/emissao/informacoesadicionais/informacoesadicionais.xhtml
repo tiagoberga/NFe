@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:panelGroup id="pgNFeInformacoesAdicionais">
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-6 ">
+                <p:inputTextarea value="#{digitacaoNFeFaces.informacoesAdicionais.infAdFisco}" counter="display3" maxlength="255" 
+                                 counterTemplate="{0} caracteres restantes." rows="10"
+                                 validatorMessage="Mínimo de 15 caracteres" 
+                                 placeholder="Informações adicionais de interesse ao fisco" 
+                                 title="Informações adicionais de interesse ao fisco">
+                    <f:validateLength minimum="15" />
+                </p:inputTextarea>
+                <h:outputText id="display3" />
+            </div>
+            <div class="ui-g-12 ui-md-6 ">
+                <p:inputTextarea value="#{digitacaoNFeFaces.informacoesAdicionais.infCpl}" counter="display4" maxlength="255" 
+                                 counterTemplate="{0} caracteres restantes." rows="10"
+                                 validatorMessage="Mínimo de 15 caracteres" 
+                                 placeholder="Informações complementares de interesse do contribuinte" 
+                                 title="Informações complementares de interesse do contribuinte">
+                    <f:validateLength minimum="15" />
+                </p:inputTextarea>
+                <h:outputText id="display4" />
+            </div>
+        </div>
+    </h:panelGroup>
+
+</ui:composition>

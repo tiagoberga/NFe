@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:panelGroup id="pgNFeProdutoServicoTributosCofins" layout="block">
+        <div class="ui-g NoPadding">
+            <div class="ui-g-12 ui-md-6 ui-lg-4 Padding3">
+                <p:selectOneMenu title="Situação Tributária" autoWidth="false">
+                    <f:selectItem itemLabel="Selecione a Situação Tributária" itemValue="" />
+                    <f:selectItems value="#{digitacaoNFeFaces.cstsCofins}" var="vCstCofins" itemLabel="#{vCstCofins.codigo} - #{vCstCofins.descricao}" itemValue="#{vCstCofins}"/>
+                </p:selectOneMenu>
+            </div>
+        </div>
+
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-12 ui-lg-6 Padding3">
+                <div class="Card">
+                    <h:panelGroup id="pgNFeProdutoServicoTributosCofinsCofins" layout="block">
+                        <div class="CardBigTopic">COFINS</div>
+                        <div class="Separator"></div>
+                        <div class="ui-g-12 ui-md-6 ui-lg-6">
+                            <p:selectOneMenu value="#{digitacaoNFeFaces.tipoCalculoCofins}" title="Tipo de Cálculo" autoWidth="false">
+                                <f:selectItem itemLabel="Selecione o Tipo de Cálculo" itemValue="" />
+                                <f:selectItems value="#{digitacaoNFeFaces.tiposDeCalculo}" var="vTipoCalculoCofins" itemLabel="#{vTipoCalculoCofins.calculo}" itemValue="#{vTipoCalculoCofins}" />
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="ui-g-12 ui-md-6 ui-lg-6">
+                            <p:inputText id="vbccofins" value="#{digitacaoNFeFaces.produtoServico.vbccofins}" placeholder="Valor da Base de Cálculo" title="Valor da Base de Cálculo">
+                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                            </p:inputText>
+                            <p:message for="vbccofins" escape="true"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-6 ui-lg-6">
+                            <p:inputText id="pcofins" value="#{digitacaoNFeFaces.produtoServico.pcofins}" placeholder="Alíquota (%)" title="Alíquota (%)">
+                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                            </p:inputText>
+                            <p:message for="pcofins" escape="true"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-6 ui-lg-6">
+                            <p:inputText id="valiqprodcofins" value="#{digitacaoNFeFaces.produtoServico.valiqprodcofins}" placeholder="Alíquota (R$)" title="Alíquota (R$)">
+                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                            </p:inputText>
+                            <p:message for="valiqprodcofins" escape="true"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-6 ui-lg-6">
+                            <p:inputText id="qbcprodcofins" value="#{digitacaoNFeFaces.produtoServico.qbcprodcofins}" placeholder="Quantidade Vendida" title="Quantidade Vendida">
+                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                            </p:inputText>
+                            <p:message for="qbcprodcofins" escape="true"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-6 ui-lg-6">
+                            <p:inputText id="vcofins" value="#{digitacaoNFeFaces.produtoServico.vcofins}" placeholder="Valor COFINS" title="Valor COFINS">
+                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                            </p:inputText>
+                            <p:message for="vcofins" escape="true"/>
+                        </div>
+                    </h:panelGroup>
+                </div>
+            </div>
+
+            <div class="ui-g-12 ui-md-12 ui-lg-6 Padding3">
+                <div class="Card">
+                    <h:panelGroup id="pgNFeProdutoServicoTributosCofinsCofinsSt" layout="block">
+                        <div class="CardBigTopic">COFINS ST</div>
+                        <div class="Separator"></div>
+                        <div class="ui-g-12 ui-md-6 ui-lg-6">
+                            <p:selectOneMenu value="#{digitacaoNFeFaces.tipoCalculoCofinsSt}" title="Tipo de Cálculo" autoWidth="false">
+                                <f:selectItem itemLabel="Selecione o Tipo de Cálculo" itemValue="" />
+                                <f:selectItems value="#{digitacaoNFeFaces.tiposDeCalculo}" var="vTipoCalculoCofinsSt" itemLabel="#{vTipoCalculoCofinsSt.calculo}" itemValue="#{vTipoCalculoCofinsSt}" />
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="ui-g-12 ui-md-6 ui-lg-6">
+                            <p:inputText id="vbccofinsst" value="#{digitacaoNFeFaces.produtoServico.vbccofins}" placeholder="Valor da Base de Cálculo" title="Valor da Base de Cálculo">
+                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                            </p:inputText>
+                            <p:message for="vbccofinsst" escape="true"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-6 ui-lg-6">
+                            <p:inputText id="pcofinsst" value="#{digitacaoNFeFaces.produtoServico.pcofins}" placeholder="Alíquota (%)" title="Alíquota (%)">
+                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                            </p:inputText>
+                            <p:message for="pcofinsst" escape="true"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-6 ui-lg-6">
+                            <p:inputText id="valiqprodcofinsst" value="#{digitacaoNFeFaces.produtoServico.valiqprodcofins}" placeholder="Alíquota (R$)" title="Alíquota (R$)">
+                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                            </p:inputText>
+                            <p:message for="valiqprodcofinsst" escape="true"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-6 ui-lg-6">
+                            <p:inputText id="qbcprodcofinsst" value="#{digitacaoNFeFaces.produtoServico.qbcprodcofins}" placeholder="Quantidade Vendida" title="Quantidade Vendida">
+                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                            </p:inputText>
+                            <p:message for="qbcprodcofinsst" escape="true"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-6 ui-lg-6">
+                            <p:inputText id="vcofinsst" value="#{digitacaoNFeFaces.produtoServico.vcofins}" placeholder="Valor COFINS ST" title="Valor COFINS ST">
+                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                            </p:inputText>
+                            <p:message for="vcofinsst" escape="true"/>
+                        </div>
+                    </h:panelGroup>
+                </div>
+            </div>
+        </div>
+    </h:panelGroup>
+</ui:composition>

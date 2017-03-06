@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:panelGroup id="pgNFeTransporteRetencao" layout="block">
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <p:inputText id="vbcret" value="#{digitacaoNFeFaces.retencaoIcms.vbcret}"  placeholder="Base de Cálculo" title="Base de Cálculo">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="vbcret" escape="true" />
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <p:inputText id="picmsret" value="#{digitacaoNFeFaces.retencaoIcms.picmsret}"  placeholder="Alíquota" title="Alíquota">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="picmsret" escape="true" />
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <p:inputText id="vserv" value="#{digitacaoNFeFaces.retencaoIcms.vserv}"  placeholder="Valor do Serviço" title="Valor do Serviço">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="vserv" escape="true" />
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <p:inputText id="vicmsret" value="#{digitacaoNFeFaces.retencaoIcms.vicmsret}"  placeholder="ICMS Retido" title="ICMS Retido">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="vicmsret" escape="true" />
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <p:inputText id="cmunfg" value="#{digitacaoNFeFaces.retencaoIcms.cmunfg}"  placeholder="Município" title="Município">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="cmunfg" escape="true" />
+            </div>
+            <div class="ui-g-12 ui-md-12 ui-lg-4">
+                <p:inputText id="cfop" value="#{digitacaoNFeFaces.retencaoIcms.cfop}"  placeholder="CFOP" title="CFOP">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="cfop" escape="true" />
+            </div>
+        </div>
+    </h:panelGroup>
+</ui:composition>

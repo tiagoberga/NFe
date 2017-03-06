@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:panelGroup id="pgNFeExportacaoCompra">
+        <h:panelGroup id="pgNFeExportacaoCompraExportacao">
+            <div class="Card">
+                <div class="CardBigTopic">Exportação</div>
+                <div class="Separator"></div>
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                        <p:selectOneMenu id="ufsaidapais" value="#{digitacaoNFeFaces.comercioExterior.ufsaidapais}" title="UF" autoWidth="false">
+                            <f:selectItem itemLabel="Selecione a UF" itemValue="" />
+                            <f:selectItems value="#{digitacaoNFeFaces.ufsEmi}"/>
+                        </p:selectOneMenu>
+                        <p:message for="ufsaidapais" escape="true"/>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                        <p:inputText id="xlocexporta" value="#{digitacaoNFeFaces.comercioExterior.xlocexporta}" placeholder="Local de Embarque" title="Local de Embarque">
+                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                        </p:inputText>
+                        <p:message for="xlocexporta" escape="true"/>
+                    </div>
+                    <div class="ui-g-12 ui-md-12 ui-lg-4">
+                        <p:inputText id="xlocdespacho" value="#{digitacaoNFeFaces.comercioExterior.xlocdespacho}" placeholder="Local de Despacho" title="Local de Despacho">
+                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                        </p:inputText>
+                        <p:message for="xlocdespacho" escape="true"/>
+                    </div>
+                </div>
+            </div>
+        </h:panelGroup>
+
+        <div class="EmptyBox5"></div>
+        <h:panelGroup id="pgNFeExportacaoCompraCompra">
+            <div class="Card">
+                <div class="CardBigTopic">Compra</div>
+                <div class="Separator"></div>
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                        <p:inputText id="xnemp" value="#{digitacaoNFeFaces.compra.xnemp}" placeholder="Informação da nota de empenho de compras públicas" title="Informação da nota de empenho de compras públicas">
+                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                        </p:inputText>
+                        <p:message for="xnemp" escape="true"/>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                        <p:inputText id="xped" value="#{digitacaoNFeFaces.compra.xped}" placeholder="Informação do pedido" title="Informação do pedido">
+                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                        </p:inputText>
+                        <p:message for="xped" escape="true"/>
+                    </div>
+                    <div class="ui-g-12 ui-md-12 ui-lg-4">
+                        <p:inputText id="xcont" value="#{digitacaoNFeFaces.compra.xcont}" placeholder="Informação do contrato" title="Informação do contrato">
+                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                        </p:inputText>
+                        <p:message for="xcont" escape="true"/>
+                    </div>
+                </div>
+            </div>
+        </h:panelGroup>
+    </h:panelGroup>
+</ui:composition>

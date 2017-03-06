@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:panelGroup id="pgNFeProdutoServicoIdentificacao">
+        <div class="ui-g">
+            <div class="ui-g-12 "><span class="Blue Fs17">Utilize o campo 'Código' para buscar um produto ja cadastrado digitando seu código ou descrição.</span></div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:autoComplete id="cprod" completeMethod="#{digitacaoNFeFaces.completeProduto}" 
+                                value="#{digitacaoNFeFaces.produto}" var="acProduto" itemValue="#{acProduto}" itemLabel="#{acProduto.cprod}" 
+                                placeholder="* Código" title="* Código" maxlength="60" minQueryLength="4" emptyMessage="Nenhum produto encontrado." style="color: #00aaff"
+                                converter="#{gpoConverter}">
+                    <p:column class="Wid30" headerText="Código" style="height: 4em">#{acProduto.cprod}</p:column>
+                    <p:column class="Wid60" headerText="Descrição" style="height: 4em">#{acProduto.xprod}</p:column>
+                    <p:column class="Wid10 TexAlCenter" headerText="UN" style="height: 4em">#{acProduto.ucom.toUpperCase()}</p:column>
+                    <p:ajax event="itemSelect" listener="#{digitacaoNFeFaces.onProdutoSelect}" update="pgNFeProdutoServicoIdentificacao"/>
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top" />
+                </p:autoComplete>
+                <p:message for="cprod" escape="true" />
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-9">
+                <p:inputText id="xprod" value="#{digitacaoNFeFaces.produtoServico.xprod}" placeholder="* Descrição" title="* Descrição" maxlength="60">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="xprod" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <p:inputText id="cfop" value="#{digitacaoNFeFaces.produtoServico.cfop}" placeholder="* CFOP" title="* CFOP" maxlength="4">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="cfop" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <p:inputText id="ncm" value="#{digitacaoNFeFaces.produtoServico.ncm}" placeholder="* NCM" title="* NCM" maxlength="8">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="ncm" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <p:inputText id="cest" value="#{digitacaoNFeFaces.produtoServico.cest}" placeholder="CEST" title="CEST" maxlength="10">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="cest" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="cean" value="#{digitacaoNFeFaces.produtoServico.cean}" placeholder="* EAN" title="* EAN" maxlength="14">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="cean" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="ceantrib" value="#{digitacaoNFeFaces.produtoServico.ceantrib}" placeholder="* EAN Tributado" title="* EAN Tributado" maxlength="14">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="ceantrib" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="ucom" value="#{digitacaoNFeFaces.produtoServico.ucom}" placeholder="* UN Comercial" title="* UN Comercial" maxlength="6">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="ucom" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="utrib" value="#{digitacaoNFeFaces.produtoServico.utrib}" placeholder="* UN Tributado" title="* UN Tributado">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="utrib" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="extipi" value="#{digitacaoNFeFaces.produtoServico.extipi}" placeholder="EX TIPI" title="EX TIPI" maxlength="3">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="extipi" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="qcom" value="#{digitacaoNFeFaces.produtoServico.qcom}" placeholder="* Quantidade Comercial" title="* Quantidade Comercial" class="TexAlRight" style="background-color: #EAEAEA">
+                    <f:convertNumber type="number" maxFractionDigits="4" minFractionDigits="4" />
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="qcom" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="vuncom" value="#{digitacaoNFeFaces.produtoServico.vuncom}" placeholder="* Valor Unitário Comercial" title="* Valor Unitário Comercial" class="TexAlRight" style="background-color: #EAEAEA">
+                    <f:convertNumber type="number" maxFractionDigits="4" minFractionDigits="4" />
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="vuncom" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="qtrib" value="#{digitacaoNFeFaces.produtoServico.qtrib}" placeholder="* Quantidade Tributado" title="* Quantidade Tributado" class="TexAlRight" style="background-color: #EAEAEA"> 
+                    <f:convertNumber type="number" maxFractionDigits="4" minFractionDigits="4" />
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="qtrib" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="vuntrib" value="#{digitacaoNFeFaces.produtoServico.vuntrib}" placeholder="* Valor Unitário Tributado" title="* Valor Unitário Tributado" class="TexAlRight" style="background-color: #EAEAEA">
+                    <f:convertNumber type="number" maxFractionDigits="4" minFractionDigits="4" />
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="vuntrib" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="vfrete" value="#{digitacaoNFeFaces.produtoServico.vfrete}" placeholder="Valor do Frete" title="Valor do Frete" class="TexAlRight" style="background-color: #EAEAEA">
+                    <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="vfrete" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="vseg" value="#{digitacaoNFeFaces.produtoServico.vseg}" placeholder="Valor do Seguro" title="Valor do Seguro" class="TexAlRight" style="background-color: #EAEAEA">
+                    <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="vseg" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="vdesc" value="#{digitacaoNFeFaces.produtoServico.vdesc}" placeholder="Valor do Desconto" title="Valor do Desconto" class="TexAlRight" style="background-color: #EAEAEA">
+                    <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="vdesc" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="voutro" value="#{digitacaoNFeFaces.produtoServico.voutro}" placeholder="Outras Despesas Acessórias" title="Outras Despesas Acessórias" class="TexAlRight" style="background-color: #EAEAEA">
+                    <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>                                        
+                </p:inputText>
+                <p:message for="voutro" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3 NoPadding">
+                <div class="ui-g-10">
+                    <p:inputText id="vprod" value="#{digitacaoNFeFaces.produtoServico.vprod}" placeholder="* Valor Total Produto/Serviço" title="* Valor Total Produto/Serviço" class="TexAlRight" style="background-color: #EAEAEA">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                    </p:inputText>
+                    <p:message for="vprod" escape="true"/>
+                </div>
+                <div class="ui-g-2 TexAlCenter">
+                    <p:commandButton process="qcom, vuncom, vfrete, vseg, vdesc, voutro, @this" update="vprod" 
+                                     action="#{digitacaoNFeFaces.calculaVProd()}" partialSubmit="true" 
+                                     icon="fa fa-refresh Fs16 White" title="Atualiza o Valor Total Produto/Serviço" class="ShadowEffect"/>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-6">
+                <p:selectOneMenu id="indtot" value="#{digitacaoNFeFaces.produtoServico.indtot}" title="* Valor de composição do item" autoWidth="false">
+                    <f:selectItem itemValue="" itemLabel="* O Valor do Item compõe o Total da NF-e?"/>
+                    <f:selectItems value="#{digitacaoNFeFaces.tiposDeIndicadorVProd}" var="vIndProd" itemValue="#{vIndProd}" itemLabel="#{vIndProd.codigo} - #{vIndProd.descricao}"/>
+                </p:selectOneMenu>
+                <p:message for="indtot" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="xped" value="#{digitacaoNFeFaces.produtoServico.xped}" placeholder="Pedido de Compra" title="Pedido de Compra">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="xped" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="nitemped" value="#{digitacaoNFeFaces.produtoServico.nitemped}" placeholder="Nº Item do Pedido de Compra" title="Nº Item do Pedido de Compra">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="nitemped" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:selectOneMenu value="#{digitacaoNFeFaces.produtoEspecifico}" title="Selecione o tipo do produto">
+                    <f:selectItem itemLabel="Selecione o tipo do produto" itemValue=""/>
+                    <f:selectItems value="#{digitacaoNFeFaces.tiposDeProdutoEspecifico}" var="vEspecifico" itemLabel="#{vEspecifico.descricao}" itemValue="#{vEspecifico}"/>
+                    <p:ajax event="change" update="@this tvNFeProdutoServico"/>
+                </p:selectOneMenu>
+                <p:message for="nitemped" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="nfci" value="#{digitacaoNFeFaces.produtoServico.nfci}" placeholder="Nº de Controle da FCI" title="Nº de Controle da FCI">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="nfci" escape="true"/>
+            </div>
+        </div>
+    </h:panelGroup>
+
+</ui:composition>

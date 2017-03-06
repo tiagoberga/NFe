@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:panelGroup id="pgNFeProdutoServicoCombustivel" layout="block">
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-6 ui-lg-6">
+                <p:inputText id="cprodanp" value="#{digitacaoNFeFaces.combustivel.cprodanp}" placeholder="* Código ANP" title="* Código ANP">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="nserie" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-6">
+                <p:inputText id="codif" value="#{digitacaoNFeFaces.combustivel.codif}" placeholder="CODIF" title="CODIF">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="codif" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <p:selectOneMenu id="ufcons" value="#{digitacaoNFeFaces.combustivel.ufcons}" title="* UF" autoWidth="false">
+                    <f:selectItem itemValue="" itemLabel="* Selecione a UF"/>
+                    <f:selectItems value="#{digitacaoNFeFaces.ufs}" />
+                </p:selectOneMenu>
+                <p:message for="ufcons" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <p:inputText id="qtemp" value="#{digitacaoNFeFaces.combustivel.qtemp}" placeholder="Quantidade Faturada em Temperatura Ambiente" title="Quantidade Faturada em Temperatura Ambiente">
+                    <f:convertNumber type="number" maxFractionDigits="4" minFractionDigits="4" />
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="qtemp" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-12 ui-lg-4 NoPadding">
+                <div class="ui-g-10">
+                    <p:inputText id="pmixgn" value="#{digitacaoNFeFaces.combustivel.pmixgn}" placeholder="Quantidade de Gás Natural" title="Quantidade de Gás Natural">
+                        <f:convertNumber type="number" maxFractionDigits="4" minFractionDigits="4" />
+                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                    </p:inputText>
+                    <p:message for="pmixgn" escape="true"/>
+                </div>
+                <div class="ui-g-2 TexAlCenter">
+                    <p:commandButton icon="fa fa-plus Fs16 White" styleClass="ShadowEffect"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="EmptyBox5"></div>
+        <div class="Card">
+            <div class="CardBigTopic">CIDE</div>
+            <div class="Separator"></div>
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-4 ui-lg-4">
+                    <p:inputText id="qbcprod" value="#{digitacaoNFeFaces.combustivel.qbcprod}" placeholder="Base de Cálculo" title="Base de Cálculo">
+                        <f:convertNumber type="number" maxFractionDigits="4" minFractionDigits="4" />
+                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                    </p:inputText>
+                    <p:message for="qbcprod" escape="true"/>
+                </div>
+                <div class="ui-g-12 ui-md-4 ui-lg-4">
+                    <p:inputText id="valiqprod" value="#{digitacaoNFeFaces.combustivel.valiqprod}" placeholder="Alíquota" title="Alíquota">
+                        <f:convertNumber type="number" maxFractionDigits="4" minFractionDigits="4" />
+                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                    </p:inputText>
+                    <p:message for="valiqprod" escape="true"/>
+                </div>
+                <div class="ui-g-12 ui-md-4 ui-lg-4">
+                    <p:inputText id="vcide" value="#{digitacaoNFeFaces.combustivel.vcide}" placeholder="Valor" title="Valor">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                    </p:inputText>
+                    <p:message for="vcide" escape="true"/>
+                </div>
+            </div>
+        </div>
+    </h:panelGroup>
+</ui:composition>

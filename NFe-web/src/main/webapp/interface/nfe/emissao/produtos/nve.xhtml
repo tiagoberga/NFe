@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:panelGroup id="pgNFeProdutoServicoNVE" layout="block">
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-12 ui-lg-6 NoPadding">
+                <div class="ui-g-10">
+                    <p:inputText id="nve" value="#{digitacaoNFeFaces.nomenclaturaValorAduaneiro.nve}" placeholder="* NVE" title="* NVE" maxlength="6">
+                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                    </p:inputText>
+                    <p:message for="nve" escape="true"/>
+                </div>
+                <div class="ui-g-2 TexAlCenter">
+                    <p:commandButton icon="fa fa-plus Fs16 White" styleClass="ShadowEffect"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="EmptyBox5"></div>
+        <p:dataTable id="dtNve" var="item" lazy="true" paginator="true" paginatorPosition="top" rows="5" rowsPerPageTemplate="5" 
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     currentPageReportTemplate="Página: {currentPage}/{totalPages}"
+                     emptyMessage="Nenhum reboque inserido." reflow="true">
+
+            <p:column headerText="Item" class="Wid90">
+                <h:outputText value="#{car.id}" />
+            </p:column>
+            <p:column headerText="Opção" class="Wid10">
+                <p:commandButton icon="fa fa-remove" styleClass="RedButton" />
+            </p:column>
+        </p:dataTable>
+    </h:panelGroup>
+</ui:composition>

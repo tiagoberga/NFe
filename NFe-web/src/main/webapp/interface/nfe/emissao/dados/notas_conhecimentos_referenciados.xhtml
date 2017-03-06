@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:panelGroup id="pgNFeIdentificacaoConhecimentoReferenciado" layout="block">
+        <div class="ui-g Flex FlexWrap">
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <p:selectOneButton value="#{digitacaoNFeFaces.tipoDocumento}" class="GrayButton">
+                    <f:selectItems value="#{digitacaoNFeFaces.tiposDeDocumento}" var="vTipoDocumento" itemLabel="#{vTipoDocumento.descricao}" itemValue="#{vTipoDocumento}" />
+                    <p:ajax event="change" listener="#{digitacaoNFeFaces.onTipoDocumentoChange()}" update="pgNFeIdentificacaoConhecimentoReferenciadoReferencias"/>
+                </p:selectOneButton>
+            </div>
+        </div>
+
+        <div class="EmptyBox5"></div>
+        <h:panelGroup id="pgNFeIdentificacaoConhecimentoReferenciadoReferencias" layout="block">
+            <h:panelGroup id="pgNFeIdentificacaoConhecimentoReferenciadoRefNFe" layout="block" rendered="#{digitacaoNFeFaces.pgNFeIdentificacaoConhecimentoReferenciadoRefNFeVisible}">
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-6 ui-lg-4 NoPadding">
+                        <div class="ui-g-10">
+                            <p:inputText id="refnfe" value="#{digitacaoNFeFaces.documentoFiscalReferenciado.refnfe}" placeholder="* Chave de Acesso" title="* Chave de Acesso" maxlength="44">
+                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                            </p:inputText>
+                            <p:message for="refnfe" escape="true"/>
+                        </div>
+                        <div class="ui-g-2 TexAlCenter">
+                            <p:commandButton icon="fa fa-plus Fs16 White" styleClass="ShadowEffect" />
+                        </div>
+                    </div>
+                </div>
+            </h:panelGroup>
+            <h:panelGroup id="pgNFeIdentificacaoConhecimentoReferenciadoRefCTe" layout="block" rendered="#{digitacaoNFeFaces.pgNFeIdentificacaoConhecimentoReferenciadoRefCTeVisible}">
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-6 ui-lg-4 NoPadding">
+                        <div class="ui-g-10">
+                            <p:inputText id="refcte" value="#{digitacaoNFeFaces.documentoFiscalReferenciado.refcte}" placeholder="* Chave de Acesso" title="* Chave de Acesso" maxlength="44">
+                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                            </p:inputText>
+                            <p:message for="refcte" escape="true"/>
+                        </div>
+                        <div class="ui-g-2 TexAlCenter">
+                            <p:commandButton icon="fa fa-plus Fs16 White" styleClass="ShadowEffect" />
+                        </div>
+                    </div>
+                </div>
+            </h:panelGroup>
+            <h:panelGroup id="pgNFeIdentificacaoConhecimentoReferenciadoRefNF" layout="block" rendered="#{digitacaoNFeFaces.pgNFeIdentificacaoConhecimentoReferenciadoRefNFVisible}">
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                        <p:inputText id="refnfeserie" value="#{digitacaoNFeFaces.documentoFiscalReferenciado.refnfeserie}" placeholder="* Série de NF-e" title="* Série de NF-e" maxlength="3">
+                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                        </p:inputText>
+                        <p:message for="refnfeserie" escape="true"/>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                        <p:inputText id="refnfennf" value="#{digitacaoNFeFaces.documentoFiscalReferenciado.refnfennf}" placeholder="* Número do Documento Fiscal" title="* Número do Documento Fiscal" maxlength="9">
+                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                        </p:inputText>
+                        <p:message for="refnfennf" escape="true"/>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                        <p:inputText id="refnfemod" value="#{digitacaoNFeFaces.documentoFiscalReferenciado.refnfemod}" placeholder="* Modelo do Documento Fiscal" title="* Modelo do Documento Fiscal" maxlength="2" readonly="true">
+                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                        </p:inputText>
+                        <p:message for="refnfemod" escape="true"/>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                        <p:selectOneMenu id="refnfecuf" value="#{digitacaoNFeFaces.documentoFiscalReferenciado.refnfecuf}" title="* UF do emitente" autoWidth="false" maxlength="2">
+                            <f:selectItem itemLabel="* Selecione a UF do emitente" itemValue="" />
+                            <f:selectItems value="#{digitacaoNFeFaces.ufsEmi}" />
+                        </p:selectOneMenu>
+                        <p:message for="refnfecuf" escape="true"/>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                        <p:calendar id="refnfeaamm" value="#{digitacaoNFeFaces.documentoFiscalReferenciado.refnfeaamm}" pattern="MM/yy" placeholder="* Mês e Ano de emissão da NF-e" title="* Mês e Ano de emissão da NF-e" maxlength="5">
+                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                        </p:calendar>
+                        <p:message for="refnfeaamm" escape="true"/>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4 NoPadding">
+                        <div class="ui-g-10">
+                            <p:inputText id="refnfecnpj" value="#{digitacaoNFeFaces.documentoFiscalReferenciado.refnfecnpj}" placeholder="* CNPJ do emitente" title="* CNPJ do emitente">
+                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                            </p:inputText>
+                            <p:message for="refnfecnpj" escape="true"/>
+                        </div>
+                        <div class="ui-g-2 TexAlCenter">
+                            <p:commandButton icon="fa fa-plus Fs16 White" styleClass="ShadowEffect" />
+                        </div>
+                    </div>
+                </div>
+            </h:panelGroup>            
+        </h:panelGroup>
+
+        <div class="EmptyBox5"></div>
+        <p:dataTable  var="item" lazy="true" paginator="true" paginatorPosition="top" rows="5" rowsPerPageTemplate="5" 
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     currentPageReportTemplate="Página: {currentPage}/{totalPages}"
+                     emptyMessage="Nenhum reboque inserido." reflow="true">
+
+            <p:column headerText="Item">
+                <h:outputText value="#{car.id}" />
+            </p:column>
+            <p:column headerText="Placa">
+                <h:outputText value="#{car.id}" />
+            </p:column>
+            <p:column headerText="UF">
+                <h:outputText value="#{car.id}" />
+            </p:column>
+            <p:column headerText="RNTC">
+                <h:outputText value="#{car.id}" />
+            </p:column>
+            <p:column headerText="Opção">
+                <p:commandButton icon="fa fa-remove" styleClass="RedButton" />
+            </p:column>
+        </p:dataTable>
+    </h:panelGroup>
+</ui:composition>

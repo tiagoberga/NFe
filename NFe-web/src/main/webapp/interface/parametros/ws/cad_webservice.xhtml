@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/templates/template.xhtml">
+
+    <ui:define name="content">
+        <h:form id="mainForm" acceptcharset="UTF-8">
+            <div class="Card">
+                <div class="CardBigTopic">Informações de Web Services</div>
+                <div class="Separator"></div>
+
+                <p:accordionPanel multiple="false" widgetVar="accWs">
+                    <p:tab title="Pesquisa de Web Services">
+                        <h:panelGroup id="pgPesquisa" layout="block">
+                            <div class="Card">
+                                <div class="ui-g">
+                                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                                        <p:selectOneMenu value="#{webserviceFaces.webServiceFilter.estadoSigla}" title="UF">
+                                            <f:selectItem itemValue="" itemLabel="UF - Todas"/>
+                                            <f:selectItems value="#{webserviceFaces.ufsDeWebService}" var="vUf" itemLabel="#{vUf.codigo} - #{vUf.uf}" itemValue="#{vUf}" />
+                                        </p:selectOneMenu>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                                        <p:selectOneMenu value="#{webserviceFaces.webServiceFilter.tipoServicoNfe}" title="Tipo de Serviço">
+                                            <f:selectItem itemValue="" itemLabel="Serviço - Todos" />
+                                            <f:selectItems value="#{webserviceFaces.servicosSefaz}" var="vServico" itemLabel="#{vServico.servico} - #{vServico.descricao}" itemValue="#{vServico}" />
+                                        </p:selectOneMenu>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-12 ui-lg-4">
+                                        <p:selectOneMenu value="#{webserviceFaces.webServiceFilter.versao}" title="Versão">
+                                            <f:selectItem itemValue="" itemLabel="Versão - Todas" />
+                                            <f:selectItem itemValue="3.10" itemLabel="3.10" />
+                                            <f:selectItem itemValue="2.00" itemLabel="2.00" />
+                                            <f:selectItem itemValue="1.00" itemLabel="1.00" />
+                                        </p:selectOneMenu>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="EmptyBox5"></div>
+                            <div class="Card NoPadding">
+                                <div class="ui-g">
+                                    <div class="ui-g-6 ui-md-6 ui-lg-2">
+                                        <p:commandButton process="pgPesquisa @this" update=":mainForm:dtModel"  
+                                                         action="#{webserviceFaces.pesquisar()}" 
+                                                         value="Pesquisar" icon="fa fa-search Fs16 White" />
+                                    </div>
+                                </div>
+                            </div>
+                        </h:panelGroup>
+                    </p:tab>
+
+                    <p:tab title="Cadastro de Web Services">
+                        <h:panelGroup id="pgWebservice" layout="block">
+                            <div class="Card">
+                                <div class="ui-g">
+                                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                                        <p:selectOneMenu id="ativo" value="#{webserviceFaces.webService.ativo}" title="* Webservice Ativo/Inativo">
+                                            <f:selectItem itemValue="" itemLabel="* Webservice ativo?" />
+                                            <f:selectItem itemValue="TRUE" itemLabel="Ativo" />
+                                            <f:selectItem itemValue="FALSE" itemLabel="Inativo" />
+                                        </p:selectOneMenu>
+                                        <p:message for="ativo" escape="true"/>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                                        <p:selectOneMenu id="servico" value="#{webserviceFaces.webService.tipoServicoNfe}" title="* Tipo de Serviço">
+                                            <f:selectItem itemValue="" itemLabel="* Selecione o Serviço" />
+                                            <f:selectItems value="#{webserviceFaces.servicosSefaz}" var="vServico" itemLabel="#{vServico.servico} - #{vServico.descricao}" itemValue="#{vServico}" />
+                                        </p:selectOneMenu>
+                                        <p:message for="servico" escape="true"/>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                                        <p:selectOneMenu id="tpemis" value="#{webserviceFaces.webService.tpEmis}" title="* Tipo de Emissão">
+                                            <f:selectItem itemValue="" itemLabel="* Selecione o Tipo de Emissão" />
+                                            <f:selectItems var="tipoEmissao" value="#{webserviceFaces.formasDeEmissao}" itemValue="#{tipoEmissao}" itemLabel="#{tipoEmissao.codigo} - #{tipoEmissao.descricao}" />
+                                        </p:selectOneMenu>
+                                        <p:message for="tpemis" escape="true"/>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                                        <p:selectOneMenu id="uf" value="#{webserviceFaces.webService.estadoSigla}" title="* UF">
+                                            <f:selectItem itemValue="" itemLabel="* Selecione a UF" />
+                                            <f:selectItems value="#{webserviceFaces.ufsDeWebService}" var="vUf" itemLabel="#{vUf.codigo} - #{vUf.uf}" itemValue="#{vUf}" />
+                                        </p:selectOneMenu>
+                                        <p:message for="uf" escape="true"/>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                                        <p:selectOneMenu id="versao" value="#{webserviceFaces.webService.versao}" title="* Versão">
+                                            <f:selectItem itemValue="" itemLabel="* Selecione a Versão" />
+                                            <f:selectItem itemValue="3.10" itemLabel="3.10" />
+                                            <f:selectItem itemValue="2.00" itemLabel="2.00" />
+                                            <f:selectItem itemValue="1.00" itemLabel="1.00" />
+                                        </p:selectOneMenu>
+                                        <p:message for="versao" escape="true"/>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                                        <p:inputText id="url" size="80" value="#{webserviceFaces.webService.url}" placeholder="* URL" title="* URL">
+                                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                                        </p:inputText>
+                                        <p:message for="url" escape="true"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="EmptyBox5"></div>
+                            <div class="Card NoPadding">
+                                <div class="ui-g-6 ui-md-3 ui-lg-2">
+                                    <p:commandButton process="pgWebservice @this" update="pgWebservice :mainForm:dtModel" 
+                                                     action="#{webserviceFaces.salvar()}" 
+                                                     value="Salvar"  styleClass="GreenButton" icon="fa fa-save Fs16 White" />
+                                </div>
+                            </div>
+                        </h:panelGroup>
+                    </p:tab>
+                </p:accordionPanel>
+            </div>
+
+            <div class="EmptyBox5"></div>
+            <p:dataTable id="dtModel" value="#{webserviceFaces.model}" var="item" lazy="true" paginator="true" paginatorPosition="top" rows="5" rowsPerPageTemplate="5,10,20" 
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         currentPageReportTemplate="Página: {currentPage}/{totalPages}"
+                         emptyMessage="Nenhum reboque inserido." reflow="true">
+
+                <p:column headerText="Serviço" class="TexAlCenter BlueBack White FontBold Wid10">
+                    <h:outputText value="#{item.tipoServicoNfe.descricao}" />
+                </p:column>
+                <p:column headerText="Versão" class="TexAlCenter Wid10">
+                    <h:outputText value="#{item.versao}" />
+                </p:column>
+                <p:column headerText="URL" class="Wid30">
+                    <h:outputText value="#{item.url}" />
+                </p:column>
+                <p:column headerText="Ambiente" class="TexAlCenter Wid10">
+                    <h:outputText value="#{item.tipoAmbiente.descricao}" />
+                </p:column>
+                <p:column headerText="UF" class="TexAlCenter Wid10">
+                    <h:outputText value="#{item.estadoSigla}" />
+                </p:column>
+                <p:column headerText="Tipo Emissão" class="TexAlCenter Wid10">
+                    <h:outputText value="#{item.tpEmis.descricao}" />
+                </p:column>
+                <p:column headerText="Opções" class="TexAlCenter Wid10">
+                    <p:commandButton process="@this" update="@this @(form)"
+                                     styleClass="GreenButton" icon="fa fa-pencil Fs16 White" 
+                                     oncomplete="window.scrollTo(0,0); PF('accWs').select(1);">
+                        <f:setPropertyActionListener value="#{item}" target="#{webserviceFaces.webService}"/>
+                    </p:commandButton>
+                    <p:commandButton process="@this" update="dtModel"
+                                     action="#{webserviceFaces.deleteById(item.id)}" 
+                                     styleClass="RedButton" icon="fa fa-trash Fs16 White">
+                        <p:confirm header="Confirmação" message="Realmente deseja excluir?" icon="ui-icon-alert" />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>

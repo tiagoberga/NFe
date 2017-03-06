@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <div class="card" style="padding: 0em">
+        <div class="ui-g">
+            <div class="ui-g-4 ui-md-3 ui-lg-2">
+                <p:commandButton  value="Pesquisar" icon="fa fa-search" />
+            </div>
+            <div class="ui-g-4 ui-md-3 ui-lg-2">
+                <p:commandButton process="@(form) @this" update="@(form)"
+                                 action="#{digitacaoNFeFaces.salvar()}" 
+                                 value="Salvar" icon="fa fa-save" />
+            </div>
+            <div class="ui-g-4 ui-md-3 ui-lg-2">
+                <p:commandButton process="@(form) @this" update="@(form)"
+                                 action="#{digitacaoNFeFaces.gerarxml()}" 
+                                 value="Salvar" icon="fa fa-save" />
+            </div>
+            <div class="ui-g-4 ui-md-3 ui-lg-2">
+                <p:commandButton value="Limpar" styleClass="red-btn" icon="fa fa-eraser" type="reset"/>
+            </div>
+        </div>
+    </div>
+
+</ui:composition>

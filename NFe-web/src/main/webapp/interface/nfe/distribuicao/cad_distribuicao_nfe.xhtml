@@ -1,0 +1,340 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+        <h:form id="mainForm" acceptcharset="UTF-8">
+
+            <p:accordionPanel widgetVar="accpDistribuicaoManifesto" multiple="false">
+                <p:tab id="tabDFe" title="Informações de Distibuição DF-e">
+                    <div class="ui-g">
+                        <!--CARD REGISTROS LOCAIS-->
+                        <div class="Card Flex FlexWrap">
+                            <div class="CardBigTopic">Documentos da Base Local</div>
+                            <div class="Separator"></div>
+
+                            <!--                            teste
+                                                        <div class="ui-g-12 Flex FlexWrap ShadowEffect NoPadding">
+                                                            <div class="ui-g-3 Flex HoverEffect" style="background-color: #B71C1C">
+                                                                <div class="ui-g-12 TexAlCenter">
+                                                                    <i class="fa fa-search Fs50 White"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="ui-g-9 Flex" style="background-color: #F44336">
+                                                                <div class="ui-g-12 TexAlRight">
+                                                                    <span class="FontLatoRegular White Fs40 DispBlock MarTop10">DIREITA</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>-->
+
+                            <div class="ui-g-12 ui-md-6 ui-lg-3 Flex Padding1">
+                                <div class="Card HoverEffect SoftGrayBack ShadowEffect Zoom1point05x">
+                                    <p:commandLink style="width: 100%; text-decoration: none;" onclick="window.scrollTo(0, 0);PF('accpDistribuicaoManifesto').select(1);PF('tvNFeDocs').select(0);">
+                                        <div class="ui-g-3 ui-md-3 ui-lg-3 "><i class="icon-documents7 White Fs60 MarRight10"></i></div>
+                                        <div class="ui-g-9 ui-md-9 ui-lg-9 TexAlRight">
+                                            <span class="FontLatoBlack White Fs13 DispBlock">RESUMOS DE NF-E</span><br/>
+                                            <span class="FontLatoRegular White Fs40 DispBlock">658</span>
+                                        </div>
+                                    </p:commandLink>
+                                </div>
+                            </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-3 Flex Padding1">
+                                <div class="Card HoverEffect SoftGrayBack ShadowEffect Zoom1point05x">
+                                    <p:commandLink style="width: 100%; text-decoration: none;" onclick="window.scrollTo(0, 0);PF('accpDistribuicaoManifesto').select(1);PF('tvNFeDocs').select(1);">
+                                        <div class="ui-g-3 ui-md-3 ui-lg-3 "><i class="icon-documents7 White Fs60 MarRight10"></i></div>
+                                        <div class="ui-g-9 ui-md-9 ui-lg-9 TexAlRight">
+                                            <span class="FontLatoBlack White Fs13 DispBlock">NF-ES PROCESSADAS</span><br/>
+                                            <span class="FontLatoRegular White Fs40 DispBlock">6354</span>
+                                        </div>
+                                    </p:commandLink>
+                                </div>
+                            </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-3 Flex Padding1">
+                                <div class="Card HoverEffect SoftGrayBack ShadowEffect Zoom1point05x">
+                                    <p:commandLink style="width: 100%; text-decoration: none;" onclick="window.scrollTo(0, 0);PF('accpDistribuicaoManifesto').select(1);PF('tvNFeDocs').select(2);">
+                                        <div class="ui-g-3 ui-md-3 ui-lg-3 "><i class="icon-documents7 White Fs60 MarRight10"></i></div>
+                                        <div class="ui-g-9 ui-md-9 ui-lg-9 TexAlRight">
+                                            <span class="FontLatoBlack White Fs13 DispBlock">RESUMOS DE EVENTOS</span><br/>
+                                            <span class="FontLatoRegular White Fs40 DispBlock">8351</span>
+                                        </div>
+                                    </p:commandLink>
+                                </div>
+                            </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-3 Flex Padding1">
+                                <div class="Card HoverEffect SoftGrayBack ShadowEffect Zoom1point05x">
+                                    <p:commandLink style="width: 100%; text-decoration: none;" onclick="window.scrollTo(0, 0);PF('accpDistribuicaoManifesto').select(1);PF('tvNFeDocs').select(3);">
+                                        <div class="ui-g-3 ui-md-3 ui-lg-3"><i class="icon-documents7 White Fs60 MarRight10"></i></div>
+                                        <div class="ui-g-9 ui-md-9 ui-lg-9 TexAlRight">
+                                            <span class="FontLatoBlack White Fs13 DispBlock">EVENTOS PROCESSADOS</span><br/>
+                                            <span class="FontLatoRegular White Fs40 DispBlock">6513</span>
+                                        </div>
+                                    </p:commandLink>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--CARD SITUAÇÕES DE MANIFESTO-->
+                        <div class="EmptyBox5"></div>
+                        <div class="Card Flex FlexWrap">
+                            <div class="CardBigTopic">Situações de Manifesto</div>
+                            <div class="Separator"></div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-3 Flex Padding1">
+                                <div class="Card ShadowEffect HoverEffect BlueBack">
+                                    <div class="ui-g-3 ui-md-3 ui-lg-3"><i class="fa fa-check White Fs60 MarRight10"></i></div>
+                                    <div class="ui-g-9 ui-md-9 ui-lg-9 TexAlRight">
+                                        <span class="FontLatoBlack White Fs13 DispBlock">CONFIRMAÇÃO DA OPERAÇÃO</span><br/>
+                                        <span class="FontLatoRegular White Fs40 DispBlock">6513</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-3 Flex Padding1">
+                                <div class="Card ShadowEffect HoverEffect GreenBack">
+                                    <div class="ui-g-3 ui-md-3 ui-lg-3 "><i class="fa fa-check White Fs60 MarRight10"></i></div>
+                                    <div class="ui-g-9 ui-md-9 ui-lg-9 TexAlRight">
+                                        <span class="FontLatoBlack White Fs13 DispBlock">CIÊNCIA DA OPERAÇÃO</span><br/>
+                                        <span class="FontLatoRegular White Fs40 DispBlock">6354</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-3 Flex Padding1">
+                                <div class="Card ShadowEffect HoverEffect YellowBack">
+                                    <div class="ui-g-3 ui-md-3 ui-lg-3 "><i class="fa fa-check White Fs60 MarRight10"></i></div>
+                                    <div class="ui-g-9 ui-md-9 ui-lg-9 TexAlRight">
+                                        <span class="FontLatoBlack White Fs13 DispBlock">DESCONHECIMENTO DA OPERAÇÃO</span><br/>
+                                        <span class="FontLatoRegular White Fs40 DispBlock">658</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-3 Flex Padding1">
+                                <div class="Card ShadowEffect HoverEffect RedBack">
+                                    <div class="ui-g-3 ui-md-3 ui-lg-3 "><i class="fa fa-check White Fs60 MarRight10"></i></div>
+                                    <div class="ui-g-9 ui-md-9 ui-lg-9 TexAlRight">
+                                        <span class="FontLatoBlack White Fs13 DispBlock">OPERAÇÃO NÃO REALIZADA</span><br/>
+                                        <span class="FontLatoRegular White Fs40 DispBlock">8351</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ui-g-12 ui-md-6 ui-lg-6 Flex Padding1">
+                                <div class="Card ShadowEffect">
+                                    <div class="ui-g-3 ui-md-3 ui-lg-3"><i class="icon-documents7 Green Fs60 MarRight10"></i></div>
+                                    <div class="ui-g-9 ui-md-9 ui-lg-9 TexAlRight">
+                                        <span class="FontLatoBlack Black Fs13 DispBlock">NOTAS FISCAIS MANIFESTADAS</span><br/>
+                                        <span class="FontLatoRegular Green Fs50 DispBlock">6513</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-6 Flex Padding1">
+                                <div class="Card ShadowEffect">
+                                    <div class="ui-g-3 ui-md-3 ui-lg-3 "><i class="icon-documents7 Red Fs60 MarRight10"></i></div>
+                                    <div class="ui-g-9 ui-md-9 ui-lg-9 TexAlRight">
+                                        <span class="FontLatoBlack Black Fs13 DispBlock">NOTAS FISCAIS NÃO MANIFESTADAS</span><br/>
+                                        <span class="FontLatoRegular Red Fs50 DispBlock animated fadeIn infinite">6354</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </p:tab>
+                <p:tab title="Manifestação do Destinatário">
+                    <div class="EmptyBox5"></div>
+                    <div class="Card">
+                        <div class="CardBigTopic">Busca documentos no Sefaz</div>
+                        <div class="Separator"></div>
+                        <div class="ui-g">
+
+                            <div class="ui-g-12 ui-md-6 ui-lg-6"></div>
+                            <div class="ui-g-6 ui-md-3 ui-lg-3 TexAlRight"><p:outputLabel value="Último NSU 000000000000000"/></div>
+                            <div class="ui-g-6 ui-md-3 ui-lg-3 TexAlRight"><p:outputLabel value="Máximo NSU 000000000000000"/></div>
+
+                            <div class="ui-g-12 ui-md-6 ui-lg-6">
+                                <p:selectOneMenu title="Procedimento de NSU" autoWidth="false">
+                                    <f:selectItem itemValue="" itemLabel="Selecione o procedimento de NSU" />
+                                    <f:selectItem itemLabel="Continuar com a sequência do último NSU" itemValue="" />
+                                    <f:selectItem itemLabel="A partir de ums NSU que vou informar" itemValue="" />
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-6 NoPadding">
+                                <div class="ui-g-10">
+                                    <p:inputText placeholder="Informe o NSU" title="Informe o NSU" maxlength="15">
+                                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                                    </p:inputText>
+                                </div>
+                                <div class="ui-g-2 TexAlCenter">
+                                    <p:commandButton icon="fa fa-search Fs16 White"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="EmptyBox5"></div>
+                    <div class="Card">
+                        <div class="CardBigTopic">Busca documentos na Base Local</div>
+                        <div class="Separator"></div>
+                        <div class="ui-g">
+                            <div class="ui-g-6 ui-md-3 ui-lg-3">
+                                <p:calendar pattern="dd/MM/yyyy" placeholder="Data Inicial" title="Data Inicial">
+                                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                                </p:calendar>
+                            </div>
+                            <div class="ui-g-6 ui-md-3 ui-lg-3">
+                                <p:calendar pattern="dd/MM/yyyy" placeholder="Data Final" title="Data Final">
+                                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                                </p:calendar>
+                            </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-6 NoPadding">
+                                <div class="ui-g-10">
+                                    <p:inputText placeholder="Informe o NSU" title="Informe o NSU" maxlength="15">
+                                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                                    </p:inputText>
+                                </div>
+                                <div class="ui-g-2 TexAlCenter">
+                                    <p:commandButton icon="fa fa-search Fs16 White"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="EmptyBox5"></div>
+                    <p:tabView widgetVar="tvNFeDocs" scrollable="true" orientation="top">
+                        <p:tab id="tabNFeRes" title="Resumos de NF-e">
+                            <div class="ui-g">
+                                <div class="ui-g-6 ui-md-4 ui-lg-2">
+                                    <p:commandButton value="Manifestar Documentos" icon="fa fa-search Fs16 White" />
+                                </div>
+                                <div class="ui-g-6 ui-md-4 ui-lg-2">
+                                    <p:commandButton value="Consultar Disponibilidade" icon="fa fa-search Fs16 White"/>
+                                </div>
+                            </div>
+
+                            <div class="EmptyBox5"></div>
+                            <p:dataTable var="item" lazy="true" paginator="true" paginatorPosition="top" rows="5" rowsPerPageTemplate="5" 
+                                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         currentPageReportTemplate="Página: {currentPage}/{totalPages}"
+                                         emptyMessage="Nenhum reboque inserido." reflow="true">
+
+                                <p:column headerText="NSU">
+                                    <h:outputText />
+                                </p:column>
+                                <p:column headerText="Data Emissão">
+                                    <h:outputText />
+                                </p:column>
+                                <p:column headerText="Chave de Acesso">
+                                    <h:outputText />
+                                </p:column>
+                                <p:column headerText="CPF/CNPJ">
+                                    <h:outputText />
+                                </p:column>
+                                <p:column headerText="Emitente">
+                                    <h:outputText />
+                                </p:column>
+                                <p:column headerText="Situação NF-e">
+                                    <h:outputText />
+                                </p:column>
+                                <p:column headerText="Valor da NF-e">
+                                    <h:outputText />
+                                </p:column>
+                                <p:column headerText="Manifesto">
+                                    <h:outputText />
+                                </p:column>
+
+                            </p:dataTable>
+                        </p:tab>
+
+                        <p:tab id="tabNFeProc" title="NF-e Processadas">
+                            <div class="ui-g">
+                                <div class="ui-g-6 ui-md-4 ui-lg-2">
+                                    <p:commandButton value="Vincular Documentos" icon="fa fa-search Fs16 White" />
+                                </div>
+                            </div>
+
+                            <div class="EmptyBox5"></div>
+                            <p:dataTable var="item" lazy="true" paginator="true" paginatorPosition="top" rows="5" rowsPerPageTemplate="5" 
+                                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         currentPageReportTemplate="Página: {currentPage}/{totalPages}"
+                                         emptyMessage="Nenhum reboque inserido." reflow="true">
+
+                                <p:column headerText="NF-e Vinculada?">
+                                    <h:outputText />
+                                </p:column>
+                                <p:column headerText="NSU">
+                                    <h:outputText />
+                                </p:column>
+                                <p:column headerText="Data Emissão">
+                                    <h:outputText />
+                                </p:column>
+                                <p:column headerText="Chave de Acesso">
+                                    <h:outputText />
+                                </p:column>
+                                <p:column headerText="CPF/CNPJ">
+                                    <h:outputText />
+                                </p:column>
+                                <p:column headerText="Emitente">
+                                    <h:outputText />
+                                </p:column>
+                                <p:column headerText="Situação NF-e">
+                                    <h:outputText />
+                                </p:column>
+                                <p:column headerText="Valor da NF-e">
+                                    <h:outputText />
+                                </p:column>
+                            </p:dataTable>
+                        </p:tab>
+
+                        <p:tab id="tabEventoRes" title="Resumos de Eventos">
+                            <p:dataTable var="item" lazy="true" paginator="true" paginatorPosition="top" rows="5" rowsPerPageTemplate="5" 
+                                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         currentPageReportTemplate="Página: {currentPage}/{totalPages}"
+                                         emptyMessage="Nenhum reboque inserido." reflow="true">
+
+                                <p:column headerText="NSU">
+                                    <h:outputText />
+                                </p:column>
+                                <p:column headerText="Data do Evento">
+                                    <h:outputText />
+                                </p:column>
+                                <p:column headerText="Chave de Acesso">
+                                    <h:outputText />
+                                </p:column>
+                                <p:column headerText="CPF/CNPJ">
+                                    <h:outputText />
+                                </p:column>
+                                <p:column headerText="Evento">
+                                    <h:outputText />
+                                </p:column>
+                            </p:dataTable>
+                        </p:tab>
+
+                        <p:tab id="tabEventoProc" title="Eventos Processados">
+                            <p:dataTable var="item" lazy="true" paginator="true" paginatorPosition="top" rows="5" rowsPerPageTemplate="5" 
+                                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         currentPageReportTemplate="Página: {currentPage}/{totalPages}"
+                                         emptyMessage="Nenhum reboque inserido." reflow="true">
+
+                                <p:column headerText="NSU">
+                                    <h:outputText />
+                                </p:column>
+                                <p:column headerText="Data do Evento">
+                                    <h:outputText />
+                                </p:column>
+                                <p:column headerText="Chave de Acesso">
+                                    <h:outputText />
+                                </p:column>
+                                <p:column headerText="CPF/CNPJ">
+                                    <h:outputText />
+                                </p:column>
+                                <p:column headerText="Evento">
+                                    <h:outputText />
+                                </p:column>
+                            </p:dataTable>
+                        </p:tab>
+                    </p:tabView>
+                </p:tab>
+            </p:accordionPanel>
+        </h:form>
+    </ui:define>
+</ui:composition>

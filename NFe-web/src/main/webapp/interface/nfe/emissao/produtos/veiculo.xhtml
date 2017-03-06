@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:panelGroup id="pgNFeProdutoServicoVeiculo" layout="block">
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:selectOneMenu id="tpop" value="#{digitacaoNFeFaces.veiculoEspecifico.tpop}" title="* Tipo da Operação" autoWidth="false">
+                    <f:selectItem itemLabel="* Selecione o Tipo da Operação" itemValue="" />
+                    <f:selectItems value="#{digitacaoNFeFaces.tiposVeiculosNovosOperacao}" var="vTpop" itemLabel="#{vTpop.codigo} - #{vTpop.descricao}" itemValue="#{vTpop}" />
+                </p:selectOneMenu> 
+                <p:message for="tpop" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:selectOneMenu id="condveic" value="#{digitacaoNFeFaces.veiculoEspecifico.condveic}" title="* Condição Veículo" autoWidth="false">
+                    <f:selectItem itemLabel="* Selecione a Condição do Veículo" itemValue="" />
+                    <f:selectItems value="#{digitacaoNFeFaces.tiposVeiculosNovosCondicao}" var="vCondveic" itemLabel="#{vCondveic.codigo} - #{vCondveic.descricao}" itemValue="vCondveic" />
+                </p:selectOneMenu>
+                <p:message for="condveic" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="chassi" value="#{digitacaoNFeFaces.veiculoEspecifico.chassi}" placeholder="* Chassi" title="* Chassi">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="chassi" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:selectOneMenu id="vin" value="#{digitacaoNFeFaces.veiculoEspecifico.vin}" title="* Condição do VIN" autoWidth="false">
+                    <f:selectItem itemLabel="* Selecione a Condição do VIN" itemValue="" />
+                    <f:selectItems value="#{digitacaoNFeFaces.tiposVeiculosNovosCondicaoVIN}" var="vVin" itemLabel="#{vVin.codigo} - #{vVin.descricao}" itemValue="#{vVin}" />
+                </p:selectOneMenu>
+                <p:message for="vin" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="nserieveiculo" value="#{digitacaoNFeFaces.veiculoEspecifico.nserie}" placeholder="* Série" title="* Série">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="nserieveiculo" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="nmotor" value="#{digitacaoNFeFaces.veiculoEspecifico.nmotor}" placeholder="* Número do Motor" title="* Número do Motor">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="nmotor" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="pot" value="#{digitacaoNFeFaces.veiculoEspecifico.pot}" placeholder="* Potência" title="* Potência">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="pot" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="cilin" value="#{digitacaoNFeFaces.veiculoEspecifico.cilin}" placeholder="* Cilindradas (cm3)" title="* Cilindradas (cm3)">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="cilin" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="pesol" value="#{digitacaoNFeFaces.veiculoEspecifico.pesol}" placeholder="* Peso Líquido" title="* Peso Líquido">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="pesol" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="pesob" value="#{digitacaoNFeFaces.veiculoEspecifico.pesob}" placeholder="* Peso Bruto" title="* Peso Bruto">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="pesob" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="cmt" value="#{digitacaoNFeFaces.veiculoEspecifico.cmt}" placeholder="* Capacidade Máxima de Tração" title="* Capacidade Máxima de Tração">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="cmt" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="dist" value="#{digitacaoNFeFaces.veiculoEspecifico.dist}" placeholder="* Distância Entre Eixos" title="* Distância Entre Eixos">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="dist" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:selectOneMenu id="tpcomb" value="#{digitacaoNFeFaces.veiculoEspecifico.tpcomb}" title="* Tipo de Combustível" autoWidth="false">
+                    <f:selectItem itemLabel="* Selecione o Tipo de Combustível" itemValue="" />
+                    <f:selectItems value="#{digitacaoNFeFaces.tiposDeVeiculosNovosCombustivel}" var="vTpcomb" itemLabel="#{vTpcomb.codigo} - #{vTpcomb.descricao}" itemValue="#{vTpcomb}" />
+                </p:selectOneMenu>
+                <p:message for="tpcomb" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:selectOneMenu id="tpveic" value="#{digitacaoNFeFaces.veiculoEspecifico.tpveic}" title="* Tipo de Veículo" autoWidth="false">
+                    <f:selectItem itemLabel="* Selecione o Tipo de Veículo" itemValue="" />
+                    <f:selectItems value="#{digitacaoNFeFaces.tiposVeiculosNovosVeiculo}" var="vTpveic" itemLabel="#{vTpveic.codigo} - #{vTpveic.descricao}" itemValue="#{vTpveic}" />
+                </p:selectOneMenu>
+                <p:message for="tpveic" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="cmod" value="#{digitacaoNFeFaces.veiculoEspecifico.cmod}" placeholder="* Código Marca/Modelo" title="* Código Marca/Modelo">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="cmod" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="anofab" value="#{digitacaoNFeFaces.veiculoEspecifico.anofab}" placeholder="* Ano Fabricação" title="* Ano Fabricação">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="anofab" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="anomod" value="#{digitacaoNFeFaces.veiculoEspecifico.anomod}" placeholder="* Ano Modelo Fabricação" title="* Ano Modelo Fabricação">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="anomod" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:selectOneMenu id="ccorDENATRAN" value="#{digitacaoNFeFaces.veiculoEspecifico.ccorDENATRAN}" title="* Código cor DENATRAN" autoWidth="false">
+                    <f:selectItem itemLabel="* Selecione Código Cor DENATRAN" itemValue="" />
+                    <f:selectItems value="#{digitacaoNFeFaces.tiposVeiculosNovosCor}" var="vCcorDENATRAN" itemLabel="#{vCcorDENATRAN.codigo} - #{vCcorDENATRAN.descricao}" itemValue="#{vCcorDENATRAN}" />
+                </p:selectOneMenu>
+                <p:message for="ccorDENATRAN" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="ccor" value="#{digitacaoNFeFaces.veiculoEspecifico.ccor}" placeholder="* Código Cor Montadora" title="* Código Cor Montadora">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="ccor" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="tppint" value="#{digitacaoNFeFaces.veiculoEspecifico.tppint}" placeholder="* Tipo de Pintura" title="* Tipo de Pintura" maxlength="1">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="tppint" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="xcor" value="#{digitacaoNFeFaces.veiculoEspecifico.xcor}" placeholder="* Descrição da Cor" title="* Descrição da Cor">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="xcor" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:selectOneMenu id="espveic" value="#{digitacaoNFeFaces.veiculoEspecifico.espveic}" title="* Espécie de Veículo" autoWidth="false">
+                    <f:selectItem itemLabel="* Selecione a Espécie de Veículo" itemValue="" />
+                    <f:selectItems value="#{digitacaoNFeFaces.tiposVeiculosNovosEspecie}" var="vEspveic" itemLabel="#{vEspveic.codigo} - #{vEspveic.descricao}" itemValue="#{vEspveic}" />
+                </p:selectOneMenu>
+                <p:message for="espveic" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:inputText id="lota" value="#{digitacaoNFeFaces.veiculoEspecifico.lota}" placeholder="* Lotação" title="* Lotação">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="lota" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <p:selectOneMenu id="tprest" value="#{digitacaoNFeFaces.veiculoEspecifico.tprest}" title="* Restrição" autoWidth="false">
+                    <f:selectItem itemLabel="* Selecione a Restrição" itemValue="" />
+                    <f:selectItems value="#{digitacaoNFeFaces.tiposVeiculosNovosRestricao}" var="vTprest" itemLabel="#{vTprest.codigo} - #{vTprest.descricao}" itemValue="#{vTprest}" />
+                </p:selectOneMenu>
+                <p:message for="tprest" escape="true"/>
+            </div>
+        </div>
+    </h:panelGroup>
+</ui:composition>

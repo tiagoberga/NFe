@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/templates/template.xhtml">
+
+    <ui:define name="content">
+        <h:form id="mainForm" acceptcharset="UTF-8">
+            <p:accordionPanel >
+                <p:tab title="Informações Gerais">
+                    <div class="Card">
+                        <div class="ui-g">
+                            <div class="ui-g-12 ui-md-6 ui-lg-6">
+                                <p:selectOneMenu  title="Forma de envio de e-mail">
+                                    <f:selectItem itemValue="" itemLabel="Enviar e-mail automaticamente?" />
+                                    <f:selectItem itemValue="NAO" itemLabel="NÃO" />
+                                    <f:selectItem itemValue="SIM" itemLabel="SIM" />
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-6">
+                                <p:inputText maxlength="15" placeholder="Último NSU Recebido" title="Último NSU Recebido">
+                                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                                </p:inputText>
+                            </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-6">
+                                <p:inputText maxlength="60" placeholder="Caminho dos Schemas NF-e" title="Caminho dos Schemas NF-e">
+                                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                                </p:inputText>
+                            </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-6">
+                                <p:selectOneMenu title="Forma de Emissão de NF-e">
+                                    <f:selectItem itemValue="" itemLabel="Selecione a forma de emissão" />
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-6 NoPadding">
+                                <p:fileUpload  sizeLimit="1000" allowTypes=".pfx" auto="true"
+                                               mode="advanced" process="@this" update="@this" cancelLabel="Teste" 
+                                               invalidFileMessage="Arquivo inválido!"
+                                               label="Logotipo DANFE" />
+                            </div>
+                        </div>
+                    </div>
+                </p:tab>
+
+                <p:tab title="Informações de Numeração">
+                    <div class="Card">
+                        <div class="ui-g">
+                            <div class="ui-g-12 ui-md-4 ui-lg-4">
+                                <p:inputText maxlength="15" placeholder="Série da NF-e" title="Série da NF-e">
+                                    <p:tooltip showEvent="focus" hideEvent="blue" position="top"/>
+                                </p:inputText>
+                            </div>
+                            <div class="ui-g-12 ui-md-4 ui-lg-4">
+                                <p:inputText maxlength="15" placeholder="Última NF-e transmitida" title="Última NF-e transmitida">
+                                    <p:tooltip showEvent="focus" hideEvent="blue" position="top"/>
+                                </p:inputText>
+                            </div>
+                            <div class="ui-g-12 ui-md-4 ui-lg-4 NoPadding"> 
+                                <div class="ui-g-10">
+                                    <p:selectOneMenu  title="Versão da NF-e">
+                                        <f:selectItem itemValue="" itemLabel="Seleciona a Versão" />
+                                        <f:selectItem itemValue="3.10" itemLabel="3.10" />
+                                        <f:selectItem itemValue="2.00" itemLabel="2.00" />
+                                    </p:selectOneMenu>
+                                </div>
+                                <div class="ui-g-2 TexAlCenter">
+                                    <p:commandButton icon="fa icon-add54 Fs16 White" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </p:tab>
+            </p:accordionPanel>
+
+            <div class="EmptyBox5"></div>
+            <div class="Card NoPadding">
+                <div class="ui-g-6 ui-md-3 ui-lg-2">
+                    <p:commandButton value="Salvar" action="#{emitenteFaces.salvar()}" process="@this" styleClass="GreenButton" icon="fa fa-save Fs16 White" />
+                </div>
+            </div>
+
+            <div class="EmptyBox5"></div>
+            <p:dataTable id="dtWebservice" value="#{webServicesFaces.webServices}" var="item" lazy="true" paginator="true" paginatorPosition="top" rows="5" rowsPerPageTemplate="5" 
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         currentPageReportTemplate="Página: {currentPage}/{totalPages}"
+                         emptyMessage="Nenhum reboque inserido." reflow="true">
+
+                <p:column headerText="Ambiente" style="text-align: center;">
+                    <h:outputText value="#{item.tipoServicoNfe.descricao}" />
+                </p:column>
+                <p:column headerText="Série" style="text-align: center;">
+                    <h:outputText value="#{item.tipoServicoNfe.descricao}" />
+                </p:column>
+                <p:column headerText="Última NF-e" style="text-align: center;">
+                    <h:outputText value="#{item.tipoServicoNfe.descricao}" />
+                </p:column>
+                <p:column headerText="Versão" style="text-align: center;">
+                    <h:outputText value="#{item.tipoServicoNfe.descricao}" />
+                </p:column>
+
+                <p:column headerText="Ações" styleClass="columnAction" style="width: 10%">
+                    <p:commandButton rendered="#{webServiceFaces.permissao.exclusao}" title="#{bundle.btnExcluir} #{objeto}" 
+                                     icon="ui-icon-trash" action="#{webServiceFaces.excluir()}" update=":mainForm:mainGrid"
+                                     onclick="return confirmButtonFaces('Deseja excluir #{objeto}?')">
+                        <f:setPropertyActionListener target="#{webServiceFaces.webService}" value="#{item}" />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+
+        </h:form>
+    </ui:define>
+</ui:composition>

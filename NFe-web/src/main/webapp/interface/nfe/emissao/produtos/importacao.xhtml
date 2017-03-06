@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:panelGroup id="pgNFeProdutoServicoImportacao" layout="block">
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <p:inputText id="ndi" value="#{digitacaoNFeFaces.declaracaoImportacao.ndi}" placeholder="* Número DI/DSI/DA/DRI-E" title="* Número DI/DSI/DA/DRI-E">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="ndi" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <p:calendar id="ddi" value="#{digitacaoNFeFaces.declaracaoImportacao.ddi}" pattern="dd/MM/yyyy" placeholder="* Data Registro" title="* Data Registro">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:calendar>
+                <p:message for="ddi" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <p:inputText id="cexportador" value="#{digitacaoNFeFaces.declaracaoImportacao.cexportador}" placeholder="* Código Exportador" title="* Código Exportador">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="cexportador" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <p:selectOneMenu id="tpviatransp" value="#{digitacaoNFeFaces.declaracaoImportacao.tpviatransp}" title="* Via de Transporte Internacional" autoWidth="false">
+                    <f:selectItem itemValue="" itemLabel="* Selecione a Via de Transporte Internacional"/>
+                    <f:selectItems value="#{digitacaoNFeFaces.tiposViaTransporte}" var="vTpviatransp" itemLabel="#{vTpviatransp.codigo} - #{vTpviatransp.descricao}" itemValue="#{vTpviatransp}"/>
+                </p:selectOneMenu>
+                <p:message for="tpviatransp" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <p:inputText id="vafrmm" value="#{digitacaoNFeFaces.declaracaoImportacao.vafrmm}" placeholder="Valor da AFRMM" title="Valor da AFRMM">
+                    <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>                
+                <p:message for="vafrmm" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <p:selectOneMenu id="tpintermedio" value="#{digitacaoNFeFaces.declaracaoImportacao.tpintermedio}" title="* Tipo de Importação" autoWidth="false">
+                    <f:selectItem itemValue="" itemLabel="* Selecione o Tipo de Importação"/>
+                    <f:selectItems value="#{digitacaoNFeFaces.tiposDeImportacao}" var="vTpintermedio" itemLabel="#{vTpintermedio.codigo} - #{vTpintermedio.descricao}" itemValue="#{vTpintermedio}"/>
+                </p:selectOneMenu>
+                <p:message for="tpintermedio" escape="true"/>
+            </div>
+        </div>
+
+        <div class="EmptyBox5"></div>
+        <div class="Card">
+            <div class="CardBigTopic">Desembaraço Aduaneiro</div>
+            <div class="Separator"></div>
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-4 ui-lg-4">
+                    <p:selectOneMenu id="ufdesemb" value="#{digitacaoNFeFaces.declaracaoImportacao.ufdesemb}" title="* UF" autoWidth="false">
+                        <f:selectItem itemValue="" itemLabel="* Selecione a UF"/>
+                        <f:selectItems value="#{digitacaoNFeFaces.ufsEmi}" />
+                    </p:selectOneMenu>
+                    <p:message for="ufdesemb" escape="true"/>
+                </div>
+                <div class="ui-g-12 ui-md-4 ui-lg-4">
+                    <p:inputText id="xlocdesemb" value="#{digitacaoNFeFaces.declaracaoImportacao.xlocdesemb}" placeholder="* Local" title="* Local">
+                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                    </p:inputText>
+                    <p:message for="xlocdesemb" escape="true"/>
+                </div>
+                <div class="ui-g-12 ui-md-4 ui-lg-4">
+                    <p:calendar id="ddesemb" value="#{digitacaoNFeFaces.declaracaoImportacao.ddesemb}" pattern="dd/MM/yyyy" placeholder="* Data" title="* Data">
+                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                    </p:calendar>
+                    <p:message for="ddesemb" escape="true"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="EmptyBox5"></div>
+        <div class="Card">
+            <div class="CardBigTopic">Adiquirinte ou Encomendante</div>
+            <div class="Separator"></div>
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-6 ui-lg-6">
+                    <p:selectOneMenu id="ufterceiro" value="#{digitacaoNFeFaces.declaracaoImportacao.ufterceiro}" title="* UF" autoWidth="false">
+                        <f:selectItem itemValue="" itemLabel="* Selecione a UF"/>
+                        <f:selectItems value="#{digitacaoNFeFaces.ufsEmi}" />
+                    </p:selectOneMenu>
+                    <p:message for="ufterceiro" escape="true"/>
+                </div>
+                <div class="ui-g-12 ui-md-6 ui-lg-6">
+                    <p:inputText id="cnpjTerceiro" value="#{digitacaoNFeFaces.declaracaoImportacao.cnpj}" placeholder="CNPJ" title="CNPJ">
+                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                    </p:inputText>
+                    <p:message for="cnpjTerceiro" escape="true"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="EmptyBox5"></div>
+        <div class="Card">
+            <div class="CardBigTopic">Adições (no máximo 100)</div>
+            <div class="Separator"></div>
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-6 ui-lg-6">
+                    <p:inputText id="nadicao" value="#{digitacaoNFeFaces.declaracaoImportacaoAdicao.nadicao}" placeholder="* Número" title="* Número">
+                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                    </p:inputText>
+                    <p:message for="nadicao" escape="true"/>
+                </div>
+                <div class="ui-g-12 ui-md-6 ui-lg-6">
+                    <p:inputText id="cfabricante" value="#{digitacaoNFeFaces.declaracaoImportacaoAdicao.cfabricante}" placeholder="* Código do Fabricante" title="* Código do Fabricante">
+                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                    </p:inputText>
+                    <p:message for="cfabricante" escape="true"/>
+                </div>
+                <div class="ui-g-12 ui-md-6 ui-lg-6">
+                    <p:inputText id="vdescdi" value="#{digitacaoNFeFaces.declaracaoImportacaoAdicao.vdescdi}" placeholder="* Desconto" title="* Desconto">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                    </p:inputText>
+                    <p:message for="vdescdi" escape="true"/>
+                </div>
+                <div class="ui-g-12 ui-md-6 ui-lg-6 NoPadding">
+                    <div class="ui-g-10">
+                        <p:inputText id="ndrawadd" value="#{digitacaoNFeFaces.declaracaoImportacaoAdicao.ndraw}" placeholder="Número do ato concessionário de Drawback" title="Número do ato concessionário de Drawback">
+                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                        </p:inputText>
+                        <p:message for="ndrawadd" escape="true"/>
+                    </div>
+                    <div class="ui-g-2 TexAlCenter">
+                        <p:commandButton icon="fa fa-plus Fs16 White" styleClass="ShadowEffect"/>
+                    </div>
+                </div>
+            </div>
+
+            <p:dataTable id="dtAdicoes" var="item" lazy="true" paginator="true" paginatorPosition="top" rows="5" rowsPerPageTemplate="5,10,30,50,100" 
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         currentPageReportTemplate="Página: {currentPage}/{totalPages}"
+                         emptyMessage="Nenhuma adição inserida." reflow="true">
+
+                <p:column headerText="Item  ">
+                    <h:outputText value="#{car.id}" />
+                </p:column>
+                <p:column headerText="Número">
+                    <h:outputText value="#{car.id}" />
+                </p:column>
+                <p:column headerText="Fabricante">
+                    <h:outputText value="#{car.id}" />
+                </p:column>
+                <p:column headerText="Desconto">
+                    <h:outputText value="#{car.id}" />
+                </p:column>
+                <p:column headerText="Drawback">
+                    <h:outputText value="#{car.id}" />
+                </p:column>
+            </p:dataTable>
+        </div>
+    </h:panelGroup>
+</ui:composition>

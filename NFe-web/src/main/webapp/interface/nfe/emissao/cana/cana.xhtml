@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:panelGroup id="pgNFeCana">
+        <!--IDENTIFICACAO DA SAFRA-->
+        <div class="Card">
+            <div class="CardBigTopic">Safra</div>
+            <div class="Separator"></div>
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-6 ui-lg-6">
+                    <p:inputText id="safra" value="#{digitacaoNFeFaces.aquisicaoCana.safra}" placeholder="* Indicação da Safra (ANO/ANO)" title="* Indicação da Safra (ANO/ANO)" maxlength="9">
+                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                    </p:inputText>
+                </div>
+                <div class="ui-g-12 ui-md-6 ui-lg-6">
+                    <p:inputText id="ref" value="#{digitacaoNFeFaces.aquisicaoCana.ref}" placeholder="* Referência (MÊS/ANO)" title="* Referência (MÊS/ANO)" maxlength="7">
+                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                    </p:inputText>
+                </div>
+            </div>
+        </div>
+
+        <!--TOTAIS DE FORNECIMENTO-->
+        <div class="EmptyBox5"></div>
+        <div class="Card">
+            <div class="CardBigTopic">Totais Fornecimentos</div>
+            <div class="Separator"></div>
+            <div class="ui-g Padding1">
+                <div class="ui-g-12 ui-md-6 ui-lg-6 Flex FlexWrap Padding1">
+                    <div class="ui-g-12 ui-md-12 ui-lg-12 Flex">
+                        <p:inputText id="qtotant" value="#{digitacaoNFeFaces.aquisicaoCana.qtotant}" placeholder="Total Anterior (KG)" title="Total Anterior (KG)" class="TexAlRight" style="background-color: #EAEAEA">
+                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                        </p:inputText>
+                        <p:message for="qtotant" escape="true"/>
+                    </div>
+                    <div class="ui-g-12 ui-md-12 ui-lg-6 Flex">
+                        <div class="Card NoPadding" style="background-color: #EAEAEA">
+                            <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft"><span class="FontLatoRegular DispBlock Fs15">Total do Mês (KG)</span></div>
+                            <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight"><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.aquisicaoCana.qtotmes}</span></div>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-12 ui-lg-6 Flex">
+                        <div class="Card NoPadding" style="background-color: #EAEAEA">
+                            <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft"><span class="FontLatoRegular DispBlock Fs15">Total Geral (KG)</span></div>
+                            <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight"><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.aquisicaoCana.qtotger}</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui-g-12 ui-md-6 ui-lg-6 Flex FlexWrap Padding1">
+                    <div class="ui-g-12 ui-md-12 ui-lg-12 Flex">
+                        <p:inputText id="vfor" value="#{digitacaoNFeFaces.aquisicaoCana.vfor}" placeholder="Valor dos Fornecimentos" title="Valor dos Fornecimentos" class="TexAlRight" style="background-color: #EAEAEA">
+                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                        </p:inputText>
+                        <p:message for="vfor" escape="true"/>
+                    </div>
+                    <div class="ui-g-12 ui-md-12 ui-lg-6 Flex">
+                        <div class="Card NoPadding" style="background-color: #EAEAEA">
+                            <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft"><span class="FontLatoRegular DispBlock Fs15">Valor Deduções</span></div>
+                            <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight"><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.aquisicaoCana.vtotded}</span></div>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-12 ui-lg-6 Flex">
+                        <div class="Card NoPadding" style="background-color: #EAEAEA">
+                            <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft"><span class="FontLatoRegular DispBlock Fs15">Valor Fornecimentos</span></div>
+                            <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight"><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.aquisicaoCana.vliqfor}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="EmptyBox5"></div>
+        <div class="ui-g Flex FlexWrap">
+            <!--FORNECIMENTOS DIARIOS-->
+            <div class="ui-g-12 ui-md-12 ui-lg-6 Flex Padding1">
+                <div class="Card">
+                    <div class="CardBigTopic">Fornecimentos Diários (No máximo 31 dias)</div>
+                    <div class="Separator"></div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-6">
+                        <p:inputText id="dia" value="#{digitacaoNFeFaces.aquisicaoCanaFornecimento.dia}" placeholder="* Dia" title="* Dia" maxlength="2">
+                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                        </p:inputText>
+                        <p:message for="dia" escape="true"/>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-6 NoPadding">
+                        <div class="ui-g-10">
+                            <p:inputText id="qtde" value="#{digitacaoNFeFaces.aquisicaoCanaFornecimento.qtde}" placeholder="* Quantidade (KG)" title="* Quantidade (KG)" class="TexAlRight" style="background-color: #EAEAEA">
+                                <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                            </p:inputText>
+                            <p:message for="qtde" escape="true"/>
+                        </div>
+                        <div class="ui-g-2 TexAlCenter">
+                            <p:commandButton icon="fa fa-plus Fs16 White" styleClass="ShadowEffect"/>
+                        </div>
+                    </div>
+
+                    <div class="EmptyBox20"></div>
+                    <p:dataTable id="dtCanaFornecimento" value="#{digitacaoNFeFaces.dadosNFe.aquisicaoCana.fornecimentos}" var="vCanaFornecimento" lazy="true" paginator="true" paginatorPosition="top" rows="5" rowsPerPageTemplate="5" 
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 currentPageReportTemplate="Página: {currentPage}/{totalPages}"
+                                 emptyMessage="Nenhum reboque inserido." reflow="true">
+
+                        <p:column headerText="Dia" class="Wid45">
+                            <h:outputText value="#{vCanaFornecimento.dia}" />
+                        </p:column>
+                        <p:column headerText="Quantidade (KG)" class="Wid45">
+                            <h:outputText value="#{vCanaFornecimento.qtde}" />
+                        </p:column>
+                        <p:column headerText="Opções" class="Wid10">
+                        </p:column>
+                    </p:dataTable>
+                </div>
+            </div>
+
+            <!--DEDUCOES - TAXAS-->
+            <div class="ui-g-12 ui-md-12 ui-lg-6 Flex Padding1">
+                <div class="Card">
+                    <div class="CardBigTopic">Deduções - Taxas e Contribuições (No máximo 10)</div>
+                    <div class="Separator"></div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-6">
+                        <p:inputTextarea id="xded" value="#{digitacaoNFeFaces.aquisicaoCanaDeducoes.xded}" counter="display5" maxlength="255" 
+                                         counterTemplate="{0} caracteres restantes." rows="1"
+                                         validatorMessage="Mínimo de 15 caracteres" 
+                                         placeholder="* Descrição" 
+                                         title="* Descrição">
+                            <f:validateLength minimum="15" />
+                        </p:inputTextarea>
+                        <h:outputText id="display5" />
+                        <p:message for="xded" escape="true"/>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-6 NoPadding">
+                        <div class="ui-g-10">
+                            <p:inputText id="vded" value="#{digitacaoNFeFaces.aquisicaoCanaDeducoes.vded}" placeholder="* Valor" title="* Valor" class="TexAlRight" style="background-color: #EAEAEA">
+                                <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                            </p:inputText>
+                            <p:message for="vded" escape="true"/>
+                        </div>
+                        <div class="ui-g-2 TexAlCenter">
+                            <p:commandButton icon="fa fa-plus Fs16 White" styleClass="ShadowEffect" />
+                        </div>
+                    </div>
+
+                    <div class="EmptyBox5"></div>
+                    <p:dataTable id="dtCanaDeducao" value="#{digitacaoNFeFaces.dadosNFe.aquisicaoCana.dadosNFe}" var="vCanaDeducao" lazy="true" paginator="true" paginatorPosition="top" rows="5" rowsPerPageTemplate="5" 
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 currentPageReportTemplate="Página: {currentPage}/{totalPages}"
+                                 emptyMessage="Nenhum reboque inserido." reflow="true">
+
+                        <p:column headerText="Descrição" class="Wid60">
+                            <h:outputText value="#{vCanaDeducao.xded}" />
+                        </p:column>
+                        <p:column headerText="Valor" class="Wid30">
+                            <h:outputText value="#{vCanaDeducao.vfor}" />
+                        </p:column>
+                        <p:column headerText="Opções" class="Wid10">
+                            
+                        </p:column>
+                    </p:dataTable>
+                </div>
+            </div>
+        </div>
+    </h:panelGroup>
+
+</ui:composition>

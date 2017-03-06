@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:panelGroup id="pgNFeProdutoServicoMedicamento" layout="block">
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-6 ui-lg-6">
+                <p:inputText id="nlote" value="#{digitacaoNFeFaces.medicamento.nlote}" placeholder="* Número do Lote" title="* Número do Lote">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="nlote" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-6">
+                <p:inputText id="qlote" value="#{digitacaoNFeFaces.medicamento.qlote}" placeholder="* Quantidade no Lote" title="* Quantidade no Lote">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="qlote" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <p:calendar id="dfab" value="#{digitacaoNFeFaces.medicamento.dfab}" pattern="dd/MM/yyyy" placeholder="* Data de Fabricação" title="* Data de Fabricação">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:calendar>
+                <p:message for="dfab" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <p:calendar id="dval" value="#{digitacaoNFeFaces.medicamento.dval}" pattern="MM/dd/yyyy HH:mm:ss" placeholder="* Data de Validade" title="* Data de Validade">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:calendar>
+                <p:message for="dval" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-12 ui-lg-4 NoPadding">
+                <div class="ui-g-10">
+                    <p:inputText id="vpmc" value="#{digitacaoNFeFaces.medicamento.vpmc}" placeholder="* Preço Máximo Consumidor" title="* Preço Máximo Consumidor">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                    </p:inputText>
+                    <p:message for="vpmc" escape="true"/>
+                </div>
+                <div class="ui-g-2 TexAlCenter">
+                    <p:commandButton icon="fa fa-plus Fs16 White" styleClass="ShadowEffect"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="EmptyBox5"></div>
+        <p:dataTable id="dtMedicamento" var="item" lazy="true" paginator="true" paginatorPosition="top" rows="5" rowsPerPageTemplate="5" 
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     currentPageReportTemplate="Página: {currentPage}/{totalPages}"
+                     emptyMessage="Nenhum reboque inserido." reflow="true">
+
+            <p:column headerText="Número do Lote">
+                <h:outputText value="#{car.id}" />
+            </p:column>
+            <p:column headerText="Quantidade do Lote">
+                <h:outputText value="#{car.id}" />
+            </p:column>
+            <p:column headerText="Data de Fabricaçao">
+                <h:outputText value="#{car.id}" />
+            </p:column>
+            <p:column headerText="Data de Validade">
+                <h:outputText value="#{car.id}" />
+            </p:column>
+            <p:column headerText="Preço Máximo">
+                <h:outputText value="#{car.id}" />
+            </p:column>
+        </p:dataTable>
+    </h:panelGroup>
+
+</ui:composition>

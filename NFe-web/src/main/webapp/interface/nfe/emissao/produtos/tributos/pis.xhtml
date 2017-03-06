@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:panelGroup id="pgNFeProdutoServicoTributosPis" layout="block">
+        <div class="ui-g NoPadding">
+            <div class="ui-g-12 ui-md-6 ui-lg-4 Padding3">
+                <p:selectOneMenu title="Situação Tributária" autoWidth="false">
+                    <f:selectItem itemLabel="Selecione a Situação Tributária" itemValue="" />
+                    <f:selectItems value="#{digitacaoNFeFaces.cstsPis}" var="vCstPis" itemLabel="#{vCstPis.codigo} - #{vCstPis.descricao}" itemValue="#{vCstPis}"/>
+                </p:selectOneMenu>
+            </div>
+        </div>
+
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-12 ui-lg-6 Padding3">
+                <div class="Card">
+                    <h:panelGroup id="pgNFeProdutoServicoTributosPisPis" layout="block">
+                        <div class="CardBigTopic">PIS</div>
+                        <div class="Separator"></div>
+                        <div class="ui-g-12 ui-md-6 ui-lg-6">
+                            <p:selectOneMenu value="#{digitacaoNFeFaces.tipoCalculoPis}" title="Tipo de Cálculo" autoWidth="false">
+                                <f:selectItem itemLabel="Selecione o Tipo de Cálculo" itemValue="" />
+                                <f:selectItems value="#{digitacaoNFeFaces.tiposDeCalculo}" var="vTipoCalculoPis" itemLabel="#{vTipoCalculoPis.calculo}" itemValue="#{vTipoCalculoPis}" />
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="ui-g-12 ui-md-6 ui-lg-6">
+                            <p:inputText id="vbcpis" value="#{digitacaoNFeFaces.produtoServico.vbcpis}" placeholder="Valor da Base de Cálculo" title="Valor da Base de Cálculo">
+                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                            </p:inputText>
+                            <p:message for="vbcpis" escape="true"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-6 ui-lg-6">
+                            <p:inputText id="ppis" value="#{digitacaoNFeFaces.produtoServico.ppis}" placeholder="Alíquota (%)" title="Alíquota (%)">
+                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                            </p:inputText>
+                            <p:message for="ppis" escape="true"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-6 ui-lg-6">
+                            <p:inputText id="valiqprodpis" value="#{digitacaoNFeFaces.produtoServico.valiqprodpis}" placeholder="Alíquota (R$)" title="Alíquota (R$)">
+                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                            </p:inputText>
+                            <p:message for="valiqprodpis" escape="true"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-6 ui-lg-6">
+                            <p:inputText id="qbcprodpis" value="#{digitacaoNFeFaces.produtoServico.qbcprodpis}" placeholder="Quantidade Vendida" title="Quantidade Vendida">
+                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                            </p:inputText>
+                            <p:message for="qbcprodpis" escape="true"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-6 ui-lg-6">
+                            <p:inputText id="vpis" value="#{digitacaoNFeFaces.produtoServico.vpis}" placeholder="Valor PIS" title="Valor PIS">
+                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                            </p:inputText>
+                            <p:message for="vpis" escape="true"/>
+                        </div>
+                    </h:panelGroup>
+                </div>
+            </div>
+
+            <div class="ui-g-12 ui-md-12 ui-lg-6 Padding3">
+                <div class="Card">
+                    <h:panelGroup id="pgNFeProdutoServicoTributosPisPistSt" layout="block">
+                        <div class="CardBigTopic">PIS ST</div>
+                        <div class="Separator"></div>
+                        <div class="ui-g-12 ui-md-6 ui-lg-6">
+                            <p:selectOneMenu value="#{digitacaoNFeFaces.tipoCalculoPisSt}" title="Tipo de Cálculo" autoWidth="false">
+                                <f:selectItem itemLabel="Selecione o Tipo de Cálculo" itemValue="" />
+                                <f:selectItems value="#{digitacaoNFeFaces.tiposDeCalculo}" var="vTipoCalculoPisSt" itemLabel="#{vTipoCalculoPisSt.calculo}" itemValue="#{vTipoCalculoPisSt}" />
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="ui-g-12 ui-md-6 ui-lg-6">
+                            <p:inputText id="vbcpisst" value="#{digitacaoNFeFaces.produtoServico.vbcpis}" placeholder="Valor da Base de Cálculo" title="Valor da Base de Cálculo">
+                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                            </p:inputText>
+                            <p:message for="vbcpisst" escape="true"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-6 ui-lg-6">
+                            <p:inputText id="ppisst" value="#{digitacaoNFeFaces.produtoServico.ppis}" placeholder="Alíquota (%)" title="Alíquota (%)">
+                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                            </p:inputText>
+                            <p:message for="ppisst" escape="true"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-6 ui-lg-6">
+                            <p:inputText id="valiqprodpisst" value="#{digitacaoNFeFaces.produtoServico.valiqprodpis}" placeholder="Alíquota (R$)" title="Alíquota (R$)">
+                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                            </p:inputText>
+                            <p:message for="valiqprodpisst" escape="true"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-6 ui-lg-6">
+                            <p:inputText id="qbcprodpisst" value="#{digitacaoNFeFaces.produtoServico.qbcprodpis}" placeholder="Quantidade Vendida" title="Quantidade Vendida">
+                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                            </p:inputText>
+                            <p:message for="qbcprodpisst" escape="true"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-6 ui-lg-6">
+                            <p:inputText id="vpisst" value="#{digitacaoNFeFaces.produtoServico.vpis}" placeholder="Valor PIS ST" title="Valor PIS ST">
+                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                            </p:inputText>
+                            <p:message for="vpisst" escape="true"/>
+                        </div>
+                    </h:panelGroup>
+                </div>
+            </div>
+        </div>
+    </h:panelGroup>
+</ui:composition>

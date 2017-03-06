@@ -1,0 +1,50 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pu="http://primefaces.org/ultima">
+
+    <h:form id="menuform"> 
+        <div class="layout-menu #{guestPreferences.menuClass}">
+            <div class="nano">
+                <div class="nano-content menu-scroll-content">
+                    <pu:menu widgetVar="me">
+                        <p:submenu id="themes" label="Themes" icon="&#xE40A;">
+                            <p:menuitem id="theme1" value="Indigo - Pink" icon="&#xE3AE;" actionListener="#{guestPreferences.setTheme('indigo')}" ajax="false" />
+                            <p:menuitem id="theme2" value="Brown - Green" icon="&#xE3AE;" actionListener="#{guestPreferences.setTheme('brown')}" ajax="false" />
+                            <p:menuitem id="theme3" value="Blue - Amber" icon="&#xE3AE;" actionListener="#{guestPreferences.setTheme('blue')}" ajax="false" />
+                            <p:menuitem id="theme4" value="Blue Grey - Green" icon="&#xE3AE;" actionListener="#{guestPreferences.setTheme('blue-grey')}" ajax="false" />
+                            <p:menuitem id="theme5" value="Dark - Blue" icon="&#xE3AE;" actionListener="#{guestPreferences.setTheme('dark-blue')}" ajax="false" />
+                            <p:menuitem id="theme6" value="Dark - Green" icon="&#xE3AE;" actionListener="#{guestPreferences.setTheme('dark-green')}" ajax="false" />
+                            <p:menuitem id="theme7" value="Green - Yellow" icon="&#xE3AE;" actionListener="#{guestPreferences.setTheme('green')}" ajax="false" />
+                            <p:menuitem id="theme8" value="Purple - Cyan" icon="&#xE3AE;" actionListener="#{guestPreferences.setTheme('purple-cyan')}" ajax="false" />
+                            <p:menuitem id="theme9" value="Purple - Amber" icon="&#xE3AE;" actionListener="#{guestPreferences.setTheme('purple-amber')}" ajax="false" />
+                            <p:menuitem id="theme10" value="Teal - Lime" icon="&#xE3AE;" actionListener="#{guestPreferences.setTheme('teal')}" ajax="false" />
+                            <p:menuitem id="theme11" value="Cyan - Amber" icon="&#xE3AE;" actionListener="#{guestPreferences.setTheme('cyan')}" ajax="false" />
+                            <p:menuitem id="theme12" value="Grey - Deep Orange" icon="&#xE3AE;" actionListener="#{guestPreferences.setTheme('grey')}" ajax="false" />
+                        </p:submenu>
+                        <p:submenu id="sm_gerenciamento_nfe" label="Gerenciamento" icon="&#xE40A;">
+                            <p:menuitem id="mi_gerencimento_nfe" value="Gerenciamento de NF-e" outcome="/interface/nfe/gerenciamento/cad_gerenciamento_nfe"/>
+                            <p:menuitem id="mi_gerencimento_emissao_nfe" value="Digitação de NF-e" outcome="/interface/nfe/emissao/cad_emissao_nfe"/>
+                            <p:menuitem id="mi_gerencimento_distribuicao_nfe" value="Distribuição de DF-e" outcome="/interface/nfe/distribuicao/cad_distribuicao_nfe"/>
+                            <p:menuitem id="mi_gerencimento_inutilizacao_nfe" value="Inutilização de NF-e" outcome="/interface/nfe/inutilizacao/cad_inutilizacao_nfe"/>
+                        </p:submenu>
+                        <p:submenu id="sm_config_nfe" label="Configurações">
+                            <p:menuitem id="mi_parametros_ambiente"  value="Configurar Ambiente" outcome="/interface/parametros/ambiente/cad_ambiente"/>
+                            <p:menuitem id="mi_parametros_numeracao"  value="Configurar Numeração" outcome="/interface/parametros/numeracao/cad_numeracao"/>
+                            <p:menuitem id="mi_parametros_webservice"  value="Configurar Web Services" outcome="/interface/parametros/ws/cad_webservice"/>
+                        </p:submenu>
+                        <p:submenu id="sm_cadastros_nfe" label="Cadastros">
+                            <p:menuitem id="mi_cadastro_emitente"  value="Cadastro Emitente" outcome="/interface/cadastros/emitente/cad_emitente"/>
+                            <p:menuitem id="mi_cadastro_destinatario"  value="Cadastro Destinatário" outcome="/interface/cadastros/destinatario/cad_destinatario"/>
+                            <p:menuitem id="mi_cadastro_transportadora"  value="Cadastro Transportadora" outcome="/interface/cadastros/transportadora/cad_transportadora"/>
+                            <p:menuitem id="mi_cadastro_produto"  value="Cadastro Produto" outcome="/interface/cadastros/produto/cad_produto"/>
+                        </p:submenu>
+                    </pu:menu>
+                </div>
+            </div>
+        </div>
+    </h:form>
+</ui:composition>

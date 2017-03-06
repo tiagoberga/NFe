@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <p:spacer width="10px"/>
+    <h:panelGroup id="pgNFeIdentificacao">
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-4 ui-lg-3">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:autoComplete id="modelo" value="#{digitacaoNFeFaces.ideNFe.modelo}" var="vModelo" itemValue="#{vModelo}" itemLabel="#{vModelo.codigo} - #{vModelo.descricao}" cache="true" cacheTimeout="360000"
+                                    completeMethod="#{digitacaoNFeFaces.completeNFeTipoModeloDocumentoFiscal}" dropdown="true" />
+                    <label>* Modelo de Documento Fiscal</label>
+                    <p:message for="modelo" escape="true"/>
+                </h:panelGroup>
+            </div>
+            <div class="ui-g-12 ui-md-4 ui-lg-3">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="serie" value="#{digitacaoNFeFaces.ideNFe.serie}" maxlength="3" />
+                    <label>* Série de NF-e</label>
+                    <p:message for="serie" escape="true"/>
+                </h:panelGroup>
+            </div>
+            <div class="ui-g-12 ui-md-4 ui-lg-3">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="nnf" value="#{digitacaoNFeFaces.ideNFe.nnf}" maxlength="9" />
+                    <label>* Número de NF-e</label>
+                    <p:message for="nnf" escape="true"/>
+                </h:panelGroup>
+            </div>
+            <div class="ui-g-12 ui-md-4 ui-lg-3">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:calendar id="dhemi" value="#{digitacaoNFeFaces.ideNFe.dhemi}" pattern="MM/dd/yyyy HH:mm:ss" showOn="button"/>
+                    <label>* Data/Hora Emissão</label>
+                    <p:message for="dhemi" escape="true"/>
+                </h:panelGroup>
+            </div>
+            <div class="ui-g-12 ui-md-4 ui-lg-3">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:calendar id="dhsaient" value="#{digitacaoNFeFaces.ideNFe.dhsaient}" pattern="MM/dd/yyyy HH:mm:ss" showOn="button"/>
+                    <label>Data/Hora Saída/Entrada</label>
+                    <p:message for="dhsaient" escape="true"/>
+                </h:panelGroup>
+            </div>
+            <div class="ui-g-12 ui-md-4 ui-lg-3">
+                <h:panelGroup styleClass="md-inputfield"></h:panelGroup>
+                <label></label>
+                <p:selectOneMenu id="tpnf" value="#{digitacaoNFeFaces.ideNFe.tpnf}" title="* Tipo de Operação" autoWidth="false">
+                    <f:selectItem itemLabel="* Selecione o Tipo de Operação"/>
+                    <f:selectItems value="#{digitacaoNFeFaces.tiposDeOperacao}" var="vTpnf" itemLabel="#{vTpnf.codigo} - #{vTpnf.descricao}" itemValue="#{vTpnf}"/>
+                </p:selectOneMenu>
+                <p:message for="tpnf" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-4 ui-lg-3">
+                <h:panelGroup styleClass="md-inputfield"></h:panelGroup>
+                <label></label>
+                <p:selectOneMenu id="indpag" value="#{digitacaoNFeFaces.ideNFe.indpag}" title="* Forma de Pagamento" autoWidth="false">
+                    <f:selectItem itemLabel="* Selecione a Forma de Pagamento"/>
+                    <f:selectItems value="#{digitacaoNFeFaces.tiposDeIndicadorNFeFormaPagamento}" var="vIndpag" itemLabel="#{vIndpag.codigo} - #{vIndpag.descricao}" itemValue="#{vIndpag}"/>
+                </p:selectOneMenu>
+                <p:message for="indpag" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-4 ui-lg-3">
+                <h:panelGroup styleClass="md-inputfield"></h:panelGroup>
+                <label></label>
+                <p:selectOneMenu id="tpemis" value="#{digitacaoNFeFaces.ideNFe.tpemis}" title="* Forma de Emissão" autoWidth="false">
+                    <f:selectItem itemLabel="* Selecione a Forma de Emissão"/>
+                    <f:selectItems value="#{digitacaoNFeFaces.tiposDeEmissao}" var="vTpemis" itemLabel="#{vTpemis.codigo} - #{vTpemis.descricao}" itemValue="#{vTpemis}"/>
+                </p:selectOneMenu>
+                <p:message for="tpemis" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-4 ui-lg-3">
+                <h:panelGroup styleClass="md-inputfield"></h:panelGroup>
+                <label></label>
+                <p:selectOneMenu id="finnFe" value="#{digitacaoNFeFaces.ideNFe.finnfe}" title="* Finalidade de Emissão" autoWidth="false">
+                    <f:selectItem itemLabel="* Selecione a Finalidade de Emissão"/>
+                    <f:selectItems value="#{digitacaoNFeFaces.tiposDeFinalidadeDeEmissso}" var="vFinnFe" itemLabel="#{vFinnFe.codigo} - #{vFinnFe.descricao}" itemValue="#{vFinnFe}"/>
+                </p:selectOneMenu>
+                <p:message for="finnFe" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-4 ui-lg-3">
+                <h:panelGroup styleClass="md-inputfield"></h:panelGroup>
+                <label></label>
+                <p:selectOneMenu id="tpimp" value="#{digitacaoNFeFaces.ideNFe.tpimp}" title="* Tipo de Impressão" autoWidth="false">
+                    <f:selectItem itemLabel="* Selecione o Tipo de Impressão"/>
+                    <f:selectItems value="#{digitacaoNFeFaces.tiposDeFormatoDeImpressao}" var="vTpimp" itemLabel="#{vTpimp.codigo} - #{vTpimp.descricao}" itemValue="#{vTpimp}"/>
+                </p:selectOneMenu>
+                <p:message for="tpimp" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-4 ui-lg-3">
+                <h:panelGroup styleClass="md-inputfield"></h:panelGroup>
+                <label></label>
+                <p:selectOneMenu id="indfinal" value="#{digitacaoNFeFaces.ideNFe.indfinal}" title="* Tipo de Consumidor" autoWidth="false">
+                    <f:selectItem itemLabel="* Selecione o Tipo de Consumidor"/>
+                    <f:selectItems value="#{digitacaoNFeFaces.tiposDeOperacaoConsumidor}" var="vIndfinal" itemLabel="#{vIndfinal.codigo} - #{vIndfinal.descricao}" itemValue="#{vIndfinal}"/>
+                </p:selectOneMenu>
+                <p:message for="indfinal" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-4 ui-lg-3">
+                <h:panelGroup styleClass="md-inputfield"></h:panelGroup>
+                <label></label>
+                <p:selectOneMenu id="iddest" value="#{digitacaoNFeFaces.ideNFe.iddest}" title="* Destino da Operação" autoWidth="false">
+                    <f:selectItem itemLabel="* Selecione o Destino da Operação"/>
+                    <f:selectItems value="#{digitacaoNFeFaces.tiposDeDestinoDeOperacao}" var="vIddest" itemLabel="#{vIddest.codigo} - #{vIddest.descricao}" itemValue="#{vIddest}"/>
+                </p:selectOneMenu>
+                <p:message for="iddest" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-4 ui-lg-3">
+                <h:panelGroup styleClass="md-inputfield"></h:panelGroup>
+                <label></label>
+                <p:selectOneMenu id="indpres" value="#{digitacaoNFeFaces.ideNFe.indpres}" title="* Tipo de Atendimento" autoWidth="false">
+                    <f:selectItem itemLabel="* Selecione o Tipo de Atendimento"/>
+                    <f:selectItems value="#{digitacaoNFeFaces.tiposDePresencaComprador}" var="vIndpres" itemLabel="#{vIndpres.codigo} - #{vIndpres.descricao}" itemValue="#{vIndpres}"/>
+                </p:selectOneMenu>
+                <p:message for="indpres" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-4 ui-lg-3">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="natop" value="#{digitacaoNFeFaces.ideNFe.natop}" maxlength="60" />
+                    <label>* Natureza da Operação</label>
+                    <p:message for="natop" escape="true"/>
+                </h:panelGroup>
+            </div>
+            <div class="ui-g-12 ui-md-4 ui-lg-3">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="cuf" value="#{digitacaoNFeFaces.ideNFe.cuf}" maxlength="2" />
+                    <label>* UF</label>
+                    <p:message for="cuf" escape="true"/>
+                </h:panelGroup>
+            </div>
+            <div class="ui-g-12 ui-md-4 ui-lg-3">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="cmunfg" value="#{digitacaoNFeFaces.ideNFe.cmunfg}" maxlength="7" />
+                    <label>* Município</label>
+                    <p:message for="cmunfg" escape="true"/>
+                </h:panelGroup>
+            </div>
+        </div>
+
+        <div class="card card-w-title"><h1>Totais</h1>
+            <div class="ui-g dashboard" >
+                <div class="ui-g-12 ui-md-12 ui-lg-4" >
+                    <div class="card" >
+                        <div class="ui-g-8 ui-md-8 ui-lg-8" style="text-align: left"><span style="display: block">Valor Total da NF-e</span></div>
+                        <div class="ui-g-4 ui-md-4 ui-lg-4" style="text-align: right">
+                            <p:outputLabel style="display: block" value="#{digitacaoNFeFaces.total.totalNFeIcms.vnf}"><f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" /></p:outputLabel>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui-g-12 ui-md-12 ui-lg-4" >
+                    <div class="card" >
+                        <div class="ui-g-8 ui-md-8 ui-lg-8" style="text-align: left"><span style="display: block">Valor ICMS da NF-e</span></div>
+                        <div class="ui-g-4 ui-md-4 ui-lg-4" style="text-align: right">
+                            <p:outputLabel style="display: block" value="#{digitacaoNFeFaces.total.totalNFeIcms.vicms}"><f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" /></p:outputLabel>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui-g-12 ui-md-12 ui-lg-4">
+                    <div class="card" >
+                        <div class="ui-g-8 ui-md-8 ui-lg-8" style="text-align: left"><span style="display: block">Valor ICMS ST da NF-e</span></div>
+                        <div class="ui-g-4 ui-md-4 ui-lg-4" style="text-align: right">
+                            <p:outputLabel style="display: block" value="#{digitacaoNFeFaces.total.totalNFeIcms.vst}"><f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" /></p:outputLabel>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </h:panelGroup>
+</ui:composition>

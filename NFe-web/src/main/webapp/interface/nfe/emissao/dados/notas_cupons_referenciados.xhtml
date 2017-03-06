@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:panelGroup id="pgNFeIdentificacaoCupomReferenciado">
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-4 ui-lg-4">
+                <p:inputText id="refecfnecf" value="#{digitacaoNFeFaces.documentoFiscalReferenciado.refecfnecf}" placeholder="* Número de ordem sequencial do ECF" title="* Número de ordem sequencial do ECF">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>
+                <p:message for="refnfpaamm" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-4 ui-lg-4">
+                <p:inputText id="refecfncoo" value="#{digitacaoNFeFaces.documentoFiscalReferenciado.refecfncoo}" placeholder="* Número do Contador de Ordem de Operação" title="* Número do Contador de Ordem de Operação">
+                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
+                </p:inputText>  
+                <p:message for="refecfnecf" escape="true"/>
+            </div>
+            <div class="ui-g-12 ui-md-4 ui-lg-4 NoPadding">
+                <div class="ui-g-10">
+                    <p:selectOneMenu value="#{digitacaoNFeFaces.documentoFiscalReferenciado.refecfmod}" title="* Modelo de Documento Fiscal" autoWidth="false">
+                        <f:selectItem itemLabel="* Selecione o Modelo de Documento Fiscal"/>
+                        <f:selectItems value="#{digitacaoNFeFaces.tiposDeModeloDeDocumentoFiscalEcf}" var="vRefecfmod" itemLabel="#{vRefecfmod.codigo} - #{vRefecfmod.descricao}" itemValue="#{vRefecfmod}"/>
+                    </p:selectOneMenu>
+                    <p:message for="modelo" escape="true"/>
+                </div>
+                <div class="ui-g-2 TexAlCenter">
+                    <p:commandButton icon="fa fa-plus Fs16 White" styleClass="ShadowEffect" />
+                </div>
+            </div>
+        </div>
+
+        <div class="EmptyBox5"></div>
+        <p:dataTable  var="item" lazy="true" paginator="true" paginatorPosition="top" rows="5" rowsPerPageTemplate="5" 
+                      paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                      currentPageReportTemplate="Página: {currentPage}/{totalPages}"
+                      emptyMessage="Nenhum reboque inserido." reflow="true">
+
+            <p:column headerText="Número ECF">
+                <h:outputText value="#{car.id}" />
+            </p:column>
+            <p:column headerText="Número COO">
+                <h:outputText value="#{car.id}" />
+            </p:column>
+            <p:column headerText="Documento Fiscal">
+                <h:outputText value="#{car.id}" />
+            </p:column>
+            <p:column headerText="Opção">
+                <p:commandButton icon="fa fa-remove" styleClass="RedButton" />
+            </p:column>
+        </p:dataTable>
+    </h:panelGroup>
+</ui:composition>
