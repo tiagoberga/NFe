@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
- * @author tiago viado
+ * @author tiago 
  */
 @MappedSuperclass
 public abstract class AbstractEntity implements PersistentObject, Serializable {
