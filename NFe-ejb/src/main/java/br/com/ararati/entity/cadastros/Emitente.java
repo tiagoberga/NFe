@@ -7,8 +7,6 @@ package br.com.ararati.entity.cadastros;
 
 import br.com.ararati.entity.AbstractEntity;
 import br.com.ararati.enums.C.NFeTipoRegimeTributario;
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
