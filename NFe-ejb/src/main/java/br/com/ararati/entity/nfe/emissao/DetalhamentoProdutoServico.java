@@ -180,6 +180,11 @@ public class DetalhamentoProdutoServico extends AbstractEntity {
     @Column(length = 36, nullable = true)
     private String nfci;
 
+    /* 105a. Codificação NVE - Nomenclatura de Valor Aduaneiro e Estatística. */
+    @Valid
+    @OneToMany(mappedBy = "detalhamentoProdutoServico", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<RastreabilidadeProduto> rastreabilidadeDeProdutos;
+
     /* JA. Detalhamento Específico de Veículos novos */
     @Valid
     @OneToOne(mappedBy = "detalhamentoProdutoServico", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, orphanRemoval = true)
@@ -756,6 +761,14 @@ public class DetalhamentoProdutoServico extends AbstractEntity {
 
     public void setVeiculo(DetalhamentoEspecificoVeiculo veiculo) {
         this.veiculo = veiculo;
+    }
+
+    public List<RastreabilidadeProduto> getRastreabilidadeDeProdutos() {
+        return rastreabilidadeDeProdutos;
+    }
+
+    public void setRastreabilidadeDeProdutos(List<RastreabilidadeProduto> rastreabilidadeDeProdutos) {
+        this.rastreabilidadeDeProdutos = rastreabilidadeDeProdutos;
     }
 
     public List<DetalhamentoEspecificoMedicamento> getMedicamentos() {

@@ -18,7 +18,7 @@ import org.hibernate.validator.constraints.Length;
 /**
  * Identificação do Destinatário da Nota Fiscal eletrônica
  *
- * @author tiago 9154596
+ * @author tiago teste 123
  */
 @Entity
 @Table(schema = "nfe", name = "detalhamento_especifico_armamento")
