@@ -81,7 +81,7 @@ public class IdentificacaoAvulsa extends AbstractEntity {
     private Date demi;
     // Valor Total constante no Documento de arrecadação de Receita
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vdar;
     // Repartição Fiscal emitente
     @Column(length = 60, nullable = false)

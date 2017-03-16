@@ -58,11 +58,11 @@ public class TransporteVolume extends AbstractEntity {
     private String nvol;
     // Peso Liquido (em kg) 
     @DecimalMin(value = "0.000")
-    @Column(precision = 12, scale = 3, nullable = true)
+    @Column(precision = 15, scale = 3, nullable = true)
     private BigDecimal pesol;
     // Peso Bruto (em kg) 
     @DecimalMin(value = "0.000")
-    @Column(precision = 12, scale = 3, nullable = true)
+    @Column(precision = 15, scale = 3, nullable = true)
     private BigDecimal pesob;
 
     /* Grupo Lacres */

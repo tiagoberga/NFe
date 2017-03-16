@@ -37,79 +37,95 @@ public class TotalNFeICMS extends AbstractEntity {
 
     // Base de Cálculo do ICMS 
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vbc;
     // Valor Total do ICMS 
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vicms;
-    // Valor total do ICMS relativo Fundo de Combate à Pobreza (FCP) da UF de destino
-    @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
-    private BigDecimal vfcpufdest;
-    // Valor total do ICMS Interestadual para a UF de destino
-    @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
-    private BigDecimal vicmsufdest;
-    // Valor total do ICMS Interestadual para a UF do remetente
-    @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
-    private BigDecimal vicmsufremet;
     // Valor Total do ICMS desonerado 
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vicmsdeson;
+    // Valor Total do FCP (Fundo de Combate à Pobreza)
+    @DecimalMin(value = "0.00")
+    @Column(precision = 15, scale = 2, nullable = true)
+    private BigDecimal vfcp;
     // Base de Cálculo do ICMS ST 
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vbcst;
     // Valor Total do ICMS ST 
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vst;
+    // Valor Total do FCP (Fundo de Combate à Pobreza) retido por substituição tributária
+    @DecimalMin(value = "0.00")
+    @Column(precision = 15, scale = 2, nullable = true)
+    private BigDecimal vfcpst;
+    // Valor Total do FCP retido anteriormente por Substituição Tributária
+    @DecimalMin(value = "0.00")
+    @Column(precision = 15, scale = 2, nullable = true)
+    private BigDecimal vfcpstret;
+    // Valor total do ICMS relativo Fundo de Combate à Pobreza (FCP) da UF de destino
+    @DecimalMin(value = "0.00")
+    @Column(precision = 15, scale = 2, nullable = true)
+    private BigDecimal vfcpufdest;
+    // Valor total do ICMS Interestadual para a UF de destino
+    @DecimalMin(value = "0.00")
+    @Column(precision = 15, scale = 2, nullable = true)
+    private BigDecimal vicmsufdest;
+    // Valor total do ICMS Interestadual para a UF do remetente
+    @DecimalMin(value = "0.00")
+    @Column(precision = 15, scale = 2, nullable = true)
+    private BigDecimal vicmsufremet;
     // Valor Total dos produtos e serviços
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vprod;
     // Valor Total do Frete 
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vfrete;
     // Valor Total do Seguro 
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vseg;
     // Valor Total do Desconto 
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vdesc;
     // Valor Total do II 
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vii;
     // Valor Total do IPI 
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vipi;
+    // Valor Total do IPI devolvido
+    @DecimalMin(value = "0.00")
+    @Column(precision = 15, scale = 2, nullable = true)
+    private BigDecimal vipidevol;
     // Valor do PIS 
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vpis;
     // Valor da COFINS 
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vcofins;
     // Outras Despesas acessórias 
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal voutro;
     // Valor Total da NF-e
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vnf;
     // Valor aproximado total de tributos federais, estaduais e municipais.
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vtottrib;
 
     public Emitente getEmitente() {
@@ -118,6 +134,14 @@ public class TotalNFeICMS extends AbstractEntity {
 
     public void setEmitente(Emitente emitente) {
         this.emitente = emitente;
+    }
+
+    public TotalNFe getTotalNFe() {
+        return totalNFe;
+    }
+
+    public void setTotalNFe(TotalNFe totalNFe) {
+        this.totalNFe = totalNFe;
     }
 
     public BigDecimal getVbc() {
@@ -134,6 +158,54 @@ public class TotalNFeICMS extends AbstractEntity {
 
     public void setVicms(BigDecimal vicms) {
         this.vicms = vicms;
+    }
+
+    public BigDecimal getVicmsdeson() {
+        return vicmsdeson;
+    }
+
+    public void setVicmsdeson(BigDecimal vicmsdeson) {
+        this.vicmsdeson = vicmsdeson;
+    }
+
+    public BigDecimal getVfcp() {
+        return vfcp;
+    }
+
+    public void setVfcp(BigDecimal vfcp) {
+        this.vfcp = vfcp;
+    }
+
+    public BigDecimal getVbcst() {
+        return vbcst;
+    }
+
+    public void setVbcst(BigDecimal vbcst) {
+        this.vbcst = vbcst;
+    }
+
+    public BigDecimal getVst() {
+        return vst;
+    }
+
+    public void setVst(BigDecimal vst) {
+        this.vst = vst;
+    }
+
+    public BigDecimal getVfcpst() {
+        return vfcpst;
+    }
+
+    public void setVfcpst(BigDecimal vfcpst) {
+        this.vfcpst = vfcpst;
+    }
+
+    public BigDecimal getVfcpstret() {
+        return vfcpstret;
+    }
+
+    public void setVfcpstret(BigDecimal vfcpstret) {
+        this.vfcpstret = vfcpstret;
     }
 
     public BigDecimal getVfcpufdest() {
@@ -158,30 +230,6 @@ public class TotalNFeICMS extends AbstractEntity {
 
     public void setVicmsufremet(BigDecimal vicmsufremet) {
         this.vicmsufremet = vicmsufremet;
-    }
-
-    public BigDecimal getVicmsdeson() {
-        return vicmsdeson;
-    }
-
-    public void setVicmsdeson(BigDecimal vicmsdeson) {
-        this.vicmsdeson = vicmsdeson;
-    }
-
-    public BigDecimal getVbcst() {
-        return vbcst;
-    }
-
-    public void setVbcst(BigDecimal vbcst) {
-        this.vbcst = vbcst;
-    }
-
-    public BigDecimal getVst() {
-        return vst;
-    }
-
-    public void setVst(BigDecimal vst) {
-        this.vst = vst;
     }
 
     public BigDecimal getVprod() {
@@ -232,6 +280,14 @@ public class TotalNFeICMS extends AbstractEntity {
         this.vipi = vipi;
     }
 
+    public BigDecimal getVipidevol() {
+        return vipidevol;
+    }
+
+    public void setVipidevol(BigDecimal vipidevol) {
+        this.vipidevol = vipidevol;
+    }
+
     public BigDecimal getVpis() {
         return vpis;
     }
@@ -272,12 +328,5 @@ public class TotalNFeICMS extends AbstractEntity {
         this.vtottrib = vtottrib;
     }
 
-    public TotalNFe getTotalNFe() {
-        return totalNFe;
-    }
-
-    public void setTotalNFe(TotalNFe totalNFe) {
-        this.totalNFe = totalNFe;
-    }
-
+    
 }

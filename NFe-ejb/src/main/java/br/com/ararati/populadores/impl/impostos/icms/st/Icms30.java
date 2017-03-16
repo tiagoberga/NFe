@@ -26,14 +26,14 @@ public class Icms30 implements IImposto {
     public void verificaImposto(DetalhamentoProdutoServico item, ICMS icms) throws NFeException {
         if (item.getCsticms().equals(NFeTipoSituacaoTributariaICMS.COD30)) {
             icms30 = new ICMS30();
-            icms30.setOrig(item.getOrig());
+            icms30.setOrig(item.getOrig().getCodigo());
             icms30.setCST(item.getCsticms() != null ? item.getCsticms().getCodigo() : null);
-            icms30.setModBCST(item.getModbcst() != null ? item.getModbcst().getCodigo() : null);
+            icms30.setModBCST(item.getModbcicmsst() != null ? item.getModbcicmsst().getCodigo() : null);
             icms30.setPICMSST(item.getPicmsst() != null ? item.getPicmsst().toString() : null);
             icms30.setVBCST(item.getVbcicmsst() != null ? item.getVbcicmsst().toString() : null);
             icms30.setVICMSST(item.getVicmsst() != null ? item.getVicmsst().toString() : null);
             icms30.setPMVAST(item.getPmvast() != null ? item.getPmvast().toString() : null);
-            icms30.setPRedBCST(item.getPredbcst() != null ? item.getPredbcst().toString() : null);
+            icms30.setPRedBCST(item.getPredbcicmsst() != null ? item.getPredbcicmsst().toString() : null);
             // DESONERACAO ICMS
             icms30.setVICMSDeson(item.getVicmsdeson() != null ? item.getVicmsdeson().toString() : null);
             icms30.setMotDesICMS(item.getMotdesicms() != null ? item.getMotdesicms().getCodigo() : null);

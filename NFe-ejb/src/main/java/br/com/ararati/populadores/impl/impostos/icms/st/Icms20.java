@@ -26,10 +26,10 @@ public class Icms20 implements IImposto {
     public void verificaImposto(DetalhamentoProdutoServico item, ICMS icms) throws NFeException {
         if (item.getCsticms().equals(NFeTipoSituacaoTributariaICMS.COD20)) {
             icms20 = new ICMS20();
-            icms20.setOrig(item.getOrig());
+            icms20.setOrig(item.getOrig().getCodigo());
             icms20.setCST(item.getCsticms() != null ? item.getCsticms().getCodigo() : null);
-            icms20.setModBC(item.getModbc() != null ? item.getModbc().getCodigo() : null);
-            icms20.setPRedBC(item.getPredbc() != null ? item.getPredbc().toString() : null);
+            icms20.setModBC(item.getModbcicms() != null ? item.getModbcicms().getCodigo() : null);
+            icms20.setPRedBC(item.getPredbcicms() != null ? item.getPredbcicms().toString() : null);
             icms20.setVBC(item.getVbcicms() != null ? item.getVbcicms().toString() : null);
             icms20.setPICMS(item.getPicms() != null ? item.getPicms().toString() : null);
             icms20.setVICMS(item.getVicms() != null ? item.getVicms().toString() : null);

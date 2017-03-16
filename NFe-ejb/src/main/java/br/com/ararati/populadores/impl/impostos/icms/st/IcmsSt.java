@@ -13,6 +13,8 @@ import enviNFe_v310.TNFe.InfNFe.Det.Imposto.ICMS.ICMSST;
 import javax.ejb.Local;
 
 /**
+ * Grupo de Repasse de ICMS ST retido anteriormente em operações interestaduais
+ * com repasses através do Substituto Tributário.
  *
  * @author tiago
  */
@@ -24,9 +26,9 @@ public class IcmsSt implements IImposto {
 
     @Override
     public void verificaImposto(DetalhamentoProdutoServico item, ICMS icms) throws NFeException {
-        if (item.getCsticms().equals(NFeTipoSituacaoTributariaICMS.COD41_ICMSST)) {
+        if (item.getCsticms().equals(NFeTipoSituacaoTributariaICMS.COD41_ICMSST) || item.getCsticms().equals(NFeTipoSituacaoTributariaICMS.COD60)) {
             icmsSt = new ICMSST();
-            icmsSt.setOrig(item.getOrig());
+            icmsSt.setOrig(item.getOrig().getCodigo());
             icmsSt.setCST(item.getCsticms() != null ? item.getCsticms().getCodigo() : null);
             icmsSt.setVBCSTDest(item.getVbcicmsstdest() != null ? item.getVbcicmsstdest().toString() : null);
             icmsSt.setVBCSTRet(item.getVbcicmsstret() != null ? item.getVbcicmsstret().toString() : null);

@@ -26,10 +26,10 @@ public class IcmsPart implements IImposto {
     public void verificaImposto(DetalhamentoProdutoServico item, ICMS icms) throws NFeException {
         if (item.getCsticms().equals(NFeTipoSituacaoTributariaICMS.COD10_PARTILHA) || item.getCsticms().equals(NFeTipoSituacaoTributariaICMS.COD90_PARTILHA)) {
             icmsPart = new ICMSPart();
-            icmsPart.setOrig(item.getOrig());
+            icmsPart.setOrig(item.getOrig().getCodigo());
             icmsPart.setCST(item.getCsticms() != null ? item.getCsticms().getCodigo() : null);
-            icmsPart.setModBC(item.getModbc() != null ? item.getModbc().getCodigo() : null);
-            icmsPart.setModBCST(item.getModbcst() != null ? item.getModbcst().getCodigo() : null);
+            icmsPart.setModBC(item.getModbcicms() != null ? item.getModbcicms().getCodigo() : null);
+            icmsPart.setModBCST(item.getModbcicmsst() != null ? item.getModbcicmsst().getCodigo() : null);
             icmsPart.setPBCOp(item.getPbcop() != null ? item.getPbcop().toString() : null);
             icmsPart.setPICMS(item.getPicms() != null ? item.getPicms().toString() : null);
             icmsPart.setPICMSST(item.getPicmsst() != null ? item.getPicmsst().toString() : null);
@@ -40,8 +40,8 @@ public class IcmsPart implements IImposto {
             icmsPart.setVICMSST(item.getVicmsst() != null ? item.getVicmsst().toString() : null);
 
             icmsPart.setPMVAST(item.getPmvast() != null ? item.getPmvast().toString() : null);
-            icmsPart.setPRedBC(item.getPredbc() != null ? item.getPredbc().toString() : null);
-            icmsPart.setPRedBCST(item.getPredbcst() != null ? item.getPredbcst().toString() : null);
+            icmsPart.setPRedBC(item.getPredbcicms() != null ? item.getPredbcicms().toString() : null);
+            icmsPart.setPRedBCST(item.getPredbcicmsst() != null ? item.getPredbcicmsst().toString() : null);
             icms.setICMSPart(icmsPart);
         }else{
             

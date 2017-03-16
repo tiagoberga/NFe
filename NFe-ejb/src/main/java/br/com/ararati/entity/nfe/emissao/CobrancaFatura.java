@@ -46,15 +46,15 @@ public class CobrancaFatura extends AbstractEntity {
     private String nfat;
     // Valor Original da Fatura
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vorig;
     // Valor do desconto
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vdesc;
     // Valor Líquido da Fatura`
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vliq;
 
     public Emitente getEmitente() {

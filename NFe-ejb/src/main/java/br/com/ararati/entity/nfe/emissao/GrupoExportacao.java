@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
- * Identificação do Destinatário da Nota Fiscal eletrônica
+ * I50 - Grupo de informações de exportação para o item.
  *
  * @author tiago
  */
@@ -39,17 +39,28 @@ public class GrupoExportacao extends AbstractEntity {
     (AANNNNNND). (Observação incluída na NT 2013/005 v. 1.10) */
     @Column(length = 11, nullable = true)
     private String ndraw;
+
     // Número do Registro de Exportação 
     @NotNull(message = "Número do Registro de Exportação é obrigatório")
     @Column(length = 12, nullable = false)
     private String nre;
-    // Chave de Acesso da NF-e recebida para exportação
+
+    /**
+     * Chave de Acesso da NF-e recebida para exportação, NF-e recebida com fim
+     * específico de exportação. No caso de operação com CFOP 3.503, informar a
+     * chave de acesso da NF-e que efetivou a exportação
+     */
     @NotNull(message = "Chave de Acesso é obrigatório")
     @Column(length = 44, nullable = false)
     private String chnfe;
-    // Quantidade do item realmente exportado
+
+    /**
+     * Quantidade do item realmente exportado, A unidade de medida desta
+     * quantidade é a unidade de comercialização deste item. No caso de operação
+     * com CFOP 3.503, informar a quantidade de mercadoria devolvida
+     */
     @NotNull(message = "Quantidade Exportado é obrigatório")
-    @Column(precision = 11, scale = 4, nullable = false)
+    @Column(precision = 15, scale = 4, nullable = false)
     private BigDecimal qexport;
 
     public Emitente getEmitente() {

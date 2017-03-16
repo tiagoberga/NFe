@@ -41,24 +41,24 @@ public class RastreabilidadeProduto extends AbstractEntity {
     // Número do Lote do produto
     @Length(min = 1, max = 20, message = "Número do Lote deve conter entre 1 - 20 caracteres")
     @NotNull(message = "Número do Lote é obrigatório")
-    @Column(name = "nlote", length = 20, nullable = false)
+    @Column(length = 20, nullable = false)
     private String nlote;
 
     // Quantidade de produto no Lote
     @NotNull(message = "Quantidade é obrigatório")
-    @Column(name = "qlote", precision = 8, scale = 3, nullable = false)
+    @Column(precision = 11, scale = 3, nullable = false)
     private BigDecimal qlote;
 
     // Data de fabricação/ Produção
     @NotNull(message = "Data de Fabricação é obrigatório")
     @Temporal(TemporalType.DATE)
-    @Column(name = "dfab", nullable = false)
+    @Column(nullable = false)
     private Date dfab;
 
     // Data de validade - Informar o último dia do mês caso a validade não especifique o dia
     @NotNull(message = "Data de Validade é obrigatório")
     @Temporal(TemporalType.DATE)
-    @Column(name = "dval", nullable = false)
+    @Column(nullable = false)
     private Date dval;
 
     public Emitente getEmitente() {

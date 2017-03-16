@@ -24,17 +24,17 @@ public class Icmssn201 implements IImposto {
         if (item.getCsticms().equals(NFeTipoSituacaoTributariaICMS.COD201)) {
             icmssn201 = new ICMSSN201();
             icmssn201.setCSOSN(item.getCsticms() != null ? item.getCsticms().getCodigo() : null);
-            icmssn201.setOrig(item.getOrig());
+            icmssn201.setOrig(item.getOrig().getCodigo());
             icmssn201.setPCredSN(item.getPcredsn() != null ? item.getPcredsn().toString() : null);
             icmssn201.setVCredICMSSN(item.getVcredicmssn() != null ? item.getVcredicmssn().toString() : null);
             // ST
-            icmssn201.setModBCST(item.getModbcst() != null ? item.getModbcst().getCodigo() : null);
+            icmssn201.setModBCST(item.getModbcicmsst() != null ? item.getModbcicmsst().getCodigo() : null);
             icmssn201.setPICMSST(item.getPicmsst() != null ? item.getPicmsst().toString() : null);
             icmssn201.setVBCST(item.getVbcicmsst() != null ? item.getVbcicmsst().toString() : null);
             icmssn201.setVICMSST(item.getVicmsst() != null ? item.getVicmsst().toString() : null);
 
             icmssn201.setPMVAST(item.getPmvast() != null ? item.getPmvast().toString() : null);
-            icmssn201.setPRedBCST(item.getPredbcst() != null ? item.getPredbcst().toString() : null);
+            icmssn201.setPRedBCST(item.getPredbcicmsst() != null ? item.getPredbcicmsst().toString() : null);
             icms.setICMSSN201(icmssn201);
         } else {
             this.proximoImposto.verificaImposto(item, icms);

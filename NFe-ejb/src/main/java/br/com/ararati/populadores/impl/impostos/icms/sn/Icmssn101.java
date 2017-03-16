@@ -23,7 +23,7 @@ public class Icmssn101 implements IImposto {
     public void verificaImposto(DetalhamentoProdutoServico item, ICMS icms) {
         if (item.getCsticms().equals(NFeTipoSituacaoTributariaICMS.COD101)) {
             icmssn101 = new ICMSSN101();
-            icmssn101.setOrig(item.getOrig());
+            icmssn101.setOrig(item.getOrig().getCodigo());
             icmssn101.setCSOSN(item.getCsticms() != null ? item.getCsticms().getCodigo() : null);
             icmssn101.setPCredSN(item.getPcredsn() != null ? item.getPcredsn().toString() : null);
             icmssn101.setVCredICMSSN(item.getVcredicmssn() != null ? item.getVcredicmssn().toString() : null);

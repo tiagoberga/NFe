@@ -26,7 +26,7 @@ public class Icms40 implements IImposto {
     public void verificaImposto(DetalhamentoProdutoServico item, ICMS icms) throws NFeException {
         if (item.getCsticms().equals(NFeTipoSituacaoTributariaICMS.COD40) || item.getCsticms().equals(NFeTipoSituacaoTributariaICMS.COD41) || item.getCsticms().equals(NFeTipoSituacaoTributariaICMS.COD50)) {
             icms40 = new ICMS40();
-            icms40.setOrig(item.getOrig());
+            icms40.setOrig(item.getOrig().getCodigo());
             icms40.setCST(item.getCsticms() != null ? item.getCsticms().getCodigo() : null);
             // DESONERACAO ICMS
             icms40.setMotDesICMS(item.getMotdesicms() != null ? item.getMotdesicms().getCodigo() : null);

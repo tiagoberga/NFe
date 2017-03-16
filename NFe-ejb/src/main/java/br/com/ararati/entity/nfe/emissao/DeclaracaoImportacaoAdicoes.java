@@ -17,7 +17,7 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 
 /**
- * Identificação do Destinatário da Nota Fiscal eletrônica
+ * I25 - Adições.
  *
  * @author tiago
  */
@@ -37,16 +37,20 @@ public class DeclaracaoImportacaoAdicoes extends AbstractEntity {
     // Numero da Adição 
     @Column(length = 3, nullable = false)
     private String nadicao;
+    
     // Numero sequencial do item dentro da Adição
     @Column(length = 3, nullable = false)
     private String nseqadic;
+    
     // Código do fabricante estrangeiro
     @Column(length = 60, nullable = false)
     private String cfabricante;
+    
     // Valor do desconto do item da DI – Adição
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vdescdi;
+    
     // Número do ato concessório de Drawback 
     @Column(length = 11, nullable = true)
     private String ndraw;

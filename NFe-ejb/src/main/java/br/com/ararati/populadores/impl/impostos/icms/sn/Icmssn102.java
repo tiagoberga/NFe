@@ -27,7 +27,7 @@ public class Icmssn102 implements IImposto {
                 || item.getCsticms().equals(NFeTipoSituacaoTributariaICMS.COD400)) {
             icmssn102 = new ICMSSN102();
             icmssn102.setCSOSN(item.getCsticms() != null ? item.getCsticms().getCodigo() : null);
-            icmssn102.setOrig(item.getOrig());
+            icmssn102.setOrig(item.getOrig().getCodigo());
             icms.setICMSSN102(icmssn102);
         } else {
             proximoImposto.verificaImposto(item, icms);

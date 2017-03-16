@@ -12,7 +12,6 @@ import br.com.ararati.enums.B.NFeTipoDestinoOperacao;
 import br.com.ararati.enums.B.NFeTipoEmissao;
 import br.com.ararati.enums.B.NFeTipoFinalidadeEmissao;
 import br.com.ararati.enums.B.NFeTipoFormatoImpressao;
-import br.com.ararati.enums.B.NFeTipoIndicacaoNFeFormaPagamento;
 import br.com.ararati.enums.B.NFeTipoModeloDocumentoFiscal;
 import br.com.ararati.enums.B.NFeTipoOperacao;
 import br.com.ararati.enums.B.NFeTipoOperacaoConsumidor;
@@ -60,105 +59,127 @@ public class IdentificacaoNFe extends AbstractEntity {
     @NotNull(message = "UF do Emitente é obrigatório")
     @Column(length = 2, nullable = false)
     private String cuf;
+    
     // Código Numérico que compõe a Chave de Acesso
     @NotNull(message = "Código Numérico é obrigatório")
     @Column(length = 8, nullable = false)
     private String cnf;
+    
     // Descrição da Natureza da Operação 
     @NotNull(message = "Natureza de Operação é obrigatório")
     @Length(min = 1, max = 60, message = "Natureza de Operação deve conter entre {min} e {max} caracteres")
     @Column(length = 60, nullable = false)
     private String natop;
-    // Indicador da forma de pagamento 
-    @NotNull(message = "Forma de Pagamento é obrigatório")
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private NFeTipoIndicacaoNFeFormaPagamento indpag;
+    
+//    // Indicador da forma de pagamento 
+//    @NotNull(message = "Forma de Pagamento é obrigatório")
+//    @Column(nullable = false)
+//    @Enumerated(EnumType.STRING)
+//    private NFeTipoIndicacaoNFeFormaPagamento indpag;
+    
     // Código do Modelo do Documento Fiscal
     @NotNull(message = "Modelo do Documento é obrigatório")
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private NFeTipoModeloDocumentoFiscal modelo;
+    
     // Série do Documento Fiscal 
     @NotNull(message = "Série do Documento é obrigatório")
     @Length(min = 1, max = 30, message = "Série deve conter entre {min} e {max} caracteres")
     @Column(length = 3, nullable = false)
     private String serie;
+    
     // Número do Documento Fiscal
     @NotNull(message = "Número do Documento é obrigatório")
     @Length(min = 1, max = 9, message = "Número deve conter entre {min} e {max} caracteres")
     @Column(length = 9, nullable = false)
     private String nnf;
+    
     // Data e hora de emissão do Documento Fiscal
     @NotNull(message = "Data de Emissao Documento é obrigatório")
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
     private Date dhemi;
+    
     // Data e hora de Saída ou da Entrada da Mercadoria/Produtos
     @Column(nullable = true)
     @Temporal(TemporalType.DATE)
     private Date dhsaient;
+    
     // Tipo de Operação 
     @NotNull(message = "Tipo de Operação é obrigatório")
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private NFeTipoOperacao tpnf;
+    
     // Identificador de local de destino da operação
     @NotNull(message = "Identificador de Operação é obrigatório")
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private NFeTipoDestinoOperacao iddest;
+    
     // Código do Município de Ocorrência do Fato Gerador
     @NotNull(message = "Código do Município de Ocorrência é obrigatório")
     @Column(length = 7, nullable = false)
     private String cmunfg;
+    
     // Formato de Impressão do DANFE 
     @NotNull(message = "Formato de Impressão é obrigatório")
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private NFeTipoFormatoImpressao tpimp;
+    
     // Tipo de Emissão da NF-e 
     @NotNull(message = "Tipo de Emissão é obrigatório")
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private NFeTipoEmissao tpemis;
+    
     // Dígito Verificador da Chave de Acesso da NF-e
     @NotNull(message = "Dígito da Chave de Acesso é obrigatório")
     @Column(length = 1, nullable = false)
     private String cdv;
+    
     // Identificação do Ambiente
     @NotNull(message = "Identificação do Ambiente é obrigatório")
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private NFeTipoAmbiente tpamb = NFeTipoAmbiente.HOMOLOGACAO;
+    
     // Finalidade de emissão da NF-e 
     @NotNull(message = "Finalidade de Emissão é obrigatório")
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private NFeTipoFinalidadeEmissao finnfe;
+    
     // Indica operação com Consumidor final
     @NotNull(message = "Tipo de Consumidor é obrigatório")
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private NFeTipoOperacaoConsumidor indfinal;
+    
     // Indicador de presença do comprador no estabelecimento comercial no momento da operação
     @NotNull(message = "Indicador de Presença do Comprador é obrigatório")
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private NFeTipoPresencaCompradorOperacao indpres;
+    
     // Processo de emissão da NF-e
     @NotNull(message = "Processo de Emissão é obrigatório")
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private NFeTipoProcessoEmissao procemi;
+    
     // Versão do Processo de emissão da NF-e
     @NotNull(message = "Versão do Processo de Emissão é obrigatório")
     @Length(min = 1, max = 20, message = "Versão do Processo de Emissão deve conter entre {min} e {max} caracteres")
     @Column(length = 20, nullable = false)
     private String verproc;
+    
     // Data e Hora da entrada em contingência
     @Temporal(TemporalType.DATE)
     private Date dhcont;
+    
     // Justificativa da entrada em contingência
     @Column(length = 256, nullable = true)
     @Length(min = 15, max = 256, message = "Justificativa de Contingência deve conter entre {min} e {max} caracteres")
@@ -229,13 +250,13 @@ public class IdentificacaoNFe extends AbstractEntity {
         this.natop = natop;
     }
 
-    public NFeTipoIndicacaoNFeFormaPagamento getIndpag() {
-        return indpag;
-    }
-
-    public void setIndpag(NFeTipoIndicacaoNFeFormaPagamento indpag) {
-        this.indpag = indpag;
-    }
+//    public NFeTipoIndicacaoNFeFormaPagamento getIndpag() {
+//        return indpag;
+//    }
+//
+//    public void setIndpag(NFeTipoIndicacaoNFeFormaPagamento indpag) {
+//        this.indpag = indpag;
+//    }
 
     public NFeTipoModeloDocumentoFiscal getModelo() {
         return modelo;

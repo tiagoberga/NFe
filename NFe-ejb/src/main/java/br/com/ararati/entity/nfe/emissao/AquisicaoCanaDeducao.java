@@ -43,7 +43,7 @@ public class AquisicaoCanaDeducao extends AbstractEntity {
     // Valor da Dedução
     @NotNull(message = "Valor da Dedução é obrigatório")
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vded;
 
     public Emitente getEmitente() {

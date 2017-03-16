@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
- * Identificação do Destinatário da Nota Fiscal eletrônica
+ * I05a - Codificação NVE - Nomenclatura de Valor Aduaneiro e Estatística.
  *
  * @author tiago
  */
@@ -32,7 +32,13 @@ public class NomenclaturaValorAduaneiro extends AbstractEntity {
     @JoinColumn(name = "detalhamento_produto_servico_id", nullable = false)
     private DetalhamentoProdutoServico detalhamentoProdutoServico;
 
-    // Codificação NVE - Nomenclatura de Valor Aduaneiro e Estatística.
+    /**
+     * Codificação NVE - Nomenclatura de Valor Aduaneiro e Estatística.
+     * Codificação opcional que detalha alguns NCM. Formato: duas letras
+     * maiúsculas e 4 algarismos. Se a mercadoria se enquadrar em mais de uma
+     * codificação, informar até 8 codificações principais. Vide: Anexo XII.03 -
+     * Identificador NVE.
+     */
     @Column(length = 6, nullable = true)
     private String nve;
 

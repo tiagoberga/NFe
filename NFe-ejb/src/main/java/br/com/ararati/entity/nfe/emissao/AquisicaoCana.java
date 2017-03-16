@@ -52,32 +52,32 @@ public class AquisicaoCana extends AbstractEntity {
     // Valor dos Fornecimentos
     @NotNull(message = "Valor dos Fornecimentos é obrigatório")
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2)
     private BigDecimal vfor;
     // Valor Total da Dedução
     @NotNull(message = "Valor Total da Dedução é obrigatório")
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2)
     private BigDecimal vtotded;
     // Valor Líquido dos Fornecimentos
     @NotNull(message = "Valor Líquido dos Fornecimentos é obrigatório")
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2)
     private BigDecimal vliqfor;
     // Quantidade Total do Mês 
     @NotNull(message = "Quantidade Total do Mês é obrigatório")
     @DecimalMin(value = "0.0000")
-    @Column(precision = 11, scale = 4, nullable = true)
+    @Column(precision = 15, scale = 4)
     private BigDecimal qtotmes;
     // Quantidade Total Anterior
     @NotNull(message = "Quantidade Total Anterior é obrigatório")
     @DecimalMin(value = "0.0000")
-    @Column(precision = 11, scale = 4, nullable = true)
+    @Column(precision = 15, scale = 4)
     private BigDecimal qtotant;
     // Quantidade Total Geral
     @NotNull(message = "Quantidade Total Geral é obrigatório")
     @DecimalMin(value = "0.0000")
-    @Column(precision = 11, scale = 4, nullable = true)
+    @Column(precision = 15, scale = 4)
     private BigDecimal qtotger;
 
     @Valid

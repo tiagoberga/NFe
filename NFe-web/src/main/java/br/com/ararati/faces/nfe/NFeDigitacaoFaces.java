@@ -58,7 +58,6 @@ import br.com.ararati.enums.B.NFeTipoDestinoOperacao;
 import br.com.ararati.enums.B.NFeTipoEmissao;
 import br.com.ararati.enums.B.NFeTipoFinalidadeEmissao;
 import br.com.ararati.enums.B.NFeTipoFormatoImpressao;
-import br.com.ararati.enums.B.NFeTipoIndicacaoNFeFormaPagamento;
 import br.com.ararati.enums.B.NFeTipoModeloDocumentoFiscalECF;
 import br.com.ararati.enums.B.NFeTipoModeloDocumentoFiscal;
 import br.com.ararati.enums.B.NFeTipoModeloDocumentoFiscalProdutorRural;
@@ -95,7 +94,7 @@ import br.com.ararati.enums.U.NFeTipoExigibilidadeISS;
 import br.com.ararati.enums.U.NFeTipoIncentivoFiscal;
 import br.com.ararati.enums.W.NFeTipoRegimeEspecialTributacao;
 import br.com.ararati.enums.X.NFeTipoModalidadeFrete;
-import br.com.ararati.enums.Y.NFeTipoBandeiraOperadoraCartao;
+import br.com.ararati.enums.Y.NFeTipoBandeiraOperadoraCartaoCredito;
 import br.com.ararati.enums.Y.NFeTipoFormaPagamento;
 import br.com.ararati.enums.Z.NFeTipoOrigemProcesso;
 import br.com.ararati.enums.commons.NFeTipoCalculo;
@@ -524,8 +523,8 @@ public class NFeDigitacaoFaces implements Serializable {
         return NFeTipoArma.valuesAsList();
     }
 
-    public List<NFeTipoBandeiraOperadoraCartao> getTiposDeBandeiraDeCartao() {
-        return NFeTipoBandeiraOperadoraCartao.valuesAsList();
+    public List<NFeTipoBandeiraOperadoraCartaoCredito> getTiposDeBandeiraDeCartao() {
+        return NFeTipoBandeiraOperadoraCartaoCredito.valuesAsList();
     }
 
     public List<NFeTipoDestinoOperacao> getTiposDeDestinoDeOperacao() {
@@ -580,8 +579,8 @@ public class NFeDigitacaoFaces implements Serializable {
         return NFeTipoIncentivoFiscal.valuesAsList();
     }
 
-    public List<NFeTipoIndicacaoNFeFormaPagamento> getTiposDeIndicadorNFeFormaPagamento() {
-        return NFeTipoIndicacaoNFeFormaPagamento.valuesAsList();
+    public List<NFeTipoFormaPagamento> getFormasDePagamento() {
+        return NFeTipoFormaPagamento.valuesAsList();
     }
 
     public List<NFeTipoIndicadorIEDestinatario> getTiposDeIndicadorIEDestinatario() {

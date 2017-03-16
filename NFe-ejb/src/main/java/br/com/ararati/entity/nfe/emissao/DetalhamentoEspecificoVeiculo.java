@@ -28,7 +28,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
 /**
- * Identificação do Destinatário da Nota Fiscal eletrônica
+ * J01 - Detalhamento de Veículos novos.
  *
  * @author tiago
  */
@@ -50,107 +50,130 @@ public class DetalhamentoEspecificoVeiculo extends AbstractEntity {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private NFeTipoVeiculosNovosOperacao tpop;
+    
     // Chassi do veículo
     @NotNull(message = "Chassi do veículo é obrigatório")
     @Column(length = 17, nullable = false)
     private String chassi;
+    
     // Cor
     @NotNull(message = "Cor é obrigatório")
     @Length(min = 1, max = 4, message = "Cor deve conter entre {min} e {max} caracteres")
     @Column(length = 4, nullable = false)
     private String ccor;
+    
     // Descrição da Cor
     @NotNull(message = "Descrição da Cor é obrigatório")
     @Length(min = 1, max = 40, message = "Descrição deve conter entre {min} e {max} caracteres")
     @Column(length = 40, nullable = false)
     private String xcor;
+    
     // Potência Motor (CV)
     @NotNull(message = "Potência Motor (CV) é obrigatório")
     @Length(min = 1, max = 4, message = "Potência Motor (CV) deve conter entre {min} e {max} caracteres")
     @Column(length = 4, nullable = false)
     private String pot;
+    
     // Cilindradas
     @NotNull(message = "Cilindradas é obrigatório")
     @Length(min = 1, max = 4, message = "Cilindrada deve conter entre {min} e {max} caracteres")
     @Column(length = 4, nullable = false)
     private String cilin;
+    
     // Peso Liquido
     @NotNull(message = "Peso Liquido é obrigatório")
     @Length(min = 1, max = 9, message = "Peso Liquido deve conter entre {min} e {max} caracteres")
-    @Column(precision = 9, nullable = false)
+    @Column(precision = 9, scale = 4, nullable = false)
     @DecimalMin(value = "0")
     private BigDecimal pesol;
+    
     // Peso Bruto
     @NotNull(message = "Peso Bruto é obrigatório")
     @Length(min = 1, max = 9, message = "Peso Bruto deve conter entre {min} e {max} caracteres")
-    @Column(precision = 9, nullable = false)
+    @Column(precision = 9, scale = 4, nullable = false)
     @DecimalMin(value = "0")
     private BigDecimal pesob;
+    
     // Serial (série) 
     @NotNull(message = "Serial é obrigatório")
     @Length(min = 1, max = 9, message = "Serial deve conter entre {min} e {max} caracteres")
     @Column(length = 9, nullable = false)
     private String nserie;
+    
     // Tipo de combustível 
     @NotNull(message = "Tipo de combustível é obrigatório")
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private NFeTipoVeiculosNovosCombustivel tpcomb;
+    
     // Número de Motor
     @NotNull(message = "Número de Motor é obrigatório")
     @Column(length = 21, nullable = false)
     private String nmotor;
+    
     // Capacidade Máxima de Tração
     @NotNull(message = "Capacidade Máxima de Tração é obrigatório")
     @Column(length = 9, nullable = false)
     private String cmt;
+    
     // Distância entre eixos
     @NotNull(message = "Distância entre eixos é obrigatório")
     @Column(length = 4, nullable = false)
     private String dist;
+    
     // Ano Modelo de Fabricação 
     @NotNull(message = "Ano Modelo de Fabricação é obrigatório")
     @Column(length = 4, nullable = false)
     private String anomod;
+    
     // Ano de Fabricação
     @NotNull(message = "Ano de Fabricação é obrigatório")
     @Column(length = 4, nullable = false)
     private String anofab;
+    
     // Tipo de Pintura
     @NotNull(message = "Tipo de Pintura é obrigatório")
     @Column(length = 1, nullable = false)
     private String tppint;
+    
     // Tipo de Veículo
     @NotNull(message = "Tipo de Veículo é obrigatório")
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private NFeTipoVeiculosNovosVeiculo tpveic;
+    
     // Espécie de Veículo 
     @NotNull(message = "Espécie de Veículo é obrigatório")
     @Column(length = 1, nullable = false)
     private String espveic;
+    
     // Condição do VIN
     @NotNull(message = "Condição do VIN é obrigatório")
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private NFeTipoVeiculosNovosCondicaoVIN vin;
+    
     // Condição do Veículo
     @NotNull(message = "Condição do Veículo é obrigatório")
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private NFeTipoVeiculosNovosCondicao condveic;
+    
     // Código Marca Modelo
     @NotNull(message = "Código Modelo é obrigatório")
     @Column(length = 6, nullable = false)
     private String cmod;
+    
     // Código da Cor
     @NotNull(message = "Código da Cor é obrigatório")
     @Column(nullable = false)
     private NFeTipoVeiculosNovosCor ccorDENATRAN;
+    
     // Capacidade máxima de lotação
     @NotNull(message = "Capacidade lotação é obrigatório")
     @Column(length = 3, nullable = false)
     private String lota;
+    
     // Restrição
     @NotNull(message = "Restrição é obrigatório")
     @Column(nullable = false)

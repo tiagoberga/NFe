@@ -40,46 +40,46 @@ public class TotalNFeISSQN extends AbstractEntity {
 
     // Valor total dos Serviços sob não-incidência ou não tributados pelo ICMS
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vserv;
     // Valor total Base de Cálculo do ISS
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vbc;
     // Valor total do ISS 
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal viss;
     // Valor total do PIS sobre serviços 
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vpis;
     // Valor total da COFINS sobre serviços
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vcofins;
     // Data da prestação do serviço 
     @Temporal(TemporalType.DATE)
     private Date dcompet;
     // Valor total dedução para redução da Base de Cálculo
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vdeducao;
     // Valor total outras retenções
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal voutro;
     // Valor total desconto incondicionado
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vdescincond;
     // Valor total desconto condicionado 
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vdesccond;
     // Valor total retenção ISS 
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vissret;
     // Código do Regime Especial de Tributação
     @Column(length = 2, nullable = true)

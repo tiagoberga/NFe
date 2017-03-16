@@ -31,7 +31,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
 /**
- * Identificação do Destinatário da Nota Fiscal eletrônica
+ * I01. Produtos e Serviços / Declaração de Importação.
  *
  * @author tiago
  */
@@ -52,45 +52,55 @@ public class DeclaracaoImportacao extends AbstractEntity {
     @Length(min = 1, max = 12, message = "Número do Documento de Importação deve conter entre {min} e {max} caracteres")
     @Column(length = 12, nullable = false)
     private String ndi;
+    
     // Data de Registro do documento
     @NotNull(message = "Data de Registro é obrigatório")
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
     private Date ddi;
+    
     // Local de desembaraço
     @NotNull(message = "Local de Desembaraço é obrigatório")
     @Length(min = 1, max = 60, message = "Local de Desembaraço deve conter entre {min} e {max} caracteres")
     @Column(length = 60, nullable = false)
     private String xlocdesemb;
+    
     // Sigla da UF onde ocorreu o Desembaraço Aduaneiro
     @NotNull(message = "UF onde ocorreu o Desembaraço é obrigatório")
     @Column(length = 2, nullable = false)
     private String ufdesemb;
+    
     // Data do Desembaraço Aduaneiro
     @NotNull(message = "Data do Desembaraço é obrigatório")
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
     private Date ddesemb;
+    
     // Via de transporte internacional informada na Declaração de Importação (DI)
     @NotNull(message = "Via de Transporte é obrigatório")
     @Column(length = 2, nullable = false)
     @Enumerated(EnumType.STRING)
     private NFeTipoViaTransporte tpviatransp;
+    
     // Valor da AFRMM - Adicional ao Frete para Renovação da Marinha Mercante
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vafrmm;
+    
     // Forma de importação quanto a intermediação
     @NotNull(message = "Forma de Intermediação é obrigatório")
     @Column(length = 1, nullable = false)
     @Enumerated(EnumType.STRING)
     private NFeTipoImportacao tpintermedio;
+    
     // CNPJ do adquirente ou do encomendante 
     @Column(length = 14, nullable = true)
     private String cnpj;
+    
     // Sigla da UF do adquirente ou do encomendante
     @Column(length = 2, nullable = true)
     private String ufterceiro;
+    
     // Código do Exportador
     @NotNull(message = "Código do Exportador é obrigatório")
     @Length(min = 1, max = 60, message = "Código do Exportador deve conter entre {min} e {max} caracteres")

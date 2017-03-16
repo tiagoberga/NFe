@@ -26,10 +26,10 @@ public class Icms10 implements IImposto {
     public void verificaImposto(DetalhamentoProdutoServico item, ICMS icms) throws NFeException {
         if (item.getCsticms().equals(NFeTipoSituacaoTributariaICMS.COD10) || item.getCsticms().equals(NFeTipoSituacaoTributariaICMS.COD10_PARTILHA)) {
             icms10 = new ICMS10();
-            icms10.setOrig(item.getOrig());
+            icms10.setOrig(item.getOrig().getCodigo());
             icms10.setCST(item.getCsticms() != null ? item.getCsticms().getCodigo() : null);
-            icms10.setModBC(item.getModbc() != null ? item.getModbc().getCodigo() : null);
-            icms10.setModBCST(item.getModbcst().getCodigo());
+            icms10.setModBC(item.getModbcicms() != null ? item.getModbcicms().getCodigo() : null);
+            icms10.setModBCST(item.getModbcicmsst().getCodigo());
             icms10.setPICMS(item.getPicms() != null ? item.getPicms().toString() : null);
             icms10.setPICMSST(item.getPicmsst() != null ? item.getPicmsst().toString() : null);
             icms10.setVBC(item.getVbcicms() != null ? item.getVbcicms().toString() : null);
@@ -37,7 +37,7 @@ public class Icms10 implements IImposto {
             icms10.setVICMS(item.getVicms() != null ? item.getVicms().toString() : null);
             icms10.setVICMSST(item.getVicmsst() != null ? item.getVicmsst().toString() : null);
             icms10.setPMVAST(item.getPmvast() != null ? item.getPmvast().toString() : null);
-            icms10.setPRedBCST(item.getPredbcst() != null ? item.getPredbcst().toString() : null);
+            icms10.setPRedBCST(item.getPredbcicmsst() != null ? item.getPredbcicmsst().toString() : null);
             icms.setICMS10(icms10);
         } else {
             this.imposto.verificaImposto(item, icms);

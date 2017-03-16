@@ -8,14 +8,11 @@ package br.com.ararati.entity.nfe.emissao;
 import br.com.ararati.entity.cadastros.*;
 import br.com.ararati.entity.AbstractEntity;
 import java.math.BigDecimal;
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 
@@ -44,7 +41,7 @@ public class AquisicaoCanaFornecimento extends AbstractEntity {
     // Quantidade
     @NotNull(message = "Quantidade é obrigatório")
     @DecimalMin(value = "0.0000")
-    @Column(precision = 11, scale = 4, nullable = true)
+    @Column(precision = 15, scale = 4, nullable = true)
     private BigDecimal qtde;
 
     public Emitente getEmitente() {

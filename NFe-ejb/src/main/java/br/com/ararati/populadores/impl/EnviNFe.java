@@ -89,6 +89,8 @@ import enviNFe_v310.TNFe.InfNFe.Det.Prod.Med;
 import enviNFe_v310.TNFe.InfNFe.Det.Prod.VeicProd;
 import enviNFe_v310.TNFe.InfNFe.Emit;
 import enviNFe_v310.TNFe.InfNFe.Exporta;
+import enviNFe_v310.TNFe.InfNFe.Pag;
+import enviNFe_v310.TNFe.InfNFe.Pag.Card;
 import enviNFe_v310.TNFe.InfNFe.Ide;
 import enviNFe_v310.TNFe.InfNFe.Ide.NFref;
 import enviNFe_v310.TNFe.InfNFe.Ide.NFref.RefECF;
@@ -201,6 +203,7 @@ public class EnviNFe {
         toReturn.setId("NFe".concat(constroiChaveAcesso.constroiChaveDeAcesso(toReturn)));
         toReturn.getIde().setCDV(toReturn.getId().substring(46, 47));
         toReturn.setInfAdic(fillDadosAdicionais(dadosNFe));
+        toReturn.getPag().addAll(fillPag(dadosNFe));
         toReturn.setRetirada(fillTLocal(dadosNFe.getIdentificacaoLocalRetirada().getLocal()));
         toReturn.setTotal(fillTotais(dadosNFe));
         toReturn.setTransp(fillTransporte(dadosNFe));
@@ -233,7 +236,7 @@ public class EnviNFe {
         ide.setFinNFe(identificacao.getFinnfe() != null ? identificacao.getFinnfe().getCodigo() : null);
         ide.setIdDest(identificacao.getIddest() != null ? identificacao.getIddest().getCodigo() : null);
         ide.setIndFinal(identificacao.getIndfinal() != null ? identificacao.getIndfinal().getCodigo() : null);
-        ide.setIndPag(identificacao.getIndpag() != null ? identificacao.getIndpag().getCodigo() : null);
+//        ide.setIndPag(identificacao.getIndpag() != null ? identificacao.getIndpag().getCodigo() : null);
         ide.setIndPres(identificacao.getIndpres() != null ? identificacao.getIndpres().getCodigo() : null);
         ide.setMod(identificacao.getModelo() != null ? identificacao.getModelo().getCodigo() : null);
         ide.setNNF(identificacao.getNnf());
@@ -474,7 +477,7 @@ public class EnviNFe {
 
         return toReturn;
     }
-    
+
     /**
      * G - Endereço do Destinatário da NF-e.
      */
@@ -723,10 +726,10 @@ public class EnviNFe {
 
         for (DetalhamentoEspecificoMedicamento medicamento : item.getMedicamentos()) {
             med = new Med();
-            med.setDFab(sdfDate.format(medicamento.getDfab()));
-            med.setDVal(sdfDate.format(medicamento.getDval()));
-            med.setNLote(medicamento.getNlote());
-            med.setQLote(medicamento.getQlote() != null ? medicamento.getQlote().toString() : null);
+//            med.setDFab(sdfDate.format(medicamento.getDfab()));
+//            med.setDVal(sdfDate.format(medicamento.getDval()));
+//            med.setNLote(medicamento.getNlote());
+//            med.setQLote(medicamento.getQlote() != null ? medicamento.getQlote().toString() : null);
             med.setVPMC(medicamento.getVpmc() != null ? medicamento.getVpmc().toString() : null);
             toReturn.add(med);
         }
@@ -766,7 +769,7 @@ public class EnviNFe {
         toReturn.setCIDE(fillCIDE(combustivel));
         toReturn.setCODIF(combustivel.getCodif());
         toReturn.setCProdANP(combustivel.getCprodanp());
-        toReturn.setPMixGN(combustivel.getPmixgn() != null ? combustivel.getPmixgn().toString() : null);
+//        toReturn.setPMixGN(combustivel.getPmixgn() != null ? combustivel.getPmixgn().toString() : null);
         toReturn.setQTemp(combustivel.getQtemp() != null ? combustivel.getQtemp().toString() : null);
         toReturn.setUFCons(combustivel.getUfcons() != null ? TUf.valueOf(combustivel.getUfcons()) : null);
         return toReturn;
@@ -883,7 +886,7 @@ public class EnviNFe {
             toReturn.setPICMSInter(item.getPicmsinter() != null ? item.getPicmsinter().toString() : null);
             toReturn.setPICMSInterPart(item.getPicmsinterpart() != null ? item.getPicmsinterpart().toString() : null);
             toReturn.setPICMSUFDest(item.getPicmsufdest() != null ? item.getPicmsufdest().toString() : null);
-            toReturn.setVBCUFDest(item.getVbcufdest() != null ? item.getVbcufdest().toString() : null);
+            toReturn.setVBCUFDest(item.getVbcicmsufdest() != null ? item.getVbcicmsufdest().toString() : null);
             toReturn.setVFCPUFDest(item.getVfcpufdest() != null ? item.getVfcpufdest().toString() : null);
             toReturn.setVICMSUFDest(item.getVicmsufdest() != null ? item.getVicmsufdest().toString() : null);
             toReturn.setVICMSUFRemet(item.getVicmsufremet() != null ? item.getVicmsufremet().toString() : null);
@@ -1027,7 +1030,7 @@ public class EnviNFe {
         toReturn.setCPais(item.getCpais());
         toReturn.setCServico(item.getCservico());
         toReturn.setIndISS(item.getIndiss() != null ? item.getIndiss().getCodigo() : null);
-        toReturn.setIndIncentivo(item.getIndincentivo());
+        toReturn.setIndIncentivo(item.getIndincentivo() != null ? item.getIndincentivo().getCodigo() : null);
         toReturn.setNProcesso(item.getNprocesso());
         toReturn.setVAliq(item.getValiqissqn() != null ? item.getValiqissqn().toString() : null);
         toReturn.setVBC(item.getVbcissqn() != null ? item.getVbcissqn().toString() : null);
@@ -1166,7 +1169,7 @@ public class EnviNFe {
         Transp toReturn = new Transp();
         toReturn.setModFrete(transporte.getModfrete() != null ? transporte.getModfrete().getCodigo() : null);
 
-        if (transporte.getModfrete() != null && !transporte.getModfrete().equals(NFeTipoModalidadeFrete.SEM_FRETE)) {
+        if (transporte.getModfrete() != null && !transporte.getModfrete().equals(NFeTipoModalidadeFrete.COD9)) {
             toReturn.setTransporta(fillTransportador(transporte));
             toReturn.setVeicTransp(fillVeiculo(transporte));
             toReturn.getVol().addAll(fillVolumes(transporte));
@@ -1266,6 +1269,36 @@ public class EnviNFe {
         toReturn.setFat(fillFatura(dadosNFe));
         toReturn.getDup().addAll(fillDuplicatas(dadosNFe));
         return toReturn;
+    }
+
+    /**
+     * YA01 - Grupo de Informações de Pagamento.
+     */
+    private List<Pag> fillPag(DadosNFe dadosNFe) {
+        List<Pag> toReturn = new LinkedList<>();
+        Pag pag;
+
+        for (int i = 0; i < 0; i++) {
+            pag = new Pag();
+            pag.setCard(fillCard(dadosNFe));
+            pag.setTPag(null);
+            pag.setVPag(null);
+            toReturn.add(pag);
+        }
+
+        return toReturn;
+    }
+
+    /**
+     * YA04 - Grupo de Cartões.
+     */
+    private Card fillCard(DadosNFe dadosNFe) {
+        Card card = new Card();
+        card.setCAut(null);
+        card.setCNPJ(null);
+        card.setTBand(null);
+        card.setTpIntegra(null);
+        return card;
     }
 
     /**

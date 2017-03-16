@@ -10,7 +10,7 @@
         <div class="ui-g">
             <div class="ui-g-12 ui-md-4 ui-lg-3">
                 <h:panelGroup styleClass="md-inputfield">
-                    <p:autoComplete id="modelo" value="#{digitacaoNFeFaces.ideNFe.modelo}" var="vModelo" itemValue="#{vModelo}" itemLabel="#{vModelo.codigo} - #{vModelo.descricao}" cache="true" cacheTimeout="360000"
+                    <p:autoComplete id="modelo" value="#{digitacaoNFeFaces.ideNFe.modelo}" var="vModelo" itemValue="#{vModelo}" itemLabel="#{vModelo.codigo.concat(' - ').concat(vModelo.descricao)}" cache="true" cacheTimeout="360000"
                                     completeMethod="#{digitacaoNFeFaces.completeNFeTipoModeloDocumentoFiscal}" dropdown="true" />
                     <label>* Modelo de Documento Fiscal</label>
                     <p:message for="modelo" escape="true"/>
@@ -52,15 +52,6 @@
                     <f:selectItems value="#{digitacaoNFeFaces.tiposDeOperacao}" var="vTpnf" itemLabel="#{vTpnf.codigo} - #{vTpnf.descricao}" itemValue="#{vTpnf}"/>
                 </p:selectOneMenu>
                 <p:message for="tpnf" escape="true"/>
-            </div>
-            <div class="ui-g-12 ui-md-4 ui-lg-3">
-                <h:panelGroup styleClass="md-inputfield"></h:panelGroup>
-                <label></label>
-                <p:selectOneMenu id="indpag" value="#{digitacaoNFeFaces.ideNFe.indpag}" title="* Forma de Pagamento" autoWidth="false">
-                    <f:selectItem itemLabel="* Selecione a Forma de Pagamento"/>
-                    <f:selectItems value="#{digitacaoNFeFaces.tiposDeIndicadorNFeFormaPagamento}" var="vIndpag" itemLabel="#{vIndpag.codigo} - #{vIndpag.descricao}" itemValue="#{vIndpag}"/>
-                </p:selectOneMenu>
-                <p:message for="indpag" escape="true"/>
             </div>
             <div class="ui-g-12 ui-md-4 ui-lg-3">
                 <h:panelGroup styleClass="md-inputfield"></h:panelGroup>

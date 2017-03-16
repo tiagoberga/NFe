@@ -26,9 +26,9 @@ public class Icms51 implements IImposto {
     public void verificaImposto(DetalhamentoProdutoServico item, ICMS icms) throws NFeException {
         if (item.getCsticms().equals(NFeTipoSituacaoTributariaICMS.COD51)) {
             icms51 = new ICMS51();
-            icms51.setOrig(item.getOrig());
+            icms51.setOrig(item.getOrig().getCodigo());
             icms51.setCST(item.getCsticms() != null ? item.getCsticms().getCodigo() : null);
-            icms51.setModBC(item.getModbc() != null ? item.getModbc().getCodigo() : null);
+            icms51.setModBC(item.getModbcicms() != null ? item.getModbcicms().getCodigo() : null);
             icms51.setVBC(item.getVbcicms() != null ? item.getVbcicms().toString() : null);
             icms51.setPICMS(item.getPicms() != null ? item.getPicms().toString() : null);
             icms51.setVICMS(item.getVicms() != null ? item.getVicms().toString() : null);

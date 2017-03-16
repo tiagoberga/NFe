@@ -42,19 +42,19 @@ public class TransporteRetencaoIcms extends AbstractEntity {
 
     // Valor do Serviço 
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vserv;
     // BC da Retenção do ICMS 
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vbcret;
     // Alíquota da Retenção
-    @DecimalMin(value = "0.00")
-    @Column(precision = 3, scale = 2, nullable = true)
+    @DecimalMin(value = "0.0000")
+    @Column(precision = 7, scale = 4, nullable = true)
     private BigDecimal picmsret;
     // Valor do ICMS Retido
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vicmsret;
     // CFOP
     @Column(length = 2, nullable = true)

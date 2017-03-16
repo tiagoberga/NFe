@@ -8,19 +8,18 @@ package br.com.ararati.entity.nfe.emissao;
 import br.com.ararati.entity.cadastros.*;
 import br.com.ararati.entity.AbstractEntity;
 import java.math.BigDecimal;
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
 
 /**
- * Identificação do Destinatário da Nota Fiscal eletrônica
+ * Grupo K. Detalhamento Específico de Medicamento e de matérias-primas
+ * farmacêuticas.
  *
  * @author tiago
  */
@@ -37,29 +36,21 @@ public class DetalhamentoEspecificoMedicamento extends AbstractEntity {
     @JoinColumn(name = "detalhamento_produto_servico_id", nullable = false)
     private DetalhamentoProdutoServico detalhamentoProdutoServico;
 
-    // Número do Lote de medicamentos ou de matérias-primas farmacêuticas
-    @NotNull(message = "Número do Lote é obrigatório")
-    @Column(length = 20, nullable = false)
-    private String nlote;
-    // Quantidade de produto no Lote de medicamentos ou de matérias-primas farmacêuticas
-    @NotNull(message = "Quantidade no Lote é obrigatório")
-    @DecimalMin(value = "0.000")
-    @Column(precision = 8, scale = 3, nullable = false)
-    private BigDecimal qlote;
-    // Data de fabricação
-    @NotNull(message = "Data de Fabricação é obrigatório")
-    @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date dfab;
-    // Data de validade 
-    @NotNull(message = "Data de Validade é obrigatório")
-    @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date dval;
-    // Preço máximo consumidor
+    /**
+     * Código de Produto da ANVISA - Utilizar o número do registro do produto da
+     * Câmara de Regulação do Mercado de Medicamento – CMED
+     */
+    @NotNull(message = "Código da ANVISA é obrigatório")
+    @Length(min = 1, max = 13, message = "Código da ANVISA deve conter entre {min} e {max} caracteres")
+    @Column(length = 13, nullable = false)
+    private String cprodanvisa;
+
+    /**
+     * Preço máximo consumidor
+     */
     @NotNull(message = "Preço Máximo Consumidor é obrigatório")
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = false)
+    @Column(precision = 15, scale = 2, nullable = false)
     private BigDecimal vpmc;
 
     public Emitente getEmitente() {
@@ -78,36 +69,12 @@ public class DetalhamentoEspecificoMedicamento extends AbstractEntity {
         this.detalhamentoProdutoServico = detalhamentoProdutoServico;
     }
 
-    public String getNlote() {
-        return nlote;
+    public String getCprodanvisa() {
+        return cprodanvisa;
     }
 
-    public void setNlote(String nlote) {
-        this.nlote = nlote;
-    }
-
-    public BigDecimal getQlote() {
-        return qlote;
-    }
-
-    public void setQlote(BigDecimal qlote) {
-        this.qlote = qlote;
-    }
-
-    public Date getDfab() {
-        return dfab;
-    }
-
-    public void setDfab(Date dfab) {
-        this.dfab = dfab;
-    }
-
-    public Date getDval() {
-        return dval;
-    }
-
-    public void setDval(Date dval) {
-        this.dval = dval;
+    public void setCprodanvisa(String cprodanvisa) {
+        this.cprodanvisa = cprodanvisa;
     }
 
     public BigDecimal getVpmc() {

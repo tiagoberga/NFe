@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
@@ -40,32 +41,99 @@ public class DetalhamentoEspecificoCombustivel extends AbstractEntity {
     @NotNull(message = "Código de produto da ANP é obrigatório")
     @Column(length = 9, nullable = false)
     private String cprodanp;
-    // Percentual de Gás Natural para o produto GLP (cProdANP = 210203001)
-    @DecimalMin(value = "0.0000")
-    @Column(precision = 11, scale = 4, nullable = true)
-    private BigDecimal pmixgn;
-    // Código de autorização / registro do CODIF 
+
+    /**
+     * Descrição do produto conforme ANP, utilizar a descrição de produtos do
+     * Sistema de Informações de Movimentação de Produtos - SIMP
+     * (http://www.anp.gov.br/simp/).
+     */
+    @NotNull(message = "Descrição ANP é obrigatório")
+    @Length(min = 2, max = 95, message = "Descrição ANP deve conter entre {min} e {max} caracteres")
+    @Column(length = 95, nullable = false)
+    private String descanp;
+
+    /**
+     * Percentual do GLP derivado do petróleo no produto GLP
+     * (cProdANP=210203001), informar em número decimal o percentual do GLP
+     * derivado de petróleo no produto GLP. Valores de 0 a 1.
+     */
+    @DecimalMin(value = "0.0000", message = "Percentual do GLP - Valor mínimo permitido: {value}")
+    @DecimalMax(value = "1.0000", message = "Percentual do GLP - Valor máximo permitido: {value}")
+    @Column(precision = 5, scale = 4)
+    private BigDecimal pglp;
+
+    /**
+     * Percentual de Gás Natural Nacional – GLGNn para o produto GLP
+     * (cProdANP=210203001), informar em número decimal o percentual do Gás
+     * Natural Nacional – GLGNn para o produto GLP. Valores de 0 a 1.
+     */
+    @DecimalMin(value = "0.0000", message = "Percentual de Gás Natural Nacional  - Valor mínimo permitido: {value}")
+    @DecimalMax(value = "1.0000", message = "Percentual de Gás Natural Nacional  - Valor máximo permitido: {value}")
+    @Column(precision = 5, scale = 4)
+    private BigDecimal pgnn;
+
+    /**
+     * Percentual de Gás Natural Importado – GLGNi para o produto GLP
+     * (cProdANP=210203001), Informar em número decimal o percentual do Gás
+     * Natural Importado – GLGNi para o produto GLP. Valores de 0 a 1.
+     */
+    @DecimalMin(value = "0.0000", message = "Percentual de Gás Natural Importado - Valor mínimo permitido: {value}")
+    @DecimalMax(value = "1.0000", message = "Percentual de Gás Natural Importado - Valor máximo permitido: {value}")
+    @Column(precision = 5, scale = 4)
+    private BigDecimal pgni;
+
+    /**
+     * Valor de partida (cProdANP=210203001), deve ser informado neste campo o
+     * valor por quilograma sem ICMS.
+     */
+    @DecimalMin(value = "0.00")
+    @Column(precision = 15, scale = 2)
+    private BigDecimal vpart;
+
+    /**
+     * Código de autorização / registro do CODIF , Informar apenas quando a UF
+     * utilizar o CODIF (Sistema de Controle do Diferimento do Imposto nas
+     * Operações com AEAC - Álcool Etílico Anidro Combustível).
+     */
     @Length(min = 1, max = 21, message = "CODIF deve conter entre {min} e {max} caracteres")
-    @Column(length = 21, nullable = true)
+    @Column(length = 21)
     private String codif;
-    // Quantidade de combustível faturada à temperatura ambiente.
+
+    /**
+     * Quantidade de combustível faturada à temperatura ambiente, informar
+     * quando a quantidade faturada informada no campo "prod/qCom" (id:I10)
+     * tiver sido ajustada para uma temperatura diferente da ambiente.
+     */
     @DecimalMin(value = "0.0000")
-    @Column(precision = 11, scale = 4, nullable = true)
+    @Column(precision = 15, scale = 4)
     private BigDecimal qtemp;
-    // Sigla da UF de consumo
+
+    /**
+     * Sigla da UF de consumo, informar a UF de consumo. Informar "EX" para
+     * Exterior.
+     */
     @Column(length = 2, nullable = false)
     private String ufcons;
-    // BC da CIDE
+
+    /**
+     * Informar a BC da CIDE em quantidade
+     */
     @DecimalMin(value = "0.0000")
-    @Column(precision = 11, scale = 4, nullable = false)
+    @Column(precision = 16, scale = 4, nullable = false)
     private BigDecimal qbcprod;
-    // Valor da alíquota da CIDE
+
+    /**
+     * Valor da alíquota da CIDE, Informar o valor da alíquota em reais da CIDE
+     */
     @DecimalMin(value = "0.0000")
-    @Column(precision = 11, scale = 4, nullable = false)
+    @Column(precision = 15, scale = 4, nullable = false)
     private BigDecimal valiqprod;
-    // Valor da CIDE 
+
+    /**
+     * Valor da CIDE , Informar o valor da CIDE
+     */
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = false)
+    @Column(precision = 15, scale = 2, nullable = false)
     private BigDecimal vcide;
 
     public Emitente getEmitente() {
@@ -92,12 +160,44 @@ public class DetalhamentoEspecificoCombustivel extends AbstractEntity {
         this.cprodanp = cprodanp;
     }
 
-    public BigDecimal getPmixgn() {
-        return pmixgn;
+    public String getDescanp() {
+        return descanp;
     }
 
-    public void setPmixgn(BigDecimal pmixgn) {
-        this.pmixgn = pmixgn;
+    public void setDescanp(String descanp) {
+        this.descanp = descanp;
+    }
+
+    public BigDecimal getPglp() {
+        return pglp;
+    }
+
+    public void setPglp(BigDecimal pglp) {
+        this.pglp = pglp;
+    }
+
+    public BigDecimal getPgnn() {
+        return pgnn;
+    }
+
+    public void setPgnn(BigDecimal pgnn) {
+        this.pgnn = pgnn;
+    }
+
+    public BigDecimal getPgni() {
+        return pgni;
+    }
+
+    public void setPgni(BigDecimal pgni) {
+        this.pgni = pgni;
+    }
+
+    public BigDecimal getVpart() {
+        return vpart;
+    }
+
+    public void setVpart(BigDecimal vpart) {
+        this.vpart = vpart;
     }
 
     public String getCodif() {

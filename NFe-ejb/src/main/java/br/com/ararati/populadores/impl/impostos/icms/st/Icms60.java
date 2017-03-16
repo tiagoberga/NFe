@@ -26,7 +26,7 @@ public class Icms60 implements IImposto {
     public void verificaImposto(DetalhamentoProdutoServico item, ICMS icms) throws NFeException {
         if (item.getCsticms().equals(NFeTipoSituacaoTributariaICMS.COD60)) {
             icms60 = new ICMS60();
-            icms60.setOrig(item.getOrig());
+            icms60.setOrig(item.getOrig().getCodigo());
             icms60.setCST(item.getCsticms() != null ? item.getCsticms().getCodigo() : null);
             icms60.setVBCSTRet(item.getVbcicmsstret() != null ? item.getVbcicmsstret().toString() : null);
             icms60.setVICMSSTRet(item.getVicmsstret() != null ? item.getVicmsstret().toString() : null);

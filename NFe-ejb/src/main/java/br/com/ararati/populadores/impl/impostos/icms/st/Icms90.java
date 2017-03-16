@@ -26,20 +26,20 @@ public class Icms90 implements IImposto {
     public void verificaImposto(DetalhamentoProdutoServico item, ICMS icms) throws NFeException {
         if (item.getCsticms().equals(NFeTipoSituacaoTributariaICMS.COD90)) {
             icms90 = new ICMS90();
-            icms90.setOrig(item.getOrig());
+            icms90.setOrig(item.getOrig().getCodigo());
             icms90.setCST(item.getCsticms() != null ? item.getCsticms().getCodigo() : null);
-            icms90.setModBC(item.getModbc() != null ? item.getModbc().getCodigo() : null);
-            icms90.setModBCST(item.getModbcst().getCodigo());
+            icms90.setModBC(item.getModbcicms() != null ? item.getModbcicms().getCodigo() : null);
+            icms90.setModBCST(item.getModbcicmsst().getCodigo());
             icms90.setPICMS(item.getPicms() != null ? item.getPicms().toString() : null);
             icms90.setPICMSST(item.getPicmsst() != null ? item.getPicmsst().toString() : null);
-            icms90.setPRedBC(item.getPredbc() != null ? item.getPredbc().toString() : null);
+            icms90.setPRedBC(item.getPredbcicms() != null ? item.getPredbcicms().toString() : null);
             icms90.setVBC(item.getVbcicms() != null ? item.getVbcicms().toString() : null);
             icms90.setVBCST(item.getVbcicmsst() != null ? item.getVbcicmsst().toString() : null);
             icms90.setVICMS(item.getVicms() != null ? item.getVicms().toString() : null);
             icms90.setVICMSST(item.getVicmsst() != null ? item.getVicmsst().toString() : null);
 
             icms90.setPMVAST(item.getPmvast() != null ? item.getPmvast().toString() : null);
-            icms90.setPRedBCST(item.getPredbcst() != null ? item.getPredbcst().toString() : null);
+            icms90.setPRedBCST(item.getPredbcicmsst() != null ? item.getPredbcicmsst().toString() : null);
 
             // DESONERACAO ICMS
             icms90.setMotDesICMS(item.getMotdesicms() != null ? item.getMotdesicms().getCodigo() : null);

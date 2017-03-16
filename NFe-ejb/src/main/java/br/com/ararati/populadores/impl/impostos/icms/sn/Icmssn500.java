@@ -24,7 +24,7 @@ public class Icmssn500 implements IImposto {
         if (item.getCsticms().equals(NFeTipoSituacaoTributariaICMS.COD500)) {
             icmssn500 = new ICMSSN500();
             icmssn500.setCSOSN(item.getCsticms() != null ? item.getCsticms().getCodigo() : null);
-            icmssn500.setOrig(item.getOrig());
+            icmssn500.setOrig(item.getOrig().getCodigo());
             icmssn500.setVBCSTRet(item.getVbcicmsstret() != null ? item.getVbcicmsstret().toString() : null);
             icmssn500.setVICMSSTRet(item.getVicmsstret() != null ? item.getVicmsstret().toString() : null);
             icms.setICMSSN500(icmssn500);
