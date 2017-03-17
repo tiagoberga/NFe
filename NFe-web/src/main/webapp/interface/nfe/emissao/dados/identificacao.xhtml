@@ -45,67 +45,60 @@
                 </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-4 ui-lg-3">
-                <h:panelGroup styleClass="md-inputfield"></h:panelGroup>
-                <label></label>
-                <p:selectOneMenu id="tpnf" value="#{digitacaoNFeFaces.ideNFe.tpnf}" title="* Tipo de Operação" autoWidth="false">
-                    <f:selectItem itemLabel="* Selecione o Tipo de Operação"/>
-                    <f:selectItems value="#{digitacaoNFeFaces.tiposDeOperacao}" var="vTpnf" itemLabel="#{vTpnf.codigo} - #{vTpnf.descricao}" itemValue="#{vTpnf}"/>
-                </p:selectOneMenu>
-                <p:message for="tpnf" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:autoComplete id="tpnf" value="#{digitacaoNFeFaces.ideNFe.tpnf}" var="vTpnf" itemValue="#{vTpnf}" itemLabel="#{vTpnf.codigo.concat(' - ').concat(vTpnf.descricao)}" cache="true"
+                                    completeMethod="#{digitacaoNFeFaces.completeNFeTipoOperacao}" dropdown="true" />
+                    <label>* Tipo de Operação</label>
+                    <p:message for="tpnf" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-4 ui-lg-3">
-                <h:panelGroup styleClass="md-inputfield"></h:panelGroup>
-                <label></label>
-                <p:selectOneMenu id="tpemis" value="#{digitacaoNFeFaces.ideNFe.tpemis}" title="* Forma de Emissão" autoWidth="false">
-                    <f:selectItem itemLabel="* Selecione a Forma de Emissão"/>
-                    <f:selectItems value="#{digitacaoNFeFaces.tiposDeEmissao}" var="vTpemis" itemLabel="#{vTpemis.codigo} - #{vTpemis.descricao}" itemValue="#{vTpemis}"/>
-                </p:selectOneMenu>
-                <p:message for="tpemis" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:autoComplete id="tpemis" value="#{digitacaoNFeFaces.ideNFe.tpemis}" var="vTpemis" itemValue="#{vTpemis}" itemLabel="#{vTpemis.codigo.concat(' - ').concat(vTpemis.descricao)}" cache="true"
+                                    completeMethod="#{digitacaoNFeFaces.completeNFeTipoEmissao}" dropdown="true" />
+                    <label>* Forma de Emissão</label>
+                    <p:message for="tpemis" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-4 ui-lg-3">
-                <h:panelGroup styleClass="md-inputfield"></h:panelGroup>
-                <label></label>
-                <p:selectOneMenu id="finnFe" value="#{digitacaoNFeFaces.ideNFe.finnfe}" title="* Finalidade de Emissão" autoWidth="false">
-                    <f:selectItem itemLabel="* Selecione a Finalidade de Emissão"/>
-                    <f:selectItems value="#{digitacaoNFeFaces.tiposDeFinalidadeDeEmissso}" var="vFinnFe" itemLabel="#{vFinnFe.codigo} - #{vFinnFe.descricao}" itemValue="#{vFinnFe}"/>
-                </p:selectOneMenu>
-                <p:message for="finnFe" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:autoComplete id="finnFe" value="#{digitacaoNFeFaces.ideNFe.finnfe}" var="vFinnFe" itemValue="#{vFinnFe}" itemLabel="#{vFinnFe.codigo.concat(' - ').concat(vFinnFe.descricao)}" cache="true"
+                                    completeMethod="#{digitacaoNFeFaces.completeNFeTipoFinalidadeEmissao}" dropdown="true" />
+                    <label>* Finalidade de Emissão</label>
+                    <p:message for="finnFe" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-4 ui-lg-3">
-                <h:panelGroup styleClass="md-inputfield"></h:panelGroup>
-                <label></label>
-                <p:selectOneMenu id="tpimp" value="#{digitacaoNFeFaces.ideNFe.tpimp}" title="* Tipo de Impressão" autoWidth="false">
-                    <f:selectItem itemLabel="* Selecione o Tipo de Impressão"/>
-                    <f:selectItems value="#{digitacaoNFeFaces.tiposDeFormatoDeImpressao}" var="vTpimp" itemLabel="#{vTpimp.codigo} - #{vTpimp.descricao}" itemValue="#{vTpimp}"/>
-                </p:selectOneMenu>
-                <p:message for="tpimp" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:autoComplete id="tpimp" value="#{digitacaoNFeFaces.ideNFe.tpimp}" var="vTpimp" itemValue="#{vTpimp}" itemLabel="#{vTpimp.codigo.concat(' - ').concat(vTpimp.descricao)}" cache="true"
+                                    completeMethod="#{digitacaoNFeFaces.completeNFeTipoFormatoImpressao}" dropdown="true" />
+                    <label>* Tipo de Impressão</label>
+                    <p:message for="tpimp" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-4 ui-lg-3">
-                <h:panelGroup styleClass="md-inputfield"></h:panelGroup>
-                <label></label>
-                <p:selectOneMenu id="indfinal" value="#{digitacaoNFeFaces.ideNFe.indfinal}" title="* Tipo de Consumidor" autoWidth="false">
-                    <f:selectItem itemLabel="* Selecione o Tipo de Consumidor"/>
-                    <f:selectItems value="#{digitacaoNFeFaces.tiposDeOperacaoConsumidor}" var="vIndfinal" itemLabel="#{vIndfinal.codigo} - #{vIndfinal.descricao}" itemValue="#{vIndfinal}"/>
-                </p:selectOneMenu>
-                <p:message for="indfinal" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:autoComplete id="indfinal" value="#{digitacaoNFeFaces.ideNFe.tpimp}" var="vIndfinal" itemValue="#{vIndfinal}" itemLabel="#{vIndfinal.codigo.concat(' - ').concat(vIndfinal.descricao)}" cache="true"
+                                    completeMethod="#{digitacaoNFeFaces.completeNFeTipoOperacaoConsumidor}" dropdown="true" />
+                    <label>* Tipo de Consumidor</label>
+                    <p:message for="indfinal" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-4 ui-lg-3">
-                <h:panelGroup styleClass="md-inputfield"></h:panelGroup>
-                <label></label>
-                <p:selectOneMenu id="iddest" value="#{digitacaoNFeFaces.ideNFe.iddest}" title="* Destino da Operação" autoWidth="false">
-                    <f:selectItem itemLabel="* Selecione o Destino da Operação"/>
-                    <f:selectItems value="#{digitacaoNFeFaces.tiposDeDestinoDeOperacao}" var="vIddest" itemLabel="#{vIddest.codigo} - #{vIddest.descricao}" itemValue="#{vIddest}"/>
-                </p:selectOneMenu>
-                <p:message for="iddest" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:autoComplete id="iddest" value="#{digitacaoNFeFaces.ideNFe.iddest}" var="vIddest" itemValue="#{vIddest}" itemLabel="#{vIddest.codigo.concat(' - ').concat(vIddest.descricao)}" cache="true"
+                                    completeMethod="#{digitacaoNFeFaces.completeNFeTipoDestinoOperacao}" dropdown="true" />
+                    <label>* Destino da Operação</label>
+                    <p:message for="iddest" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-4 ui-lg-3">
-                <h:panelGroup styleClass="md-inputfield"></h:panelGroup>
-                <label></label>
-                <p:selectOneMenu id="indpres" value="#{digitacaoNFeFaces.ideNFe.indpres}" title="* Tipo de Atendimento" autoWidth="false">
-                    <f:selectItem itemLabel="* Selecione o Tipo de Atendimento"/>
-                    <f:selectItems value="#{digitacaoNFeFaces.tiposDePresencaComprador}" var="vIndpres" itemLabel="#{vIndpres.codigo} - #{vIndpres.descricao}" itemValue="#{vIndpres}"/>
-                </p:selectOneMenu>
-                <p:message for="indpres" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:autoComplete id="indpres" value="#{digitacaoNFeFaces.ideNFe.indpres}" var="vIndpres" itemValue="#{vIndpres}" itemLabel="#{vIndpres.codigo.concat(' - ').concat(vIndpres.descricao)}" cache="true"
+                                    completeMethod="#{digitacaoNFeFaces.completeNFeTipoPresencaCompradorOperacao}" dropdown="true" />
+                    <label>* Tipo de Atendimento</label>
+                    <p:message for="indpres" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-4 ui-lg-3">
                 <h:panelGroup styleClass="md-inputfield">

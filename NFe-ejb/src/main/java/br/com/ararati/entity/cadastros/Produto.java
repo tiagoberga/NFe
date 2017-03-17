@@ -46,87 +46,107 @@ public class Produto extends AbstractEntity {
     @Length(min = 1, max = 60, message = "Código deve conter entre {min} e {max} caracteres")
     @Column(length = 60, nullable = false)
     private String cprod;
+    
     // GTIN (Global Trade Item Number) do produto, antigo código EAN ou código de barras
     @NotNull(message = "EAN é obrigatório")
     @Column(length = 14, nullable = false)
     private String cean;
+    
     // Descrição do produto ou serviço
     @NotNull(message = "Descrição é obrigatório")
     @Length(min = 1, max = 120, message = "Descrição deve conter entre {min} e {max} caracteres")
     @Column(length = 120, nullable = false)
     private String xprod;
+    
     // Código NCM com 8 dígitos
     @NotNull(message = "NCM é obrigatório")
     @Column(length = 8, nullable = false)
     private String ncm;
+    
     // Código CEST
     @Column(length = 7, nullable = true)
     private String cest;
+    
     // Codificação NVE - Nomenclatura de Valor Aduaneiro e Estatística.
     @Column(length = 8, nullable = true)
     private String nve;
-    // EX_TIPI
+    
+    // EX_TIPI - Preencher de acordo com o código EX da TIPI. Em caso de serviço, não incluir a TAG.
     @Length(min = 2, max = 3, message = "EX TIPI deve conter entre {min} e {max} caracteres")
     @Column(length = 3, nullable = true)
     private String extipi;
+    
     // Código Fiscal de Operações e Prestações
     @NotNull(message = "CFOP é obrigatório")
     @Column(length = 4, nullable = false)
     private String cfop;
+    
     // Unidade Comercial
     @NotNull(message = "UN Comercial é obrigatório")
     @Length(min = 1, max = 6, message = "UN Comercial deve conter entre {min} e {max} caracteres")
     @Column(length = 6, nullable = false)
     private String ucom;
+    
     // Quantidade Comercial
     @NotNull(message = "Quantidade Comercial é obrigatório")
     @DecimalMin(value = "0.0000")
-    @Column(precision = 10, scale = 4, nullable = false)
+    @Column(precision = 15, scale = 4, nullable = false)
     private BigDecimal qcom;
+    
     // Valor Unitário de Comercialização
     @NotNull(message = "Valor Unitário de Comercialização é obrigatório")
     @DecimalMin(value = "0.0000")
-    @Column(precision = 10, scale = 4, nullable = false)
+    @Column(precision = 15, scale = 4, nullable = false)
     private BigDecimal vuncom;
+    
     // Valor Total Bruto dos Produtos ou Serviços
     @NotNull(message = "Valor Total Bruto é obrigatório")
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = false)
+    @Column(precision = 15, scale = 2, nullable = false)
     private BigDecimal vprod;
+    
     // GTIN (Global Trade Item Number) da unidade tributável, antigo código EAN ou código de barras
     @NotNull(message = "EAN Tributável é obrigatório")
     @Column(length = 14, nullable = false)
     private String ceantrib;
+    
     // Unidade Tributável
     @NotNull(message = "Unidade Tributável é obrigatório")
     @Column(length = 6, nullable = false)
     private String utrib;
+    
     // Quantidade Tributável
     @NotNull(message = "Quantidade Tributável é obrigatório")
     @DecimalMin(value = "0.0000")
-    @Column(precision = 11, scale = 4, nullable = false)
+    @Column(precision = 15, scale = 4, nullable = false)
     private BigDecimal qtrib;
+    
     // Valor Unitário de tributação
     @NotNull(message = "Valor Unitário Tributável é obrigatório")
     @DecimalMin(value = "0.0000")
-    @Column(precision = 11, scale = 4, nullable = false)
+    @Column(precision = 15, scale = 4, nullable = false)
     private BigDecimal vuntrib;
+    
     // Valor Total do Frete
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vfrete;
+    
     // Valor Total do Seguro
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vseg;
+    
     // Valor do Desconto
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vdesc;
+    
     // Outras despesas acessórias
     @DecimalMin(value = "0.00")
-    @Column(precision = 13, scale = 2, nullable = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal voutro;
+    
     // Indica se valor do Item (vProd) entra no valor total da NF-e (vProd)
     @NotNull(message = "Indicador vProd é obrigatório")
     @Column(nullable = false)

@@ -8,11 +8,13 @@
     <h:panelGroup id="pgNFeProdutoServicoTributosIcms" layout="block">
         <div class="ui-g">
             <div class="ui-g-12 ui-md-6 ui-lg-4">
-                <p:outputLabel value="Regime Tributário" />
-                <p:selectOneMenu value="#{digitacaoNFeFaces.icmsRegime}" title="* Tipo de Regime" autoWidth="false">
-                    <f:selectItems value="#{digitacaoNFeFaces.tiposDeRegimeTributario}" var="vRegimeIcms" itemLabel="#{vRegimeIcms.codigo} - #{vRegimeIcms.descricao}" itemValue="#{vRegimeIcms}" />
-                    <p:ajax event="change" update="@this pgProdutosServicosIcmsSimples"  listener="#{digitacaoNFeFaces.limpaDadosIcms()}"  />
-                </p:selectOneMenu>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:autoComplete value="#{digitacaoNFeFaces.icmsRegime}" var="vRegimeIcms" itemValue="#{vRegimeIcms}" itemLabel="#{vRegimeIcms.codigo.concat(' - ').concat(vRegimeIcms.descricao)}" cache="true"
+                                    completeMethod="#{digitacaoNFeFaces.completeNFeTipoRegimeTributario}" dropdown="true" >
+                        <p:ajax event="change" process="@this" update="pgProdutosServicosIcmsSimples @this"  listener="#{digitacaoNFeFaces.limpaDadosIcms()}"  />
+                    </p:autoComplete>
+                    <label>* Regime Tributário</label>
+                </h:panelGroup>
             </div>
         </div>
 

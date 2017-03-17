@@ -7,18 +7,16 @@ package br.com.ararati.view.converter;
 import br.com.ararati.converter.PersistentObjectConverter;
 import java.io.Serializable;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
-import javax.inject.Named;
+import javax.faces.convert.FacesConverter;
 
 /**
  *
- * @author rogerio
+ * @author tiago
  */
-@Named
-@SessionScoped
+@FacesConverter("GpoConverter")
 public class GpoConverter implements Converter, Serializable {
 
     @EJB
