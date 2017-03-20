@@ -57,23 +57,29 @@
                                     </p:tab>
                                     <!--PRODUTOS/SERVICOS TODOS OS TRIBUTOS-->
                                     <p:tab title="Tributos" >
-                                        <div class="ui-g">
-                                            <div class="ui-g-12 ui-md-6 ui-lg-4 " align="left">
-                                                <p:inputText value="#{digitacaoNFeFaces.produtoServico.vtottrib}" 
-                                                             placeholder="Valor aproximado total de tributos federais" title="Valor aproximado total de tributos federais"
-                                                             style="background-color: #EAEAEA">
-                                                    <f:convertNumber type="number" maxFractionDigits="4" minFractionDigits="4" />
-                                                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                                </p:inputText>
+                                        
+                                        <p:spacer width="10px"/>
+                                        <h:panelGroup layout="block">
+                                            <div class="ui-g">
+                                                <div class="ui-g-12 ui-md-6 ui-lg-4" >
+                                                    <h:panelGroup styleClass="md-inputfield">
+                                                        <p:inputText value="#{digitacaoNFeFaces.produtoServico.vtottrib}" style="text-align: right; background-color: #EAEAEA">
+                                                            <f:convertNumber type="number" maxFractionDigits="4" minFractionDigits="4" />
+                                                        </p:inputText>
+                                                        <label>Valor Tributos Federais</label>
+                                                    </h:panelGroup>
+                                                </div>
                                             </div>
 
-                                            <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                                <p:selectOneButton value="#{digitacaoNFeFaces.tributacao}" >
-                                                    <f:selectItems value="#{digitacaoNFeFaces.tiposDeTributacao}" />
-                                                    <p:ajax event="change" update="@this tbTributacao" listener="#{digitacaoNFeFaces.limpaTransacaoEntreIcmssIssqn()}"/>
-                                                </p:selectOneButton>
+                                            <div class="ui-g">
+                                                <div class="ui-g-12 ui-md-6 ui-lg-4">
+                                                    <p:selectOneButton value="#{digitacaoNFeFaces.tributacao}" >
+                                                        <f:selectItems value="#{digitacaoNFeFaces.tiposDeTributacao}" />
+                                                        <p:ajax event="change" update="@this tbTributacao" listener="#{digitacaoNFeFaces.limpaTransacaoEntreIcmssIssqn()}"/>
+                                                    </p:selectOneButton>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </h:panelGroup>
 
                                         <p:tabView id="tbTributacao" scrollable="true">
                                             <!--PRODUTOS/SERVICOS ICMS-->

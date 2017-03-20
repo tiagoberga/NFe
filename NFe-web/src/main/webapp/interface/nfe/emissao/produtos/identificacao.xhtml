@@ -10,7 +10,7 @@
         <p:spacer width="10ex"/>
 
         <div class="ui-g">
-            <div class="ui-g-12 ui-md-6 ui-lg-3">
+            <div class="ui-g-12 ui-md-4 ui-lg-4">
                 <h:panelGroup styleClass="md-inputfield">
                     <p:autoComplete id="cprod" completeMethod="#{digitacaoNFeFaces.completeProduto}" 
                                     value="#{digitacaoNFeFaces.produto}" var="acProduto" itemValue="#{acProduto}" itemLabel="#{acProduto.cprod}" 
@@ -187,6 +187,8 @@
                                      icon="fa fa-refresh" />
                 </div>
             </div>
+        </div>
+        <div class="ui-g">
             <div class="ui-g-12 ui-md-6 ui-lg-3">
                 <h:panelGroup styleClass="md-inputfield" >
                     <p:inputText id="xped" value="#{digitacaoNFeFaces.produtoServico.xped}" />
