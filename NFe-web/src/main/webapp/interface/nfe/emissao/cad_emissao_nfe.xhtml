@@ -191,13 +191,13 @@
                                 </p:column>
                                 <p:column headerText="Opções" >
                                     <p:commandButton process="@this" update="@([id$=pgNFeProdutoServico])"
-                                                     styleClass="GreenButton" icon="fa fa-pencil" 
+                                                     styleClass="green-btn" icon="fa fa-pencil" 
                                                      onsuccess="PF('accProdutos').select(0);">
                                         <f:setPropertyActionListener value="#{vProduto}" target="#{digitacaoNFeFaces.produtoServico}"/>
                                     </p:commandButton>
                                     <p:commandButton process="@this" update="dtProdutoServicoList"
                                                      action="#{digitacaoNFeFaces.rmvDetalhamentoProdutosServicos()}"
-                                                     styleClass="RedButton" icon="fa fa-trash">
+                                                     styleClass="red-btn" icon="fa fa-trash">
                                         <f:setPropertyActionListener value="#{vProduto}" target="#{digitacaoNFeFaces.produtoServico}"/>
                                         <p:confirm header="Confirmação" message="Realmente deseja excluir?" icon="ui-icon-alert" />
                                     </p:commandButton>

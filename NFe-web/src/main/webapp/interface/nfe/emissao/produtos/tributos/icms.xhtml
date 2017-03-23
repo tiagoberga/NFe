@@ -12,151 +12,182 @@
                 <h:panelGroup styleClass="md-inputfield">
                     <p:autoComplete value="#{digitacaoNFeFaces.icmsRegime}" var="vRegimeIcms" itemValue="#{vRegimeIcms}" itemLabel="#{vRegimeIcms.codigo.concat(' - ').concat(vRegimeIcms.descricao)}" cache="true"
                                     completeMethod="#{digitacaoNFeFaces.completeNFeTipoRegimeTributario}" dropdown="true" >
-                        <p:ajax event="change" process="@this" update="pgProdutosServicosIcmsSimples @this"  listener="#{digitacaoNFeFaces.limpaDadosIcms()}"  />
+                        <p:ajax event="itemSelect" process="@this" update="pgProdutosServicosIcmsSimples pgProdutosServicosIcmsNormal @this" listener="#{digitacaoNFeFaces.limpaDadosIcms()}"  />
                     </p:autoComplete>
                     <label>* Regime Tributário</label>
                 </h:panelGroup>
             </div>
         </div>
 
-        <div class="EmptyBox5"></div>
         <h:panelGroup id="pgProdutosServicosIcmsSimples" layout="block" rendered="#{digitacaoNFeFaces.regimeIcmsSimples}">
-            <div class="Card">
-                <div class="CardBigTopic">Simples Nacional</div>
-                <div class="Separator"></div>
+            <div class="card card-w-title"><h1>Simples Nacional</h1>
                 <div class="ui-g">
                     <div class="ui-g-12 ui-md-6 ui-lg-6">
-                        <p:selectOneMenu value="#{digitacaoNFeFaces.produtoServico.csticms}" title="* Situação Tributária" autoWidth="false">
-                            <f:selectItem itemLabel="* Selecione a Situação Tributária" itemValue="" />
-                            <f:selectItems value="#{digitacaoNFeFaces.cstsRegimeSimples}" var="vCstIcmsSimples" itemLabel="#{vCstIcmsSimples.codigo} - #{vCstIcmsSimples.descricao}" itemValue="#{vCstIcmsSimples}" />
-                            <p:ajax event="change" update="@this pgProdutosServicosIcmsSimples"  listener="#{digitacaoNFeFaces.limpaDadosIcms()}" />
-                        </p:selectOneMenu>
+                        <h:panelGroup styleClass="md-inputfield">
+                            <p:autoComplete value="#{digitacaoNFeFaces.produtoServico.csticms}" var="vCstIcmsSimples" itemValue="#{vCstIcmsSimples}" itemLabel="#{vCstIcmsSimples.codigo.concat(' - ').concat(vCstIcmsSimples.descricao)}" cache="true"
+                                            completeMethod="#{digitacaoNFeFaces.completeCstsRegimeSimples}" dropdown="true" >
+                                <p:ajax event="itemSelect" update="@this pgProdutosServicosIcmsSimples" listener="#{digitacaoNFeFaces.limpaDadosIcms()}" />
+                            </p:autoComplete>
+                            <label>* Situação Tributária</label>
+                        </h:panelGroup>
                     </div>
                     <div class="ui-g-12 ui-md-6 ui-lg-6">
-                        <p:selectOneMenu value="#{digitacaoNFeFaces.produtoServico.orig}" title="* Origem da Mercadoria" autoWidth="false">
-                            <f:selectItem itemLabel="* Selecione a Origem da Mercadoria" itemValue="" />
-                            <f:selectItems value="#{digitacaoNFeFaces.tiposDeOrigemMercadoria}" var="vOrigemSimples" itemLabel="#{vOrigemSimples.codigo} - #{vOrigemSimples.descricao}" itemValue="#{vOrigemSimples}"/>
-                        </p:selectOneMenu>
+                        <h:panelGroup styleClass="md-inputfield">
+                            <p:autoComplete value="#{digitacaoNFeFaces.produtoServico.orig}" var="vOrigemSimples" itemValue="#{vOrigemSimples}" itemLabel="#{vOrigemSimples.codigo.concat(' - ').concat(vOrigemSimples.descricao)}" cache="true"
+                                            completeMethod="#{digitacaoNFeFaces.completeNFeTipoOrigemMercadoria}" dropdown="true" >
+                            </p:autoComplete>
+                            <label>* Origem da Mercadoria</label>
+                        </h:panelGroup>
                     </div>
+                    
                     <ui:fragment rendered="#{digitacaoNFeFaces.pcRedSnVisible}">
                         <div class="ui-g-12 ui-md-6 ui-lg-6">
-                            <p:inputText value="#{digitacaoNFeFaces.produtoServico.pcredsn}" placeholder="* Alíquota Aplicável do Cálculo" title="* Alíquota Aplicável do Cálculo" class="TexAlRight" style="background-color: #EAEAEA">
-                                <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                            </p:inputText>
+                            <h:panelGroup styleClass="md-inputfield">
+                                <p:inputText value="#{digitacaoNFeFaces.produtoServico.pcredsn}" style="text-align: right; background-color: #EAEAEA">
+                                    <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                </p:inputText>
+                                <label>* Alíquota Aplicável do Cálculo</label>
+                            </h:panelGroup>
                         </div>
                     </ui:fragment>
+                    
                     <ui:fragment rendered="#{digitacaoNFeFaces.vcredIcmssnVisible}">
                         <div class="ui-g-12 ui-md-6 ui-lg-6">
-                            <p:inputText value="#{digitacaoNFeFaces.produtoServico.vcredicmssn}" placeholder="* Valor do Crédito de ICMS aproveitado" title="* Valor Crédito de ICMS aproveitado" class="TexAlRight" style="background-color: #EAEAEA">
-                                <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                            </p:inputText>
+                            <h:panelGroup styleClass="md-inputfield">
+                                <p:inputText value="#{digitacaoNFeFaces.produtoServico.vcredicmssn}" style="text-align: right; background-color: #EAEAEA">
+                                    <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                </p:inputText>
+                                <label>* Valor do Crédito de ICMS aproveitado</label>
+                            </h:panelGroup>
                         </div>
                     </ui:fragment>
                 </div>
 
                 <h:panelGroup layout="block" rendered="#{digitacaoNFeFaces.pgSimplesIcmsVisible}">
-                    <div class="EmptyBox5"></div>
-                    <div class="Card">
-                        <div class="CardBigTopic">ICMS</div>
-                        <div class="Separator"></div>
+                    <div class="card card-w-title"><h1>ICMS</h1>
                         <div class="ui-g">
                             <div class="ui-g-12 ui-md-12 ui-lg-4">
-                                <p:selectOneMenu value="#{digitacaoNFeFaces.produtoServico.modbc}" title="Modalidade de Determinação da BC ICMS" autoWidth="false">
-                                    <f:selectItem itemLabel="* Selecione a Modalidade de Determinação da BC ICMS" itemValue="" />
-                                    <f:selectItems value="#{digitacaoNFeFaces.tiposDeModalidadeBcIcms}" var="vModBcs" itemLabel="#{vModBcs.codigo} - #{vModBcs.descricao}" itemValue="#{vModBcs}" />
-                                </p:selectOneMenu>
+                                <h:panelGroup styleClass="md-inputfield">
+                                    <p:autoComplete value="#{digitacaoNFeFaces.produtoServico.modbcicms}" var="vModBcs" itemValue="#{vModBcs}" itemLabel="#{vModBcs.codigo.concat(' - ').concat(vModBcs.descricao)}" cache="true"
+                                                    completeMethod="#{digitacaoNFeFaces.completeNFeTipoModalidadeBCICMS}" dropdown="true" >
+                                    </p:autoComplete>
+                                    <label>Modalidade de Determinação da BC ICMS</label>
+                                </h:panelGroup>
                             </div>
                             <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                <p:inputText value="#{digitacaoNFeFaces.produtoServico.predbc}" placeholder="* % Redução BC ICMS" title="* % Redução BC ICMS" class="TexAlRight" style="background-color: #EAEAEA">
-                                    <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                </p:inputText>
+                                <h:panelGroup styleClass="md-inputfield">
+                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.predbcicms}" style="text-align: right; background-color: #EAEAEA">
+                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                    </p:inputText>
+                                    <label>* % Redução BC ICMS</label>
+                                </h:panelGroup>
                             </div>
                             <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                <p:inputText value="#{digitacaoNFeFaces.produtoServico.vbcicms}" placeholder="* BC ICMS" title="* BC ICMS" class="TexAlRight" style="background-color: #EAEAEA">
-                                    <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                </p:inputText>                                                        
+                                <h:panelGroup styleClass="md-inputfield">
+                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.vbcicms}" style="text-align: right; background-color: #EAEAEA">
+                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                    </p:inputText>
+                                    <label>* BC ICMS</label>
+                                </h:panelGroup>
                             </div>
                             <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                <p:inputText value="#{digitacaoNFeFaces.produtoServico.picms}" placeholder="* Alíquota ICMS" title="* Alíquota ICMS" class="TexAlRight" style="background-color: #EAEAEA">
-                                    <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                </p:inputText>
+                                <h:panelGroup styleClass="md-inputfield">
+                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.picms}" style="text-align: right; background-color: #EAEAEA">
+                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                    </p:inputText>
+                                    <label>* Alíquota ICMS</label>
+                                </h:panelGroup>
                             </div>
                             <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                <p:inputText value="#{digitacaoNFeFaces.produtoServico.vicms}" placeholder="* ICMS" title="* ICMS" class="TexAlRight" style="background-color: #EAEAEA">
-                                    <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                </p:inputText>
+                                <h:panelGroup styleClass="md-inputfield">
+                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.vicms}" style="text-align: right; background-color: #EAEAEA">
+                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                    </p:inputText>
+                                    <label>* ICMS</label>
+                                </h:panelGroup>
                             </div>
                         </div>
                     </div>
                 </h:panelGroup>
 
                 <h:panelGroup layout="block" rendered="#{digitacaoNFeFaces.pgSimplesIcmsStVisible}">
-                    <div class="EmptyBox5"></div>
-                    <div class="Card">
-                        <div class="CardBigTopic">ICMS ST</div>
-                        <div class="Separator"></div>
+                    <div class="card card-w-title"><h1>ICMS ST</h1>
                         <div class="ui-g">
                             <ui:fragment rendered="#{!digitacaoNFeFaces.simplesIcmsStRetVisible}">
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:selectOneMenu value="#{digitacaoNFeFaces.produtoServico.modbcst}" title="Modalidade de Determinação da BC ICMS ST" autoWidth="false">
-                                        <f:selectItem itemLabel="* Selecione a Modalidade de Determinação da BC ICMS ST" itemValue="" />
-                                        <f:selectItems value="#{digitacaoNFeFaces.tiposDeModalidadeBcIcmsSt}" var="vModBcst" itemLabel="#{vModBcst.codigo} - #{vModBcst.descricao}" itemValue="#{vModBcst}" />
-                                    </p:selectOneMenu>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:autoComplete value="#{digitacaoNFeFaces.produtoServico.modbcicmsst}" var="vModBcst" itemValue="#{vModBcst}" itemLabel="#{vModBcst.codigo.concat(' - ').concat(vModBcst.descricao)}" cache="true"
+                                                        completeMethod="#{digitacaoNFeFaces.completeNFeTipoModalidadeBCICMSST}" dropdown="true" >
+                                        </p:autoComplete>
+                                        <label>Modalidade de Determinação da BC ICMS ST</label>
+                                    </h:panelGroup>
                                 </div>
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.predbcst}" placeholder="* % Redução BC ICMS ST" title="* % Redução BC ICMS ST" class="TexAlRight" style="background-color: #EAEAEA">
-                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                    </p:inputText>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:inputText value="#{digitacaoNFeFaces.produtoServico.predbcicmsst}" style="text-align: right; background-color: #EAEAEA">
+                                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                        </p:inputText>
+                                        <label>* % Redução BC ICMS ST</label>
+                                    </h:panelGroup>
                                 </div>
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.pmvast}" placeholder="* % MVA ICMS ST" title="* % MVA ICMS ST" class="TexAlRight" style="background-color: #EAEAEA">
-                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                    </p:inputText>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:inputText value="#{digitacaoNFeFaces.produtoServico.pmvast}" style="text-align: right; background-color: #EAEAEA">
+                                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                        </p:inputText>
+                                        <label>* % MVA ICMS ST</label>
+                                    </h:panelGroup>
                                 </div>
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.vbcicmsst}" placeholder="* BC ICMS ST" title="* BC ICMS ST" class="TexAlRight" style="background-color: #EAEAEA">
-                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                    </p:inputText>                                                        
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:inputText value="#{digitacaoNFeFaces.produtoServico.vbcicmsst}" style="text-align: right; background-color: #EAEAEA">
+                                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                        </p:inputText>
+                                        <label>* BC ICMS ST</label>
+                                    </h:panelGroup>
                                 </div>
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.picmsst}" placeholder="* Alíquota ICMS ST" title="* Alíquota ICMS ST" class="TexAlRight" style="background-color: #EAEAEA">
-                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                    </p:inputText>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:inputText value="#{digitacaoNFeFaces.produtoServico.picmsst}" style="text-align: right; background-color: #EAEAEA">
+                                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                        </p:inputText>
+                                        <label>* Alíquota ICMS ST</label>
+                                    </h:panelGroup>
                                 </div>
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.vicmsst}" placeholder="* ICMS ST" title="* ICMS ST" class="TexAlRight" style="background-color: #EAEAEA">
-                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                    </p:inputText>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:inputText value="#{digitacaoNFeFaces.produtoServico.vicmsst}" style="text-align: right; background-color: #EAEAEA">
+                                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                        </p:inputText>
+                                        <label>* ICMS ST</label>
+                                    </h:panelGroup>
                                 </div>
                             </ui:fragment>
+
                             <ui:fragment rendered="#{digitacaoNFeFaces.simplesIcmsStRetVisible}">
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.vbcicmsstret}" placeholder="* BC ICMS ST Retido Anteriormente" title="* BC ICMS ST Retido Anteriormente" class="TexAlRight" style="background-color: #EAEAEA">
-                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                    </p:inputText>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:inputText value="#{digitacaoNFeFaces.produtoServico.vbcicmsstret}" style="text-align: right; background-color: #EAEAEA">
+                                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                        </p:inputText>
+                                        <label>* BC ICMS ST Retido Anteriormente</label>
+                                    </h:panelGroup>
                                 </div>
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.vicmsstret}" placeholder="* ICMS ST Retido Anteriormente" title="* ICMS ST Retido Anteriormente" class="TexAlRight" style="background-color: #EAEAEA">
-                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                    </p:inputText>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:inputText value="#{digitacaoNFeFaces.produtoServico.vicmsstret}" style="text-align: right; background-color: #EAEAEA">
+                                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                        </p:inputText>
+                                        <label>* ICMS ST Retido Anteriormente</label>
+                                    </h:panelGroup>
                                 </div>
                             </ui:fragment>
+
                             <ui:fragment rendered="#{digitacaoNFeFaces.simplesMsgVisible}">
-                                <div id="msgIcmsSt" class="ui-g-12 BorderLeft Red" align="justify">
-                                    Atenção: O valor do ICMS ST deve ser informado já com o abatimento do ICMS próprio.
+                                <div class="ui-g">
+                                    <div id="msgIcmsSt" class="ui-g-12" align="justify">
+                                        Atenção: O valor do ICMS ST deve ser informado já com o abatimento do ICMS próprio.
+                                    </div>
                                 </div>
                             </ui:fragment>
                         </div>
@@ -166,118 +197,142 @@
         </h:panelGroup>
 
         <h:panelGroup id="pgProdutosServicosIcmsNormal" layout="block" rendered="#{!digitacaoNFeFaces.regimeIcmsSimples}">
-            <div class="Card ">
-                <div class="CardBigTopic">Tributação Normal</div>
-                <div class="Separator"></div>
+            <div class="card card-w-title"><h1>Tributação Normal</h1>
                 <div class="ui-g">
                     <div class="ui-g-12 ui-md-6 ui-lg-6">
-                        <p:selectOneMenu value="#{digitacaoNFeFaces.produtoServico.csticms}" title="* Situação Tributária" autoWidth="false">
-                            <f:selectItem itemLabel="* Selecione a Situação Tributária" itemValue="" />
-                            <f:selectItems value="#{digitacaoNFeFaces.cstsRegimeNormal}" var="vCstIcmsNormal" itemLabel="#{vCstIcmsNormal.codigo} - #{vCstIcmsNormal.descricao}" itemValue="#{vCstIcmsNormal}" />
-                            <p:ajax event="change" update="@this pgProdutosServicosIcmsNormal" listener="#{digitacaoNFeFaces.limpaDadosIcms()}" />
-                        </p:selectOneMenu>
+                        <h:panelGroup styleClass="md-inputfield">
+                            <p:autoComplete value="#{digitacaoNFeFaces.produtoServico.csticms}" var="vCstIcmsNormal" itemValue="#{vCstIcmsNormal}" itemLabel="#{vCstIcmsNormal.codigo.concat(' - ').concat(vCstIcmsNormal.descricao)}" cache="true"
+                                            completeMethod="#{digitacaoNFeFaces.completeCstsRegimeNormal}" dropdown="true" >
+                                <p:ajax event="itemSelect" update="@this pgProdutosServicosIcmsNormal" listener="#{digitacaoNFeFaces.limpaDadosIcms()}" />
+                            </p:autoComplete>
+                            <label>* Situação Tributária</label>
+                        </h:panelGroup>
                     </div>
                     <div class="ui-g-12 ui-md-6 ui-lg-6">
-                        <p:selectOneMenu value="#{digitacaoNFeFaces.produtoServico.orig}" title="* Origem da Mercadoria" autoWidth="false">
-                            <f:selectItem itemLabel="* Selecione a Origem da Mercadoria" itemValue="" />
-                            <f:selectItems value="#{digitacaoNFeFaces.tiposDeOrigemMercadoria}" var="vOrigemNormal" itemLabel="#{vOrigemNormal.codigo} - #{vOrigemNormal.descricao}" itemValue="#{vOrigemNormal}"/>
-                        </p:selectOneMenu>
+                        <h:panelGroup styleClass="md-inputfield">
+                            <p:autoComplete value="#{digitacaoNFeFaces.produtoServico.orig}" var="vOrigemNormal" itemValue="#{vOrigemNormal}" itemLabel="#{vOrigemNormal.codigo.concat(' - ').concat(vOrigemNormal.descricao)}" cache="true"
+                                            completeMethod="#{digitacaoNFeFaces.completeNFeTipoOrigemMercadoria}" dropdown="true" >
+                            </p:autoComplete>
+                            <label>* Origem da Mercadoria</label>
+                        </h:panelGroup>
                     </div>
                 </div>
 
                 <h:panelGroup layout="block" rendered="#{digitacaoNFeFaces.pgNormalIcmsVisible}">
-                    <div class="EmptyBox5"></div>
-                    <div class="Card">
-                        <div class="CardBigTopic">ICMS</div>
-                        <div class="Separator"></div>
+                    <div class="card card-w-title"><h1>ICMS</h1>
                         <div class="ui-g">
                             <ui:fragment rendered="#{digitacaoNFeFaces.modBcVisible}">
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:selectOneMenu value="#{digitacaoNFeFaces.produtoServico.modbc}" title="* Modalidade de Determinação de BC ICMS" autoWidth="false">
-                                        <f:selectItem itemLabel="* Selecione a Modalidade de Determinação de BC ICMS" itemValue="" />
-                                        <f:selectItems value="#{digitacaoNFeFaces.tiposDeModalidadeBcIcms}" var="vModbc" itemLabel="#{vModbc.codigo} - #{vModbc.descricao}" itemValue="#{vModbc}" />
-                                    </p:selectOneMenu>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:autoComplete value="#{digitacaoNFeFaces.produtoServico.modbcicms}" var="vModbc" itemValue="#{vModbc}" itemLabel="#{vModbc.codigo.concat(' - ').concat(vModbc.descricao)}" cache="true"
+                                                        completeMethod="#{digitacaoNFeFaces.completeNFeTipoModalidadeBCICMS}" dropdown="true" >
+                                        </p:autoComplete>
+                                        <label>* Modalidade de Determinação de BC ICMS</label>
+                                    </h:panelGroup>
                                 </div>
                             </ui:fragment>
                             <ui:fragment rendered="#{digitacaoNFeFaces.predBcVisible}">
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.predbc}" placeholder="* % Redução BC ICMS" title="* % Redução BC ICMS" class="TexAlRight" style="background-color: #EAEAEA">
-                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                    </p:inputText>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:inputText value="#{digitacaoNFeFaces.produtoServico.predbcicms}" style="text-align: right; background-color: #EAEAEA">
+                                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                        </p:inputText>
+                                        <label>* % Redução BC ICMS</label>
+                                    </h:panelGroup>
                                 </div>
                             </ui:fragment>
                             <ui:fragment rendered="#{digitacaoNFeFaces.vbcIcmsVisible}">
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.vbcicms}" placeholder="* BC ICMS ¹" title="* BC ICMS ¹" class="TexAlRight" style="background-color: #EAEAEA">
-                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                    </p:inputText>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:inputText value="#{digitacaoNFeFaces.produtoServico.vbcicms}" style="text-align: right; background-color: #EAEAEA">
+                                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                        </p:inputText>
+                                        <label>* BC ICMS ¹</label>
+                                    </h:panelGroup>
                                 </div>
                             </ui:fragment>
                             <ui:fragment rendered="#{digitacaoNFeFaces.picmsVisible}">
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.picms}" placeholder="* Alíquota ICMS" title="* Alíquota ICMS" class="TexAlRight" style="background-color: #EAEAEA">
-                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                    </p:inputText>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:inputText value="#{digitacaoNFeFaces.produtoServico.picms}" style="text-align: right; background-color: #EAEAEA">
+                                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                        </p:inputText>
+                                        <label>* Alíquota ICMS</label>
+                                    </h:panelGroup>
                                 </div>
                             </ui:fragment>
                             <ui:fragment rendered="#{digitacaoNFeFaces.vicmsVisible}">
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.vicms}" placeholder="* ICMS" title="* ICMS" class="TexAlRight" style="background-color: #EAEAEA">
-                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                    </p:inputText>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:inputText value="#{digitacaoNFeFaces.produtoServico.vicms}" style="text-align: right; background-color: #EAEAEA">
+                                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                        </p:inputText>
+                                        <label>* ICMS</label>
+                                    </h:panelGroup>
                                 </div>
                             </ui:fragment>
                             <ui:fragment rendered="#{digitacaoNFeFaces.pbcOpVisible}">
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.pbcop}" placeholder="* % BC Operação Própria" title="* % BC Operação Própria" class="TexAlRight" style="background-color: #EAEAEA">
-                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                    </p:inputText>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:inputText value="#{digitacaoNFeFaces.produtoServico.pbcop}" style="text-align: right; background-color: #EAEAEA">
+                                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                        </p:inputText>
+                                        <label>* % BC Operação Própria</label>
+                                    </h:panelGroup>
                                 </div>
                             </ui:fragment>
                             <ui:fragment rendered="#{digitacaoNFeFaces.icmsDifVisible}">
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.vicmsop}" placeholder="ICMS da Operação" title="ICMS da Operação" class="TexAlRight" style="background-color: #EAEAEA">
-                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                    </p:inputText>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:inputText value="#{digitacaoNFeFaces.produtoServico.vicmsop}" style="text-align: right; background-color: #EAEAEA">
+                                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                        </p:inputText>
+                                        <label>ICMS da Operação</label>
+                                    </h:panelGroup>
                                 </div>
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.pdif}" placeholder="% do Diferimento" title="% do Diferimento" class="TexAlRight" style="background-color: #EAEAEA">
-                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                    </p:inputText>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:inputText value="#{digitacaoNFeFaces.produtoServico.pdif}" style="text-align: right; background-color: #EAEAEA">
+                                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                        </p:inputText>
+                                        <label>% do Diferimento</label>
+                                    </h:panelGroup>
                                 </div>
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.vicmsdif}" placeholder="Valor ICMS Diferido" title="Valor ICMS Diferido" class="TexAlRight" style="background-color: #EAEAEA">
-                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                    </p:inputText>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:inputText value="#{digitacaoNFeFaces.produtoServico.vicmsdif}" style="text-align: right; background-color: #EAEAEA">
+                                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                        </p:inputText>
+                                        <label>Valor ICMS Diferido</label>
+                                    </h:panelGroup>
                                 </div>
                             </ui:fragment>
+
                             <ui:fragment rendered="#{digitacaoNFeFaces.icmsDesonVisible}">
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.vicmsdeson}" placeholder="* Valor ICMS Desonerado" title="* Valor ICMS Desonerado" class="TexAlRight" style="background-color: #EAEAEA">
-                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                    </p:inputText>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:inputText value="#{digitacaoNFeFaces.produtoServico.vicmsdeson}" style="text-align: right; background-color: #EAEAEA">
+                                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                        </p:inputText>
+                                        <label>* Valor ICMS Desonerado</label>
+                                    </h:panelGroup>
                                 </div>
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:selectOneMenu value="#{digitacaoNFeFaces.produtoServico.motdesicms}" title="* Motivo Desoneração" autoWidth="false">
-                                        <f:selectItem itemLabel="* Selecione o Motivo Desoneração" itemValue="" />
-                                        <f:selectItems value="#{digitacaoNFeFaces.motivosDesoneracaoIcms}" var="vMotdesicms" itemLabel="#{vMotdesicms.codigo} - #{vMotdesicms.descricao}" itemValue="#{vMotdesicms}" />
-                                    </p:selectOneMenu>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:autoComplete value="#{digitacaoNFeFaces.produtoServico.motdesicms}" var="vMotdesicms" itemValue="#{vMotdesicms}" itemLabel="#{vMotdesicms.codigo.concat(' - ').concat(vMotdesicms.descricao)}" cache="true"
+                                                        completeMethod="#{digitacaoNFeFaces.completeNFeMotivosDesoneracaoIcms}" dropdown="true" />
+                                        <label>* Motivo Desoneração</label>
+                                    </h:panelGroup>
                                 </div>
                             </ui:fragment>
+
                             <ui:fragment rendered="#{digitacaoNFeFaces.normalMsgVisible}">
-                                <div class="ui-g-12 BorderLeft" align="left">
-                                    ¹ Atenção: A Base de Cálculo do produto deve ser informada contemplando todos os valores previstos
-                                    na legislação pertinente, ainda que algumas de suas parcelas tenham sido informadas em campos específicos
-                                    (frete, seguro, desconto, IPI, Outras Despesas Acessórias, etc).
+                                <div class="ui-g" align="left">
+                                    <div class="ui-g-12" align="left">
+                                        ¹ Atenção: A Base de Cálculo do produto deve ser informada contemplando todos os valores previstos
+                                        na legislação pertinente, ainda que algumas de suas parcelas tenham sido informadas em campos específicos
+                                        (frete, seguro, desconto, IPI, Outras Despesas Acessórias, etc).
+                                    </div>
                                 </div>
                             </ui:fragment>
                         </div>
@@ -285,109 +340,136 @@
                 </h:panelGroup>
 
                 <h:panelGroup layout="block" rendered="#{digitacaoNFeFaces.pgNormalIcmsStVisible}">
-                    <div class="EmptyBox5"></div>
-                    <div class="Card ">
-                        <div class="CardBigTopic">ICMS ST</div>
-                        <div class="Separator"></div>
+                    <div class="card card-w-title"><h1>ICMS ST</h1>
                         <div class="ui-g">
                             <ui:fragment rendered="#{digitacaoNFeFaces.modBcStVisible}">
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:selectOneMenu value="#{digitacaoNFeFaces.produtoServico.modbcst}" title="* Modalidade de Determinação de BC ICMS ST" autoWidth="false">
-                                        <f:selectItem itemLabel="* Selecione a Modalidade de Determinação de BC ICMS ST" itemValue="" />
-                                        <f:selectItems value="#{digitacaoNFeFaces.tiposDeModalidadeBcIcmsSt}" var="vModbcSt" itemLabel="#{vModbcSt.codigo} - #{vModbcSt.descricao}" itemValue="#{vModbcSt}" />
-                                    </p:selectOneMenu>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:autoComplete value="#{digitacaoNFeFaces.produtoServico.modbcicmsst}" var="vModbcSt" itemValue="#{vModbcSt}" itemLabel="#{vModbcSt.codigo.concat(' - ').concat(vModbcSt.descricao)}" cache="true"
+                                                        completeMethod="#{digitacaoNFeFaces.completeNFeTipoModalidadeBCICMSST}" dropdown="true" />
+                                        <label>* Modalidade de Determinação de BC ICMS ST</label>
+                                    </h:panelGroup>
                                 </div>
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.predbcst}" placeholder="* % Redução BC ICMS ST" title="* % Redução BC ICMS ST" class="TexAlRight" style="background-color: #EAEAEA">
-                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                    </p:inputText>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:inputText value="#{digitacaoNFeFaces.produtoServico.predbcicmsst}" style="text-align: right; background-color: #EAEAEA">
+                                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                        </p:inputText>
+                                        <label>* % Redução BC ICMS ST</label>
+                                    </h:panelGroup>
                                 </div>
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.pmvast}" placeholder="* % MVA ICMS ST" title="* % MVA ICMS ST" class="TexAlRight" style="background-color: #EAEAEA">
-                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                    </p:inputText>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:inputText value="#{digitacaoNFeFaces.produtoServico.pmvast}" style="text-align: right; background-color: #EAEAEA">
+                                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                        </p:inputText>
+                                        <label>* % MVA ICMS ST</label>
+                                    </h:panelGroup>
                                 </div>
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.vbcicmsst}" placeholder="* BC ICMS ST" title="* BC ICMS ST" class="TexAlRight" style="background-color: #EAEAEA">
-                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                    </p:inputText>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:inputText value="#{digitacaoNFeFaces.produtoServico.vbcicmsst}" style="text-align: right; background-color: #EAEAEA">
+                                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                        </p:inputText>
+                                        <label>* BC ICMS ST</label>
+                                    </h:panelGroup>
                                 </div>
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.picmsst}" placeholder="* Alíquota ICMS ST" title="* Alíquota ICMS ST" class="TexAlRight" style="background-color: #EAEAEA">
-                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                    </p:inputText>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:inputText value="#{digitacaoNFeFaces.produtoServico.picmsst}" style="text-align: right; background-color: #EAEAEA">
+                                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                        </p:inputText>
+                                        <label>* Alíquota ICMS ST</label>
+                                    </h:panelGroup>
                                 </div>
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.vicmsst}" placeholder="* ICMS ST" title="* ICMS ST" class="TexAlRight" style="background-color: #EAEAEA">
-                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                    </p:inputText>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:inputText value="#{digitacaoNFeFaces.produtoServico.vicmsst}" style="text-align: right; background-color: #EAEAEA">
+                                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                        </p:inputText>
+                                        <label>* ICMS ST</label>
+                                    </h:panelGroup>
                                 </div>
                             </ui:fragment>
+
                             <ui:fragment rendered="#{digitacaoNFeFaces.icmsStDevidoUfDestinoVisible}">
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.vbcicmsstdest}" placeholder="* BC ICMS ST da UF Destino" title="* BC ICMS ST da UF Destino" class="TexAlRight" style="background-color: #EAEAEA">
-                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                    </p:inputText>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:inputText value="#{digitacaoNFeFaces.produtoServico.vbcicmsstdest}" style="text-align: right; background-color: #EAEAEA">
+                                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                        </p:inputText>
+                                        <label>* BC ICMS ST da UF Destino</label>
+                                    </h:panelGroup>
                                 </div>
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.vicmsstdest}" placeholder="* ICMS ST da UF Destino" title="* ICMS ST da UF Destino" class="TexAlRight" style="background-color: #EAEAEA">
-                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                    </p:inputText>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:inputText value="#{digitacaoNFeFaces.produtoServico.vicmsstdest}" style="text-align: right; background-color: #EAEAEA">
+                                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                        </p:inputText>
+                                        <label>* ICMS ST da UF Destino</label>
+                                    </h:panelGroup>
                                 </div>
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.vbcicmsstret}" placeholder="* BC ICMS ST Retido na UF Remetente" title="* BC ICMS ST Retido na UF Remetente" class="TexAlRight" style="background-color: #EAEAEA">
-                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                    </p:inputText>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:inputText value="#{digitacaoNFeFaces.produtoServico.vbcicmsstret}" style="text-align: right; background-color: #EAEAEA">
+                                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                        </p:inputText>
+                                        <label>* BC ICMS ST Retido na UF Remetente</label>
+                                    </h:panelGroup>
                                 </div>
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.vicmsstret}" placeholder="* ICMS ST Retido na UF Remetente" title="* ICMS ST Retido na UF Remetente" class="TexAlRight" style="background-color: #EAEAEA">
-                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                    </p:inputText>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:inputText value="#{digitacaoNFeFaces.produtoServico.vicmsstret}" style="text-align: right; background-color: #EAEAEA">
+                                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                        </p:inputText>
+                                        <label>* ICMS ST Retido na UF Remetente</label>
+                                    </h:panelGroup>
                                 </div>
                             </ui:fragment>
+
                             <ui:fragment rendered="#{digitacaoNFeFaces.normalIcmsStRetVisible}">
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.vbcicmsstret}" placeholder="* BC ICMS ST Retido Anteriormente" title="* BC ICMS ST Retido Anteriormente" class="TexAlRight" style="background-color: #EAEAEA">
-                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                    </p:inputText>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:inputText value="#{digitacaoNFeFaces.produtoServico.vbcicmsstret}" style="text-align: right; background-color: #EAEAEA">
+                                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                        </p:inputText>
+                                        <label>* BC ICMS ST Retido Anteriormente</label>
+                                    </h:panelGroup>
                                 </div>
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.vicmsstret}" placeholder="* ICMS ST Retido Anteriormente" title="* ICMS ST Retido Anteriormente" class="TexAlRight" style="background-color: #EAEAEA">
-                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                    </p:inputText>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:inputText value="#{digitacaoNFeFaces.produtoServico.vicmsstret}" style="text-align: right; background-color: #EAEAEA">
+                                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                        </p:inputText>
+                                        <label>* ICMS ST Retido Anteriormente</label>
+                                    </h:panelGroup>
                                 </div>
                             </ui:fragment>
+
                             <ui:fragment rendered="#{digitacaoNFeFaces.icmsStDesonVisible}">
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:inputText value="#{digitacaoNFeFaces.produtoServico.vicmsdeson}" placeholder="* Valor ICMS Desonerado" title="* Valor ICMS Desonerado" class="TexAlRight" style="background-color: #EAEAEA">
-                                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                    </p:inputText>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:inputText value="#{digitacaoNFeFaces.produtoServico.vicmsdeson}" style="text-align: right; background-color: #EAEAEA">
+                                            <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                        </p:inputText>
+                                        <label>* Valor ICMS Desonerado</label>
+                                    </h:panelGroup>
                                 </div>
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:selectOneMenu value="#{digitacaoNFeFaces.produtoServico.motdesicms}" title="* Motivo Desoneração" autoWidth="false">
-                                        <f:selectItem itemLabel="* Selecione o Motivo Desoneração" itemValue="" />
-                                        <f:selectItems value="#{digitacaoNFeFaces.motivosDesoneracaoIcms}" var="vMotdesicmsst" itemLabel="#{vMotdesicmsst.codigo} - #{vMotdesicmsst.descricao}" itemValue="#{vMotdesicmsst}" />
-                                    </p:selectOneMenu>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:autoComplete value="#{digitacaoNFeFaces.produtoServico.motdesicms}" var="vMotdesicmsst" itemValue="#{vMotdesicmsst}" itemLabel="#{vMotdesicmsst.codigo.concat(' - ').concat(vMotdesicmsst.descricao)}" cache="true"
+                                                        completeMethod="#{digitacaoNFeFaces.completeNFeMotivosDesoneracaoIcms}" dropdown="true" />
+                                        <label>* Motivo Desoneração</label>
+                                    </h:panelGroup>
                                 </div>
                             </ui:fragment>
+
                             <ui:fragment rendered="#{digitacaoNFeFaces.ufStVisible}">
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                    <p:selectOneMenu value="#{digitacaoNFeFaces.produtoServico.ufst}" title="UF do ICMS ST Devido" autoWidth="false">
-                                        <f:selectItem itemLabel="* Selecione a UF do ICMS ST Devido" itemValue="" />
-                                        <f:selectItem itemLabel="Select One" itemValue="" />
-                                    </p:selectOneMenu>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:autoComplete value="#{digitacaoNFeFaces.produtoServico.ufst}" var="vUfst" itemValue="#{vUfst}" cache="true" dropdown="true" />
+                                        <label>UF do ICMS ST Devido</label>
+                                    </h:panelGroup>
                                 </div>
                             </ui:fragment>
                         </div>

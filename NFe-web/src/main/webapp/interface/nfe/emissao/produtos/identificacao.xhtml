@@ -14,10 +14,9 @@
                 <h:panelGroup styleClass="md-inputfield">
                     <p:autoComplete id="cprod" completeMethod="#{digitacaoNFeFaces.completeProduto}" 
                                     value="#{digitacaoNFeFaces.produto}" var="acProduto" itemValue="#{acProduto}" itemLabel="#{acProduto.cprod}" 
-                                    maxlength="60" minQueryLength="4" emptyMessage="Nenhum produto encontrado." style="color: #00aaff"
-                                    converter="#{gpoConverter}">
-                        <p:column width="30%" headerText="Código" style="height: 4em">#{acProduto.cprod}</p:column>
-                        <p:column width="60%" headerText="Descrição" style="height: 4em">#{acProduto.xprod}</p:column>
+                                    maxlength="60" minQueryLength="4" emptyMessage="Nenhum produto encontrado." style="color: #00aaff" converter="entityConverter">
+                        <p:column width="30%" headerText="Código" style="height: 4em">#{acProduto.cprod.length() gt 15 ? acProduto.cprod.substring(0, 12).concat('...') : acProduto.cprod}</p:column>
+                        <p:column width="60%" headerText="Descrição" style="height: 4em">#{acProduto.xprod.length() gt 30 ? acProduto.xprod.substring(0, 27).concat('...') : acProduto.xprod}</p:column>
                         <p:column width="10%" headerText="UN" style="height: 4em; text-align: center">#{acProduto.ucom.toUpperCase()}</p:column>
                         <p:ajax event="itemSelect" listener="#{digitacaoNFeFaces.onProdutoSelect}" update="pgNFeProdutoServicoIdentificacao"/>
                     </p:autoComplete>
@@ -191,14 +190,14 @@
         <div class="ui-g">
             <div class="ui-g-12 ui-md-6 ui-lg-3">
                 <h:panelGroup styleClass="md-inputfield" >
-                    <p:inputText id="xped" value="#{digitacaoNFeFaces.produtoServico.xped}" />
+                    <p:inputText id="xped" value="#{digitacaoNFeFaces.produtoServico.xped}" maxlength="15"/>
                     <label>Pedido de Compra</label>
                     <p:message for="xped" escape="true"/>
                 </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
                 <h:panelGroup styleClass="md-inputfield" >
-                    <p:inputText id="nitemped" value="#{digitacaoNFeFaces.produtoServico.nitemped}" />
+                    <p:inputText id="nitemped" value="#{digitacaoNFeFaces.produtoServico.nitemped}" maxlength="6"/>
                     <label>Nº Item do Pedido de Compra</label>
                     <p:message for="nitemped" escape="true"/>
                 </h:panelGroup>
@@ -214,7 +213,7 @@
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
                 <h:panelGroup styleClass="md-inputfield" >
-                    <p:inputText id="nfci" value="#{digitacaoNFeFaces.produtoServico.nfci}" />
+                    <p:inputText id="nfci" value="#{digitacaoNFeFaces.produtoServico.nfci}" maxlength="36"/>
                     <label>Nº de Controle da FCI</label>
                     <p:message for="nfci" escape="true"/>
                 </h:panelGroup>
