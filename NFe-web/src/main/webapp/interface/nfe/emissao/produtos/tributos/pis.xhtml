@@ -7,21 +7,23 @@
 
     <p:spacer width="10px"/>
     <h:panelGroup id="pgNFeProdutoServicoTributosPis" layout="block">
-        <div class="ui-g NoPadding">
-            <div class="ui-g-12 ui-md-6 ui-lg-4 Padding3">
-                <p:selectOneMenu title="Situação Tributária" autoWidth="false">
-                    <f:selectItem itemLabel="Selecione a Situação Tributária" itemValue="" />
-                    <f:selectItems value="#{digitacaoNFeFaces.cstsPis}" var="vCstPis" itemLabel="#{vCstPis.codigo} - #{vCstPis.descricao}" itemValue="#{vCstPis}"/>
-                </p:selectOneMenu>
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:autoComplete value="#{digitacaoNFeFaces.produtoServico.cstpis}" var="vCstPis" itemValue="#{vCstPis}" itemLabel="#{vCstPis.codigo.concat(' - ').concat(vCstPis.descricao)}" 
+                                    completeMethod="#{digitacaoNFeFaces.completeNFeTipoSituacaoTributariaPIS}" dropdown="true" cache="true"
+                                    scrollHeight="250">
+                        <p:ajax event="itemSelect" process="@this" update="pgNFeProdutoServicoTributosPisPis @this" />
+                    </p:autoComplete>
+                    <label>Situação Tributária</label>
+                </h:panelGroup>
             </div>
         </div>
 
-        <div class="ui-g">
-            <div class="ui-g-12 ui-md-12 ui-lg-6 Padding3">
-                <div class="Card">
-                    <h:panelGroup id="pgNFeProdutoServicoTributosPisPis" layout="block">
-                        <div class="CardBigTopic">PIS</div>
-                        <div class="Separator"></div>
+        <div class="ui-g-12 ui-md-12 ui-lg-6">
+            <h:panelGroup id="pgNFeProdutoServicoTributosPisPis" layout="block">
+                <div class="ui-g">
+                    <div class="card card-w-title"><h1>PIS</h1>
                         <div class="ui-g-12 ui-md-6 ui-lg-6">
                             <p:selectOneMenu value="#{digitacaoNFeFaces.tipoCalculoPis}" title="Tipo de Cálculo" autoWidth="false">
                                 <f:selectItem itemLabel="Selecione o Tipo de Cálculo" itemValue="" />
@@ -58,15 +60,15 @@
                             </p:inputText>
                             <p:message for="vpis" escape="true"/>
                         </div>
-                    </h:panelGroup>
+                    </div>
                 </div>
-            </div>
+            </h:panelGroup>
+        </div>
 
-            <div class="ui-g-12 ui-md-12 ui-lg-6 Padding3">
-                <div class="Card">
-                    <h:panelGroup id="pgNFeProdutoServicoTributosPisPistSt" layout="block">
-                        <div class="CardBigTopic">PIS ST</div>
-                        <div class="Separator"></div>
+        <div class="ui-g-12 ui-md-12 ui-lg-6">
+            <h:panelGroup id="pgNFeProdutoServicoTributosPisPistSt" layout="block">
+                <div class="ui-g">
+                    <div class="card card-w-title"><h1>PIS ST</h1>
                         <div class="ui-g-12 ui-md-6 ui-lg-6">
                             <p:selectOneMenu value="#{digitacaoNFeFaces.tipoCalculoPisSt}" title="Tipo de Cálculo" autoWidth="false">
                                 <f:selectItem itemLabel="Selecione o Tipo de Cálculo" itemValue="" />
@@ -103,9 +105,9 @@
                             </p:inputText>
                             <p:message for="vpisst" escape="true"/>
                         </div>
-                    </h:panelGroup>
+                    </div>
                 </div>
-            </div>
+            </h:panelGroup>
         </div>
     </h:panelGroup>
 </ui:composition>

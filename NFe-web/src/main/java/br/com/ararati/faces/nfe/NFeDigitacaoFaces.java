@@ -882,9 +882,15 @@ public class NFeDigitacaoFaces implements Serializable {
         return NFeTipoSituacaoTributariaIPI.valuesAsList();
     }
 
-    public List<NFeTipoSituacaoTributariaPIS> getCstsPis() {
-        return NFeTipoSituacaoTributariaPIS.valuesAsList();
+    public List<NFeTipoSituacaoTributariaPIS> completeNFeTipoSituacaoTributariaPIS(String query) {
+        return NFeTipoSituacaoTributariaPIS.valuesAsList().stream()
+                .filter(v -> StringUtils.containsIgnoreCase(v.getDescricao(), query))
+                .collect(Collectors.toList());
     }
+    
+//    public List<NFeTipoSituacaoTributariaPIS> getCstsPis() {
+//        return NFeTipoSituacaoTributariaPIS.valuesAsList();
+//    }
 
     public List<NFeTipoSituacaoTributariaCOFINS> getCstsCofins() {
         return NFeTipoSituacaoTributariaCOFINS.valuesAsList();
