@@ -1,19 +1,24 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://java.sun.com/jsf/core">
 
+    <p:spacer width="10px"/>
     <h:panelGroup id="pgNFeProdutoServicoInformacoesadicionais" layout="block">
         <div class="ui-g">
-            <p:inputTextarea id="infadprod" value="#{digitacaoNFeFaces.produtoServico.infadprod}" counter="display1" maxlength="255" 
-                             counterTemplate="{0} caracteres restantes." rows="4"
-                             validatorMessage="Mínimo de 15 caracteres" placeholder="Informações Adicionais" title="Informações Adicionais">
-                <f:validateLength minimum="15" />
-            </p:inputTextarea>
-            <h:outputText id="display1" />
-            <p:message for="infadprod" escape="true"/>
+            <div class="ui-g-12">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputTextarea id="infadprod" value="#{digitacaoNFeFaces.produtoServico.infadprod}" counter="display1" maxlength="255" 
+                                     counterTemplate="{0} caracteres restantes." validatorMessage="Mínimo de 15 caracteres" >
+                        <f:validateLength minimum="15" />
+                    </p:inputTextarea>
+                    <label>Informações Adicionais - <h:outputText id="display1" /></label>
+                    <p:message for="infadprod" escape="true"/>
+                </h:panelGroup>
+            </div>
         </div>
     </h:panelGroup>
 </ui:composition>

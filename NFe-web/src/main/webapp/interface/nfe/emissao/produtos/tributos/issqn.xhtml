@@ -1,49 +1,65 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://java.sun.com/jsf/core">
 
+    <p:spacer width="10px"/>
     <h:panelGroup id="pgNFeProdutoServicoTributosIssqn" layout="block">
         <div class="ui-g">
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="vbcissqn" value="#{digitacaoNFeFaces.produtoServico.vbcissqn}" placeholder="* Valor da Base de Cálculo" title="* Valor da Base de Cálculo">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="vbcissqn" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vbcissqn" value="#{digitacaoNFeFaces.produtoServico.vbcissqn}" style="text-align: right">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>* Valor da Base de Cálculo</label>
+                    <p:message for="vbcissqn" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="valiqissqn" value="#{digitacaoNFeFaces.produtoServico.valiqissqn}" placeholder="* Alíquota" title="* Alíquota">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="valiqissqn" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="valiqissqn" value="#{digitacaoNFeFaces.produtoServico.valiqissqn}" style="text-align: right">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>* Alíquota</label>
+                    <p:message for="valiqissqn" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:selectOneMenu id="clistserv" value="#{digitacaoNFeFaces.produtoServico.clistserv}" title="* Tipo de Serviço" autoWidth="false">
-                    <f:selectItem itemLabel="* Selecione o Tipo de Serviço" itemValue="" />
-                    <f:selectItems value="#{digitacaoNFeFaces.tiposDeServicoIssqn}" var="vClistserv" itemLabel="#{vClistserv.codigo} - #{vClistserv.descricao}" itemValue="#{vClistserv}" />
-                </p:selectOneMenu>
-                <p:message for="clistserv" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:autoComplete id="clistserv" value="#{digitacaoNFeFaces.produtoServico.clistserv}" var="vClistserv" itemValue="#{vClistserv}" itemLabel="#{vClistserv.codigo.concat(' - ').concat(vClistserv.descricao)}"  
+                                    completeMethod="#{digitacaoNFeFaces.completeNFeTipoServico}" dropdown="true" cache="true" scrollHeight="250">
+                    </p:autoComplete>
+                    <label>* Tipo de Serviço</label>
+                    <p:message for="clistserv" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="cmunfg" value="#{digitacaoNFeFaces.produtoServico.cmunfg}" placeholder="* Município de Ocorrência" title="* Município de Ocorrência">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="cmunfg" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="cmunfg" value="#{digitacaoNFeFaces.produtoServico.cmunfg}" />
+                    <label>* Município de Ocorrência</label>
+                    <p:message for="cmunfg" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="vissqn" value="#{digitacaoNFeFaces.produtoServico.vissqn}" placeholder="* Valor do ISSQN" title="* Valor do ISSQN">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="vissqn" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vissqn" value="#{digitacaoNFeFaces.produtoServico.vissqn}" style="text-align: right">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>* Valor do ISSQN</label>
+                    <p:message for="vissqn" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:selectOneMenu id="indiss" value="#{digitacaoNFeFaces.produtoServico.indiss}" title="* Exigibiliadade do ISSQN" autoWidth="false">
-                    <f:selectItem itemLabel="* Selecione a Exigibiliadade do ISSQN" itemValue="" />
-                    <f:selectItems value="#{digitacaoNFeFaces.tiposDeExigibilidadeIss}" var="vIndiss" itemLabel="#{vIndiss.codigo} - #{vIndiss.descricao}" itemValue="#{vIndiss}" />
-                </p:selectOneMenu>
-                <p:message for="indiss" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:autoComplete id="indiss" value="#{digitacaoNFeFaces.produtoServico.indiss}" var="vIndiss" itemValue="#{vIndiss}" itemLabel="#{vIndiss.codigo.concat(' - ').concat(vIndiss.descricao)}"  
+                                    completeMethod="#{digitacaoNFeFaces.completeNFeTipoExigibilidadeISS}" dropdown="true" cache="true" scrollHeight="250">
+                    </p:autoComplete>
+                    <label>* Exigibiliadade do ISSQN</label>
+                    <p:message for="indiss" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
                 <p:selectOneMenu id="indincentivo" value="#{digitacaoNFeFaces.produtoServico.indincentivo}" title="* Existe Incentivo Fiscal?" autoWidth="false">
@@ -54,58 +70,77 @@
                 <p:message for="indincentivo" escape="true"/>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="vdeducao" value="#{digitacaoNFeFaces.produtoServico.vdeducao}" placeholder="Valor das Deduções" title="Valor das Deduções">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="vdeducao" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vdeducao" value="#{digitacaoNFeFaces.produtoServico.vdeducao}" style="text-align: right">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Valor das Deduções</label>
+                    <p:message for="vdeducao" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="voutroissqn" value="#{digitacaoNFeFaces.produtoServico.voutroissqn}" placeholder="Valor Outras Retenções" title="Valor Outras Retenções">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="voutroissqn" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="voutroissqn" value="#{digitacaoNFeFaces.produtoServico.voutroissqn}" style="text-align: right">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Valor Outras Retenções</label>
+                    <p:message for="voutroissqn" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="vdescincond" value="#{digitacaoNFeFaces.produtoServico.vdescincond}" placeholder="Valor Desconto Incondicionado" title="Valor Desconto Incondicionado">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="vdescincond" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vdescincond" value="#{digitacaoNFeFaces.produtoServico.vdescincond}" style="text-align: right">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Valor Desconto Incondicionado</label>
+                    <p:message for="vdescincond" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="vdesccond" value="#{digitacaoNFeFaces.produtoServico.vdesccond}" placeholder="Valor Desconto Condicionado" title="Valor Desconto Condicionado">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="vdesccond" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vdesccond" value="#{digitacaoNFeFaces.produtoServico.vdesccond}" style="text-align: right">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Valor Desconto Condicionado</label>
+                    <p:message for="vdesccond" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="vissret" value="#{digitacaoNFeFaces.produtoServico.vissret}" placeholder="Valor Retenção ISS" title="Valor Retenção ISS">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="vissret" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vissret" value="#{digitacaoNFeFaces.produtoServico.vissret}" style="text-align: right">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Valor Retenção ISS</label>
+                    <p:message for="vissret" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="cservico" value="#{digitacaoNFeFaces.produtoServico.cservico}" placeholder="Código do Serviço" title="Código do Serviço" maxlength="20">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="cservico" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="cservico" value="#{digitacaoNFeFaces.produtoServico.cservico}" maxlength="20"/>
+                    <label>Código do Serviço</label>
+                    <p:message for="cservico" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="cmun" value="#{digitacaoNFeFaces.produtoServico.cmun}" placeholder="Município de Incidência" title="Município de Incidência" maxlength="20">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="cmun" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="cmun" value="#{digitacaoNFeFaces.produtoServico.cmun}" maxlength="7"/>
+                    <label>Município de Incidência</label>
+                    <p:message for="cmun" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="cpais" value="#{digitacaoNFeFaces.produtoServico.cpais}" placeholder="País de Incidência" title="País de Incidência" maxlength="20">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="cpais" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="cpais" value="#{digitacaoNFeFaces.produtoServico.cpais}" maxlength="4"/>
+                    <label>País de Incidência</label>
+                    <p:message for="cpais" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="nprocesso" value="#{digitacaoNFeFaces.produtoServico.nprocesso}" placeholder="Processo Judicial / Administrativo" title="Processo Judicial / Administrativo">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="nprocesso" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="nprocesso" value="#{digitacaoNFeFaces.produtoServico.nprocesso}" maxlength="30"/>
+                    <label>Processo Judicial / Administrativo</label>
+                    <p:message for="nprocesso" escape="true"/>
+                </h:panelGroup>
             </div>
         </div>
     </h:panelGroup>

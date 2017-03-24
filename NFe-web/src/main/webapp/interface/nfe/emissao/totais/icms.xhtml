@@ -7,116 +7,169 @@
 
     <p:spacer width="10px"/>
     <h:panelGroup id="pgNFeTotalIcms">
-        <p:panelGrid columns="3" columnClasses="ui-grid-col-4, ui-grid-col-4, ui-grid-col-4" layout="grid" styleClass="ui-panelgrid-blank form-group" style="border:0px none; background-color:transparent;">
-            <h:panelGroup styleClass="md-inputfield">
-                <p:inputText value="#{digitacaoNFeFaces.total.totalNFeIcms.vbc}" readonly="true" style="background-color: #EAEAEA">
-                    <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                </p:inputText>
-                <label>Base de Cálculo</label>
-            </h:panelGroup>
-            <h:panelGroup styleClass="md-inputfield">
-                <p:inputText value="#{digitacaoNFeFaces.total.totalNFeIcms.vicms}" readonly="true" style="background-color: #EAEAEA">
-                    <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                </p:inputText>
-                <label>Total do ICMS</label>
-            </h:panelGroup>
-            <h:panelGroup styleClass="md-inputfield">
-                <p:inputText value="#{digitacaoNFeFaces.total.totalNFeIcms.vbcst}" readonly="true" style="background-color: #EAEAEA">
-                    <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                </p:inputText>
-                <label>Base de Cálculo do ICMS ST</label>
-            </h:panelGroup>
-            <h:panelGroup styleClass="md-inputfield">
-                <p:inputText value="#{digitacaoNFeFaces.total.totalNFeIcms.vst}" readonly="true" style="background-color: #EAEAEA">
-                    <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                </p:inputText>
-                <label>Total do ICMS ST</label>
-            </h:panelGroup>
-            <h:panelGroup styleClass="md-inputfield">
-                <p:inputText value="#{digitacaoNFeFaces.total.totalNFeIcms.vprod}" readonly="true" style="background-color: #EAEAEA">
-                    <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                </p:inputText>
-                <label>Total dos Produtos/Serviços</label>
-            </h:panelGroup>
-            <h:panelGroup styleClass="md-inputfield">
-                <p:inputText value="#{digitacaoNFeFaces.total.totalNFeIcms.vfrete}" readonly="true" style="background-color: #EAEAEA">
-                    <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                </p:inputText>
-                <label>Total do Frete</label>
-            </h:panelGroup>
-            <h:panelGroup styleClass="md-inputfield">
-                <p:inputText value="#{digitacaoNFeFaces.total.totalNFeIcms.vicmsufremet}" readonly="true" style="background-color: #EAEAEA">
-                    <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                </p:inputText>
-                <label>Total do ICMS Partilha Remetente</label>
-            </h:panelGroup>
-            <h:panelGroup styleClass="md-inputfield">
-                <p:inputText value="#{digitacaoNFeFaces.total.totalNFeIcms.vicmsufdest}" readonly="true" style="background-color: #EAEAEA">
-                    <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                </p:inputText>
-                <label>Total do ICMS Partilha Destinatário</label>
-            </h:panelGroup>
-            <h:panelGroup styleClass="md-inputfield">
-                <p:inputText value="#{digitacaoNFeFaces.total.totalNFeIcms.vii}" readonly="true" style="background-color: #EAEAEA">
-                    <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                </p:inputText>
-                <label>Total do II</label>
-            </h:panelGroup>
-            <h:panelGroup styleClass="md-inputfield">
-                <p:inputText value="#{digitacaoNFeFaces.total.totalNFeIcms.vipi}" readonly="true" style="background-color: #EAEAEA">
-                    <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                </p:inputText>
-                <label>Total do IPI</label>
-            </h:panelGroup>
-            <h:panelGroup styleClass="md-inputfield">
-                <p:inputText value="#{digitacaoNFeFaces.total.totalNFeIcms.vpis}" readonly="true" style="background-color: #EAEAEA">
-                    <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                </p:inputText>
-                <label>Total do PIS</label>
-            </h:panelGroup>
-            <h:panelGroup styleClass="md-inputfield">
-                <p:inputText value="#{digitacaoNFeFaces.total.totalNFeIcms.vcofins}" readonly="true" style="background-color: #EAEAEA">
-                    <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                </p:inputText>
-                <label>Total do COFINS</label>
-            </h:panelGroup>
-            <h:panelGroup styleClass="md-inputfield">
-                <p:inputText value="#{digitacaoNFeFaces.total.totalNFeIcms.vseg}" readonly="true" style="background-color: #EAEAEA">
-                    <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                </p:inputText>
-                <label>Total do Seguro</label>
-            </h:panelGroup>
-            <h:panelGroup styleClass="md-inputfield">
-                <p:inputText value="#{digitacaoNFeFaces.total.totalNFeIcms.vdesc}" readonly="true" style="background-color: #EAEAEA">
-                    <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                </p:inputText>
-                <label>Total do Desconto</label>
-            </h:panelGroup>
-            <h:panelGroup styleClass="md-inputfield">
-                <p:inputText value="#{digitacaoNFeFaces.total.totalNFeIcms.voutro}" readonly="true" style="background-color: #EAEAEA">
-                    <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                </p:inputText>
-                <label>Outras Despesas Acessórias</label>
-            </h:panelGroup>
-            <h:panelGroup styleClass="md-inputfield">
-                <p:inputText value="#{digitacaoNFeFaces.total.totalNFeIcms.vicmsdeson}" readonly="true" style="background-color: #EAEAEA">
-                    <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                </p:inputText>
-                <label>Total do ICMS Desonarado</label>
-            </h:panelGroup>
-            <h:panelGroup styleClass="md-inputfield">
-                <p:inputText value="#{digitacaoNFeFaces.total.totalNFeIcms.vfcpufdest}" readonly="true" style="background-color: #EAEAEA">
-                    <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                </p:inputText>
-                <label>Total do ICMS FCP UF destino</label>
-            </h:panelGroup>
-            <h:panelGroup styleClass="md-inputfield">
-                <p:inputText value="#{digitacaoNFeFaces.total.totalNFeIcms.vnf}" readonly="true" style="background-color: #EAEAEA">
-                    <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
-                </p:inputText>
-                <label>Total da NF-e</label>
-            </h:panelGroup>
-        </p:panelGrid>
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vbctotal" value="#{digitacaoNFeFaces.total.totalNFeIcms.vbc}" readonly="true" style="background-color: #EAEAEA">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Base de Cálculo</label>
+                    <p:message for="vbctotal" escape="true"/>
+                </h:panelGroup>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vicmstotal" value="#{digitacaoNFeFaces.total.totalNFeIcms.vicms}" readonly="true" style="background-color: #EAEAEA">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Total do ICMS</label>
+                    <p:message for="vicmstotal" escape="true"/>
+                </h:panelGroup>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vbcsttotal" value="#{digitacaoNFeFaces.total.totalNFeIcms.vbcst}" readonly="true" style="background-color: #EAEAEA">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Base de Cálculo do ICMS ST</label>
+                    <p:message for="vbcsttotal" escape="true"/>
+                </h:panelGroup>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vsttotal" value="#{digitacaoNFeFaces.total.totalNFeIcms.vst}" readonly="true" style="background-color: #EAEAEA">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Total do ICMS ST</label>
+                    <p:message for="vsttotal" escape="true"/>
+                </h:panelGroup>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vprodtotal" value="#{digitacaoNFeFaces.total.totalNFeIcms.vprod}" readonly="true" style="background-color: #EAEAEA">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Total dos Produtos/Serviços</label>
+                    <p:message for="vprodtotal" escape="true"/>
+                </h:panelGroup>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vfretetotal" value="#{digitacaoNFeFaces.total.totalNFeIcms.vfrete}" readonly="true" style="background-color: #EAEAEA">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Total do Frete</label>
+                    <p:message for="vfretetotal" escape="true"/>
+                </h:panelGroup>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vicmsufremettotal" value="#{digitacaoNFeFaces.total.totalNFeIcms.vicmsufremet}" readonly="true" style="background-color: #EAEAEA">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Total do ICMS Partilha Remetente</label>
+                    <p:message for="vicmsufremettotal" escape="true"/>
+                </h:panelGroup>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vicmsufdesttotal" value="#{digitacaoNFeFaces.total.totalNFeIcms.vicmsufdest}" readonly="true" style="background-color: #EAEAEA">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Total do ICMS Partilha Destinatário</label>
+                    <p:message for="vicmsufdesttotal" escape="true"/>
+                </h:panelGroup>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="viitotal" value="#{digitacaoNFeFaces.total.totalNFeIcms.vii}" readonly="true" style="background-color: #EAEAEA">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Total do II</label>
+                    <p:message for="viitotal" escape="true"/>
+                </h:panelGroup>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vipitotal" value="#{digitacaoNFeFaces.total.totalNFeIcms.vipi}" readonly="true" style="background-color: #EAEAEA">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Total do IPI</label>
+                    <p:message for="vipitotal" escape="true"/>
+                </h:panelGroup>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vpistotal" value="#{digitacaoNFeFaces.total.totalNFeIcms.vpis}" readonly="true" style="background-color: #EAEAEA">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Total do PIS</label>
+                    <p:message for="vpistotal" escape="true"/>
+                </h:panelGroup>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vcofinstotal" value="#{digitacaoNFeFaces.total.totalNFeIcms.vcofins}" readonly="true" style="background-color: #EAEAEA">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Total do COFINS</label>
+                    <p:message for="vcofinstotal" escape="true"/>
+                </h:panelGroup>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vsegtotal" value="#{digitacaoNFeFaces.total.totalNFeIcms.vseg}" readonly="true" style="background-color: #EAEAEA">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Total do Seguro</label>
+                    <p:message for="vsegtotal" escape="true"/>
+                </h:panelGroup>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vdesctotal" value="#{digitacaoNFeFaces.total.totalNFeIcms.vdesc}" readonly="true" style="background-color: #EAEAEA">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Total do Desconto</label>
+                    <p:message for="vdesctotal" escape="true"/>
+                </h:panelGroup>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="voutrototal" value="#{digitacaoNFeFaces.total.totalNFeIcms.voutro}" readonly="true" style="background-color: #EAEAEA">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Outras Despesas Acessórias</label>
+                    <p:message for="voutrototal" escape="true"/>
+                </h:panelGroup>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vicmsdesontotal" value="#{digitacaoNFeFaces.total.totalNFeIcms.vicmsdeson}" readonly="true" style="background-color: #EAEAEA">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Total do ICMS Desonarado</label>
+                    <p:message for="vicmsdesontotal" escape="true"/>
+                </h:panelGroup>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vfcpufdesttotal" value="#{digitacaoNFeFaces.total.totalNFeIcms.vfcpufdest}" readonly="true" style="background-color: #EAEAEA">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Total do ICMS FCP UF destino</label>
+                    <p:message for="vfcpufdesttotal" escape="true"/>
+                </h:panelGroup>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vnftotal" value="#{digitacaoNFeFaces.total.totalNFeIcms.vnf}" readonly="true" style="background-color: #EAEAEA">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Total da NF-e</label>
+                    <p:message for="vnftotal" escape="true"/>
+                </h:panelGroup>
+            </div>
+        </div>
     </h:panelGroup>
-
 </ui:composition>

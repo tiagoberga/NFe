@@ -1,10 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://java.sun.com/jsf/core">
 
+    <p:spacer width="10px"/>
     <h:panelGroup id="pgNFeProdutoServicoTributosIcmsInter" layout="block">
         <div class="ui-g">
             <div class="ui-g-12 ui-md-6 ui-lg-3">
@@ -15,22 +17,31 @@
                 <p:message for="picmsinter" escape="true"/>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="pfcpufdest" value="#{digitacaoNFeFaces.produtoServico.pfcpufdest}" placeholder="% ICMS relativo ao FCP na UF de destino" title="% ICMS relativo ao FCP na UF de destino">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="pfcpufdest" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="pfcpufdest" value="#{digitacaoNFeFaces.produtoServico.pfcpufdest}" style="text-align: right">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="4" />
+                    </p:inputText>
+                    <label>% ICMS relativo ao FCP na UF de destino</label>
+                    <p:message for="pfcpufdest" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="vbcufdest" value="#{digitacaoNFeFaces.produtoServico.vbcicmsufdest}" placeholder="Valor BC da UF do destinatário" title="Valor BC da UF do destinatário">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="vbcufdest" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vbcufdest" value="#{digitacaoNFeFaces.produtoServico.vbcicmsufdest}" style="text-align: right">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Valor BC da UF do destinatário</label>
+                    <p:message for="vbcufdest" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="picmsufdest" value="#{digitacaoNFeFaces.produtoServico.picmsufdest}" placeholder="Alíquota interna da UF do destinatário" title="Alíquota interna da UF do destinatário">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="picmsufdest" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="picmsufdest" value="#{digitacaoNFeFaces.produtoServico.picmsufdest}" style="text-align: right">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Alíquota interna da UF do destinatário</label>
+                    <p:message for="picmsufdest" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
                 <p:selectOneMenu id="picmsinterpart" value="#{digitacaoNFeFaces.produtoServico.picmsinterpart}" title="% Provisório da partilha" autoWidth="false">
@@ -40,22 +51,31 @@
                 <p:message for="picmsinterpart" escape="true"/>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="vicmsufdest" value="#{digitacaoNFeFaces.produtoServico.vicmsufdest}" placeholder="Valor ICMS de partilha para UF do destinatário" title="Valor ICMS de partilha para UF do destinatário">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="vicmsufdest" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vicmsufdest" value="#{digitacaoNFeFaces.produtoServico.vicmsufdest}" style="text-align: right">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Valor ICMS Partilha UF Destinatário</label>
+                    <p:message for="vicmsufdest" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="vicmsufremet" value="#{digitacaoNFeFaces.produtoServico.vicmsufremet}" placeholder="Valor ICMS de partilha para UF do remetente" title="Valor ICMS de partilha para UF do remetente">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="vicmsufremet" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vicmsufremet" value="#{digitacaoNFeFaces.produtoServico.vicmsufremet}" style="text-align: right">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Valor ICMS Partilha UF Remetente</label>
+                    <p:message for="vicmsufremet" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="vfcpufdest" value="#{digitacaoNFeFaces.produtoServico.vfcpufdest}" placeholder="Valor ICMS relativo ao FCP da UF de destino" title="Valor ICMS relativo ao FCP da UF de destino">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="vfcpufdest" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vfcpufdest" value="#{digitacaoNFeFaces.produtoServico.vfcpufdest}" style="text-align: right">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Valor ICMS relativo ao FCP UF Destino</label>
+                    <p:message for="vfcpufdest" escape="true"/>
+                </h:panelGroup>
             </div>
         </div>
     </h:panelGroup>

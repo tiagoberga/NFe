@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://java.sun.com/jsf/core">
@@ -39,7 +40,7 @@
                             <label>* Origem da Mercadoria</label>
                         </h:panelGroup>
                     </div>
-                    
+
                     <ui:fragment rendered="#{digitacaoNFeFaces.pcRedSnVisible}">
                         <div class="ui-g-12 ui-md-6 ui-lg-6">
                             <h:panelGroup styleClass="md-inputfield">
@@ -50,7 +51,7 @@
                             </h:panelGroup>
                         </div>
                     </ui:fragment>
-                    
+
                     <ui:fragment rendered="#{digitacaoNFeFaces.vcredIcmssnVisible}">
                         <div class="ui-g-12 ui-md-6 ui-lg-6">
                             <h:panelGroup styleClass="md-inputfield">
