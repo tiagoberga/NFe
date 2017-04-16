@@ -66,6 +66,7 @@ public class Endereco implements Serializable {
     }
 
     public Endereco(Destinatario destinatario) {
+        limpaEndereco();
         this.endCep = destinatario.getEndereco().getEndCep();
         this.endCmun = destinatario.getEndereco().getEndCmun();
         this.endCpais = destinatario.getEndereco().getEndCpais();
@@ -80,6 +81,7 @@ public class Endereco implements Serializable {
     }
 
     public Endereco(Emitente emitente) {
+        limpaEndereco();
         this.endCep = emitente.getEndereco().getEndCep();
         this.endCmun = emitente.getEndereco().getEndCmun();
         this.endCpais = emitente.getEndereco().getEndCpais();

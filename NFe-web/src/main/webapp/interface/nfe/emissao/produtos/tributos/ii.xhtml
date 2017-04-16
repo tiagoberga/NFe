@@ -1,35 +1,49 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://java.sun.com/jsf/core">
 
+    <p:spacer width="10px"/>
     <h:panelGroup id="pgNFeProdutoServicoTributosII" layout="block">
         <div class="ui-g">
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="vbcii" value="#{digitacaoNFeFaces.produtoServico.vbcii}" placeholder="Valor da Base de Cálculo" title="Valor da Base de Cálculo">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="vbcii" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vbcii" value="#{digitacaoNFeFaces.produtoServico.vbcii}" style="text-align: right">
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Valor da Base de Cálculo</label>
+                    <p:message for="vbcii" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="vdespadu" value="#{digitacaoNFeFaces.produtoServico.vdespadu}" placeholder="Valor Despesas Aduaneiras" title="Valor Despesas Aduaneiras">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="vdespadu" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vdespadu" value="#{digitacaoNFeFaces.produtoServico.vdespadu}" style="text-align: right" >
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Valor Despesas Aduaneiras</label>
+                    <p:message for="vdespadu" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="viof" value="#{digitacaoNFeFaces.produtoServico.viof}" placeholder="Valor do IOF" title="Valor do IOF">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="viof" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="viof" value="#{digitacaoNFeFaces.produtoServico.viof}" style="text-align: right" >
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Valor do IOF</label>
+                    <p:message for="viof" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="vii" value="#{digitacaoNFeFaces.produtoServico.vii}" placeholder="Valor Imposto de Importação" title="Valor Imposto de Importação">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="vii" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vii" value="#{digitacaoNFeFaces.produtoServico.vii}" style="text-align: right" >
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Valor Imposto de Importação</label>
+                    <p:message for="vii" escape="true"/>
+                </h:panelGroup>
             </div>
         </div>
     </h:panelGroup>

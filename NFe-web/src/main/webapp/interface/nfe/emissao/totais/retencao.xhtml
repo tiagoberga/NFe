@@ -1,53 +1,76 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://java.sun.com/jsf/core">
 
+    <p:spacer width="10px"/>
     <h:panelGroup id="pgNFeTotalRetencao">
         <div class="ui-g">
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="vretpis" value="#{digitacaoNFeFaces.total.totalNFeRetencao.vretpis}" placeholder="Valor retido do PIS" title="Valor retido do PIS">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="vretpis" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vretpis" value="#{digitacaoNFeFaces.total.totalNFeRetencao.vretpis}" style="text-align: right; background-color: #EAEAEA" >
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Valor retido do PIS</label>
+                    <p:message for="vretpis" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="vretcofins" value="#{digitacaoNFeFaces.total.totalNFeRetencao.vretcofins}" placeholder="Valor retido do COFINS" title="Valor retido do COFINS">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="vretcofins" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vretcofins" value="#{digitacaoNFeFaces.total.totalNFeRetencao.vretcofins}" style="text-align: right; background-color: #EAEAEA" >
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Valor retido do COFINS</label>
+                    <p:message for="vretcofins" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="vretcsll" value="#{digitacaoNFeFaces.total.totalNFeRetencao.vretcsll}" placeholder="Valor retido do CSLL" title="Valor retido do CSLL">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="vretcsll" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vretcsll" value="#{digitacaoNFeFaces.total.totalNFeRetencao.vretcsll}" style="text-align: right; background-color: #EAEAEA" >
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Valor retido do CSLL</label>
+                    <p:message for="vretcsll" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="vbcirrf" value="#{digitacaoNFeFaces.total.totalNFeRetencao.vbcirrf}" placeholder="BC do IRRF" title="BC do IRRF">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="vbcirrf" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vbcirrf" value="#{digitacaoNFeFaces.total.totalNFeRetencao.vbcirrf}" style="text-align: right; background-color: #EAEAEA" >
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="4" />
+                    </p:inputText>
+                    <label>BC do IRRF</label>
+                    <p:message for="vbcirrf" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="virrf" value="#{digitacaoNFeFaces.total.totalNFeRetencao.virrf}" placeholder="Valor retido do IRRF" title="Valor retido do IRRF">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="virrf" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="virrf" value="#{digitacaoNFeFaces.total.totalNFeRetencao.virrf}" style="text-align: right; background-color: #EAEAEA" >
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Valor retido do IRRF</label>
+                    <p:message for="virrf" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="vbcretprev" value="#{digitacaoNFeFaces.total.totalNFeRetencao.vbcretprev}" placeholder="BC da retenção da Prevdc. Social" title="BC da retenção da Prevdc. Social">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="vbcretprev" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vbcretprev" value="#{digitacaoNFeFaces.total.totalNFeRetencao.vbcretprev}" style="text-align: right; background-color: #EAEAEA" >
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="4" />
+                    </p:inputText>
+                    <label>BC da retenção da Prevdc. Social</label>
+                    <p:message for="vbcretprev" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="vretprev" value="#{digitacaoNFeFaces.total.totalNFeRetencao.vretprev}" placeholder="Valor retido da Prevdc. Social" title="Valor retido da Prevdc. Social">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="vretprev" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vretprev" value="#{digitacaoNFeFaces.total.totalNFeRetencao.vretprev}" style="text-align: right; background-color: #EAEAEA" >
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Valor retido da Prevdc. Social</label>
+                    <p:message for="vretprev" escape="true"/>
+                </h:panelGroup>
             </div>
         </div>
     </h:panelGroup>

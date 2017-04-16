@@ -1,85 +1,121 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://java.sun.com/jsf/core">
 
+    <p:spacer width="10px"/>
     <h:panelGroup id="pgNFeTotalIssqn">
-        <div class="ui-g Flex FlexWrap NoPadding">
-            <div class="ui-g-12 ui-md-6 ui-lg-6 Padding3">
-                <p:calendar value="#{digitacaoNFeFaces.total.totalNFeIssqn.dcompet}"  pattern="MM/dd/yyyy HH:mm:ss" placeholder="* Data de prestação do serviço" title="* Data de prestação do serviço">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:calendar>
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-6 ui-lg-6">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:calendar id="dcompet" value="#{digitacaoNFeFaces.total.totalNFeIssqn.dcompet}" pattern="MM/dd/yyyy HH:mm:ss" showOn="button"/>
+                    <label>* Data de prestação do serviço</label>
+                    <p:message for="dcompet" escape="true"/>
+                </h:panelGroup>
             </div>
-            <div class="ui-g-12 ui-md-6 ui-lg-6 Padding3">
-                <p:selectOneMenu value="#{digitacaoNFeFaces.total.totalNFeIssqn.cregtrib}" title="Regime especial de tributação" autoWidth="false">
-                    <f:selectItem itemValue="" itemLabel="Selecione o Regime especial de tributação" />
-                    <f:selectItems  value="#{digitacaoNFeFaces.tiposDeRegimeEspecialTributacao}" var="vRegimeEspecial" itemLabel="#{vRegimeEspecial.codigo} - #{vRegimeEspecial.descricao}" itemValue="#{vRegimeEspecial}"/>
-                </p:selectOneMenu>
+            <div class="ui-g-12 ui-md-6 ui-lg-6">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:autoComplete id="cregtrib" value="#{digitacaoNFeFaces.total.totalNFeIssqn.cregtrib}" var="vRegimeEspecial" itemValue="#{vRegimeEspecial}" itemLabel="#{vRegimeEspecial.codigo.concat(' - ').concat(vRegimeEspecial.descricao)}"  converter="#{gpoConverter}"
+                                    completeMethod="#{digitacaoNFeFaces.completeNFeTipoRegimeEspecialTributacao}" dropdown="true" cache="true" scrollHeight="250">
+                    </p:autoComplete>
+                    <label>Regime especial de tributação</label>
+                    <p:message for="cregtrib" escape="true"/>
+                </h:panelGroup>
             </div>
 
-            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
-                <div class="Card NoPadding" style="background-color: #EAEAEA">
-                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft"><span class="FontLatoRegular DispBlock Fs15">Base de cálculo do ISS</span></div>
-                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight"><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIssqn.vbc}</span></div>
-                </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vbcissqn" value="#{digitacaoNFeFaces.total.totalNFeIssqn.vbc}" style="text-align: right; background-color: #EAEAEA" >
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Base de cálculo do ISS</label>
+                    <p:message for="vbcissqn" escape="true"/>
+                </h:panelGroup>
             </div>
-            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
-                <div class="Card NoPadding" style="background-color: #EAEAEA">
-                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft"><span class="FontLatoRegular DispBlock Fs15">Total do ISS</span></div>
-                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight"><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIssqn.viss}</span></div>
-                </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="viss" value="#{digitacaoNFeFaces.total.totalNFeIssqn.viss}" style="text-align: right; background-color: #EAEAEA" >
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Total do ISS</label>
+                    <p:message for="viss" escape="true"/>
+                </h:panelGroup>
             </div>
-            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
-                <div class="Card NoPadding" style="background-color: #EAEAEA">
-                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft"><span class="FontLatoRegular DispBlock Fs15">PIS sobre serviço</span></div>
-                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight"><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIssqn.vpis}</span></div>
-                </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vpisissqn" value="#{digitacaoNFeFaces.total.totalNFeIssqn.vpis}" style="text-align: right; background-color: #EAEAEA" >
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>PIS sobre serviço</label>
+                    <p:message for="vpisissqn" escape="true"/>
+                </h:panelGroup>
             </div>
-            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
-                <div class="Card NoPadding" style="background-color: #EAEAEA">
-                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft"><span class="FontLatoRegular DispBlock Fs15">COFINS sobre serviço</span></div>
-                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight"><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIssqn.vcofins}</span></div>
-                </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vcofinsissqn" value="#{digitacaoNFeFaces.total.totalNFeIssqn.vcofins}" style="text-align: right; background-color: #EAEAEA" >
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>COFINS sobre serviço</label>
+                    <p:message for="vcofinsissqn" escape="true"/>
+                </h:panelGroup>
             </div>
-            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
-                <div class="Card NoPadding" style="background-color: #EAEAEA">
-                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft"><span class="FontLatoRegular DispBlock Fs15">Total Serviços não tributados pelo ICMS</span></div>
-                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight"><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIssqn.vserv}</span></div>
-                </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vservissqn" value="#{digitacaoNFeFaces.total.totalNFeIssqn.vserv}" style="text-align: right; background-color: #EAEAEA" >
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Total Serviços não tributados pelo ICMS</label>
+                    <p:message for="vservissqn" escape="true"/>
+                </h:panelGroup>
             </div>
-            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
-                <div class="Card NoPadding" style="background-color: #EAEAEA">
-                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft"><span class="FontLatoRegular DispBlock Fs15">Valor total das deduções</span></div>
-                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight"><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIssqn.vdeducao}</span></div>
-                </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vdeducaoissqn" value="#{digitacaoNFeFaces.total.totalNFeIssqn.vdeducao}" style="text-align: right; background-color: #EAEAEA" >
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Valor total das deduções</label>
+                    <p:message for="vdeducaoissqn" escape="true"/>
+                </h:panelGroup>
             </div>
-            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
-                <div class="Card NoPadding" style="background-color: #EAEAEA">
-                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft"><span class="FontLatoRegular DispBlock Fs15">Valor total outras retenções</span></div>
-                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight"><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIssqn.voutro}</span></div>
-                </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="voutroissqn" value="#{digitacaoNFeFaces.total.totalNFeIssqn.voutro}" style="text-align: right; background-color: #EAEAEA" >
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Valor total outras retenções</label>
+                    <p:message for="voutroissqn" escape="true"/>
+                </h:panelGroup>
             </div>
-            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
-                <div class="Card NoPadding" style="background-color: #EAEAEA">
-                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft"><span class="FontLatoRegular DispBlock Fs15">Valor total desconto incondicionado</span></div>
-                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight"><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIssqn.vdescincond}</span></div>
-                </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vdescincondissqn" value="#{digitacaoNFeFaces.total.totalNFeIssqn.vdescincond}" style="text-align: right; background-color: #EAEAEA" >
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Valor total desconto incondicionado</label>
+                    <p:message for="vdescincondissqn" escape="true"/>
+                </h:panelGroup>
             </div>
-            <div class="ui-g-12 ui-md-6 ui-lg-4 Flex Padding3">
-                <div class="Card NoPadding" style="background-color: #EAEAEA">
-                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft"><span class="FontLatoRegular DispBlock Fs15">Valor total retenção ISS</span></div>
-                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight"><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIssqn.vissret}</span></div>
-                </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vissretissqn" value="#{digitacaoNFeFaces.total.totalNFeIssqn.vissret}" style="text-align: right; background-color: #EAEAEA" >
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Valor total retenção ISS</label>
+                    <p:message for="vissretissqn" escape="true"/>
+                </h:panelGroup>
             </div>
-            <div class="ui-g-12 ui-md-6 ui-lg-12 Flex Padding3">
-                <div class="Card NoPadding" style="background-color: #EAEAEA">
-                    <div class="ui-g-8 ui-md-8 ui-lg-8 TexAlLeft"><span class="FontLatoRegular DispBlock Fs15">Valor total desconto condicionado</span></div>
-                    <div class="ui-g-4 ui-md-4 ui-lg-4 TexAlRight"><span class="FontLatoRegular DispBlock Fs15">#{digitacaoNFeFaces.total.totalNFeIssqn.vdesccond}</span></div>
-                </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-12">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vdesccondissqn" value="#{digitacaoNFeFaces.total.totalNFeIssqn.vdesccond}" style="text-align: right; background-color: #EAEAEA" >
+                        <f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                    </p:inputText>
+                    <label>Valor total desconto condicionado</label>
+                    <p:message for="vdesccondissqn" escape="true"/>
+                </h:panelGroup>
             </div>
         </div>
     </h:panelGroup>
-
 </ui:composition>

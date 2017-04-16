@@ -1,92 +1,117 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://java.sun.com/jsf/core">
 
+    <p:spacer width="10px"/>
     <h:panelGroup id="pgNFeProdutoServicoTributosIpi" layout="block">
         <div class="ui-g NoPadding">
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:selectOneMenu id="cstipi" value="#{digitacaoNFeFaces.produtoServico.cstipi}" title="Situação Tributária" autoWidth="false">
-                    <f:selectItem itemLabel="Selecione a Situação Tributária" itemValue="" />
-                    <f:selectItems value="#{digitacaoNFeFaces.cstsIpi}" var="vCstIpi" itemLabel="#{vCstIpi.codigo} - #{vCstIpi.descricao}" itemValue="#{vCstIpi}"/>
-                </p:selectOneMenu>
-                <p:message for="cstipi" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:autoComplete id="cstipi" value="#{digitacaoNFeFaces.produtoServico.cstipi}" var="vCstIpi" itemValue="#{vCstIpi}" itemLabel="#{vCstIpi.codigo.concat(' - ').concat(vCstIpi.descricao)}"  
+                                    completeMethod="#{digitacaoNFeFaces.completeNFeTipoSituacaoTributariaIPI}" dropdown="true" cache="true" scrollHeight="150">
+                    </p:autoComplete>
+                    <label>Situação Tributária</label>
+                    <p:message for="cstipi" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="clenq" value="#{digitacaoNFeFaces.produtoServico.clenq}" placeholder="Classe de Enquadramento ¹" title="Classe de Enquadramento ¹">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="clenq" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="clenq" value="#{digitacaoNFeFaces.produtoServico.clenq}" />
+                    <label>Classe de Enquadramento ¹</label>
+                    <p:message for="clenq" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="cenq" value="#{digitacaoNFeFaces.produtoServico.cenq}" placeholder="* Código de Enquadramentos" title="* Código de Enquadramentos">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="cenq" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="cenq" value="#{digitacaoNFeFaces.produtoServico.cenq}" />
+                    <label>* Código de Enquadramentos</label>
+                    <p:message for="cenq" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="cnpjprod" value="#{digitacaoNFeFaces.produtoServico.cnpjprod}" placeholder="CNPJ do Produtor" title="CNPJ do Produtor">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="cnpjprod" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="cnpjprod" value="#{digitacaoNFeFaces.produtoServico.cnpjprod}" />
+                    <label>CNPJ do Produtor</label>
+                    <p:message for="cnpjprod" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="cselo" value="#{digitacaoNFeFaces.produtoServico.cselo}" placeholder="Código do Selo de Controle ²" title="Código do Selo de Controle ²">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="cselo" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="cselo" value="#{digitacaoNFeFaces.produtoServico.cselo}" />
+                    <label>Código do Selo de Controle ²</label>
+                    <p:message for="cselo" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="qselo" value="#{digitacaoNFeFaces.produtoServico.qselo}" placeholder="Quantidade do Selo de Controle" title="Quantidade do Selo de Controle">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="qselo" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="qselo" value="#{digitacaoNFeFaces.produtoServico.qselo}" />
+                    <label>Quantidade do Selo de Controle</label>
+                    <p:message for="qselo" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:selectOneMenu value="#{digitacaoNFeFaces.tipoCalculoIpi}" title="Tipo de Cálculo" autoWidth="false">
-                    <f:selectItem itemLabel="Selecione o Tipo de Cálculo" itemValue="" />
-                    <f:selectItems value="#{digitacaoNFeFaces.tiposDeCalculo}" var="vTipoCalculoIpi" itemLabel="#{vTipoCalculoIpi.calculo}" itemValue="#{vTipoCalculoIpi}" />
-                </p:selectOneMenu>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:autoComplete value="#{digitacaoNFeFaces.tipoCalculoIpi}" var="vTipoCalculoIpi" itemValue="#{vTipoCalculoIpi}" itemLabel="#{vTipoCalculoIpi.calculo}" cache="true"
+                                    completeMethod="#{digitacaoNFeFaces.completeNFeTipoCalculo}" dropdown="true" >
+                    </p:autoComplete>
+                    <label>Tipo de Cálculo</label>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="vbcipi" value="#{digitacaoNFeFaces.produtoServico.vbcipi}" placeholder="Valor da Base de Cálculo" title="Valor da Base de Cálculo">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="vbcipi" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vbcipi" value="#{digitacaoNFeFaces.produtoServico.vbcipi}" style="text-align: right">
+                        <f:convertNumber type="number" minFractionDigits="2" maxFractionDigits="2"/>
+                    </p:inputText>
+                    <label>Valor da Base de Cálculo</label>
+                    <p:message for="vbcipi" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="pipi" value="#{digitacaoNFeFaces.produtoServico.pipi}" placeholder="Alíquota" title="Alíquota">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="pipi" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="pipi" value="#{digitacaoNFeFaces.produtoServico.pipi}" style="text-align: right">
+                        <f:convertNumber type="number" minFractionDigits="2" maxFractionDigits="4"/>
+                    </p:inputText>
+                    <label>Alíquota</label>
+                    <p:message for="pipi" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="qunid" value="#{digitacaoNFeFaces.produtoServico.qunid}" placeholder="Quantidade Total Unidade Padrão" title="Quantidade Total Unidade Padrão">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="qunid" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="qunid" value="#{digitacaoNFeFaces.produtoServico.qunid}" style="text-align: right">
+                        <f:convertNumber type="number" minFractionDigits="0" maxFractionDigits="4"/>
+                    </p:inputText>
+                    <label>Quantidade Total Unidade Padrão</label>
+                    <p:message for="qunid" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="vunid" value="#{digitacaoNFeFaces.produtoServico.vunid}" placeholder="Valor por Unidade" title="Valor por Unidade">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="vunid" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vunid" value="#{digitacaoNFeFaces.produtoServico.vunid}" style="text-align: right">
+                        <f:convertNumber type="number" minFractionDigits="0" maxFractionDigits="4"/>
+                    </p:inputText>
+                    <label>Valor por Unidade</label>
+                    <p:message for="vunid" escape="true"/>
+                </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
-                <p:inputText id="vipi" value="#{digitacaoNFeFaces.produtoServico.vipi}" placeholder="Valor do IPI" title="Valor do IPI">
-                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                </p:inputText>
-                <p:message for="vipi" escape="true"/>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText id="vipi" value="#{digitacaoNFeFaces.produtoServico.vipi}" style="text-align: right">
+                        <f:convertNumber type="number" minFractionDigits="0" maxFractionDigits="4"/>
+                    </p:inputText>
+                    <label>Valor do IPI</label>
+                    <p:message for="vipi" escape="true"/>
+                </h:panelGroup>
             </div>
-            <div class="ui-g-12 ui-md-12 ui-lg-12 BorderLeft" align="left">
+            <div class="ui-g-12 ui-md-12 ui-lg-12" align="left">
                 ¹ A informação da Classe de Enquadramento do IPI para Cigarros e Bebidas,
                 quando aplicável, deve ser informada utilizando a codificação prevista nos Atos Normativos editados pela
                 Receita Federal.
             </div>
-            <div class="EmptyBox5"></div>
-            <div class="ui-g-12 ui-md-12 ui-lg-12 BorderLeft" align="left">
+            <div class="ui-g-12 ui-md-12 ui-lg-12" align="left">
                 ² A informação do Código do Selo, quando aplicável, deve ser informada
                 utilizando a codificação prevista nos Atos Normativos editados pela Receita Federal.
             </div>

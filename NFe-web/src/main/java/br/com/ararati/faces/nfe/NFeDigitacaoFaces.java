@@ -507,6 +507,48 @@ public class NFeDigitacaoFaces implements Serializable {
         this.cobrancaDuplicata = new CobrancaDuplicata();
     }
 
+    public List<String> completeCFOP(String query) {
+        List<String> listaString = new ArrayList<>();
+
+        listaString.add("COD1");
+        listaString.add("COD2");
+        listaString.add("COD3");
+
+        return listaString.stream()
+                .filter(v -> StringUtils.containsIgnoreCase(v, query))
+                .collect(Collectors.toList());
+    }
+
+    public List<String> completeNCM(String query) {
+        List<String> listaString = new ArrayList<>();
+
+        listaString.add("COOOOOD1");
+        listaString.add("COOOOOD2");
+        listaString.add("COOOOOD3");
+
+        return listaString.stream()
+                .filter(v -> StringUtils.containsIgnoreCase(v, query))
+                .collect(Collectors.toList());
+    }
+
+    public List<String> completeCEST(String query) {
+        List<String> listaString = new ArrayList<>();
+
+        listaString.add("COOOOD1");
+        listaString.add("COOOOD2");
+        listaString.add("COOOOD3");
+
+        return listaString.stream()
+                .filter(v -> StringUtils.containsIgnoreCase(v, query))
+                .collect(Collectors.toList());
+    }
+
+    public List<NFeTipoIndicadorVProd> completeIndicadorVProd(String query) {
+        return NFeTipoIndicadorVProd.valuesAsList().stream()
+                .filter(v -> StringUtils.containsIgnoreCase(v.getDescricao(), query))
+                .collect(Collectors.toList());
+    }
+
     public List<String> getUfs() {
         return Stream.of(TUf.values()).map((aEnum) -> aEnum.name()).collect(Collectors.toList());
     }
@@ -527,9 +569,14 @@ public class NFeDigitacaoFaces implements Serializable {
         return NFeTipoBandeiraOperadoraCartaoCredito.valuesAsList();
     }
 
-    public List<NFeTipoDestinoOperacao> getTiposDeDestinoDeOperacao() {
-        return NFeTipoDestinoOperacao.valuesAsList();
+    public List<NFeTipoDestinoOperacao> completeNFeTipoDestinoOperacao(String query) {
+        return NFeTipoDestinoOperacao.valuesAsList().stream()
+                .filter(v -> StringUtils.containsIgnoreCase(v.getDescricao(), query))
+                .collect(Collectors.toList());
     }
+//    public List<NFeTipoDestinoOperacao> getTiposDeDestinoDeOperacao() {
+//        return NFeTipoDestinoOperacao.valuesAsList();
+//    }
 
     public List<NFeTipoDistribuicao> getTiposDeDistribuicao() {
         return NFeTipoDistribuicao.valuesAsList();
@@ -539,22 +586,37 @@ public class NFeDigitacaoFaces implements Serializable {
         return NFeTipoDocumento.valuesAsList();
     }
 
-    public List<NFeTipoEmissao> getTiposDeEmissao() {
-        return NFeTipoEmissao.valuesAsList();
+    public List<NFeTipoEmissao> completeNFeTipoEmissao(String query) {
+        return NFeTipoEmissao.valuesAsList().stream()
+                .filter(v -> StringUtils.containsIgnoreCase(v.getDescricao(), query))
+                .collect(Collectors.toList());
     }
 
+//    public List<NFeTipoEmissao> getTiposDeEmissao() {
+//        return NFeTipoEmissao.valuesAsList();
+//    }
     public List<NFeTipoEvento> getTiposDeEvento() {
         return NFeTipoEvento.valuesAsList();
     }
 
-    public List<NFeTipoExigibilidadeISS> getTiposDeExigibilidadeIss() {
-        return NFeTipoExigibilidadeISS.valuesAsList();
+    public List<NFeTipoExigibilidadeISS> completeNFeTipoExigibilidadeISS(String query) {
+        return NFeTipoExigibilidadeISS.valuesAsList().stream()
+                .filter(v -> StringUtils.containsIgnoreCase(v.getDescricao(), query))
+                .collect(Collectors.toList());
+    }
+//    public List<NFeTipoExigibilidadeISS> getTiposDeExigibilidadeIss() {
+//        return NFeTipoExigibilidadeISS.valuesAsList();
+//    }
+
+    public List<NFeTipoFinalidadeEmissao> completeNFeTipoFinalidadeEmissao(String query) {
+        return NFeTipoFinalidadeEmissao.valuesAsList().stream()
+                .filter(v -> StringUtils.containsIgnoreCase(v.getDescricao(), query))
+                .collect(Collectors.toList());
     }
 
-    public List<NFeTipoFinalidadeEmissao> getTiposDeFinalidadeDeEmissso() {
-        return NFeTipoFinalidadeEmissao.valuesAsList();
-    }
-
+//    public List<NFeTipoFinalidadeEmissao> getTiposDeFinalidadeDeEmissso() {
+//        return NFeTipoFinalidadeEmissao.valuesAsList();
+//    }
     public List<NFeTipoFormaPagamento> getTiposDeFormaDePagamento() {
         return NFeTipoFormaPagamento.valuesAsList();
     }
@@ -563,9 +625,14 @@ public class NFeDigitacaoFaces implements Serializable {
         return NFeTipoOrigemProcesso.valuesAsList();
     }
 
-    public List<NFeTipoFormatoImpressao> getTiposDeFormatoDeImpressao() {
-        return NFeTipoFormatoImpressao.valuesAsList();
+    public List<NFeTipoFormatoImpressao> completeNFeTipoFormatoImpressao(String query) {
+        return NFeTipoFormatoImpressao.valuesAsList().stream()
+                .filter(v -> StringUtils.containsIgnoreCase(v.getDescricao(), query))
+                .collect(Collectors.toList());
     }
+//    public List<NFeTipoFormatoImpressao> getTiposDeFormatoDeImpressao() {
+//        return NFeTipoFormatoImpressao.valuesAsList();
+//    }
 
     public List<NFeTipoGrupoTributacaoICMS> getTiposDeGrupoTributacaoIcms() {
         return NFeTipoGrupoTributacaoICMS.valuesAsList();
@@ -583,17 +650,27 @@ public class NFeDigitacaoFaces implements Serializable {
         return NFeTipoFormaPagamento.valuesAsList();
     }
 
-    public List<NFeTipoIndicadorIEDestinatario> getTiposDeIndicadorIEDestinatario() {
-        return NFeTipoIndicadorIEDestinatario.valuesAsList();
+    public List<NFeTipoIndicadorIEDestinatario> completeNFeTipoIndicadorIEDestinatario(String query) {
+        return NFeTipoIndicadorIEDestinatario.valuesAsList().stream()
+                .filter(v -> StringUtils.containsIgnoreCase(v.getDescricao(), query))
+                .collect(Collectors.toList());
     }
+//    public List<NFeTipoIndicadorIEDestinatario> getTiposDeIndicadorIEDestinatario() {
+//        return NFeTipoIndicadorIEDestinatario.valuesAsList();
+//    }
 
     public List<NFeTipoIndicadorVProd> getTiposDeIndicadorVProd() {
         return NFeTipoIndicadorVProd.valuesAsList();
     }
 
-    public List<NFeTipoProdutoEspecifico> getTiposDeProdutoEspecifico() {
-        return NFeTipoProdutoEspecifico.valuesAsList();
+    public List<NFeTipoProdutoEspecifico> completeNFeTipoProdutoEspecifico(String query) {
+        return NFeTipoProdutoEspecifico.valuesAsList().stream()
+                .filter(v -> StringUtils.containsIgnoreCase(v.getDescricao(), query))
+                .collect(Collectors.toList());
     }
+//    public List<NFeTipoProdutoEspecifico> getTiposDeProdutoEspecifico() {
+//        return NFeTipoProdutoEspecifico.valuesAsList();
+//    }
 
     public List<NFeTipoViaTransporte> getTiposViaTransporte() {
         return NFeTipoViaTransporte.valuesAsList();
@@ -639,13 +716,23 @@ public class NFeDigitacaoFaces implements Serializable {
         return NFeTipoManifesto.valuesAsList();
     }
 
-    public List<NFeTipoModalidadeBCICMS> getTiposDeModalidadeBcIcms() {
-        return NFeTipoModalidadeBCICMS.valuesAsList();
+    public List<NFeTipoModalidadeBCICMS> completeNFeTipoModalidadeBCICMS(String query) {
+        return NFeTipoModalidadeBCICMS.valuesAsList().stream()
+                .filter(v -> StringUtils.containsIgnoreCase(v.getDescricao(), query))
+                .collect(Collectors.toList());
     }
 
-    public List<NFeTipoModalidadeBCICMSST> getTiposDeModalidadeBcIcmsSt() {
-        return NFeTipoModalidadeBCICMSST.valuesAsList();
+//    public List<NFeTipoModalidadeBCICMS> getTiposDeModalidadeBcIcms() {
+//        return NFeTipoModalidadeBCICMS.valuesAsList();
+//    }
+    public List<NFeTipoModalidadeBCICMSST> completeNFeTipoModalidadeBCICMSST(String query) {
+        return NFeTipoModalidadeBCICMSST.valuesAsList().stream()
+                .filter(v -> StringUtils.containsIgnoreCase(v.getDescricao(), query))
+                .collect(Collectors.toList());
     }
+//    public List<NFeTipoModalidadeBCICMSST> getTiposDeModalidadeBcIcmsSt() {
+//        return NFeTipoModalidadeBCICMSST.valuesAsList();
+//    }
 
     public List<NFeTipoModalidadeFrete> getTiposDeModalidadeDeFrete() {
         return NFeTipoModalidadeFrete.valuesAsList();
@@ -669,93 +756,185 @@ public class NFeDigitacaoFaces implements Serializable {
         return NFeTipoModeloDocumentoFiscalProdutorRural.valuesAsList();
     }
 
-    public List<NFeTipoMotivoDesoneracaoICMS> getMotivosDesoneracaoIcms() {
+    public List<NFeTipoMotivoDesoneracaoICMS> completeNFeMotivosDesoneracaoIcms(String query) {
         if (this.produtoServico != null && this.produtoServico.getCsticms() != null) {
             switch (this.produtoServico.getCsticms()) {
                 case COD20:
                 case COD70:
                 case COD90:
-                    // BASE ICMS 20
-                    return NFeTipoMotivoDesoneracaoICMS.getMotivosDesoneracaoICMS20();
+                    return NFeTipoMotivoDesoneracaoICMS.getMotivosDesoneracaoICMS20().stream()
+                            .filter(v -> StringUtils.containsIgnoreCase(v.getDescricao(), query))
+                            .collect(Collectors.toList());
                 case COD30:
-                    // BASE ICMS 30
-                    return NFeTipoMotivoDesoneracaoICMS.getMotivosDesoneracaoICMS30();
+                    return NFeTipoMotivoDesoneracaoICMS.getMotivosDesoneracaoICMS30().stream()
+                            .filter(v -> StringUtils.containsIgnoreCase(v.getDescricao(), query))
+                            .collect(Collectors.toList());
                 case COD40:
                 case COD41:
                 case COD50:
-                    // BASE ICMS 40
-                    return NFeTipoMotivoDesoneracaoICMS.getMotivosDesoneracaoICMS40();
+                    return NFeTipoMotivoDesoneracaoICMS.getMotivosDesoneracaoICMS40().stream()
+                            .filter(v -> StringUtils.containsIgnoreCase(v.getDescricao(), query))
+                            .collect(Collectors.toList());
                 default:
                     break;
             }
         }
 
         return null;
+
     }
 
+//    public List<NFeTipoMotivoDesoneracaoICMS> getMotivosDesoneracaoIcms() {
+//        if (this.produtoServico != null && this.produtoServico.getCsticms() != null) {
+//            switch (this.produtoServico.getCsticms()) {
+//                case COD20:
+//                case COD70:
+//                case COD90:
+//                    // BASE ICMS 20
+//                    return NFeTipoMotivoDesoneracaoICMS.getMotivosDesoneracaoICMS20();
+//                case COD30:
+//                    // BASE ICMS 30
+//                    return NFeTipoMotivoDesoneracaoICMS.getMotivosDesoneracaoICMS30();
+//                case COD40:
+//                case COD41:
+//                case COD50:
+//                    // BASE ICMS 40
+//                    return NFeTipoMotivoDesoneracaoICMS.getMotivosDesoneracaoICMS40();
+//                default:
+//                    break;
+//            }
+//        }
+//
+//        return null;
+//    }
     public List<NFeTipoNSU> getTiposDeNsu() {
         return NFeTipoNSU.valuesAsList();
     }
 
-    public List<NFeTipoOperacao> getTiposDeOperacao() {
-        return NFeTipoOperacao.valuesAsList();
+    public List<NFeTipoOperacao> completeNFeTipoOperacao(String query) {
+        return NFeTipoOperacao.valuesAsList().stream()
+                .filter(v -> StringUtils.containsIgnoreCase(v.getDescricao(), query))
+                .collect(Collectors.toList());
     }
 
-    public List<NFeTipoOperacaoConsumidor> getTiposDeOperacaoConsumidor() {
-        return NFeTipoOperacaoConsumidor.valuesAsList();
+//    public List<NFeTipoOperacao> getTiposDeOperacao() {
+//        return NFeTipoOperacao.valuesAsList();
+//    }
+    public List<NFeTipoOperacaoConsumidor> completeNFeTipoOperacaoConsumidor(String query) {
+        return NFeTipoOperacaoConsumidor.valuesAsList().stream()
+                .filter(v -> StringUtils.containsIgnoreCase(v.getDescricao(), query))
+                .collect(Collectors.toList());
     }
+//    public List<NFeTipoOperacaoConsumidor> getTiposDeOperacaoConsumidor() {
+//        return NFeTipoOperacaoConsumidor.valuesAsList();
+//    }
 
-    public List<NFeTipoRegimeEspecialTributacao> getTiposDeRegimeEspecialTributacao() {
-        return NFeTipoRegimeEspecialTributacao.valuesAsList();
+    public List<NFeTipoRegimeEspecialTributacao> completeNFeTipoRegimeEspecialTributacao(String query) {
+        return NFeTipoRegimeEspecialTributacao.valuesAsList().stream()
+                .filter(v -> StringUtils.containsIgnoreCase(v.getDescricao(), query))
+                .collect(Collectors.toList());
     }
+//    public List<NFeTipoRegimeEspecialTributacao> getTiposDeRegimeEspecialTributacao() {
+//        return NFeTipoRegimeEspecialTributacao.valuesAsList();
+//    }
 
-    public List<NFeTipoRegimeTributario> getTiposDeRegimeTributario() {
-        return NFeTipoRegimeTributario.valuesAsList();
+    public List<NFeTipoRegimeTributario> completeNFeTipoRegimeTributario(String query) {
+        return NFeTipoRegimeTributario.valuesAsList().stream()
+                .filter(v -> StringUtils.containsIgnoreCase(v.getDescricao(), query))
+                .collect(Collectors.toList());
     }
+//    public List<NFeTipoRegimeTributario> getTiposDeRegimeTributario() {
+//        return NFeTipoRegimeTributario.valuesAsList();
+//    }
 
-    public List<NFeTipoPresencaCompradorOperacao> getTiposDePresencaComprador() {
-        return NFeTipoPresencaCompradorOperacao.valuesAsList();
+    public List<NFeTipoPresencaCompradorOperacao> completeNFeTipoPresencaCompradorOperacao(String query) {
+        return NFeTipoPresencaCompradorOperacao.valuesAsList().stream()
+                .filter(v -> StringUtils.containsIgnoreCase(v.getDescricao(), query))
+                .collect(Collectors.toList());
     }
+//    public List<NFeTipoPresencaCompradorOperacao> getTiposDePresencaComprador() {
+//        return NFeTipoPresencaCompradorOperacao.valuesAsList();
+//    }
 
     public List<NFeTipoProcessoEmissao> getTiposDeProcessoDeEmissao() {
         return NFeTipoProcessoEmissao.valuesAsList();
     }
 
-    public List<NFeTipoOrigemMercadoria> getTiposDeOrigemMercadoria() {
-        return NFeTipoOrigemMercadoria.valuesAsList();
+    public List<NFeTipoOrigemMercadoria> completeNFeTipoOrigemMercadoria(String query) {
+        return NFeTipoOrigemMercadoria.valuesAsList().stream()
+                .filter(v -> StringUtils.containsIgnoreCase(v.getDescricao(), query))
+                .collect(Collectors.toList());
     }
 
-    public List<NFeTipoSituacaoTributariaICMS> getCstsRegimeNormal() {
-        return NFeTipoSituacaoTributariaICMS.getCstsRegimeNormal();
+//    public List<NFeTipoOrigemMercadoria> getTiposDeOrigemMercadoria() {
+//        return NFeTipoOrigemMercadoria.valuesAsList();
+//    }
+    public List<NFeTipoSituacaoTributariaICMS> completeCstsRegimeNormal(String query) {
+        return NFeTipoSituacaoTributariaICMS.getCstsRegimeNormal().stream()
+                .filter(v -> StringUtils.containsIgnoreCase(v.getDescricao(), query))
+                .collect(Collectors.toList());
+    }
+//    public List<NFeTipoSituacaoTributariaICMS> getCstsRegimeNormal() {
+//        return NFeTipoSituacaoTributariaICMS.getCstsRegimeNormal();
+//    }
+
+    public List<NFeTipoSituacaoTributariaICMS> completeCstsRegimeSimples(String query) {
+        return NFeTipoSituacaoTributariaICMS.getCstsRegimeSimples().stream()
+                .filter(v -> StringUtils.containsIgnoreCase(v.getDescricao(), query))
+                .collect(Collectors.toList());
     }
 
-    public List<NFeTipoSituacaoTributariaICMS> getCstsRegimeSimples() {
-        return NFeTipoSituacaoTributariaICMS.getCstsRegimeSimples();
+//    public List<NFeTipoSituacaoTributariaICMS> getCstsRegimeSimples() {
+//        return NFeTipoSituacaoTributariaICMS.getCstsRegimeSimples();
+//    }
+    public List<NFeTipoSituacaoTributariaIPI> completeNFeTipoSituacaoTributariaIPI(String query) {
+        return NFeTipoSituacaoTributariaIPI.valuesAsList().stream()
+                .filter(v -> StringUtils.containsIgnoreCase(v.getDescricao(), query))
+                .collect(Collectors.toList());
     }
 
-    public List<NFeTipoSituacaoTributariaIPI> getCstsIpi() {
-        return NFeTipoSituacaoTributariaIPI.valuesAsList();
+//    public List<NFeTipoSituacaoTributariaIPI> getCstsIpi() {
+//        return NFeTipoSituacaoTributariaIPI.valuesAsList();
+//    }
+    public List<NFeTipoSituacaoTributariaPIS> completeNFeTipoSituacaoTributariaPIS(String query) {
+        return NFeTipoSituacaoTributariaPIS.valuesAsList().stream()
+                .filter(v -> StringUtils.containsIgnoreCase(v.getDescricao(), query))
+                .collect(Collectors.toList());
     }
 
-    public List<NFeTipoSituacaoTributariaPIS> getCstsPis() {
-        return NFeTipoSituacaoTributariaPIS.valuesAsList();
+//    public List<NFeTipoSituacaoTributariaPIS> getCstsPis() {
+//        return NFeTipoSituacaoTributariaPIS.valuesAsList();
+//    }
+    public List<NFeTipoSituacaoTributariaCOFINS> completeNFeTipoSituacaoTributariaCOFINS(String query) {
+        return NFeTipoSituacaoTributariaCOFINS.valuesAsList().stream()
+                .filter(v -> StringUtils.containsIgnoreCase(v.getDescricao(), query))
+                .collect(Collectors.toList());
     }
 
-    public List<NFeTipoSituacaoTributariaCOFINS> getCstsCofins() {
-        return NFeTipoSituacaoTributariaCOFINS.valuesAsList();
-    }
-
+//    public List<NFeTipoSituacaoTributariaCOFINS> getCstsCofins() {
+//        return NFeTipoSituacaoTributariaCOFINS.valuesAsList();
+//    }
     public List<NFeTipoTributacao> getTiposDeTributacao() {
         return NFeTipoTributacao.valuesAsList();
     }
 
-    public List<NFeTipoCalculo> getTiposDeCalculo() {
-        return NFeTipoCalculo.valuesAsList();
+    public List<NFeTipoCalculo> completeNFeTipoCalculo(String query) {
+        return NFeTipoCalculo.valuesAsList().stream()
+                .filter(v -> StringUtils.containsIgnoreCase(v.getCalculo(), query))
+                .collect(Collectors.toList());
     }
+//    public List<NFeTipoCalculo> getTiposDeCalculo() {
+//        return NFeTipoCalculo.valuesAsList();
+//    }
 
-    public List<NFeTipoServico> getTiposDeServicoIssqn() {
-        return NFeTipoServico.valuesAsList();
+    public List<NFeTipoServico> completeNFeTipoServico(String query) {
+        return NFeTipoServico.valuesAsList().stream()
+                .filter(v -> StringUtils.containsIgnoreCase(v.getDescricao(), query))
+                .collect(Collectors.toList());
     }
+//    public List<NFeTipoServico> getTiposDeServicoIssqn() {
+//        return NFeTipoServico.valuesAsList();
+//    }
 
     public void limpaLocalEntrega() {
         if (this.ideLocalEntrega != null) {

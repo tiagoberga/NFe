@@ -70,7 +70,12 @@ public class ProdutoFaces implements Serializable {
         this.model = this.produtoFacade.findByFilter(this.produtoFilter);
     }
 
-    public void deleteById(String produtoId) {
+    /**
+     * Método responsavel por excluir um registro de produto.
+     *
+     * @param produtoId id do produto a ser removido.
+     */
+    public void deleteBy(String produtoId) {
         Produto toRemove = this.produtoFacade.find(produtoId);
 
         if (toRemove != null) {
@@ -87,7 +92,7 @@ public class ProdutoFaces implements Serializable {
         try {
             // SALVA EMITENTE
             this.produtoFacade.save(this.produto);
-            UtilFaces.showDialogMessageInfo("Dados de Produto salvos com sucesso!");
+            UtilFaces.showDialogMessageInfo("Dados do produto salvos com sucesso!");
 
             if (this.produto.isNew()) {
                 // ATRIBUI DADOS SALVOS AO FILTRO
@@ -109,9 +114,9 @@ public class ProdutoFaces implements Serializable {
     public List<String> completeCFOP(String query) {
         List<String> listaString = new ArrayList<>();
 
-        listaString.add("CFOP 1");
-        listaString.add("CFOP 2");
-        listaString.add("CFOP 3");
+        listaString.add("COD1");
+        listaString.add("COD2");
+        listaString.add("COD3");
 
         return listaString.stream()
                 .filter(v -> StringUtils.containsIgnoreCase(v, query))
@@ -121,21 +126,21 @@ public class ProdutoFaces implements Serializable {
     public List<String> completeCEST(String query) {
         List<String> listaString = new ArrayList<>();
 
-        listaString.add("CEST 1");
-        listaString.add("CEST 2");
-        listaString.add("CEST 3");
+        listaString.add("COOOOD1");
+        listaString.add("COOOOD2");
+        listaString.add("COOOOD3");
 
         return listaString.stream()
                 .filter(v -> StringUtils.containsIgnoreCase(v, query))
                 .collect(Collectors.toList());
     }
 
-    public List<String  > completeNCM(String query) {
+    public List<String> completeNCM(String query) {
         List<String> listaString = new ArrayList<>();
 
-        listaString.add("NCM 1");
-        listaString.add("NCM 2");
-        listaString.add("NCM 3");
+        listaString.add("COOOOOD1");
+        listaString.add("COOOOOD2");
+        listaString.add("COOOOOD3");
 
         return listaString.stream()
                 .filter(v -> StringUtils.containsIgnoreCase(v, query))

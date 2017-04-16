@@ -71,12 +71,6 @@ public class IdentificacaoNFe extends AbstractEntity {
     @Column(length = 60, nullable = false)
     private String natop;
     
-//    // Indicador da forma de pagamento 
-//    @NotNull(message = "Forma de Pagamento é obrigatório")
-//    @Column(nullable = false)
-//    @Enumerated(EnumType.STRING)
-//    private NFeTipoIndicacaoNFeFormaPagamento indpag;
-    
     // Código do Modelo do Documento Fiscal
     @NotNull(message = "Modelo do Documento é obrigatório")
     @Column(nullable = false)
@@ -90,8 +84,8 @@ public class IdentificacaoNFe extends AbstractEntity {
     private String serie;
     
     // Número do Documento Fiscal
-    @NotNull(message = "Número do Documento é obrigatório")
     @Length(min = 1, max = 9, message = "Número deve conter entre {min} e {max} caracteres")
+    @NotNull(message = "Número do Documento é obrigatório")
     @Column(length = 9, nullable = false)
     private String nnf;
     
@@ -249,14 +243,6 @@ public class IdentificacaoNFe extends AbstractEntity {
     public void setNatop(String natop) {
         this.natop = natop;
     }
-
-//    public NFeTipoIndicacaoNFeFormaPagamento getIndpag() {
-//        return indpag;
-//    }
-//
-//    public void setIndpag(NFeTipoIndicacaoNFeFormaPagamento indpag) {
-//        this.indpag = indpag;
-//    }
 
     public NFeTipoModeloDocumentoFiscal getModelo() {
         return modelo;

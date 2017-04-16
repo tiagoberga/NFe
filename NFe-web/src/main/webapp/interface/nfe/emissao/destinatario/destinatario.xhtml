@@ -6,141 +6,160 @@
                 xmlns:f="http://java.sun.com/jsf/core">
 
     <h:panelGroup id="pgNFeDestinatario">
-        <div class="Card">
-            <div class="CardBigTopic">Identificação</div>
-            <div class="Separator"></div>
+        <div class="card card-w-title"><h1>Identificação</h1>
+            <div class="ui-g-12 "><span class="Blue Fs17">Utilize o campo 'CPF/CNPJ/ID Estrangeiro' para buscar um cliente ja cadastrado digitando seu documento ou razão social.</span></div>
+            <p:spacer width="10ex"/>
+
             <div class="ui-g">
-                <div class="ui-g-12 "><span class="Blue Fs17">Utilize o campo 'CPF ou CNPJ ou ID Estrangeiro' para buscar um cliente ja cadastrado digitando seu documento ou razão social.</span></div>
                 <div class="ui-g-12 ui-md-6 ui-lg-3">
-                    <p:autoComplete id="documentoDest" completeMethod="#{digitacaoNFeFaces.completeDestinatario}" 
-                                    value="#{digitacaoNFeFaces.destinatario}" var="acDestinatario" itemValue="#{acDestinatario}" itemLabel="#{acDestinatario.documento}" 
-                                    placeholder="* CPF ou CNPJ ou ID Estrangeiro" title="* CPF ou CNPJ ou ID Estrangeiro" maxlength="20" minQueryLength="4" emptyMessage="Nenhum cliente encontrado." 
-                                    converter="#{gpoConverter}">
-                        <p:column class="Wid30" headerText="Documento" style="height: 4em">#{acDestinatario.documento}</p:column>
-                        <p:column class="Wid70" headerText="Razão Social" style="height: 4em">#{acDestinatario.xnome}</p:column>
-                        <p:ajax event="itemSelect" listener="#{digitacaoNFeFaces.onDestinatarioSelect}" update="pgNFeDestinatario"/>
-                        <p:tooltip showEvent="focus" hideEvent="blur" position="top" />
-                    </p:autoComplete>
-                    <p:message for="documentoDest" escape="true" />
+                    <h:panelGroup class="md-inputfield">
+                        <p:autoComplete id="documentoDest" completeMethod="#{digitacaoNFeFaces.completeDestinatario}" 
+                                        value="#{digitacaoNFeFaces.destinatario}" var="vDestinatario" itemValue="#{vDestinatario}" itemLabel="#{vDestinatario.documento}" 
+                                        maxlength="20" minQueryLength="4" emptyMessage="Nenhum cliente encontrado." 
+                                        converter="#{gpoConverter}">
+                            <p:column width="30%" headerText="Documento" style="height: 4em">#{vDestinatario.documento}</p:column>
+                            <p:column width="70%" headerText="Razão Social" style="height: 4em">#{vDestinatario.xnome}</p:column>
+                            <p:ajax event="itemSelect" listener="#{digitacaoNFeFaces.onDestinatarioSelect}" update="pgNFeDestinatario"/>
+                        </p:autoComplete>
+                        <label>* CPF/CNPJ/ID Estrangeiro</label>
+                        <p:message for="documentoDest" escape="true" />
+                    </h:panelGroup>
                 </div>            
                 <div class="ui-g-12 ui-md-6 ui-lg-3">
-                    <p:inputText id="xnomeDest" value="#{digitacaoNFeFaces.ideDestinatario.xnome}" placeholder="* Razão Social" title="* Razão Social" maxlength="60">
-                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                    </p:inputText>
-                    <p:message for="xnomeDest" escape="true"/>
+                    <h:panelGroup class="md-inputfield">
+                        <p:inputText id="xnomeDest" value="#{digitacaoNFeFaces.ideDestinatario.xnome}" maxlength="60" />
+                        <label>* Razão Social</label>
+                        <p:message for="xnomeDest" escape="true"/>
+                    </h:panelGroup>
                 </div>
                 <div class="ui-g-12 ui-md-4 ui-lg-6">
-                    <p:selectOneMenu id="indIeDest" value="#{digitacaoNFeFaces.ideDestinatario.indiedest}" title="* Indicador de IE" autoWidth="false">
-                        <f:selectItem itemValue="" itemLabel="* Indicador de IE"/>
-                        <f:selectItems value="#{digitacaoNFeFaces.tiposDeIndicadorIEDestinatario}" var="vIndIe" itemValue="#{vIndIe}" itemLabel="#{vIndIe.codigo} - #{vIndIe.descricao}" />
-                    </p:selectOneMenu>
-                    <p:message for="indIeDest" escape="true"/>
+                    <h:panelGroup styleClass="md-inputfield">
+                        <p:autoComplete id="indIeDest" value="#{digitacaoNFeFaces.ideDestinatario.indiedest}" var="vIndie" itemValue="#{vIndie}" itemLabel="#{vIndie.codigo.concat(' - ').concat(vIndie.descricao)}" cache="true"
+                                        completeMethod="#{digitacaoNFeFaces.completeNFeTipoIndicadorIEDestinatario}" dropdown="true" />
+                        <label>* Selecione o Indicador de IE</label>
+                        <p:message for="indIeDest" escape="true"/>
+                    </h:panelGroup>
                 </div>
                 <div class="ui-g-12 ui-md-4 ui-lg-3">
-                    <p:inputText id="ieDest" value="#{digitacaoNFeFaces.ideDestinatario.ie}" placeholder="Inscrição Estadual" title="Inscrição Estadual" maxlength="14">
-                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                    </p:inputText>
-                    <p:message for="ieDest" escape="true"/>
+                    <h:panelGroup class="md-inputfield">
+                        <p:inputText id="ieDest" value="#{digitacaoNFeFaces.ideDestinatario.ie}" maxlength="14" />
+                        <label>Inscrição Estadual</label>
+                        <p:message for="ieDest" escape="true"/>
+                    </h:panelGroup>
                 </div>
                 <div class="ui-g-12 ui-md-4 ui-lg-3">
-                    <p:inputText id="isUfDest" value="#{digitacaoNFeFaces.ideDestinatario.isuf}" placeholder="Inscrição SUFRAMA" title="Inscrição SUFRAMA" maxlength="9">
-                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                    </p:inputText>
-                    <p:message for="isUfDest" escape="true"/>
+                    <h:panelGroup class="md-inputfield">
+                        <p:inputText id="isUfDest" value="#{digitacaoNFeFaces.ideDestinatario.isuf}" maxlength="9" />
+                        <label>Inscrição SUFRAMA</label>
+                        <p:message for="isUfDest" escape="true"/>
+                    </h:panelGroup>
                 </div>
                 <div class="ui-g-12 ui-md-6 ui-lg-3">
-                    <p:inputText id="imDest" value="#{digitacaoNFeFaces.ideDestinatario.im}" placeholder="Inscrição Municipal" title="Inscrição Municipal" maxlength="60">
-                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                    </p:inputText>
-                    <p:message for="imDest" escape="true"/>
+                    <h:panelGroup class="md-inputfield">
+                        <p:inputText id="imDest" value="#{digitacaoNFeFaces.ideDestinatario.im}" maxlength="60" />
+                        <label>Inscrição Municipal</label>
+                        <p:message for="imDest" escape="true"/>
+                    </h:panelGroup>
                 </div>
                 <div class="ui-g-12 ui-md-6 ui-lg-3">
-                    <p:inputText id="emailDest" value="#{digitacaoNFeFaces.ideDestinatario.email}" placeholder="E-mail" title="E-mail" maxlength="60">
-                        <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                    </p:inputText>
-                    <p:message for="emailDest" escape="true"/>
+                    <h:panelGroup class="md-inputfield">
+                        <p:inputText id="emailDest" value="#{digitacaoNFeFaces.ideDestinatario.email}" maxlength="60" />
+                        <label>E-mail</label>
+                        <p:message for="emailDest" escape="true"/>
+                    </h:panelGroup>
                 </div>
             </div>
         </div>
 
-        <div class="EmptyBox5"></div>
         <h:panelGroup id="pgEnderecoDest" layout="block">
-            <div class="Card">
-                <div class="CardBigTopic">Endereço</div>
-                <div class="Separator"></div>
+            <div class="card card-w-title"><h1>Endereço</h1>
                 <div class="ui-g">
-                    <div class="ui-g-12 ui-md-6 ui-lg-3 NoPadding">
+                    <div class="ui-g-12 ui-md-6 ui-lg-3" style="padding: 0em">
                         <div class="ui-g-10">
-                            <p:inputText id="cepDest" value="#{digitacaoNFeFaces.ideDestinatario.endereco.endCep}" placeholder="* Código do CEP" title="* Código do CEP" maxlength="8">
-                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                            </p:inputText>
-                            <p:message for="cepDest" escape="true"/>
+                            <h:panelGroup class="md-inputfield">
+                                <p:inputText id="cepDest" value="#{digitacaoNFeFaces.ideDestinatario.endereco.endCep}" maxlength="8" />
+                                <label>Código do CEP</label>
+                                <p:message for="cepDest" escape="true"/>
+                            </h:panelGroup>
                         </div>
-                        <div class="ui-g-2 TexAlCenter">
-                            <p:commandButton process="cepDest, @this" update="pgEnderecoDest"
+                        <div class="ui-g-2" style="padding: 0em; text-align: center">
+                            <p:commandButton process="cepDest, @this" update="pgEnderecoDest"  
                                              action="#{digitacaoNFeFaces.buscaCepDestinatario()}" partialSubmit="true" 
-                                             icon="fa fa-search Fs16 White" styleClass="ShadowEffect"/>
+                                             icon="fa fa-search"/>
                         </div>
                     </div>
+
                     <div class="ui-g-12 ui-md-6 ui-lg-5">
-                        <p:inputText id="xlgrDest" value="#{digitacaoNFeFaces.ideDestinatario.endereco.endXlgr}" placeholder="* Logradouro" title="* Logradouro" maxlength="60">
-                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                        </p:inputText>                                            
-                        <p:message for="xlgrDest" escape="true"/>
+                        <h:panelGroup class="md-inputfield">
+                            <p:inputText id="xlgrDest" value="#{digitacaoNFeFaces.ideDestinatario.endereco.endXlgr}" maxlength="60" />
+                            <label>* Logradouro</label>
+                            <p:message for="xlgrDest" escape="true"/>
+                        </h:panelGroup>
                     </div>
                     <div class="ui-g-12 ui-md-6 ui-lg-4">
-                        <p:inputText id="nroDest" value="#{digitacaoNFeFaces.ideDestinatario.endereco.endNro}" placeholder="* Número" title="* Número" maxlength="60">
-                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                        </p:inputText>
-                        <p:message for="nroDest" escape="true"/>
+                        <h:panelGroup class="md-inputfield">
+                            <p:inputText id="nroDest" value="#{digitacaoNFeFaces.ideDestinatario.endereco.endNro}" maxlength="60" />
+                            <label>* Número</label>
+                            <p:message for="nroDest" escape="true"/>
+                        </h:panelGroup>
                     </div>
                     <div class="ui-g-12 ui-md-6 ui-lg-6">
-                        <p:inputText id="xbairroDest" value="#{digitacaoNFeFaces.ideDestinatario.endereco.endXbairro}" placeholder="* Bairro" title="* Bairro" maxlength="60">
-                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                        </p:inputText>
-                        <p:message for="xbairroDest" escape="true"/>
+                        <h:panelGroup class="md-inputfield">
+                            <p:inputText id="xbairroDest" value="#{digitacaoNFeFaces.ideDestinatario.endereco.endXbairro}" maxlength="60" />
+                            <label>* Bairro</label>
+                            <p:message for="xbairroDest" escape="true"/>
+                        </h:panelGroup>
                     </div>
+
                     <div class="ui-g-12 ui-md-12 ui-lg-6">
-                        <p:inputText id="xcplDest" value="#{digitacaoNFeFaces.ideDestinatario.endereco.endXcpl}" placeholder="Complemento" title="Complemento" maxlength="60">
-                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                        </p:inputText>
-                        <p:message for="xcplDest" escape="true"/>
+                        <h:panelGroup class="md-inputfield">
+                            <p:inputText id="xcplDest" value="#{digitacaoNFeFaces.ideDestinatario.endereco.endXcpl}" maxlength="60" />
+                            <label>Complemento</label>
+                            <p:message for="xcplDest" escape="true"/>
+                        </h:panelGroup>
                     </div>
                     <div class="ui-g-12 ui-md-4 ui-lg-4">
-                        <p:inputText id="cmunDest" value="#{digitacaoNFeFaces.ideDestinatario.endereco.endCmun}" placeholder="* Código do Município" title="* Código do Município"  maxlength="7">
-                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                        </p:inputText>
-                        <p:message for="cmunDest" escape="true"/>
+                        <h:panelGroup class="md-inputfield">
+                            <p:inputText id="cmunDest" value="#{digitacaoNFeFaces.ideDestinatario.endereco.endCmun}" maxlength="7" />
+                            <label>* Código do Município</label>
+                            <p:message for="cmunDest" escape="true"/>
+                        </h:panelGroup>
                     </div>
                     <div class="ui-g-12 ui-md-4 ui-lg-4">
-                        <p:inputText id="xmunDest" value="#{digitacaoNFeFaces.ideDestinatario.endereco.endXmun}" placeholder="* Nome do Município" title="* Nome do Município" maxlength="60">
-                            <p:tooltip showEvent="focus" hideEvent="blur" position="left"/>
-                        </p:inputText>
-                        <p:message for="xmunDest" escape="true"/>
+                        <h:panelGroup class="md-inputfield">
+                            <p:inputText id="xmunDest" value="#{digitacaoNFeFaces.ideDestinatario.endereco.endXmun}" maxlength="60" />
+                            <label>* Nome do Município</label>
+                            <p:message for="xmunDest" escape="true"/>
+                        </h:panelGroup>
+                    </div>
+
+                    <div class="ui-g-12 ui-md-4 ui-lg-4">
+                        <h:panelGroup class="md-inputfield">
+                            <p:inputText id="ufDest" value="#{digitacaoNFeFaces.ideDestinatario.endereco.endUf}" maxlength="2" />
+                            <label> Sigla da UF</label>
+                            <p:message for="ufDest" escape="true"/>
+                        </h:panelGroup>
                     </div>
                     <div class="ui-g-12 ui-md-4 ui-lg-4">
-                        <p:inputText id="ufDest" value="#{digitacaoNFeFaces.ideDestinatario.endereco.endUf}" placeholder="* Sigla da UF" title="* Sigla da UF" maxlength="2">
-                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                        </p:inputText>
-                        <p:message for="ufDest" escape="true"/>
+                        <h:panelGroup class="md-inputfield">
+                            <p:inputText id="cpaisDest" value="#{digitacaoNFeFaces.ideDestinatario.endereco.endCpais}" maxlength="4" />
+                            <label>Código do País</label>
+                            <p:message for="cpaisDest" escape="true"/>
+                        </h:panelGroup>
                     </div>
                     <div class="ui-g-12 ui-md-4 ui-lg-4">
-                        <p:inputText id="cpaisDest" value="#{digitacaoNFeFaces.ideDestinatario.endereco.endCpais}" placeholder="Código do País" title="Código do País" maxlength="4" readonly="true">
-                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                        </p:inputText>
-                        <p:message for="cpaisDest" escape="true"/>
+                        <h:panelGroup class="md-inputfield">
+                            <p:inputText id="xpaisDest" value="#{digitacaoNFeFaces.ideDestinatario.endereco.endXpais}" maxlength="60" />
+                            <label>Nome do País</label>
+                            <p:message for="xpaisDest" escape="true"/>
+                        </h:panelGroup>
                     </div>
                     <div class="ui-g-12 ui-md-4 ui-lg-4">
-                        <p:inputText id="xpaisDest" value="#{digitacaoNFeFaces.ideDestinatario.endereco.endXpais}" placeholder="Nome do País" title="Nome do País" maxlength="60" readonly="true">
-                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                        </p:inputText>
-                        <p:message for="xpaisDest" escape="true"/>
-                    </div>
-                    <div class="ui-g-12 ui-md-4 ui-lg-4">
-                        <p:inputText id="foneDest" value="#{digitacaoNFeFaces.ideDestinatario.endereco.endFone}" placeholder="Telefone" title="Telefone" maxlength="14">
-                            <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                        </p:inputText>
-                        <p:message for="foneDest" escape="true"/>
+                        <h:panelGroup class="md-inputfield">
+                            <p:inputText id="foneDest" value="#{digitacaoNFeFaces.ideDestinatario.endereco.endFone}" maxlength="14" />
+                            <label>Telefone</label>
+                            <p:message for="foneDest" escape="true"/>
+                        </h:panelGroup>
                     </div>
                 </div>
             </div>
@@ -148,78 +167,88 @@
 
         <div class="EmptyBox5"></div>
         <h:panelGroup id="pgLocalEntrega" layout="block">
-            <div class="Card">
-                <div class="CardBigTopic">Local Entrega</div>
-                <div class="Separator"></div>
+            <div class="card card-w-title"><h1>Local Entrega</h1>
                 <div class="ui-g">
                     <div class="ui-g-12 ui-md-6 ui-lg-4">
-                        <p:selectBooleanButton value="#{digitacaoNFeFaces.localEntregaDiferenteDestinatario}" onLabel="Local de Entrega Diferente do Cliente: SIM" offLabel=" Local de Entrega Diferente do Cliente: NÃO" onIcon="fa fa-check Fs16 White" offIcon="fa fa-close Fs16 White" class="TexAlCenter">
+                        <p:selectBooleanButton value="#{digitacaoNFeFaces.localEntregaDiferenteDestinatario}" 
+                                               onLabel="Local de Entrega Diferente do Cliente: SIM" onIcon="fa fa-check" 
+                                               offLabel="Local de Entrega Diferente do Cliente: NÃO" offIcon="fa fa-close" 
+                                               style="text-align: center" >
                             <p:ajax process="@this" update="pgLocalEntrega" listener="#{digitacaoNFeFaces.limpaLocalEntrega()}"/>
                         </p:selectBooleanButton>
                     </div>
 
                     <h:panelGroup id="pgLocalEntregaEndereco" layout="block" rendered="#{digitacaoNFeFaces.localEntregaDiferenteDestinatario}">
-                        <div class="EmptyBox5"></div>
                         <div class="ui-g-12 ui-md-12 ui-lg-12">
-                            <p:inputText id="documentoDestLocal" value="#{digitacaoNFeFaces.ideLocalEntrega.local.locDocumento}" placeholder="CPF ou CNPJ" title="CPF ou CNPJ" maxlength="14">
-                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                            </p:inputText>
-                            <p:message for="documentoDestLocal" escape="true"/>
+                            <h:panelGroup class="md-inputfield">
+                                <p:inputText id="documentoDestLocal" value="#{digitacaoNFeFaces.ideLocalEntrega.local.locDocumento}" maxlength="14" />
+                                <label>CPF ou CNPJ</label>
+                                <p:message for="documentoDestLocal" escape="true"/>
+                            </h:panelGroup>
                         </div>
-                        <div class="ui-g-12 ui-md-6 ui-lg-3 NoPadding">
+                        <div class="ui-g-12 ui-md-6 ui-lg-3" style="padding: 0em">
                             <div class="ui-g-10">
-                                <p:inputText id="cepDestLocal" value="#{digitacaoNFeFaces.ideLocalEntrega.local.locCep}" placeholder="Código do CEP" title="Código do CEP" maxlength="8">
-                                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                </p:inputText>
-                                <p:message for="cepEmit" escape="true"/>
+                                <h:panelGroup class="md-inputfield">
+                                    <p:inputText id="cepDestLocal" value="#{digitacaoNFeFaces.ideLocalEntrega.local.locCep}" maxlength="8" />
+                                    <label>Código do CEP</label>
+                                    <p:message for="cepDestLocal" escape="true"/>
+                                </h:panelGroup>
                             </div>
-                            <div class="ui-g-2 TexAlCenter">
+                            <div class="ui-g-2" style="padding: 0em; text-align: center">
                                 <p:commandButton process="cepDestLocal, documentoDestLocal, @this" update="pgLocalEntregaEndereco"
                                                  action="#{digitacaoNFeFaces.buscaCepDestinatarioLocalEntrega()}" partialSubmit="true" 
                                                  icon="fa fa-search Fs16 White" styleClass="ShadowEffect"/>
                             </div>
                         </div>
                         <div class="ui-g-12 ui-md-6 ui-lg-5">
-                            <p:inputText id="xlgrDestLocal" value="#{digitacaoNFeFaces.ideLocalEntrega.local.locXlgr}" placeholder="Logradouro" title="Logradouro" maxlength="60">
-                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                            </p:inputText>
-                            <p:message for="xlgrEmit" escape="true"/>
+                            <h:panelGroup class="md-inputfield">
+                                <p:inputText id="xlgrDestLocal" value="#{digitacaoNFeFaces.ideLocalEntrega.local.locXlgr}" maxlength="60" />
+                                <label>Logradouro</label>
+                                <p:message for="xlgrDestLocal" escape="true"/>
+                            </h:panelGroup>
                         </div>
                         <div class="ui-g-12 ui-md-6 ui-lg-4">
-                            <p:inputText id="nroDestLocal" value="#{digitacaoNFeFaces.ideLocalEntrega.local.locNro}" placeholder="Número" title="Número" maxlength="60">
-                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                            </p:inputText>
-                            <p:message for="nroEmit" escape="true"/>
+                            <h:panelGroup class="md-inputfield">
+                                <p:inputText id="nroDestLocal" value="#{digitacaoNFeFaces.ideLocalEntrega.local.locNro}" maxlength="60" />
+                                <label>Número</label>
+                                <p:message for="nroDestLocal" escape="true"/>
+                            </h:panelGroup>
                         </div>
                         <div class="ui-g-12 ui-md-6 ui-lg-6">
-                            <p:inputText id="xbairroDestLocal" value="#{digitacaoNFeFaces.ideLocalEntrega.local.locXbairro}" placeholder="Bairro" title="Bairro" maxlength="60">
-                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                            </p:inputText>
-                            <p:message for="xbairroEmit" escape="true"/>
+                            <h:panelGroup class="md-inputfield">
+                                <p:inputText id="xbairroDestLocal" value="#{digitacaoNFeFaces.ideLocalEntrega.local.locXbairro}" maxlength="60" />
+                                <label>Bairro</label>
+                                <p:message for="xbairroDestLocal" escape="true"/>
+                            </h:panelGroup>
                         </div>
+
                         <div class="ui-g-12 ui-md-12 ui-lg-6">
-                            <p:inputText id="xcplDestLocal" value="#{digitacaoNFeFaces.ideLocalEntrega.local.locXcpl}" placeholder="Complemento" title="Complemento" maxlength="60">
-                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                            </p:inputText>
-                            <p:message for="xcplEmit" escape="true"/>
+                            <h:panelGroup class="md-inputfield">
+                                <p:inputText id="xcplDestLocal" value="#{digitacaoNFeFaces.ideLocalEntrega.local.locXcpl}" maxlength="60" />
+                                <label>Complemento</label>
+                                <p:message for="xcplDestLocal" escape="true"/>
+                            </h:panelGroup>
                         </div>
                         <div class="ui-g-12 ui-md-4 ui-lg-4">
-                            <p:inputText id="cmunDestLocal" value="#{digitacaoNFeFaces.ideLocalEntrega.local.locCmun}" placeholder="Código do Município" title="Código do Município" maxlength="7">
-                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                            </p:inputText>
-                            <p:message for="cmunEmit" escape="true"/>
+                            <h:panelGroup class="md-inputfield">
+                                <p:inputText id="cmunDestLocal" value="#{digitacaoNFeFaces.ideLocalEntrega.local.locCmun}" maxlength="7" />
+                                <label>Código do Município</label>
+                                <p:message for="cmunDestLocal" escape="true"/>
+                            </h:panelGroup>
                         </div>
                         <div class="ui-g-12 ui-md-4 ui-lg-4">
-                            <p:inputText id="xmunDestLocal" value="#{digitacaoNFeFaces.ideLocalEntrega.local.locXmun}" placeholder="Nome do Município" title="Nome do Município" maxlength="60">
-                                <p:tooltip showEvent="focus" hideEvent="blur" position="left"/>
-                            </p:inputText>
-                            <p:message for="xmunEmit" escape="true"/>
+                            <h:panelGroup class="md-inputfield">
+                                <p:inputText id="xmunDestLocal" value="#{digitacaoNFeFaces.ideLocalEntrega.local.locXmun}" maxlength="60" />
+                                <label>Nome do Município</label>
+                                <p:message for="xmunDestLocal" escape="true"/>
+                            </h:panelGroup>
                         </div>
                         <div class="ui-g-12 ui-md-4 ui-lg-4">
-                            <p:inputText id="ufDestLocal" value="#{digitacaoNFeFaces.ideLocalEntrega.local.locUf}" placeholder="Sigla da UF" title="Sigla da UF" maxlength="2">
-                                <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                            </p:inputText>
-                            <p:message for="ufEmit" escape="true"/>
+                            <h:panelGroup class="md-inputfield">
+                                <p:inputText id="ufDestLocal" value="#{digitacaoNFeFaces.ideLocalEntrega.local.locUf}" maxlength="2" />
+                                <label>Sigla da UF</label>
+                                <p:message for="ufDestLocal" escape="true"/>
+                            </h:panelGroup>
                         </div>
                     </h:panelGroup>
                 </div>

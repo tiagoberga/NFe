@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://java.sun.com/jsf/core"
@@ -57,23 +58,29 @@
                                     </p:tab>
                                     <!--PRODUTOS/SERVICOS TODOS OS TRIBUTOS-->
                                     <p:tab title="Tributos" >
-                                        <div class="ui-g">
-                                            <div class="ui-g-12 ui-md-6 ui-lg-4 " align="left">
-                                                <p:inputText value="#{digitacaoNFeFaces.produtoServico.vtottrib}" 
-                                                             placeholder="Valor aproximado total de tributos federais" title="Valor aproximado total de tributos federais"
-                                                             style="background-color: #EAEAEA">
-                                                    <f:convertNumber type="number" maxFractionDigits="4" minFractionDigits="4" />
-                                                    <p:tooltip showEvent="focus" hideEvent="blur" position="top"/>
-                                                </p:inputText>
+
+                                        <p:spacer width="10px"/>
+                                        <h:panelGroup layout="block">
+                                            <div class="ui-g">
+                                                <div class="ui-g-12 ui-md-6 ui-lg-4" >
+                                                    <h:panelGroup styleClass="md-inputfield">
+                                                        <p:inputText value="#{digitacaoNFeFaces.produtoServico.vtottrib}" style="text-align: right; background-color: #EAEAEA">
+                                                            <f:convertNumber type="number" maxFractionDigits="4" minFractionDigits="4" />
+                                                        </p:inputText>
+                                                        <label>Valor Tributos Federais</label>
+                                                    </h:panelGroup>
+                                                </div>
                                             </div>
 
-                                            <div class="ui-g-12 ui-md-6 ui-lg-4">
-                                                <p:selectOneButton value="#{digitacaoNFeFaces.tributacao}" >
-                                                    <f:selectItems value="#{digitacaoNFeFaces.tiposDeTributacao}" />
-                                                    <p:ajax event="change" update="@this tbTributacao" listener="#{digitacaoNFeFaces.limpaTransacaoEntreIcmssIssqn()}"/>
-                                                </p:selectOneButton>
+                                            <div class="ui-g">
+                                                <div class="ui-g-12 ui-md-6 ui-lg-4">
+                                                    <p:selectOneButton value="#{digitacaoNFeFaces.tributacao}" >
+                                                        <f:selectItems value="#{digitacaoNFeFaces.tiposDeTributacao}" />
+                                                        <p:ajax event="change" update="@this tbTributacao" listener="#{digitacaoNFeFaces.limpaTransacaoEntreIcmssIssqn()}"/>
+                                                    </p:selectOneButton>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </h:panelGroup>
 
                                         <p:tabView id="tbTributacao" scrollable="true">
                                             <!--PRODUTOS/SERVICOS ICMS-->
@@ -185,13 +192,13 @@
                                 </p:column>
                                 <p:column headerText="Opções" >
                                     <p:commandButton process="@this" update="@([id$=pgNFeProdutoServico])"
-                                                     styleClass="GreenButton" icon="fa fa-pencil" 
+                                                     styleClass="green-btn" icon="fa fa-pencil" 
                                                      onsuccess="PF('accProdutos').select(0);">
                                         <f:setPropertyActionListener value="#{vProduto}" target="#{digitacaoNFeFaces.produtoServico}"/>
                                     </p:commandButton>
                                     <p:commandButton process="@this" update="dtProdutoServicoList"
                                                      action="#{digitacaoNFeFaces.rmvDetalhamentoProdutosServicos()}"
-                                                     styleClass="RedButton" icon="fa fa-trash">
+                                                     styleClass="red-btn" icon="fa fa-trash">
                                         <f:setPropertyActionListener value="#{vProduto}" target="#{digitacaoNFeFaces.produtoServico}"/>
                                         <p:confirm header="Confirmação" message="Realmente deseja excluir?" icon="ui-icon-alert" />
                                     </p:commandButton>

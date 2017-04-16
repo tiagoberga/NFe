@@ -66,7 +66,7 @@
                                     <div class="ui-g-12 ui-md-12 ui-lg-6" >
                                         <h:panelGroup styleClass="md-inputfield">
                                             <p:autoComplete id="cfop" value="#{produtoFaces.produto.cfop}" var="vCfop" itemValue="#{vCfop}" itemLabel="#{vCfop}" cache="true" cacheTimeout="360000"
-                                                            completeMethod="#{produtoFaces.completeCFOP}" dropdown="true" dropdownMode="current" />
+                                                            completeMethod="#{produtoFaces.completeCFOP}" dropdown="true" dropdownMode="currency"/>
                                             <label>* CFOP</label>
                                             <p:message for="cfop" escape="true"/>
                                         </h:panelGroup>
@@ -74,7 +74,7 @@
                                     <div class="ui-g-12 ui-md-12 ui-lg-6" >
                                         <h:panelGroup styleClass="md-inputfield">
                                             <p:autoComplete id="ncm" value="#{produtoFaces.produto.ncm}" var="vNcm" itemValue="#{vNcm}" itemLabel="#{vNcm}" cache="true"
-                                                            completeMethod="#{produtoFaces.completeNCM}" dropdown="true" dropdownMode="current" />
+                                                            completeMethod="#{produtoFaces.completeNCM}" dropdown="true" dropdownMode="currency"/>
                                             <label>* NCM</label>
                                             <p:message for="ncm" escape="true"/>
                                         </h:panelGroup>
@@ -82,16 +82,16 @@
                                     <div class="ui-g-12 ui-md-12 ui-lg-6" >
                                         <h:panelGroup styleClass="md-inputfield">
                                             <p:autoComplete id="cest" value="#{produtoFaces.produto.cest}" var="vCest" itemValue="#{vCest}" itemLabel="#{vCest}" cache="true"
-                                                            completeMethod="#{produtoFaces.completeCEST}" dropdown="true" dropdownMode="current" />
+                                                            completeMethod="#{produtoFaces.completeCEST}" dropdown="true" dropdownMode="currency"/>
                                             <label>CEST</label>
                                             <p:message for="cest" escape="true"/>
                                         </h:panelGroup>
                                     </div>
                                     <div class="ui-g-12 ui-md-12 ui-lg-6" >
                                         <h:panelGroup styleClass="md-inputfield">
-                                            <p:autoComplete id="indTot" value="#{produtoFaces.produto.indTot}" var="vIndProd" itemValue="#{vIndProd}" itemLabel="#{vIndProd.descricao}" cache="true"
+                                            <p:autoComplete id="indTot" value="#{produtoFaces.produto.indTot}" var="vIndProd" itemValue="#{vIndProd}" itemLabel="#{vIndProd.codigo.concat(' - ').concat(vIndProd.descricao)}" cache="true"
                                                             completeMethod="#{produtoFaces.completeIndicadorVProd}" dropdown="true" />
-                                            <label>* Composição</label>
+                                            <label>* Composição do Item</label>
                                             <p:message for="indTot" escape="true"/>
                                         </h:panelGroup>
                                     </div>
@@ -212,7 +212,7 @@
                                                 <p:message for="vprod" escape="true"/>
                                             </h:panelGroup>
                                         </div>
-                                        <div class="ui-g-2" style="text-align: center">
+                                        <div class="ui-g-2" style="text-align: center; padding: 0em">
                                             <p:commandButton process="qcom, vuncom, vfrete, vseg, vdesc, voutro, @this" update="vprod" 
                                                              action="#{produtoFaces.calculaVProd()}" partialSubmit="true" 
                                                              icon="fa fa-refresh" />
@@ -220,7 +220,6 @@
                                     </div>
                                 </div>
 
-                                <p:spacer width="10px"/>
                                 <div class="ui-g">
                                     <div class="ui-g-6 ui-md-3 ui-lg-2">
                                         <p:commandButton process="pgProduto @this" update="pgProduto :mainForm:dtModel" 
@@ -237,45 +236,49 @@
                 </p:accordionPanel>
             </div>
 
-            <p:dataTable id="dtModel" value="#{produtoFaces.model}" var="item" lazy="true" paginator="true" paginatorPosition="top" rows="5" rowsPerPageTemplate="5" 
-                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         currentPageReportTemplate="Página: {currentPage}/{totalPages}"
-                         emptyMessage="Nenhum Produto encontrado." reflow="true">
+            <p:dataTable id="dtModel" value="#{produtoFaces.model}" var="vProduto" lazy="true" 
+                         paginator="true" rows="100" rowsPerPageTemplate="100,200,500,1000" paginatorPosition="top"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+                         currentPageReportTemplate="Página: {currentPage}/{totalPages}" reflow="true" 
+                         emptyMessage="Nenhuma informação encontrada." tableStyle="table-layout:auto">
 
-                <p:column headerText="Código" class="Wid20">
-                    <h:outputText value="#{item.cprod}" />
+                <f:facet name="header" >
+                    <h:outputText value="Total de Registros: #{produtoFaces.model.size()}" />
+                </f:facet>
+                <p:column headerText="Código" >
+                    <h:outputText value="#{vProduto.cprod}" />
                 </p:column>
-                <p:column headerText="Descrição" class="Wid30">
-                    <h:outputText value="#{item.xprod}" />
+                <p:column headerText="Descrição" >
+                    <h:outputText value="#{vProduto.xprod}" />
                 </p:column>
-                <p:column headerText="UN" class="Wid10 TexAlCenter">
-                    <h:outputText value="#{item.ucom}" />
+                <p:column headerText="UN" >
+                    <h:outputText value="#{vProduto.ucom}"/>
                 </p:column>
-                <p:column headerText="Qtde. Comercial" class="Wid10">
-                    <h:outputText value="#{item.qcom}">
+                <p:column headerText="Qtde. Comercial" >
+                    <h:outputText value="#{vProduto.qcom}">
                         <f:convertNumber pattern="#0.00" type="currency" minFractionDigits="4" maxFractionDigits="4" />
                     </h:outputText>
                 </p:column>
-                <p:column headerText="Val. Unit. Comercial" class="Wid10">
-                    <h:outputText value="#{item.vuncom}">
+                <p:column headerText="Val. Unit. Comercial" >
+                    <h:outputText value="#{vProduto.vuncom}">
                         <f:convertNumber pattern="#0.0000" />
                     </h:outputText>
                 </p:column>
-                <p:column headerText="Val. Total" class="Wid10">
-                    <h:outputText value="#{item.vprod}">
+                <p:column headerText="Val. Total" >
+                    <h:outputText value="#{vProduto.vprod}">
                         <f:convertNumber pattern="#0.00" type="currency" minFractionDigits="2" maxFractionDigits="2" />
                     </h:outputText>
                 </p:column>
-                <p:column headerText="Opções" class="TexAlCenter Wid10">
+                <p:column headerText="Opções" >
                     <p:commandButton process="@this" update="@(form)"
                                      styleClass="green-btn" icon="fa fa-pencil" 
                                      oncomplete="window.scrollTo(0,0); PF('accProd').select(1);">
-                        <f:setPropertyActionListener value="#{item}" target="#{produtoFaces.produto}"/>
+                        <f:setPropertyActionListener value="#{vProduto}" target="#{produtoFaces.produto}"/>
                     </p:commandButton>
                     <p:commandButton process="@this" update="dtModel"
-                                     action="#{produtoFaces.deleteById(item.id)}" 
+                                     action="#{produtoFaces.deleteBy(vProduto.id)}" 
                                      styleClass="red-btn" icon="fa fa-trash">
-                        <p:confirm header="Confirmação" message="Realmente deseja excluir?" icon="ui-icon-alert" />
+                        <p:confirm header="Confirmação" message="Realmente deseja excluir?" icon="fa fa-exclamation" />
                     </p:commandButton>
                 </p:column>
             </p:dataTable>
