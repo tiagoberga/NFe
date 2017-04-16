@@ -16,19 +16,19 @@
         <h:outputScript name="js/ripple.js" library="ultima-layout" />
     </h:head>
 
-    <h:body styleClass="exception-body error-page">
-    
+    <h:body styleClass="exception-body accessdenied-page">
+
         <div class="exception-type">
-            <p:graphicImage name="images/error.svg" library="ultima-layout" />
+            <p:graphicImage name="images/401.svg" library="ultima-layout" />
         </div>
-        
+
         <div class="card exception-panel">
-            <i class="material-icons">&#xE000;</i>
-            <h1>Exceção ocorrida</h1>
-            <div class="exception-detail">Por favor, entre em contato com o administrador do sistema</div>
+            <i class="material-icons">&#xE32A;</i>
+            <h1>Acesso não autorizado</h1>
+            <div class="exception-detail">Usuário não encontrado ou senha incorreta.</div>
             <p:button outcome="/dashboard" value="Homepage" styleClass="secondary"/>
         </div>
-        
+
         <h:outputStylesheet name="css/ripple.css" library="ultima-layout" />
         <h:outputStylesheet name="css/layout-#{guestPreferences.theme}.css" library="ultima-layout" />
     </h:body>

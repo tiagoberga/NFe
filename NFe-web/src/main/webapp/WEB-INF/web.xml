@@ -90,4 +90,10 @@
         <extension>svg#fontawesomeregular</extension>
         <mime-type>image/svg+xml</mime-type>
     </mime-mapping>
+         
+    <error-page>
+        <error-code>403</error-code>
+        <location>/access.xhtml</location>
+    </error-page>
+        
 </web-app>

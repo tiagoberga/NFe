@@ -223,7 +223,7 @@ public class NFeDigitacaoFaces implements Serializable {
     private List<TabelaNCM> ncms = new ArrayList<>();
 
     @PostConstruct
-    public void init() {
+    public void init() {       
         this.emitenteLogado = emitenteFacade.findAll().get(0);
         initNFe();
     }

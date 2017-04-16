@@ -18,34 +18,41 @@
     </h:head>
 
     <h:body styleClass="login-body">
-        <div class="card login-panel ui-fluid">
-            <div class="ui-g">
-                <div class="ui-g-12">
-                    <p:graphicImage name="images/logo-ultima.svg" library="ultima-layout" />
+        <h:form prependId="false" id="form">
+            <div class="card login-panel ui-fluid">
+                <div class="ui-g">
+                    <div class="ui-g-12">
+                        <p:graphicImage name="images/logo-ultima.svg" library="ultima-layout" />
+                    </div>
+                    <div class="ui-g-12">
+                        <h:panelGroup styleClass="md-inputfield">
+                            <p:inputText  id="username" value="#{loginBean.login}"  />
+                            <label>Usuário</label>
+                        </h:panelGroup>
+                    </div>
+                    <div class="ui-g-12">
+                        <h:panelGroup styleClass="md-inputfield">
+                            <p:password id="password" value="#{loginBean.senha}" />
+                            <label>Password</label>
+                        </h:panelGroup>
+                    </div>
+
+
+                    <div class="ui-g-12">
+                        <p:commandButton value="Entrar"  ajax="false"   action="#{loginBean.login}" icon="ui-icon-person" />
+                        <p:button outcome="/dashboard" value="Forgot Password" icon="ui-icon-help" styleClass="secondary"/>
+                    </div>
                 </div>
-                <div class="ui-g-12">
-                    <h:panelGroup styleClass="md-inputfield">
-                        <p:inputText />
-                        <label>Username</label>
-                    </h:panelGroup>
-                </div>
-                <div class="ui-g-12">
-                    <h:panelGroup styleClass="md-inputfield">
-                        <p:password />
-                        <label>Password</label>
-                    </h:panelGroup>
-                </div>
-                <div class="ui-g-12">
-                    <p:button outcome="/dashboard" value="Sign In" icon="ui-icon-person" />
-                    <p:button outcome="/dashboard" value="Forgot Password" icon="ui-icon-help" styleClass="secondary"/>
-                </div>
+
             </div>
-        </div>
-        
-        <div class="login-footer">PrimeFaces Ultima</div>
-        
-        <h:outputStylesheet name="css/ripple.css" library="ultima-layout" />
-        <h:outputStylesheet name="css/layout-#{guestPreferences.theme}.css" library="ultima-layout" />
+
+            <div class="login-footer">PrimeFaces Ultima</div>
+
+            <h:outputStylesheet name="css/ripple.css" library="ultima-layout" />
+            <h:outputStylesheet name="css/layout-#{guestPreferences.theme}.css" library="ultima-layout" />
+
+        </h:form>
+
     </h:body>
 
 </html>
