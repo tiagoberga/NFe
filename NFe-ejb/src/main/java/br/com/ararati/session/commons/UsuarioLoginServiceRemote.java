@@ -5,7 +5,7 @@
  */
 package br.com.ararati.session.commons;
 
-import br.com.ararati.autenticacao.Usuario;
+import br.com.ararati.entity.atenticacao.Usuario;
 import javax.ejb.Remote;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

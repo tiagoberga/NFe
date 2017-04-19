@@ -5,8 +5,8 @@
  */
 package br.com.ararati.session.commons;
 
-import br.com.ararati.autenticacao.Role;
-import br.com.ararati.autenticacao.Usuario;
+import br.com.ararati.enums.Role;
+import br.com.ararati.entity.atenticacao.Usuario;
 import br.com.ararati.session.AbstractFacade;
 import java.util.ArrayList;
 import java.util.List;

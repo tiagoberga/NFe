@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.ararati.autenticacao;
+package br.com.ararati.entity.atenticacao;
 
+import br.com.ararati.enums.Role;
 import br.com.ararati.entity.AbstractEntity;
 import br.com.ararati.entity.cadastros.Emitente;
 import java.util.ArrayList;
