@@ -140,7 +140,7 @@
         <dependency>
             <groupId>br.com.ararati</groupId>
             <artifactId>NFeSchemasXml</artifactId>
-            <version>310</version>
+            <version>400</version>
         </dependency>
         <!--NFE FIM-->
         

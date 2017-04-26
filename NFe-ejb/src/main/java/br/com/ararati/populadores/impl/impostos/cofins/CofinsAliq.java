@@ -7,8 +7,8 @@ package br.com.ararati.populadores.impl.impostos.cofins;
 
 import br.com.ararati.entity.nfe.emissao.DetalhamentoProdutoServico;
 import br.com.ararati.enums.S.NFeTipoSituacaoTributariaCOFINS;
-import enviNFe_v310.TNFe.InfNFe.Det.Imposto.COFINS;
-import enviNFe_v310.TNFe.InfNFe.Det.Imposto.COFINS.COFINSAliq;
+import enviNFe_v400.TNFe.InfNFe.Det.Imposto.COFINS;
+import enviNFe_v400.TNFe.InfNFe.Det.Imposto.COFINS.COFINSAliq;
 
 /**
  *

@@ -7,8 +7,8 @@ package br.com.ararati.populadores.impl.impostos.icms.sn;
 
 import br.com.ararati.entity.nfe.emissao.DetalhamentoProdutoServico;
 import br.com.ararati.enums.N.NFeTipoSituacaoTributariaICMS;
-import enviNFe_v310.TNFe.InfNFe.Det.Imposto.ICMS;
-import enviNFe_v310.TNFe.InfNFe.Det.Imposto.ICMS.ICMSSN900;
+import enviNFe_v400.TNFe.InfNFe.Det.Imposto.ICMS;
+import enviNFe_v400.TNFe.InfNFe.Det.Imposto.ICMS.ICMSSN900;
 
 /**
  *
@@ -39,6 +39,10 @@ public class Icmssn900 implements IImposto {
 
             icmssn900.setPMVAST(item.getPmvast() != null ? item.getPmvast().toString() : null);
             icmssn900.setPRedBCST(item.getPredbcicmsst() != null ? item.getPredbcicmsst().toString() : null);
+            
+            icmssn900.setVBCFCPST(item.getVbcfcpst() != null ? item.getVbcfcpst().toString() : null);
+            icmssn900.setPFCPST(item.getPfcpst()!= null ? item.getPfcpst().toString() : null);
+            icmssn900.setVFCPST(item.getVfcpst()!= null ? item.getVfcpst().toString() : null);
             icms.setICMSSN900(icmssn900);
         } else {
         }

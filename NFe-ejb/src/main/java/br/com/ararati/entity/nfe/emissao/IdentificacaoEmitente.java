@@ -12,7 +12,6 @@ import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -26,11 +25,6 @@ import org.hibernate.validator.constraints.Length;
 @Entity
 @Table(schema = "nfe", name = "identificacao_emitente")
 public class IdentificacaoEmitente extends AbstractEntity {
-
-    @ManyToOne
-    @NotNull(message = "Empresa Emitente é obrigatório")
-    @JoinColumn(name = "emitente_id", nullable = false)
-    private Emitente emitente;
 
     @OneToOne
     @JoinColumn(name = "dados_nfe_id", nullable = false)
@@ -84,14 +78,6 @@ public class IdentificacaoEmitente extends AbstractEntity {
         this.xnome = emitente.getXnome();
         this.xfant = emitente.getXfant();
         this.endereco = new Endereco(emitente);
-    }
-
-    public Emitente getEmitente() {
-        return emitente;
-    }
-
-    public void setEmitente(Emitente emitente) {
-        this.emitente = emitente;
     }
 
     public DadosNFe getDadosNFe() {

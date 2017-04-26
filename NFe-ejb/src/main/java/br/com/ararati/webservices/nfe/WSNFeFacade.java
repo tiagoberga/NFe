@@ -5,9 +5,6 @@
  */
 package br.com.ararati.webservices.nfe;
 
-import br.com.ararati.Cep;
-import br.com.ararati.Consulta;
-import br.com.ararati.ConsultaCepException;
 import br.com.ararati.exception.WSException;
 import br.com.ararati.webservices.nfe.impl.WSDistribuicaoDFe;
 import br.com.ararati.webservices.nfe.impl.WSAutorizacaoNFe;
@@ -35,15 +32,15 @@ public class WSNFeFacade {
         return new WSConsultaCadastro().getRetConsCad(urlWebService, xmlGerado, versaoDados, codigoEstado);
     }
 
-    public retInutNFe_v310.TRetInutNFe getRetornoInutilizcaoNFe(String urlWebService, String xmlGerado, String versaoDados, String codigoEstado) throws WSException, KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException, UnrecoverableKeyException {
+    public retInutNFe_v400.TRetInutNFe getRetornoInutilizcaoNFe(String urlWebService, String xmlGerado, String versaoDados, String codigoEstado) throws WSException, KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException, UnrecoverableKeyException {
         return new WSInutilizacaoNFe().getRetInutNFe(urlWebService, xmlGerado, versaoDados, codigoEstado);
     }
 
-    public retConsSitNFe_v310.TRetConsSitNFe getRetornoConsultaSituacaoNFe(String urlWebservice, String xmlGerado, String codigoEstado, String versaoDados) throws WSException, KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException, UnrecoverableKeyException {
+    public retConsSitNFe_v400.TRetConsSitNFe getRetornoConsultaSituacaoNFe(String urlWebservice, String xmlGerado, String codigoEstado, String versaoDados) throws WSException, KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException, UnrecoverableKeyException {
         return new WSConsultaSituacaoNFe().getRetConsSitNFe(urlWebservice, xmlGerado, codigoEstado, versaoDados);
     }
 
-    public retConsStatServ_v310.TRetConsStatServ getRetornoConsultaStatusServico(String urlWebService, String xmlGerado, String versaoDados, String codigoEstado) throws WSException, KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException, UnrecoverableKeyException {
+    public retConsStatServ_v400.TRetConsStatServ getRetornoConsultaStatusServico(String urlWebService, String xmlGerado, String versaoDados, String codigoEstado) throws WSException, KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException, UnrecoverableKeyException {
         return new WSConsultaStatusServico().getRetConsStatServ(urlWebService, xmlGerado, versaoDados, codigoEstado);
     }
 
@@ -51,11 +48,11 @@ public class WSNFeFacade {
         return new WSEnvioEvento().getRetEnvEvento(urlWebService, xmlGerado, versaoDados, codigoEstado);
     }
 
-    public retEnviNFe_v310.TRetEnviNFe getRetornoAutorizacaoNFe(String urlWebService, String xmlAssinado, String versaoDados, String codigoEstado) throws WSException, KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException, UnrecoverableKeyException {
+    public retEnviNFe_v400.TRetEnviNFe getRetornoAutorizacaoNFe(String urlWebService, String xmlAssinado, String versaoDados, String codigoEstado) throws WSException, KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException, UnrecoverableKeyException {
         return new WSAutorizacaoNFe().getRetAutorizacaoNFe(urlWebService, xmlAssinado, versaoDados, codigoEstado);
     }
 
-    public retConsReciNFe_v310.TRetConsReciNFe getRetornoConsultaRecebimentoNFe(String urlWebService, String xmlGerado, String versaoDados, String codigoEstado) throws WSException, KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException, UnrecoverableKeyException {
+    public retConsReciNFe_v400.TRetConsReciNFe getRetornoConsultaRecebimentoNFe(String urlWebService, String xmlGerado, String versaoDados, String codigoEstado) throws WSException, KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException, UnrecoverableKeyException {
         return new WSConsultaRecebimentoNFe().getRetConsReciNFe(urlWebService, xmlGerado, versaoDados, codigoEstado);
     }
 

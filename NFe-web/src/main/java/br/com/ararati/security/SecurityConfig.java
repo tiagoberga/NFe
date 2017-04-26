@@ -5,7 +5,7 @@
  */
 package br.com.ararati.security;
 
-import br.com.ararati.autenticacao.Role;
+import br.com.ararati.enums.Role;
 import br.com.ararati.faces.UserAuthenticationHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;

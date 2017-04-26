@@ -5,14 +5,12 @@
  */
 package br.com.ararati.entity.nfe.emissao;
 
-import br.com.ararati.entity.cadastros.*;
 import br.com.ararati.entity.AbstractEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 /**
  * I05a - Codificação NVE - Nomenclatura de Valor Aduaneiro e Estatística.
@@ -22,11 +20,6 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(schema = "nfe", name = "nomenclatura_valor_aduaneiro")
 public class NomenclaturaValorAduaneiro extends AbstractEntity {
-
-    @ManyToOne
-    @NotNull(message = "Empresa Emitente é obrigatório")
-    @JoinColumn(name = "emitente_id", nullable = false)
-    private Emitente emitente;
 
     @ManyToOne
     @JoinColumn(name = "detalhamento_produto_servico_id", nullable = false)
@@ -41,14 +34,6 @@ public class NomenclaturaValorAduaneiro extends AbstractEntity {
      */
     @Column(length = 6, nullable = true)
     private String nve;
-
-    public Emitente getEmitente() {
-        return emitente;
-    }
-
-    public void setEmitente(Emitente emitente) {
-        this.emitente = emitente;
-    }
 
     public DetalhamentoProdutoServico getDetalhamentoProdutoServico() {
         return detalhamentoProdutoServico;

@@ -10,7 +10,7 @@ import br.com.ararati.entity.nfe.emissao.DetalhamentoProdutoServico;
 import br.com.ararati.exception.NFeException;
 import br.com.ararati.populadores.impl.impostos.icms.sn.ControleICMSSN;
 import br.com.ararati.populadores.impl.impostos.icms.st.ControleICMS;
-import enviNFe_v310.TNFe.InfNFe.Det.Imposto.ICMS;
+import enviNFe_v400.TNFe.InfNFe.Det.Imposto.ICMS;
 
 /**
  *
@@ -29,7 +29,7 @@ public class ConstroleDeIcms {
      */
     public void verificaTipoICMS(DetalhamentoProdutoServico item, ICMS icms) throws NFeException {
         if (item.getCsticms() != null) {
-            if (item.getEmitente().isRegimeSimples()) {
+            if (item.getDadosNFe().getEmitente().isRegimeSimples()) {
                 controleICMSSN.controleICMSSN(item, icms);
             } else {
                 controleICMS.controleICMS(item, icms);

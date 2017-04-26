@@ -26,11 +26,6 @@ import javax.validation.constraints.NotNull;
 @Table(schema = "nfe", name = "total_nfe_retencao")
 public class TotalNFeRetencao extends AbstractEntity {
 
-    @ManyToOne
-    @NotNull(message = "Empresa Emitente é obrigatório")
-    @JoinColumn(name = "emitente_id", nullable = true)
-    private Emitente emitente;
-
     @OneToOne
     @JoinColumn(name = "total_nfe_id", nullable = false)
     private TotalNFe totalNFe;
@@ -63,14 +58,6 @@ public class TotalNFeRetencao extends AbstractEntity {
     @DecimalMin(value = "0.00")
     @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vretprev;
-
-    public Emitente getEmitente() {
-        return emitente;
-    }
-
-    public void setEmitente(Emitente emitente) {
-        this.emitente = emitente;
-    }
 
     public BigDecimal getVretpis() {
         return vretpis;

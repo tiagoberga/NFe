@@ -32,11 +32,6 @@ import org.hibernate.validator.constraints.Length;
 public class TransporteVolume extends AbstractEntity {
 
     @ManyToOne
-    @NotNull(message = "Empresa Emitente é obrigatório")
-    @JoinColumn(name = "emitente_id", nullable = false)
-    private Emitente emitente;
-
-    @ManyToOne
     @JoinColumn(name = "transporte_nfe_id", nullable = false)
     private TransporteNFe transporteNFe;
 
@@ -76,7 +71,6 @@ public class TransporteVolume extends AbstractEntity {
     public void addTransporteLacre(TransporteLacre item) {
         this.lacres.add(item);
         item.setTransporteVolume(this);
-        item.setEmitente(emitente);
     }
 
     public TransporteNFe getTransporteNFe() {
@@ -85,14 +79,6 @@ public class TransporteVolume extends AbstractEntity {
 
     public void setTransporteNFe(TransporteNFe transporteNFe) {
         this.transporteNFe = transporteNFe;
-    }
-
-    public Emitente getEmitente() {
-        return emitente;
-    }
-
-    public void setEmitente(Emitente emitente) {
-        this.emitente = emitente;
     }
 
     public String getQvol() {

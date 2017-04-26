@@ -26,11 +26,6 @@ import javax.validation.constraints.NotNull;
 public class DeclaracaoImportacaoAdicoes extends AbstractEntity {
 
     @ManyToOne
-    @NotNull(message = "Empresa Emitente é obrigatório")
-    @JoinColumn(name = "emitente_id", nullable = false)
-    private Emitente emitente;
-
-    @ManyToOne
     @JoinColumn(name = "declaracao_importacao_id", nullable = false)
     private DeclaracaoImportacao declaracaoImportacao;
 
@@ -54,14 +49,6 @@ public class DeclaracaoImportacaoAdicoes extends AbstractEntity {
     // Número do ato concessório de Drawback 
     @Column(length = 11, nullable = true)
     private String ndraw;
-
-    public Emitente getEmitente() {
-        return emitente;
-    }
-
-    public void setEmitente(Emitente emitente) {
-        this.emitente = emitente;
-    }
 
     public DeclaracaoImportacao getDeclaracaoImportacao() {
         return declaracaoImportacao;

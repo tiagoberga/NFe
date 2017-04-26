@@ -5,8 +5,8 @@
  */
 package br.com.ararati.populadores.impl;
 
-import consStatServ_v310.TConsStatServ;
-import consStatServ_v310.ObjectFactory;
+import consStatServ_v400.TConsStatServ;
+import consStatServ_v400.ObjectFactory;
 import java.io.StringWriter;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;

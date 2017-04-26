@@ -6,7 +6,7 @@
 package br.com.ararati.entity.cadastros;
 
 import br.com.ararati.Cep;
-import enviNFe_v310.TUfEmi;
+import enviNFe_v400.TUfEmi;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

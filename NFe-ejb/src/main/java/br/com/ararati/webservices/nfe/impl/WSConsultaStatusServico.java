@@ -23,7 +23,7 @@ import javax.xml.stream.XMLStreamException;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.apache.axis2.AxisFault;
-import retConsStatServ_v310.TRetConsStatServ;
+import retConsStatServ_v400.TRetConsStatServ;
 
 /**
  *

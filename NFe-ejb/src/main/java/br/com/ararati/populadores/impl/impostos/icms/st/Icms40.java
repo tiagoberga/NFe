@@ -8,8 +8,8 @@ package br.com.ararati.populadores.impl.impostos.icms.st;
 import br.com.ararati.entity.nfe.emissao.DetalhamentoProdutoServico;
 import br.com.ararati.enums.N.NFeTipoSituacaoTributariaICMS;
 import br.com.ararati.exception.NFeException;
-import enviNFe_v310.TNFe.InfNFe.Det.Imposto.ICMS;
-import enviNFe_v310.TNFe.InfNFe.Det.Imposto.ICMS.ICMS40;
+import enviNFe_v400.TNFe.InfNFe.Det.Imposto.ICMS;
+import enviNFe_v400.TNFe.InfNFe.Det.Imposto.ICMS.ICMS40;
 import javax.ejb.Local;
 
 /**
@@ -28,7 +28,6 @@ public class Icms40 implements IImposto {
             icms40 = new ICMS40();
             icms40.setOrig(item.getOrig().getCodigo());
             icms40.setCST(item.getCsticms() != null ? item.getCsticms().getCodigo() : null);
-            // DESONERACAO ICMS
             icms40.setMotDesICMS(item.getMotdesicms() != null ? item.getMotdesicms().getCodigo() : null);
             icms40.setVICMSDeson(item.getVicmsdeson() != null ? item.getVicmsdeson().toString() : null);
             icms.setICMS40(icms40);

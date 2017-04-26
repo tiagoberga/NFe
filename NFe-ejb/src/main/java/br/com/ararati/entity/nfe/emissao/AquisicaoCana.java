@@ -32,11 +32,6 @@ import javax.validation.constraints.NotNull;
 @Table(schema = "nfe", name = "aquisicao_cana")
 public class AquisicaoCana extends AbstractEntity {
 
-    @ManyToOne
-    @NotNull(message = "Empresa Emitente é obrigatório")
-    @JoinColumn(name = "emitente_id", nullable = false)
-    private Emitente emitente;
-
     @OneToOne
     @JoinColumn(name = "dados_nfe_id", nullable = false)
     private DadosNFe dadosNFe;
@@ -91,14 +86,6 @@ public class AquisicaoCana extends AbstractEntity {
     public AquisicaoCana() {
         this.deducoes = new ArrayList<>();
         this.fornecimentos = new ArrayList<>();
-    }
-
-    public Emitente getEmitente() {
-        return emitente;
-    }
-
-    public void setEmitente(Emitente emitente) {
-        this.emitente = emitente;
     }
 
     public DadosNFe getDadosNFe() {

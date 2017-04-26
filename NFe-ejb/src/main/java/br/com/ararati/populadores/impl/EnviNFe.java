@@ -27,6 +27,9 @@ import br.com.ararati.entity.nfe.emissao.InformacoesAdicionais;
 import br.com.ararati.entity.nfe.emissao.InformacoesAdicionaisContribuinte;
 import br.com.ararati.entity.nfe.emissao.InformacoesAdicionaisFisco;
 import br.com.ararati.entity.nfe.emissao.InformacoesAdicionaisProcessoReferenciado;
+import br.com.ararati.entity.nfe.emissao.Pagamento;
+import br.com.ararati.entity.nfe.emissao.PagamentoDetalhe;
+import br.com.ararati.entity.nfe.emissao.PagamentoDetalheGrupoCartoes;
 import br.com.ararati.entity.nfe.emissao.TotalNFe;
 import br.com.ararati.entity.nfe.emissao.TotalNFeICMS;
 import br.com.ararati.entity.nfe.emissao.TotalNFeISSQN;
@@ -47,71 +50,72 @@ import br.com.ararati.populadores.impl.impostos.icms.ConstroleDeIcms;
 import br.com.ararati.populadores.impl.impostos.ipi.ChainIPI;
 import br.com.ararati.populadores.impl.impostos.pis.ControlePis;
 import br.com.ararati.utils.UtilConvert;
-import enviNFe_v310.ObjectFactory;
-import enviNFe_v310.TEnderEmi;
-import enviNFe_v310.TEndereco;
-import enviNFe_v310.TEnviNFe;
-import enviNFe_v310.TIpi;
-import enviNFe_v310.TLocal;
-import enviNFe_v310.TNFe;
-import enviNFe_v310.TNFe.InfNFe;
-import enviNFe_v310.TNFe.InfNFe.AutXML;
-import enviNFe_v310.TNFe.InfNFe.Avulsa;
-import enviNFe_v310.TNFe.InfNFe.Cana;
-import enviNFe_v310.TNFe.InfNFe.Cana.Deduc;
-import enviNFe_v310.TNFe.InfNFe.Cana.ForDia;
-import enviNFe_v310.TNFe.InfNFe.Cobr;
-import enviNFe_v310.TNFe.InfNFe.Cobr.Dup;
-import enviNFe_v310.TNFe.InfNFe.Cobr.Fat;
-import enviNFe_v310.TNFe.InfNFe.Compra;
-import enviNFe_v310.TNFe.InfNFe.Dest;
-import enviNFe_v310.TNFe.InfNFe.Det;
-import enviNFe_v310.TNFe.InfNFe.Det.Imposto;
-import enviNFe_v310.TNFe.InfNFe.Det.Imposto.COFINS;
-import enviNFe_v310.TNFe.InfNFe.Det.Imposto.COFINSST;
-import enviNFe_v310.TNFe.InfNFe.Det.Imposto.ICMS;
-import enviNFe_v310.TNFe.InfNFe.Det.Imposto.II;
-import enviNFe_v310.TNFe.InfNFe.Det.Imposto.ISSQN;
-import enviNFe_v310.TNFe.InfNFe.Det.Imposto.PIS;
-import enviNFe_v310.TNFe.InfNFe.Det.Imposto.PISST;
-import enviNFe_v310.TNFe.InfNFe.Det.Imposto.ICMSUFDest;
-import enviNFe_v310.TNFe.InfNFe.Det.ImpostoDevol;
-import enviNFe_v310.TNFe.InfNFe.Det.ImpostoDevol.IPI;
-import enviNFe_v310.TNFe.InfNFe.Det.Prod;
-import enviNFe_v310.TNFe.InfNFe.Det.Prod.Arma;
-import enviNFe_v310.TNFe.InfNFe.Det.Prod.Comb;
-import enviNFe_v310.TNFe.InfNFe.Det.Prod.Comb.CIDE;
-import enviNFe_v310.TNFe.InfNFe.Det.Prod.DI;
-import enviNFe_v310.TNFe.InfNFe.Det.Prod.DI.Adi;
-import enviNFe_v310.TNFe.InfNFe.Det.Prod.DetExport;
-import enviNFe_v310.TNFe.InfNFe.Det.Prod.DetExport.ExportInd;
-import enviNFe_v310.TNFe.InfNFe.Det.Prod.Med;
-import enviNFe_v310.TNFe.InfNFe.Det.Prod.VeicProd;
-import enviNFe_v310.TNFe.InfNFe.Emit;
-import enviNFe_v310.TNFe.InfNFe.Exporta;
-import enviNFe_v310.TNFe.InfNFe.Pag;
-import enviNFe_v310.TNFe.InfNFe.Pag.Card;
-import enviNFe_v310.TNFe.InfNFe.Ide;
-import enviNFe_v310.TNFe.InfNFe.Ide.NFref;
-import enviNFe_v310.TNFe.InfNFe.Ide.NFref.RefECF;
-import enviNFe_v310.TNFe.InfNFe.Ide.NFref.RefNF;
-import enviNFe_v310.TNFe.InfNFe.Ide.NFref.RefNFP;
-import enviNFe_v310.TNFe.InfNFe.InfAdic;
-import enviNFe_v310.TNFe.InfNFe.InfAdic.ObsCont;
-import enviNFe_v310.TNFe.InfNFe.InfAdic.ObsFisco;
-import enviNFe_v310.TNFe.InfNFe.InfAdic.ProcRef;
-import enviNFe_v310.TNFe.InfNFe.Total;
-import enviNFe_v310.TNFe.InfNFe.Total.ICMSTot;
-import enviNFe_v310.TNFe.InfNFe.Total.ISSQNtot;
-import enviNFe_v310.TNFe.InfNFe.Total.RetTrib;
-import enviNFe_v310.TNFe.InfNFe.Transp;
-import enviNFe_v310.TNFe.InfNFe.Transp.Transporta;
-import enviNFe_v310.TNFe.InfNFe.Transp.Vol;
-import enviNFe_v310.TNFe.InfNFe.Transp.Vol.Lacres;
-import enviNFe_v310.TNFe.InfNFeSupl;
-import enviNFe_v310.TUf;
-import enviNFe_v310.TUfEmi;
-import enviNFe_v310.TVeiculo;
+import enviNFe_v400.ObjectFactory;
+import enviNFe_v400.TEnderEmi;
+import enviNFe_v400.TEndereco;
+import enviNFe_v400.TEnviNFe;
+import enviNFe_v400.TIpi;
+import enviNFe_v400.TLocal;
+import enviNFe_v400.TNFe;
+import enviNFe_v400.TNFe.InfNFe;
+import enviNFe_v400.TNFe.InfNFe.AutXML;
+import enviNFe_v400.TNFe.InfNFe.Avulsa;
+import enviNFe_v400.TNFe.InfNFe.Cana;
+import enviNFe_v400.TNFe.InfNFe.Cana.Deduc;
+import enviNFe_v400.TNFe.InfNFe.Cana.ForDia;
+import enviNFe_v400.TNFe.InfNFe.Cobr;
+import enviNFe_v400.TNFe.InfNFe.Cobr.Dup;
+import enviNFe_v400.TNFe.InfNFe.Cobr.Fat;
+import enviNFe_v400.TNFe.InfNFe.Compra;
+import enviNFe_v400.TNFe.InfNFe.Dest;
+import enviNFe_v400.TNFe.InfNFe.Det;
+import enviNFe_v400.TNFe.InfNFe.Det.Imposto;
+import enviNFe_v400.TNFe.InfNFe.Det.Imposto.COFINS;
+import enviNFe_v400.TNFe.InfNFe.Det.Imposto.COFINSST;
+import enviNFe_v400.TNFe.InfNFe.Det.Imposto.ICMS;
+import enviNFe_v400.TNFe.InfNFe.Det.Imposto.II;
+import enviNFe_v400.TNFe.InfNFe.Det.Imposto.ISSQN;
+import enviNFe_v400.TNFe.InfNFe.Det.Imposto.PIS;
+import enviNFe_v400.TNFe.InfNFe.Det.Imposto.PISST;
+import enviNFe_v400.TNFe.InfNFe.Det.Imposto.ICMSUFDest;
+import enviNFe_v400.TNFe.InfNFe.Det.ImpostoDevol;
+import enviNFe_v400.TNFe.InfNFe.Det.ImpostoDevol.IPI;
+import enviNFe_v400.TNFe.InfNFe.Det.Prod;
+import enviNFe_v400.TNFe.InfNFe.Det.Prod.Arma;
+import enviNFe_v400.TNFe.InfNFe.Det.Prod.Comb;
+import enviNFe_v400.TNFe.InfNFe.Det.Prod.Comb.CIDE;
+import enviNFe_v400.TNFe.InfNFe.Det.Prod.DI;
+import enviNFe_v400.TNFe.InfNFe.Det.Prod.DI.Adi;
+import enviNFe_v400.TNFe.InfNFe.Det.Prod.DetExport;
+import enviNFe_v400.TNFe.InfNFe.Det.Prod.DetExport.ExportInd;
+import enviNFe_v400.TNFe.InfNFe.Det.Prod.Med;
+import enviNFe_v400.TNFe.InfNFe.Det.Prod.VeicProd;
+import enviNFe_v400.TNFe.InfNFe.Emit;
+import enviNFe_v400.TNFe.InfNFe.Exporta;
+import enviNFe_v400.TNFe.InfNFe.Ide;
+import enviNFe_v400.TNFe.InfNFe.Ide.NFref;
+import enviNFe_v400.TNFe.InfNFe.Ide.NFref.RefECF;
+import enviNFe_v400.TNFe.InfNFe.Ide.NFref.RefNF;
+import enviNFe_v400.TNFe.InfNFe.Ide.NFref.RefNFP;
+import enviNFe_v400.TNFe.InfNFe.InfAdic;
+import enviNFe_v400.TNFe.InfNFe.InfAdic.ObsCont;
+import enviNFe_v400.TNFe.InfNFe.InfAdic.ObsFisco;
+import enviNFe_v400.TNFe.InfNFe.InfAdic.ProcRef;
+import enviNFe_v400.TNFe.InfNFe.Pag;
+import enviNFe_v400.TNFe.InfNFe.Pag.DetPag;
+import enviNFe_v400.TNFe.InfNFe.Pag.DetPag.Card;
+import enviNFe_v400.TNFe.InfNFe.Total;
+import enviNFe_v400.TNFe.InfNFe.Total.ICMSTot;
+import enviNFe_v400.TNFe.InfNFe.Total.ISSQNtot;
+import enviNFe_v400.TNFe.InfNFe.Total.RetTrib;
+import enviNFe_v400.TNFe.InfNFe.Transp;
+import enviNFe_v400.TNFe.InfNFe.Transp.Transporta;
+import enviNFe_v400.TNFe.InfNFe.Transp.Vol;
+import enviNFe_v400.TNFe.InfNFe.Transp.Vol.Lacres;
+import enviNFe_v400.TNFe.InfNFeSupl;
+import enviNFe_v400.TUf;
+import enviNFe_v400.TUfEmi;
+import enviNFe_v400.TVeiculo;
 import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -203,7 +207,7 @@ public class EnviNFe {
         toReturn.setId("NFe".concat(constroiChaveAcesso.constroiChaveDeAcesso(toReturn)));
         toReturn.getIde().setCDV(toReturn.getId().substring(46, 47));
         toReturn.setInfAdic(fillDadosAdicionais(dadosNFe));
-        toReturn.getPag().addAll(fillPag(dadosNFe));
+        toReturn.setPag(fillPag(dadosNFe));
         toReturn.setRetirada(fillTLocal(dadosNFe.getIdentificacaoLocalRetirada().getLocal()));
         toReturn.setTotal(fillTotais(dadosNFe));
         toReturn.setTransp(fillTransporte(dadosNFe));
@@ -227,7 +231,7 @@ public class EnviNFe {
         int i = random.nextInt(99999999) * 1;
         String cnf = StringUtils.leftPad(String.valueOf(i), 8, "0");
 
-//        ide.setCDV(dadosNFe.getIde().substring(46, 47));
+        // ide.setCDV(dadosNFe.getIde().substring(46, 47));
         ide.setCMunFG(identificacao.getCmunfg());
         ide.setCNF(cnf);
         ide.setCUF(identificacao.getCuf());
@@ -236,7 +240,7 @@ public class EnviNFe {
         ide.setFinNFe(identificacao.getFinnfe() != null ? identificacao.getFinnfe().getCodigo() : null);
         ide.setIdDest(identificacao.getIddest() != null ? identificacao.getIddest().getCodigo() : null);
         ide.setIndFinal(identificacao.getIndfinal() != null ? identificacao.getIndfinal().getCodigo() : null);
-//        ide.setIndPag(identificacao.getIndpag() != null ? identificacao.getIndpag().getCodigo() : null);
+        // ide.setIndPag(identificacao.getIndpag() != null ? identificacao.getIndpag().getCodigo() : null);
         ide.setIndPres(identificacao.getIndpres() != null ? identificacao.getIndpres().getCodigo() : null);
         ide.setMod(identificacao.getModelo() != null ? identificacao.getModelo().getCodigo() : null);
         ide.setNNF(identificacao.getNnf());
@@ -576,7 +580,7 @@ public class EnviNFe {
         prod.getArma().addAll(fillArma(item)); // L. Detalhamento Específico de Armamentos
         prod.getDI().addAll(fillDI(item)); // I01. Produtos e Serviços / Declaração de Importação
         prod.getDetExport().addAll(fillDetExport(item)); // I03. Produtos e Serviços / Grupo de Exportação
-        prod.getMed().addAll(fillMed(item)); // K. Detalhamento Específico de Medicamento e de matérias-primas farmacêuticas
+        prod.setMed(fillMed(item));// K. Detalhamento Específico de Medicamento e de matérias-primas farmacêuticas
         prod.getNVE().addAll(fillNVE(item)); // 104a. Codificação NVE - Nomenclatura de Valor Aduaneiro e Estatística.
 
         // I05. Produtos e Serviços / Pedido de Compra
@@ -720,20 +724,12 @@ public class EnviNFe {
      * K - Detalhamento Específico de Medicamento e de matérias-primas
      * farmacêuticas.
      */
-    private List<Med> fillMed(DetalhamentoProdutoServico item) {
-        List<Med> toReturn = new ArrayList<>();
-        Med med;
-
-        for (DetalhamentoEspecificoMedicamento medicamento : item.getMedicamentos()) {
-            med = new Med();
-//            med.setDFab(sdfDate.format(medicamento.getDfab()));
-//            med.setDVal(sdfDate.format(medicamento.getDval()));
-//            med.setNLote(medicamento.getNlote());
-//            med.setQLote(medicamento.getQlote() != null ? medicamento.getQlote().toString() : null);
-            med.setVPMC(medicamento.getVpmc() != null ? medicamento.getVpmc().toString() : null);
-            toReturn.add(med);
-        }
-        return toReturn;
+    private Med fillMed(DetalhamentoProdutoServico item) {
+        DetalhamentoEspecificoMedicamento medicamento = item.getMedicamento();
+        Med med = new Med();
+        med.setCProdANVISA(medicamento.getCprodanvisa());
+        med.setVPMC(medicamento.getVpmc() != null ? medicamento.getVpmc().toString() : null);
+        return med;
     }
 
     /**
@@ -784,9 +780,9 @@ public class EnviNFe {
         }
 
         CIDE toReturn = new CIDE();
-        toReturn.setQBCProd(combustivel.getQbcprod() != null ? combustivel.getQbcprod().toString() : null);
-        toReturn.setVAliqProd(combustivel.getValiqprod() != null ? combustivel.getValiqprod().toString() : null);
-        toReturn.setVCIDE(combustivel.getVcide() != null ? combustivel.getVcide().toString() : null);
+        toReturn.setQBCProd(combustivel.getCide().getQbcprod() != null ? combustivel.getCide().getQbcprod().toString() : null);
+        toReturn.setVAliqProd(combustivel.getCide().getValiqprod() != null ? combustivel.getCide().getValiqprod().toString() : null);
+        toReturn.setVCIDE(combustivel.getCide().getVcide() != null ? combustivel.getCide().getVcide().toString() : null);
         return toReturn;
     }
 
@@ -886,6 +882,7 @@ public class EnviNFe {
             toReturn.setPICMSInter(item.getPicmsinter() != null ? item.getPicmsinter().toString() : null);
             toReturn.setPICMSInterPart(item.getPicmsinterpart() != null ? item.getPicmsinterpart().toString() : null);
             toReturn.setPICMSUFDest(item.getPicmsufdest() != null ? item.getPicmsufdest().toString() : null);
+            toReturn.setVBCFCPUFDest(item.getVbcfcpufdest() != null ? item.getVbcfcpufdest().toString() : null);
             toReturn.setVBCUFDest(item.getVbcicmsufdest() != null ? item.getVbcicmsufdest().toString() : null);
             toReturn.setVFCPUFDest(item.getVfcpufdest() != null ? item.getVfcpufdest().toString() : null);
             toReturn.setVICMSUFDest(item.getVicmsufdest() != null ? item.getVicmsufdest().toString() : null);
@@ -1093,6 +1090,9 @@ public class EnviNFe {
         toReturn.setVBCST(total.getVbcst() != null ? total.getVbcst().toString() : null);
         toReturn.setVCOFINS(total.getVcofins() != null ? total.getVcofins().toString() : null);
         toReturn.setVDesc(total.getVdesc() != null ? total.getVdesc().toString() : null);
+        toReturn.setVFCP(total.getVfcp() != null ? total.getVfcp().toString() : null);
+        toReturn.setVFCPST(total.getVfcpst() != null ? total.getVfcpst().toString() : null);
+        toReturn.setVFCPSTRet(total.getVfcpstret() != null ? total.getVfcpstret().toString() : null);
         toReturn.setVFCPUFDest(total.getVfcpufdest() != null ? total.getVfcpufdest().toString() : null);
         toReturn.setVFrete(total.getVfrete() != null ? total.getVfrete().toString() : null);
         toReturn.setVICMS(total.getVicms() != null ? total.getVicms().toString() : null);
@@ -1101,6 +1101,7 @@ public class EnviNFe {
         toReturn.setVICMSUFRemet(total.getVicmsufremet() != null ? total.getVicmsufremet().toString() : null);
         toReturn.setVII(total.getVii() != null ? total.getVii().toString() : null);
         toReturn.setVIPI(total.getVipi() != null ? total.getVipi().toString() : null);
+        toReturn.setVIPIDevol(total.getVipidevol() != null ? total.getVipidevol().toString() : null);
         toReturn.setVNF(total.getVnf() != null ? total.getVnf().toString() : null);
         toReturn.setVOutro(total.getVoutro() != null ? total.getVoutro().toString() : null);
         toReturn.setVPIS(total.getVpis() != null ? total.getVpis().toString() : null);
@@ -1274,16 +1275,28 @@ public class EnviNFe {
     /**
      * YA01 - Grupo de Informações de Pagamento.
      */
-    private List<Pag> fillPag(DadosNFe dadosNFe) {
-        List<Pag> toReturn = new LinkedList<>();
-        Pag pag;
+    private Pag fillPag(DadosNFe dadosNFe) {
+        Pagamento pagamento = dadosNFe.getPagamento();
+        Pag pag = new Pag();
+        pag.getDetPag().addAll(fillDetPag(pagamento));
+        pag.setVTroco(pagamento.getVtroco() != null ? pagamento.getVtroco().toString() : null);
 
-        for (int i = 0; i < 0; i++) {
-            pag = new Pag();
-            pag.setCard(fillCard(dadosNFe));
-            pag.setTPag(null);
-            pag.setVPag(null);
-            toReturn.add(pag);
+        return pag;
+    }
+
+    /**
+     * YA01a - Sequencia XML Detalhes de Pagamento.
+     */
+    private List<DetPag> fillDetPag(Pagamento pagamento) {
+        List<DetPag> toReturn = new ArrayList<>();
+        DetPag detpag;
+
+        for (PagamentoDetalhe detalhe : pagamento.getDetalhesPagamento()) {
+            detpag = new DetPag();
+            detpag.setCard(fillCard(detalhe.getCard()));
+            detpag.setTPag(detalhe.getTpag() != null ? detalhe.getTpag().getCodigo() : null);
+            detpag.setVPag(detalhe.getVpag() != null ? detalhe.getVpag().toString() : null);
+            toReturn.add(detpag);
         }
 
         return toReturn;
@@ -1292,12 +1305,12 @@ public class EnviNFe {
     /**
      * YA04 - Grupo de Cartões.
      */
-    private Card fillCard(DadosNFe dadosNFe) {
+    private Card fillCard(PagamentoDetalheGrupoCartoes cartao) {
         Card card = new Card();
-        card.setCAut(null);
-        card.setCNPJ(null);
-        card.setTBand(null);
-        card.setTpIntegra(null);
+        card.setCAut(cartao.getCaut());
+        card.setCNPJ(cartao.getCnpj());
+        card.setTBand(cartao.getTband() != null ? cartao.getTband().getCodigo() : null);
+        card.setTpIntegra(cartao.getTband() != null ? cartao.getTband().getCodigo() : null);
         return card;
     }
 

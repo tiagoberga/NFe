@@ -22,14 +22,14 @@ import javax.xml.bind.JAXBException;
 @Stateless
 public class ConsultaStatusServico {
 
-    public retConsStatServ_v310.TRetConsStatServ consultarStatusServico(ConfiguracaoWebService webService, ConfiguracaoAmbiente ambiente, Emitente empresaLogada) throws KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException, UnrecoverableKeyException, JAXBException, WSException {
+    public retConsStatServ_v400.TRetConsStatServ consultarStatusServico(ConfiguracaoWebService webService, ConfiguracaoAmbiente ambiente, Emitente empresaLogada) throws KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException, UnrecoverableKeyException, JAXBException, WSException {
         // VALIDA O CERTIFICADO DIGITAL CADASTRADO NOS PARAMETROS NF-E
         ValidaCertificadoA1 validaCert = new ValidaCertificadoA1();
         validaCert.validaCertificadoA1(ambiente.getCertificadoArquivo(), ambiente.getKeyDecode());
 
         // CONSTROI XML DE STATUS DE SERVICO E OBTEM XML DE RETORNO STATUS SERVICO
         String xmlConsStatServ = new GeradorXmlFacade().fillConsultaStatusServico(webService.getEstadoSigla().getCodigo().toString(), webService.getTipoAmbiente().getCodigo(), webService.getVersao());
-        retConsStatServ_v310.TRetConsStatServ retConsStatServ = new WSNFeFacade().getRetornoConsultaStatusServico(webService.getUrl(), xmlConsStatServ, webService.getVersao(), webService.getEstadoSigla().getCodigo().toString());
+        retConsStatServ_v400.TRetConsStatServ retConsStatServ = new WSNFeFacade().getRetornoConsultaStatusServico(webService.getUrl(), xmlConsStatServ, webService.getVersao(), webService.getEstadoSigla().getCodigo().toString());
 
         return retConsStatServ;
     }

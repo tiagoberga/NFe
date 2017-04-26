@@ -6,7 +6,7 @@
 package br.com.ararati.operacoes;
 
 import br.com.ararati.exception.NFeException;
-import enviNFe_v310.TNFe.InfNFe;
+import enviNFe_v400.TNFe.InfNFe;
 import org.apache.commons.lang3.StringUtils;
 
 /**

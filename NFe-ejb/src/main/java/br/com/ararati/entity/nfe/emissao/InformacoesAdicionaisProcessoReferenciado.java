@@ -5,7 +5,6 @@
  */
 package br.com.ararati.entity.nfe.emissao;
 
-import br.com.ararati.entity.cadastros.*;
 import br.com.ararati.entity.AbstractEntity;
 import br.com.ararati.enums.Z.NFeTipoOrigemProcesso;
 import javax.persistence.Column;
@@ -28,11 +27,6 @@ import org.hibernate.validator.constraints.Length;
 public class InformacoesAdicionaisProcessoReferenciado extends AbstractEntity {
 
     @ManyToOne
-    @NotNull(message = "Empresa Emitente é obrigatório")
-    @JoinColumn(name = "emitente_id", nullable = true)
-    private Emitente emitente;
-
-    @ManyToOne
     @JoinColumn(name = "informacoes_adicionais_id", nullable = false)
     private InformacoesAdicionais informacoesAdicionais;
 
@@ -46,14 +40,6 @@ public class InformacoesAdicionaisProcessoReferenciado extends AbstractEntity {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private NFeTipoOrigemProcesso indproc;
-
-    public Emitente getEmitente() {
-        return emitente;
-    }
-
-    public void setEmitente(Emitente emitente) {
-        this.emitente = emitente;
-    }
 
     public InformacoesAdicionais getInformacoesAdicionais() {
         return informacoesAdicionais;

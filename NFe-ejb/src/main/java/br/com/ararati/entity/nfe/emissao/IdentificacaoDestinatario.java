@@ -29,11 +29,6 @@ import org.hibernate.validator.constraints.Length;
 @Table(schema = "nfe", name = "identificacao_destinatario")
 public class IdentificacaoDestinatario extends AbstractEntity {
 
-    @ManyToOne
-    @NotNull(message = "Empresa Emitente é obrigatório")
-    @JoinColumn(name = "emitente_id", nullable = false)
-    private Emitente emitente;
-
     @OneToOne
     @JoinColumn(name = "dados_nfe_id", nullable = false)
     private DadosNFe dadosNFe;
@@ -88,14 +83,6 @@ public class IdentificacaoDestinatario extends AbstractEntity {
         this.isuf = destinatario.getIsUf();
         this.xnome = destinatario.getXnome();
         this.endereco = new Endereco(destinatario);
-    }
-
-    public Emitente getEmitente() {
-        return emitente;
-    }
-
-    public void setEmitente(Emitente emitente) {
-        this.emitente = emitente;
     }
 
     public DadosNFe getDadosNFe() {

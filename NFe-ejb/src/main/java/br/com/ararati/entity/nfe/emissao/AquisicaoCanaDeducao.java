@@ -27,11 +27,6 @@ import org.hibernate.validator.constraints.Length;
 public class AquisicaoCanaDeducao extends AbstractEntity {
 
     @ManyToOne
-    @NotNull(message = "Empresa Emitente é obrigatório")
-    @JoinColumn(name = "emitente_id", nullable = false)
-    private Emitente emitente;
-
-    @ManyToOne
     @JoinColumn(name = "aquisicao_cana_id", nullable = false)
     private AquisicaoCana aquisicaoCana;
 
@@ -45,14 +40,6 @@ public class AquisicaoCanaDeducao extends AbstractEntity {
     @DecimalMin(value = "0.00")
     @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal vded;
-
-    public Emitente getEmitente() {
-        return emitente;
-    }
-
-    public void setEmitente(Emitente emitente) {
-        this.emitente = emitente;
-    }
 
     public AquisicaoCana getAquisicaoCana() {
         return aquisicaoCana;

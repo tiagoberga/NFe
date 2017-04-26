@@ -8,8 +8,8 @@ package br.com.ararati.populadores.impl.impostos.icms.st;
 import br.com.ararati.entity.nfe.emissao.DetalhamentoProdutoServico;
 import br.com.ararati.enums.N.NFeTipoSituacaoTributariaICMS;
 import br.com.ararati.exception.NFeException;
-import enviNFe_v310.TNFe.InfNFe.Det.Imposto.ICMS;
-import enviNFe_v310.TNFe.InfNFe.Det.Imposto.ICMS.ICMS00;
+import enviNFe_v400.TNFe.InfNFe.Det.Imposto.ICMS;
+import enviNFe_v400.TNFe.InfNFe.Det.Imposto.ICMS.ICMS00;
 import javax.ejb.Local;
 
 /**
@@ -32,6 +32,8 @@ public class Icms00 implements IImposto {
             icms00.setVBC(item.getVbcicms() != null ? item.getVbcicms().toString() : null);
             icms00.setPICMS(item.getPicms() != null ? item.getPicms().toString() : null);
             icms00.setVICMS(item.getVicms() != null ? item.getVicms().toString() : null);
+            icms00.setPFCP(item.getPfcp() != null ? item.getPfcp().toString() : null);
+            icms00.setVFCP(item.getVfcp() != null ? item.getVfcp().toString() : null);
             icms.setICMS00(icms00);
         } else {
             this.imposto.verificaImposto(item, icms);

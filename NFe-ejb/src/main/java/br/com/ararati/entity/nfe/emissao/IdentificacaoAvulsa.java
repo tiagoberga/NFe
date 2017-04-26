@@ -7,7 +7,7 @@ package br.com.ararati.entity.nfe.emissao;
 
 import br.com.ararati.entity.cadastros.*;
 import br.com.ararati.entity.AbstractEntity;
-import enviNFe_v310.TUfEmi;
+import enviNFe_v400.TUfEmi;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Column;
@@ -15,7 +15,6 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -32,11 +31,6 @@ import org.hibernate.validator.constraints.Length;
 @Entity
 @Table(schema = "nfe", name = "identificacao_avulsa")
 public class IdentificacaoAvulsa extends AbstractEntity {
-
-    @ManyToOne
-    @NotNull(message = "Empresa Emitente é obrigatório")
-    @JoinColumn(name = "emitente_id", nullable = false)
-    private Emitente emitente;
 
     @OneToOne
     @JoinColumn(name = "dados_nfe_id", nullable = false)
@@ -91,13 +85,6 @@ public class IdentificacaoAvulsa extends AbstractEntity {
     @Column(length = 60, nullable = true)
     private Date dpag;
 
-    public Emitente getEmitente() {
-        return emitente;
-    }
-
-    public void setEmitente(Emitente emitente) {
-        this.emitente = emitente;
-    }
 
     public DadosNFe getDadosNFe() {
         return dadosNFe;
@@ -194,6 +181,5 @@ public class IdentificacaoAvulsa extends AbstractEntity {
     public void setDpag(Date dpag) {
         this.dpag = dpag;
     }
-    
-    
+
 }

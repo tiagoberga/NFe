@@ -40,10 +40,6 @@ import org.hibernate.validator.constraints.Length;
 public class DeclaracaoImportacao extends AbstractEntity {
 
     @ManyToOne
-    @JoinColumn(name = "emitente_id", nullable = false)
-    private Emitente emitente;
-
-    @ManyToOne
     @JoinColumn(name = "detalhamento_produto_servico_id", nullable = false)
     private DetalhamentoProdutoServico detalhamentoProdutoServico;
 
@@ -122,14 +118,6 @@ public class DeclaracaoImportacao extends AbstractEntity {
 
     public void setDetalhamentoProdutoServico(DetalhamentoProdutoServico detalhamentoProdutoServico) {
         this.detalhamentoProdutoServico = detalhamentoProdutoServico;
-    }
-
-    public Emitente getEmitente() {
-        return emitente;
-    }
-
-    public void setEmitente(Emitente emitente) {
-        this.emitente = emitente;
     }
 
     public String getNdi() {

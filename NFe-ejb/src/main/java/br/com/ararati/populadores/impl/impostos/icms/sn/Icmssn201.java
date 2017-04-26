@@ -7,8 +7,8 @@ package br.com.ararati.populadores.impl.impostos.icms.sn;
 
 import br.com.ararati.entity.nfe.emissao.DetalhamentoProdutoServico;
 import br.com.ararati.enums.N.NFeTipoSituacaoTributariaICMS;
-import enviNFe_v310.TNFe.InfNFe.Det.Imposto.ICMS;
-import enviNFe_v310.TNFe.InfNFe.Det.Imposto.ICMS.ICMSSN201;
+import enviNFe_v400.TNFe.InfNFe.Det.Imposto.ICMS;
+import enviNFe_v400.TNFe.InfNFe.Det.Imposto.ICMS.ICMSSN201;
 
 /**
  *
@@ -35,6 +35,10 @@ public class Icmssn201 implements IImposto {
 
             icmssn201.setPMVAST(item.getPmvast() != null ? item.getPmvast().toString() : null);
             icmssn201.setPRedBCST(item.getPredbcicmsst() != null ? item.getPredbcicmsst().toString() : null);
+            
+            icmssn201.setVBCFCPST(item.getVbcfcpst() != null ? item.getVbcfcpst().toString() : null);
+            icmssn201.setPFCPST(item.getPfcpst()!= null ? item.getPfcpst().toString() : null);
+            icmssn201.setVFCPST(item.getVfcpst()!= null ? item.getVfcpst().toString() : null);
             icms.setICMSSN201(icmssn201);
         } else {
             this.proximoImposto.verificaImposto(item, icms);

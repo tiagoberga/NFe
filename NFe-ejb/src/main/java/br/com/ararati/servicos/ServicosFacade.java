@@ -49,7 +49,7 @@ public class ServicosFacade {
 //    @EJB
 //    private InutilizaNFe inutilizaNFe;
 
-    public retConsStatServ_v310.TRetConsStatServ consultarStatusServico(ConfiguracaoWebService webService, ConfiguracaoAmbiente ambiente, Emitente empresaLogada) throws KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException, UnrecoverableKeyException, JAXBException, WSException {
+    public retConsStatServ_v400.TRetConsStatServ consultarStatusServico(ConfiguracaoWebService webService, ConfiguracaoAmbiente ambiente, Emitente empresaLogada) throws KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException, UnrecoverableKeyException, JAXBException, WSException {
         return consultaStatusServico.consultarStatusServico(webService, ambiente, empresaLogada);
     }
 
@@ -77,11 +77,11 @@ public class ServicosFacade {
 //        return manifestoDestinatario.realizarManifestoDestinatario(chavesDeAcesso, mdeFilter);
 //    }
 //
-//    public retEnviNFe_v310.TRetEnviNFe realizaAutorizacaoNFe(NotaFiscalEletronica nfe, Emitente empresaLogada, ConfiguracaoAmbiente ambiente, NFeParametros nfep) throws KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException, UnrecoverableKeyException, WSException, NFeException {
+//    public retenviNFe_v400.TRetEnviNFe realizaAutorizacaoNFe(NotaFiscalEletronica nfe, Emitente empresaLogada, ConfiguracaoAmbiente ambiente, NFeParametros nfep) throws KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException, UnrecoverableKeyException, WSException, NFeException {
 //        return autorizaNFe.realizaAutorizacaoNFe(nfe, empresaLogada, ambiente, nfep);
 //    }
 //
-//    public retConsReciNFe_v310.TRetConsReciNFe consultarRecebimentoNFe(retEnviNFe_v310.TRetEnviNFe retEnviNFe, NotaFiscalEletronica nfe, Emitente empresaLogada, ConfiguracaoAmbiente ambiente, NFeParametros nfep) throws WSException, NFeException, KeyStoreException, UnsupportedEncodingException, IOException, NoSuchAlgorithmException, CertificateException, UnrecoverableKeyException, JAXBException, SAXException, ParserConfigurationException, TransformerException, DaoException, InterruptedException, SendMailException {
+//    public retConsReciNFe_v310.TRetConsReciNFe consultarRecebimentoNFe(retenviNFe_v400.TRetEnviNFe retEnviNFe, NotaFiscalEletronica nfe, Emitente empresaLogada, ConfiguracaoAmbiente ambiente, NFeParametros nfep) throws WSException, NFeException, KeyStoreException, UnsupportedEncodingException, IOException, NoSuchAlgorithmException, CertificateException, UnrecoverableKeyException, JAXBException, SAXException, ParserConfigurationException, TransformerException, DaoException, InterruptedException, SendMailException {
 //        return recebimentoNFe.consultarRecebimentoNFe(retEnviNFe, nfe, empresaLogada, ambiente, nfep);
 //    }
 //

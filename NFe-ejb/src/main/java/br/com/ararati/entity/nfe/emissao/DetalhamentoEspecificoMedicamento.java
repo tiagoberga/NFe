@@ -5,13 +5,12 @@
  */
 package br.com.ararati.entity.nfe.emissao;
 
-import br.com.ararati.entity.cadastros.*;
 import br.com.ararati.entity.AbstractEntity;
 import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
@@ -27,12 +26,7 @@ import org.hibernate.validator.constraints.Length;
 @Table(schema = "nfe", name = "detalhamento_especifico_medicamento")
 public class DetalhamentoEspecificoMedicamento extends AbstractEntity {
 
-    @ManyToOne
-    @NotNull(message = "Empresa Emitente é obrigatório")
-    @JoinColumn(name = "emitente_id", nullable = false)
-    private Emitente emitente;
-
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "detalhamento_produto_servico_id", nullable = false)
     private DetalhamentoProdutoServico detalhamentoProdutoServico;
 
@@ -52,14 +46,6 @@ public class DetalhamentoEspecificoMedicamento extends AbstractEntity {
     @DecimalMin(value = "0.00")
     @Column(precision = 15, scale = 2, nullable = false)
     private BigDecimal vpmc;
-
-    public Emitente getEmitente() {
-        return emitente;
-    }
-
-    public void setEmitente(Emitente emitente) {
-        this.emitente = emitente;
-    }
 
     public DetalhamentoProdutoServico getDetalhamentoProdutoServico() {
         return detalhamentoProdutoServico;

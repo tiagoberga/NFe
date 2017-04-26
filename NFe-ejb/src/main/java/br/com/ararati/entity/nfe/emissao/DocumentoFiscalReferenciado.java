@@ -29,11 +29,6 @@ import org.hibernate.validator.constraints.Length;
 public class DocumentoFiscalReferenciado extends AbstractEntity {
 
     @ManyToOne
-    @NotNull(message = "Empresa Emitente é obrigatório")
-    @JoinColumn(name = "emitente_id", nullable = false)
-    private Emitente emitente;
-
-    @ManyToOne
     @JoinColumn(name = "identificacao_nfe_id", nullable = false)
     private IdentificacaoNFe identificacaoNFe;
 
@@ -97,14 +92,6 @@ public class DocumentoFiscalReferenciado extends AbstractEntity {
         refnfemod = null;
         refnfeserie = null;
         refnfennf = null;
-    }
-
-    public Emitente getEmitente() {
-        return emitente;
-    }
-
-    public void setEmitente(Emitente emitente) {
-        this.emitente = emitente;
     }
 
     public IdentificacaoNFe getIdentificacaoNFe() {

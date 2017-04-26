@@ -7,15 +7,12 @@ package br.com.ararati.entity.nfe.emissao;
 
 import br.com.ararati.Cep;
 import br.com.ararati.entity.cadastros.Local;
-import br.com.ararati.entity.cadastros.*;
 import br.com.ararati.entity.AbstractEntity;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 /**
  * Identificação do Destinatário da Nota Fiscal eletrônica
@@ -25,11 +22,6 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(schema = "nfe", name = "identificacao_local_entrega")
 public class IdentificacaoLocalEntrega extends AbstractEntity {
-
-    @ManyToOne
-    @NotNull(message = "Empresa Emitente é obrigatório")
-    @JoinColumn(name = "emitente_id", nullable = false)
-    private Emitente emitente;
 
     @OneToOne
     @JoinColumn(name = "dados_nfe_id", nullable = false)
@@ -49,14 +41,6 @@ public class IdentificacaoLocalEntrega extends AbstractEntity {
 
     public IdentificacaoLocalEntrega(Cep cepFound, String documento) {
         this.local = new Local(cepFound, documento);
-    }
-
-    public Emitente getEmitente() {
-        return emitente;
-    }
-
-    public void setEmitente(Emitente emitente) {
-        this.emitente = emitente;
     }
 
     public DadosNFe getDadosNFe() {

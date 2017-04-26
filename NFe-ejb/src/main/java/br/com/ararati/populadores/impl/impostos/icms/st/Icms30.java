@@ -8,8 +8,8 @@ package br.com.ararati.populadores.impl.impostos.icms.st;
 import br.com.ararati.entity.nfe.emissao.DetalhamentoProdutoServico;
 import br.com.ararati.enums.N.NFeTipoSituacaoTributariaICMS;
 import br.com.ararati.exception.NFeException;
-import enviNFe_v310.TNFe.InfNFe.Det.Imposto.ICMS;
-import enviNFe_v310.TNFe.InfNFe.Det.Imposto.ICMS.ICMS30;
+import enviNFe_v400.TNFe.InfNFe.Det.Imposto.ICMS;
+import enviNFe_v400.TNFe.InfNFe.Det.Imposto.ICMS.ICMS30;
 import javax.ejb.Local;
 
 /**
@@ -34,9 +34,11 @@ public class Icms30 implements IImposto {
             icms30.setVICMSST(item.getVicmsst() != null ? item.getVicmsst().toString() : null);
             icms30.setPMVAST(item.getPmvast() != null ? item.getPmvast().toString() : null);
             icms30.setPRedBCST(item.getPredbcicmsst() != null ? item.getPredbcicmsst().toString() : null);
-            // DESONERACAO ICMS
             icms30.setVICMSDeson(item.getVicmsdeson() != null ? item.getVicmsdeson().toString() : null);
             icms30.setMotDesICMS(item.getMotdesicms() != null ? item.getMotdesicms().getCodigo() : null);
+            icms30.setVBCFCPST(item.getVbcfcpst() != null ? item.getVbcfcpst().toString() : null);
+            icms30.setPFCPST(item.getPfcpst()!= null ? item.getPfcpst().toString() : null);
+            icms30.setVFCPST(item.getVfcpst()!= null ? item.getVfcpst().toString() : null);
             icms.setICMS30(icms30);
         } else {
             this.imposto.verificaImposto(item, icms);

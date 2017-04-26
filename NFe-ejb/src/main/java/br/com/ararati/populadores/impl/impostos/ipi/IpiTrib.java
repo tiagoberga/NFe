@@ -7,8 +7,8 @@ package br.com.ararati.populadores.impl.impostos.ipi;
 
 import br.com.ararati.entity.nfe.emissao.DetalhamentoProdutoServico;
 import br.com.ararati.enums.O.NFeTipoSituacaoTributariaIPI;
-import enviNFe_v310.TIpi;
-import enviNFe_v310.TIpi.IPITrib;
+import enviNFe_v400.TIpi;
+import enviNFe_v400.TIpi.IPITrib;
 
 /**
  * @author tiago

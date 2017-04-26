@@ -24,11 +24,6 @@ import javax.validation.constraints.NotNull;
 @Table(schema = "nfe", name = "detalhamento_especifico_papel_imune")
 public class DetalhamentoEspecificoPapelImune extends AbstractEntity {
 
-    @ManyToOne
-    @NotNull(message = "Empresa Emitente é obrigatório")
-    @JoinColumn(name = "emitente_id", nullable = false)
-    private Emitente emitente;
-
     @OneToOne
     @JoinColumn(name = "detalhamento_produto_servico_id", nullable = false)
     private DetalhamentoProdutoServico detalhamentoProdutoServico;
@@ -37,14 +32,6 @@ public class DetalhamentoEspecificoPapelImune extends AbstractEntity {
     @NotNull(message = "Número do RECOPI é obrigatório")
     @Column(length = 20, nullable = false)
     private String nrecopi;
-
-    public Emitente getEmitente() {
-        return emitente;
-    }
-
-    public void setEmitente(Emitente emitente) {
-        this.emitente = emitente;
-    }
 
     public DetalhamentoProdutoServico getDetalhamentoProdutoServico() {
         return detalhamentoProdutoServico;

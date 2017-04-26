@@ -5,7 +5,6 @@
  */
 package br.com.ararati.entity.nfe.emissao;
 
-import br.com.ararati.entity.cadastros.*;
 import br.com.ararati.entity.AbstractEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,12 +23,6 @@ import org.hibernate.validator.constraints.Length;
 @Table(schema = "nfe", name = "informacoes_adicionais_fisco")
 public class InformacoesAdicionaisFisco extends AbstractEntity {
 
-
-    @ManyToOne
-    @NotNull(message = "Empresa Emitente é obrigatório")
-    @JoinColumn(name = "emitente_id", nullable = true)
-    private Emitente emitente;
-    
     @ManyToOne
     @JoinColumn(name = "informacoes_adicionais_id", nullable = false)
     private InformacoesAdicionais informacoesAdicionais;
@@ -44,14 +37,6 @@ public class InformacoesAdicionaisFisco extends AbstractEntity {
     @Length(min = 1, max = 2000, message = "Conteúdo deve conter entre {min} e {max} caracteres")
     @Column(length = 2000, nullable = false)
     private String xtexto;
-
-    public Emitente getEmitente() {
-        return emitente;
-    }
-
-    public void setEmitente(Emitente emitente) {
-        this.emitente = emitente;
-    }
 
     public InformacoesAdicionais getInformacoesAdicionais() {
         return informacoesAdicionais;

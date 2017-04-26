@@ -25,11 +25,6 @@ import org.hibernate.validator.constraints.Length;
 public class AutorizacaoObterXml extends AbstractEntity {
 
     @ManyToOne
-    @NotNull(message = "Empresa Emitente é obrigatório")
-    @JoinColumn(name = "emitente_id", nullable = false)
-    private Emitente emitente;
-
-    @ManyToOne
     @JoinColumn(name = "dados_nfe_id", nullable = false)
     private DadosNFe dadosNFe;
 
@@ -37,14 +32,6 @@ public class AutorizacaoObterXml extends AbstractEntity {
     @Column(length = 14, nullable = false)
     @Length(min = 1, max = 14, message = "Documento deve conter entre {min} e {max} caracteres")
     private String documento;
-
-    public Emitente getEmitente() {
-        return emitente;
-    }
-
-    public void setEmitente(Emitente emitente) {
-        this.emitente = emitente;
-    }
 
     public DadosNFe getDadosNFe() {
         return dadosNFe;

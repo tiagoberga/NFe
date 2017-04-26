@@ -26,11 +26,6 @@ import javax.validation.constraints.NotNull;
 public class AquisicaoCanaFornecimento extends AbstractEntity {
 
     @ManyToOne
-    @NotNull(message = "Empresa Emitente é obrigatório")
-    @JoinColumn(name = "emitente_id", nullable = false)
-    private Emitente emitente;
-
-    @ManyToOne
     @JoinColumn(name = "aquisicao_cana_id", nullable = false)
     private AquisicaoCana aquisicaoCana;
 
@@ -43,14 +38,6 @@ public class AquisicaoCanaFornecimento extends AbstractEntity {
     @DecimalMin(value = "0.0000")
     @Column(precision = 15, scale = 4, nullable = true)
     private BigDecimal qtde;
-
-    public Emitente getEmitente() {
-        return emitente;
-    }
-
-    public void setEmitente(Emitente emitente) {
-        this.emitente = emitente;
-    }
 
     public AquisicaoCana getAquisicaoCana() {
         return aquisicaoCana;

@@ -5,15 +5,12 @@
  */
 package br.com.ararati.entity.nfe.emissao;
 
-import br.com.ararati.entity.cadastros.*;
 import br.com.ararati.entity.AbstractEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
 /**
@@ -24,11 +21,6 @@ import org.hibernate.validator.constraints.Length;
 @Entity
 @Table(schema = "nfe", name = "transporte_reboque")
 public class TransporteReboque extends AbstractEntity {
-
-    @ManyToOne
-    @NotNull(message = "Empresa Emitente é obrigatório")
-    @JoinColumn(name = "emitente_id", nullable = false)
-    private Emitente emitente;
 
     @ManyToOne
     @JoinColumn(name = "transporte_nfe_id", nullable = false)
@@ -44,14 +36,6 @@ public class TransporteReboque extends AbstractEntity {
     @Column(length = 20, nullable = true)
     @Length(min = 1, max = 20, message = "Número do Item deve conter entre {min} e {max} caracteres")
     private String rntc;
-
-    public Emitente getEmitente() {
-        return emitente;
-    }
-
-    public void setEmitente(Emitente emitente) {
-        this.emitente = emitente;
-    }
 
     public TransporteNFe getTransporteNFe() {
         return transporteNFe;

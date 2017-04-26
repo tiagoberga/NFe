@@ -25,16 +25,10 @@ import org.hibernate.validator.constraints.Length;
 @Table(schema = "nfe", name = "transporte_veiculo")
 public class TransporteVeiculo extends AbstractEntity {
 
-
-    @ManyToOne
-    @NotNull(message = "Empresa Emitente é obrigatório")
-    @JoinColumn(name = "emitente_id", nullable = false)
-    private Emitente emitente;
-
     @OneToOne
     @JoinColumn(name = "transporte_nfe_id", nullable = false)
     private TransporteNFe transporteNFe;
-        
+
     // Placa do Veículo
     @NotNull(message = "Placa do Veículo é obrigatório")
     @Column(length = 7, nullable = false)
@@ -48,14 +42,6 @@ public class TransporteVeiculo extends AbstractEntity {
     @Column(length = 20, nullable = true)
     @Length(min = 1, max = 20, message = "Número do Item deve conter entre {min} e {max} caracteres")
     private String rntc;
-
-    public Emitente getEmitente() {
-        return emitente;
-    }
-
-    public void setEmitente(Emitente emitente) {
-        this.emitente = emitente;
-    }
 
     public TransporteNFe getTransporteNFe() {
         return transporteNFe;
@@ -88,7 +74,5 @@ public class TransporteVeiculo extends AbstractEntity {
     public void setRntc(String rntc) {
         this.rntc = rntc;
     }
-
-    
 
 }

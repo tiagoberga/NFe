@@ -23,7 +23,7 @@ import javax.xml.stream.XMLStreamException;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.apache.axis2.AxisFault;
-import retConsReciNFe_v310.TRetConsReciNFe;
+import retConsReciNFe_v400.TRetConsReciNFe;
 
 /**
  *
@@ -64,7 +64,7 @@ public class WSConsultaRecebimentoNFe {
 
             NfeRetAutorizacaoStub stub = new NfeRetAutorizacaoStub(url.toString());
             NfeRetAutorizacaoStub.NfeRetAutorizacaoLoteResult result = stub.nfeRetAutorizacaoLote(dadosMsg, nfeCabecMsgE);
-            return GenericJAXBTools.unmarshallFromXMLToObject(retConsReciNFe_v310.TRetConsReciNFe.class, result.getExtraElement().toString());
+            return GenericJAXBTools.unmarshallFromXMLToObject(retConsReciNFe_v400.TRetConsReciNFe.class, result.getExtraElement().toString());
         } catch (MalformedURLException ex) {
             Logger.getLogger(WSConsultaStatusServico.class.getName()).log(Level.SEVERE, null, ex);
             throw new WSException("URL do web service não é valida, por favor verifique. " + ex.getMessage());

@@ -6,7 +6,7 @@
 package br.com.ararati.populadores.impl.impostos.ipi;
 
 import br.com.ararati.entity.nfe.emissao.DetalhamentoProdutoServico;
-import enviNFe_v310.TIpi;
+import enviNFe_v400.TIpi;
 
 /**
  *

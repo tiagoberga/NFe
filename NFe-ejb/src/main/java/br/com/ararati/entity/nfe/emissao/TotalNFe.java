@@ -26,11 +26,6 @@ import javax.validation.constraints.NotNull;
 @Table(schema = "nfe", name = "total_nfe")
 public class TotalNFe extends AbstractEntity {
 
-    @ManyToOne
-    @NotNull(message = "Empresa Emitente é obrigatório")
-    @JoinColumn(name = "emitente_id", nullable = true)
-    private Emitente emitente;
-
     @OneToOne
     @JoinColumn(name = "dados_nfe_id", nullable = false)
     private DadosNFe dadosNFe;
@@ -51,14 +46,6 @@ public class TotalNFe extends AbstractEntity {
         totalNFeIcms = new TotalNFeICMS();
         totalNFeIssqn = new TotalNFeISSQN();
         totalNFeRetencao = new TotalNFeRetencao();
-    }
-
-    public Emitente getEmitente() {
-        return emitente;
-    }
-
-    public void setEmitente(Emitente emitente) {
-        this.emitente = emitente;
     }
 
     public DadosNFe getDadosNFe() {

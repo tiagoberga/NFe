@@ -5,15 +5,16 @@
  */
 package br.com.ararati.entity.nfe.emissao;
 
-import br.com.ararati.entity.cadastros.*;
 import br.com.ararati.entity.AbstractEntity;
 import java.math.BigDecimal;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
@@ -27,11 +28,6 @@ import org.hibernate.validator.constraints.Length;
 @Entity
 @Table(schema = "nfe", name = "detalhamento_especifico_combustivel")
 public class DetalhamentoEspecificoCombustivel extends AbstractEntity {
-
-    @ManyToOne
-    @NotNull(message = "Empresa Emitente é obrigatório")
-    @JoinColumn(name = "emitente_id", nullable = false)
-    private Emitente emitente;
 
     @OneToOne
     @JoinColumn(name = "detalhamento_produto_servico_id", nullable = false)
@@ -115,34 +111,9 @@ public class DetalhamentoEspecificoCombustivel extends AbstractEntity {
     @Column(length = 2, nullable = false)
     private String ufcons;
 
-    /**
-     * Informar a BC da CIDE em quantidade
-     */
-    @DecimalMin(value = "0.0000")
-    @Column(precision = 16, scale = 4, nullable = false)
-    private BigDecimal qbcprod;
-
-    /**
-     * Valor da alíquota da CIDE, Informar o valor da alíquota em reais da CIDE
-     */
-    @DecimalMin(value = "0.0000")
-    @Column(precision = 15, scale = 4, nullable = false)
-    private BigDecimal valiqprod;
-
-    /**
-     * Valor da CIDE , Informar o valor da CIDE
-     */
-    @DecimalMin(value = "0.00")
-    @Column(precision = 15, scale = 2, nullable = false)
-    private BigDecimal vcide;
-
-    public Emitente getEmitente() {
-        return emitente;
-    }
-
-    public void setEmitente(Emitente emitente) {
-        this.emitente = emitente;
-    }
+    @Valid
+    @OneToOne(mappedBy = "detalhamentoEspecificoCombustivel", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, orphanRemoval = true)
+    private DetalhamentoEspecificoCombustivelCIDE cide;
 
     public DetalhamentoProdutoServico getDetalhamentoProdutoServico() {
         return detalhamentoProdutoServico;
@@ -224,28 +195,12 @@ public class DetalhamentoEspecificoCombustivel extends AbstractEntity {
         this.ufcons = ufcons;
     }
 
-    public BigDecimal getQbcprod() {
-        return qbcprod;
+    public DetalhamentoEspecificoCombustivelCIDE getCide() {
+        return cide;
     }
 
-    public void setQbcprod(BigDecimal qbcprod) {
-        this.qbcprod = qbcprod;
-    }
-
-    public BigDecimal getValiqprod() {
-        return valiqprod;
-    }
-
-    public void setValiqprod(BigDecimal valiqprod) {
-        this.valiqprod = valiqprod;
-    }
-
-    public BigDecimal getVcide() {
-        return vcide;
-    }
-
-    public void setVcide(BigDecimal vcide) {
-        this.vcide = vcide;
+    public void setCide(DetalhamentoEspecificoCombustivelCIDE cide) {
+        this.cide = cide;
     }
 
 }

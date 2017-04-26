@@ -84,10 +84,6 @@ public class DadosNFe extends AbstractEntity {
 
     @Valid
     @OneToOne(mappedBy = "dadosNFe", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, orphanRemoval = true)
-    private TransporteNFe transporteNFe;
-
-    @Valid
-    @OneToOne(mappedBy = "dadosNFe", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, orphanRemoval = true)
     private CobrancaFatura cobrancaFatura;
 
     @Valid
@@ -110,6 +106,14 @@ public class DadosNFe extends AbstractEntity {
     @OneToOne(mappedBy = "dadosNFe", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, orphanRemoval = true)
     private AquisicaoCana aquisicaoCana;
 
+    @Valid
+    @OneToOne(mappedBy = "dadosNFe", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, orphanRemoval = true)
+    private TransporteNFe transporteNFe;
+
+    @Valid
+    @OneToMany(mappedBy = "dadosNFe", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, orphanRemoval = true)
+    private Pagamento pagamento;
+
     public DadosNFe() {
         this.autorizadosObterXml = new ArrayList<>();
         this.detalhamentoProdutosServicos = new ArrayList<>();
@@ -124,7 +128,6 @@ public class DadosNFe extends AbstractEntity {
     public void addAutorizacaoObterXml(AutorizacaoObterXml item) {
         this.autorizadosObterXml.add(item);
         item.setDadosNFe(this);
-        item.setEmitente(emitente);
     }
 
     public void rmvAutorizacaoObterXml(AutorizacaoObterXml item) {
@@ -135,7 +138,6 @@ public class DadosNFe extends AbstractEntity {
     public void addDetalhamentoProdutosServicos(DetalhamentoProdutoServico item) {
         this.detalhamentoProdutosServicos.add(item);
         item.setDadosNFe(this);
-        item.setEmitente(emitente);
     }
 
     public void rmvDetalhamentoProdutosServicos(DetalhamentoProdutoServico item) {
@@ -146,7 +148,6 @@ public class DadosNFe extends AbstractEntity {
     public void addCobrancaDuplicata(CobrancaDuplicata item) {
         this.duplicatas.add(item);
         item.setDadosNFe(this);
-        item.setEmitente(emitente);
     }
 
     public void rmvCobrancaDuplicata(CobrancaDuplicata item) {
@@ -184,16 +185,6 @@ public class DadosNFe extends AbstractEntity {
 
     public void setIdentificacaoNFe(IdentificacaoNFe identificacaoNFe) {
         this.identificacaoNFe = identificacaoNFe;
-        identificacaoNFe.setEmitente(emitente);
-    }
-
-    public IdentificacaoAvulsa getIdentificacaoAvulsa() {
-        return identificacaoAvulsa;
-    }
-
-    public void setIdentificacaoAvulsa(IdentificacaoAvulsa identificacaoAvulsa) {
-        this.identificacaoAvulsa = identificacaoAvulsa;
-        identificacaoAvulsa.setEmitente(emitente);
     }
 
     public IdentificacaoEmitente getIdentificacaoEmitente() {
@@ -202,7 +193,14 @@ public class DadosNFe extends AbstractEntity {
 
     public void setIdentificacaoEmitente(IdentificacaoEmitente identificacaoEmitente) {
         this.identificacaoEmitente = identificacaoEmitente;
-        identificacaoEmitente.setEmitente(emitente);
+    }
+
+    public IdentificacaoAvulsa getIdentificacaoAvulsa() {
+        return identificacaoAvulsa;
+    }
+
+    public void setIdentificacaoAvulsa(IdentificacaoAvulsa identificacaoAvulsa) {
+        this.identificacaoAvulsa = identificacaoAvulsa;
     }
 
     public IdentificacaoDestinatario getIdentificacaoDestinatario() {
@@ -211,7 +209,6 @@ public class DadosNFe extends AbstractEntity {
 
     public void setIdentificacaoDestinatario(IdentificacaoDestinatario identificacaoDestinatario) {
         this.identificacaoDestinatario = identificacaoDestinatario;
-        identificacaoDestinatario.setEmitente(emitente);
     }
 
     public IdentificacaoLocalRetirada getIdentificacaoLocalRetirada() {
@@ -220,7 +217,6 @@ public class DadosNFe extends AbstractEntity {
 
     public void setIdentificacaoLocalRetirada(IdentificacaoLocalRetirada identificacaoLocalRetirada) {
         this.identificacaoLocalRetirada = identificacaoLocalRetirada;
-        identificacaoLocalRetirada.setEmitente(emitente);
     }
 
     public IdentificacaoLocalEntrega getIdentificacaoLocalEntrega() {
@@ -229,7 +225,6 @@ public class DadosNFe extends AbstractEntity {
 
     public void setIdentificacaoLocalEntrega(IdentificacaoLocalEntrega identificacaoLocalEntrega) {
         this.identificacaoLocalEntrega = identificacaoLocalEntrega;
-        identificacaoLocalEntrega.setEmitente(emitente);
     }
 
     public List<AutorizacaoObterXml> getAutorizadosObterXml() {
@@ -254,16 +249,6 @@ public class DadosNFe extends AbstractEntity {
 
     public void setTotalNFe(TotalNFe totalNFe) {
         this.totalNFe = totalNFe;
-        totalNFe.setEmitente(emitente);
-    }
-
-    public TransporteNFe getTransporteNFe() {
-        return transporteNFe;
-    }
-
-    public void setTransporteNFe(TransporteNFe transporteNFe) {
-        this.transporteNFe = transporteNFe;
-        transporteNFe.setEmitente(emitente);
     }
 
     public CobrancaFatura getCobrancaFatura() {
@@ -272,7 +257,6 @@ public class DadosNFe extends AbstractEntity {
 
     public void setCobrancaFatura(CobrancaFatura cobrancaFatura) {
         this.cobrancaFatura = cobrancaFatura;
-        cobrancaFatura.setEmitente(emitente);
     }
 
     public List<CobrancaDuplicata> getDuplicatas() {
@@ -289,7 +273,6 @@ public class DadosNFe extends AbstractEntity {
 
     public void setInformacoesAdicionais(InformacoesAdicionais informacoesAdicionais) {
         this.informacoesAdicionais = informacoesAdicionais;
-        informacoesAdicionais.setEmitente(emitente);
     }
 
     public ComercioExterior getComercioExterior() {
@@ -298,7 +281,6 @@ public class DadosNFe extends AbstractEntity {
 
     public void setComercioExterior(ComercioExterior comercioExterior) {
         this.comercioExterior = comercioExterior;
-        comercioExterior.setEmitente(emitente);
     }
 
     public Compra getCompra() {
@@ -307,7 +289,6 @@ public class DadosNFe extends AbstractEntity {
 
     public void setCompra(Compra compra) {
         this.compra = compra;
-        compra.setEmitente(emitente);
     }
 
     public AquisicaoCana getAquisicaoCana() {
@@ -316,7 +297,23 @@ public class DadosNFe extends AbstractEntity {
 
     public void setAquisicaoCana(AquisicaoCana aquisicaoCana) {
         this.aquisicaoCana = aquisicaoCana;
-        aquisicaoCana.setEmitente(emitente);
     }
 
+    public TransporteNFe getTransporteNFe() {
+        return transporteNFe;
+    }
+
+    public void setTransporteNFe(TransporteNFe transporteNFe) {
+        this.transporteNFe = transporteNFe;
+    }
+
+    public Pagamento getPagamento() {
+        return pagamento;
+    }
+
+    public void setPagamento(Pagamento pagamento) {
+        this.pagamento = pagamento;
+    }
+
+    
 }

@@ -51,11 +51,6 @@ import org.hibernate.validator.constraints.Length;
 public class DetalhamentoProdutoServico extends AbstractEntity {
 
     @ManyToOne
-    @NotNull(message = "Empresa Emitente é obrigatório")
-    @JoinColumn(name = "emitente_id", nullable = false)
-    private Emitente emitente;
-
-    @ManyToOne
     @JoinColumn(name = "dados_nfe_id", nullable = false)
     private DadosNFe dadosNFe;
 
@@ -155,7 +150,6 @@ public class DetalhamentoProdutoServico extends AbstractEntity {
     @Column(precision = 15, scale = 4, nullable = false)
     private BigDecimal qcom;
 
-    // 
     /**
      * Valor Unitário de Comercialização, valor Total Bruto dos Produtos ou
      * Serviços, informar o valor unitário de comercialização do produto, campo
@@ -289,10 +283,10 @@ public class DetalhamentoProdutoServico extends AbstractEntity {
     @OneToOne(mappedBy = "detalhamentoProdutoServico", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, orphanRemoval = true)
     private DetalhamentoEspecificoVeiculo veiculo;
 
-    /* K. Detalhamento Específico de Medicamento e de matérias-primas farmacêuticas = 500 */
+    /* K. Detalhamento Específico de Medicamento e de matérias-primas farmacêuticas */
     @Valid
-    @OneToMany(mappedBy = "detalhamentoProdutoServico", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<DetalhamentoEspecificoMedicamento> medicamentos;
+    @OneToOne(mappedBy = "detalhamentoProdutoServico", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, orphanRemoval = true)
+    private DetalhamentoEspecificoMedicamento medicamento;
 
     /* L. Detalhamento Específico de Armamentos = 500 */
     @Valid
@@ -725,7 +719,6 @@ public class DetalhamentoProdutoServico extends AbstractEntity {
         this.combustivel = new DetalhamentoEspecificoCombustivel();
         this.declaracoesDeImportacao = new ArrayList<>();
         this.gruposDeExportacao = new ArrayList<>();
-        this.medicamentos = new ArrayList<>();
         this.nves = new ArrayList<>();
         this.veiculo = new DetalhamentoEspecificoVeiculo();
     }
@@ -801,14 +794,6 @@ public class DetalhamentoProdutoServico extends AbstractEntity {
         vcofins = null;
         qbcprodcofins = null;
         valiqprodcofins = null;
-    }
-
-    public Emitente getEmitente() {
-        return emitente;
-    }
-
-    public void setEmitente(Emitente emitente) {
-        this.emitente = emitente;
     }
 
     public DadosNFe getDadosNFe() {
@@ -1051,12 +1036,12 @@ public class DetalhamentoProdutoServico extends AbstractEntity {
         this.veiculo = veiculo;
     }
 
-    public List<DetalhamentoEspecificoMedicamento> getMedicamentos() {
-        return medicamentos;
+    public DetalhamentoEspecificoMedicamento getMedicamento() {
+        return medicamento;
     }
 
-    public void setMedicamentos(List<DetalhamentoEspecificoMedicamento> medicamentos) {
-        this.medicamentos = medicamentos;
+    public void setMedicamento(DetalhamentoEspecificoMedicamento medicamento) {
+        this.medicamento = medicamento;
     }
 
     public List<DetalhamentoEspecificoArmamento> getArmamentos() {
@@ -1819,6 +1804,9 @@ public class DetalhamentoProdutoServico extends AbstractEntity {
         this.infadprod = infadprod;
     }
 
+    
+    
+    
     @Override
     public int hashCode() {
         int hash = 5;

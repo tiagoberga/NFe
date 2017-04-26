@@ -25,11 +25,6 @@ import org.hibernate.validator.constraints.Length;
 @Table(schema = "nfe", name = "compra")
 public class Compra extends AbstractEntity {
 
-    @ManyToOne
-    @NotNull(message = "Empresa Emitente é obrigatório")
-    @JoinColumn(name = "emitente_id", nullable = false)
-    private Emitente emitente;
-
     @OneToOne
     @JoinColumn(name = "dados_nfe_id", nullable = false)
     private DadosNFe dadosNFe;
@@ -46,14 +41,6 @@ public class Compra extends AbstractEntity {
     @Length(min = 1, max = 60, message = "Contrato deve conter entre {min} e {max} caracteres")
     @Column(length = 60, nullable = true)
     private String xcont;
-
-    public Emitente getEmitente() {
-        return emitente;
-    }
-
-    public void setEmitente(Emitente emitente) {
-        this.emitente = emitente;
-    }
 
     public DadosNFe getDadosNFe() {
         return dadosNFe;

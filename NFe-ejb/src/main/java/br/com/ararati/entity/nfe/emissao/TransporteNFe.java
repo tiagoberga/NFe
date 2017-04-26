@@ -17,7 +17,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PostLoad;
@@ -33,11 +32,6 @@ import org.hibernate.validator.constraints.Length;
 @Entity
 @Table(schema = "nfe", name = "transporte_nfe")
 public class TransporteNFe extends AbstractEntity {
-
-    @ManyToOne
-    @NotNull(message = "Empresa Emitente é obrigatório")
-    @JoinColumn(name = "emitente_id", nullable = false)
-    private Emitente emitente;
 
     @OneToOne
     @JoinColumn(name = "dados_nfe_id", nullable = false)
@@ -124,32 +118,20 @@ public class TransporteNFe extends AbstractEntity {
 
     public void setVeiculo(TransporteVeiculo item) {
         this.veiculo = item;
-        item.setEmitente(emitente);
     }
 
     public void setRetencaoIcms(TransporteRetencaoIcms item) {
         this.retencaoIcms = item;
-        item.setEmitente(emitente);
     }
 
     public void addTransporteReboque(TransporteReboque item) {
         this.reboques.add(item);
         item.setTransporteNFe(this);
-        item.setEmitente(emitente);
     }
 
     public void addTransporteVolume(TransporteVolume item) {
         this.volumes.add(item);
         item.setTransporteNFe(this);
-        item.setEmitente(emitente);
-    }
-
-    public Emitente getEmitente() {
-        return emitente;
-    }
-
-    public void setEmitente(Emitente emitente) {
-        this.emitente = emitente;
     }
 
     public DadosNFe getDadosNFe() {

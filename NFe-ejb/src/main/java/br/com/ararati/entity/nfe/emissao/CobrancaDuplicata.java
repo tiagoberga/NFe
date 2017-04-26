@@ -30,11 +30,6 @@ import org.hibernate.validator.constraints.Length;
 @Table(schema = "nfe", name = "cobranca_duplicata")
 public class CobrancaDuplicata extends AbstractEntity {
 
-    @ManyToOne
-    @NotNull(message = "Empresa Emitente é obrigatório")
-    @JoinColumn(name = "emitente_id", nullable = true)
-    private Emitente emitente;
-
     @OneToOne
     @JoinColumn(name = "dados_nfe_id", nullable = false)
     private DadosNFe dadosNFe;
@@ -50,14 +45,6 @@ public class CobrancaDuplicata extends AbstractEntity {
     @DecimalMin(value = "0.00")
     @Column(precision = 13, scale = 2, nullable = true)
     private BigDecimal vdup;
-
-    public Emitente getEmitente() {
-        return emitente;
-    }
-
-    public void setEmitente(Emitente emitente) {
-        this.emitente = emitente;
-    }
 
     public DadosNFe getDadosNFe() {
         return dadosNFe;

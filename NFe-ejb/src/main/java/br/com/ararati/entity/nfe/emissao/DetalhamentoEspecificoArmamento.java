@@ -25,11 +25,6 @@ import org.hibernate.validator.constraints.Length;
 public class DetalhamentoEspecificoArmamento extends AbstractEntity {
 
     @ManyToOne
-    @NotNull(message = "Empresa Emitente é obrigatório")
-    @JoinColumn(name = "emitente_id", nullable = false)
-    private Emitente emitente;
-
-    @ManyToOne
     @JoinColumn(name = "detalhamento_produto_servico_id", nullable = false)
     private DetalhamentoProdutoServico detalhamentoProdutoServico;
 
@@ -51,14 +46,6 @@ public class DetalhamentoEspecificoArmamento extends AbstractEntity {
     @Length(min = 1, max = 256, message = "Descrição Completa deve conter entre {min} e {max} caracteres")
     @Column(length = 256, nullable = false)
     private String descr;
-
-    public Emitente getEmitente() {
-        return emitente;
-    }
-
-    public void setEmitente(Emitente emitente) {
-        this.emitente = emitente;
-    }
 
     public DetalhamentoProdutoServico getDetalhamentoProdutoServico() {
         return detalhamentoProdutoServico;

@@ -6,7 +6,6 @@
 package br.com.ararati.entity.nfe.emissao;
 
 import br.com.ararati.entity.AbstractEntity;
-import br.com.ararati.entity.cadastros.Emitente;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Column;
@@ -28,11 +27,6 @@ import org.hibernate.validator.constraints.Length;
 @Entity
 @Table(schema = "nfe", name = "nfe_rastreabilidade_produto")
 public class RastreabilidadeProduto extends AbstractEntity {
-
-    @ManyToOne
-    @NotNull(message = "Empresa Emitente é obrigatório")
-    @JoinColumn(name = "emitente_id", nullable = false)
-    private Emitente emitente;
 
     @ManyToOne
     @JoinColumn(name = "detalhamento_produto_servico_id", nullable = false)
@@ -60,14 +54,6 @@ public class RastreabilidadeProduto extends AbstractEntity {
     @Temporal(TemporalType.DATE)
     @Column(nullable = false)
     private Date dval;
-
-    public Emitente getEmitente() {
-        return emitente;
-    }
-
-    public void setEmitente(Emitente emitente) {
-        this.emitente = emitente;
-    }
 
     public DetalhamentoProdutoServico getDetalhamentoProdutoServico() {
         return detalhamentoProdutoServico;

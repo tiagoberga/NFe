@@ -6,7 +6,7 @@
 package br.com.ararati.populadores.impl.impostos.icms.sn;
 
 import br.com.ararati.entity.nfe.emissao.DetalhamentoProdutoServico;
-import enviNFe_v310.TNFe.InfNFe.Det.Imposto.ICMS;
+import enviNFe_v400.TNFe.InfNFe.Det.Imposto.ICMS;
 
 /**
  *

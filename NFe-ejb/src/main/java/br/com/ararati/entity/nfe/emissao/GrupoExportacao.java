@@ -25,11 +25,6 @@ import javax.validation.constraints.NotNull;
 public class GrupoExportacao extends AbstractEntity {
 
     @ManyToOne
-    @NotNull(message = "Empresa Emitente é obrigatório")
-    @JoinColumn(name = "emitente_id", nullable = false)
-    private Emitente emitente;
-
-    @ManyToOne
     @JoinColumn(name = "detalhamento_produto_servico_id", nullable = false)
     private DetalhamentoProdutoServico detalhamentoProdutoServico;
 
@@ -62,14 +57,6 @@ public class GrupoExportacao extends AbstractEntity {
     @NotNull(message = "Quantidade Exportado é obrigatório")
     @Column(precision = 15, scale = 4, nullable = false)
     private BigDecimal qexport;
-
-    public Emitente getEmitente() {
-        return emitente;
-    }
-
-    public void setEmitente(Emitente emitente) {
-        this.emitente = emitente;
-    }
 
     public DetalhamentoProdutoServico getDetalhamentoProdutoServico() {
         return detalhamentoProdutoServico;

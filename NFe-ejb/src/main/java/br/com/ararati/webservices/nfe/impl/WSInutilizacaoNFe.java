@@ -8,7 +8,7 @@ package br.com.ararati.webservices.nfe.impl;
 import br.com.ararati.exception.WSException;
 import br.com.ararati.operacoes.GenericJAXBTools;
 import br.inf.portalfiscal.www.nfe.wsdl.nfeinutilizacao2.NfeInutilizacao2Stub;
-import retInutNFe_v310.TRetInutNFe;
+import retInutNFe_v400.TRetInutNFe;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
